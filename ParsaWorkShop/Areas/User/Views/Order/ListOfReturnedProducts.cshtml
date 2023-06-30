@@ -1,0 +1,60 @@
+﻿@model List<Domain.Models.Order.ReturnedProducts>
+@using Application.Convertors
+@{
+    ViewData["Title"] = "کالاهای مرجوعی ";
+}
+
+
+<div class="col-lg-8 col-12">
+
+
+    <div class="border-bottom pb-4 text-center">
+        <a href="/User/Order/Index" class="btn btn-success"> ثبت کالای مرجوعی    </a>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div class="table-responsive bg-white shadow rounded">
+                <table class="table mb-0 table-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="border-bottom"> عنوان محصول  </th>
+                            <th scope="col" class="border-bottom"> قیمت واحد </th>
+                            <th scope="col" class="border-bottom">  تعداد </th>
+                            <th scope="col" class="border-bottom"> تاریخ   </th>
+                            <th scope="col" class="border-bottom"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.OrderDetails.Product.ProductTitle</td>
+                                <td>@item.OrderDetails.Price.ToString("#,0") تومان</td>
+                                <td>@item.OrderDetails.Count</td>
+                                <td>@item.CreateDate.ToShamsi()</td>
+                                <td>
+                                    @if (item.ReturnProductTypeID == 1)
+                                    {
+                                        <div class="btn btn-primary btn-pills ">درحال برسی </div>
+                                    }
+                                    @if (item.ReturnProductTypeID == 2)
+                                    {
+                                        <div class="btn btn-success btn-pills ">تایید شده  </div>
+                                    }
+                                    @if (item.ReturnProductTypeID == 3)
+                                    {
+                                        <div class="btn btn-danger btn-pills ">تایید نشده  </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div><!--end col-->
+
+
+    </div><!--end row-->
+</div>

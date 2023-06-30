@@ -1,0 +1,15 @@
+﻿@model List<Domain.Models.Product.ProductCategories>
+
+
+
+<li class="has-submenu parent-menu-item">
+    <a href="/Products/Index">فروشگاه </a><span class="menu-arrow"></span>
+    <ul class="submenu">
+        @foreach (var item in Model.Where(p => p.ParentId == null))
+        {
+            <li><a asp-action="Index" asp-controller="Products" asp-route-Categroyid="@item.ProductCategoryId" class="sub-menu-item">@item.CategoryTitle </a></li>
+
+        }
+
+    </ul>
+</li>

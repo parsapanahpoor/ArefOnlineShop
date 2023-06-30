@@ -1,0 +1,171 @@
+﻿@model Domain.Models.Product.ProductGallery
+@using Domain.Models.Product
+
+@{
+    ViewData["Title"] = "گالری تصاویر ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">مدیریت گالری تصاویر  محصول  </h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">مدیریت تصاویر  محصول  </li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+
+    <div class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary ">
+                    <div class="card-header">
+                        <h3 class="card-title"> ویژگی تصویر جدید  </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="Gallery" asp-area="Admin" asp-controller="Products" method="post" enctype="multipart/form-data">
+                        @Html.HiddenFor(m => m.ProductID)
+
+
+                        <div class="card-body">
+
+                            <div class="form-group">
+
+                                <div class="card-body row">
+                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="~/Images/Product/image/no-photo.png" alt="upload_img">
+                                </div>
+
+
+                                <label for="exampleInputFile">تصویر  </label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="imgUp" class="custom-file-input" id="imgUp">
+                                        <label class="custom-file-label" for="exampleInputFile">انتخاب فایل</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> عنوان  </label>
+                                <input type="text" asp-for="Title" class="form-control" id="exampleInputEmail1" placeholder="عنوان ویژگی را وارد کنید">
+                            </div>
+
+
+                        </div>
+
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ثبت </button>
+                            <a asp-action="Index" asp-controller="Products" asp-area="Admin" class="btn btn-primary">بازگشت  </a>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+           
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">اسلایدرها</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                          
+                            <div class="carousel-inner">
+
+
+                                @{ List<ProductGallery> Galleries = ViewBag.Galleries; }
+                                @foreach (var item in Galleries)
+                                {
+
+
+                            <div class="attachment-block clearfix">
+                                <img class="attachment-img" src="/Images/Product/ProducGallery/@item.ImageName" alt="Attachment Image">
+
+                                <div class="attachment-pushed">
+                                    
+                                    <a href="/Admin/Products/DeleteGallery/@item.ProductGalleryId" class="btn btn-outline-danger mt-2 mr-5" >حذف </a>
+                                    
+                                    <!-- /.attachment-text -->
+                                </div>
+                                <!-- /.attachment-pushed -->
+                            </div>            }
+
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+@section Scripts{
+    <script>
+        function DeleteFeature(id) {
+            if (confirm('آیا از حذف مطمئن هستید ؟')) {
+                $.get("/Admin/Products/DeleteFeature/" + id,
+                    function () {
+                        $("#feature_" + id).hide('slow');
+                    });
+            }
+        }
+    </script>
+
+
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgUp").change(function () {
+            readURL(this);
+        });
+    </script>
+
+ 
+
+}
+
+

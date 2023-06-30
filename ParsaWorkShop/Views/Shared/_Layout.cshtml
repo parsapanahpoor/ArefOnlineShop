@@ -1,0 +1,194 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - فروشگاه پارسا</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+    <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
+    <meta name="author" content="JafarAbbasi" />
+    <meta name="email" content="jabasi26@gmail.com" />
+    <meta name="website" content="https://www.rtl-theme.com/author/tn_plugin/" />
+    <meta name="Version" content="v3.0.0" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Bootstrap -->
+    <link href="/Landrick/css/bootstrap.min.css" rel="stylesheet" type="text/css" async />
+    <!-- Slider -->
+    <link rel="stylesheet" href="/Landrick/css/tiny-slider.css"  async />
+    <!-- Icons -->
+    <link href="/Landrick/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"  async />
+    <link rel="stylesheet" href="/Landrick/unicons.iconscout.com/release/v3.0.6/css/line.css" async >
+    <!-- Main Css -->
+    <link href="/Landrick/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt"  async />
+    <link href="/Landrick/css/colors/default.css" rel="stylesheet" id="color-opt" async >
+</head>
+
+<body>
+
+    <header id="topnav" class="defaultscroll sticky">
+        <div class="container">
+            <!-- Logo container-->
+
+            <ul class="buy-button list-inline mb-0">
+
+
+                <li class="list-inline-item mb-0 pe-1">
+                    <div class="dropdown">
+                        <a href="/order/ShopCart" class="btn btn-icon btn-primary dropdown-toggle" aria-haspopup="true" aria-expanded="false"><i class="uil uil-shopping-cart align-middle icons"></i></a>
+
+                    </div>
+                </li>
+
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="list-inline-item mb-0 ">
+                        <div class="dropdown dropdown-primary">
+                            <button type="button" class="btn btn-icon btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="uil uil-user align-middle icons"></i></button>
+                            <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3" style="width: 200px;">
+                                <a class="dropdown-item text-dark " href="#"><i class="uil uil-user align-middle me-1"></i>  @User.Identity.Name   </a>
+                                <a class="dropdown-item text-dark" asp-action="ManageUserForLogin" asp-controller="Account"><i class="uil uil-user align-middle me-1"></i>  ورود به حساب </a>
+                                <div class="dropdown-divider my-3 border-top"></div>
+                                <a class="dropdown-item text-dark" asp-action="Logout" asp-controller="Account"><i class="uil uil-sign-out-alt align-middle me-1"></i> خروج </a>
+                            </div>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="list-inline-item mb-0">
+                        <div class="dropdown dropdown-primary">
+                            <button type="button" class="btn btn-icon btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="uil uil-user align-middle icons"></i></button>
+                            <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3" style="width: 200px;">
+                                <a class="dropdown-item text-dark" asp-action="Register" asp-controller="Account"><i class="uil uil-user align-middle me-1"></i>  ثبت نام  </a>
+                                <div class="dropdown-divider my-3 border-top"></div>
+                                <a class="dropdown-item text-dark" asp-action="Login" asp-controller="Account"><i class="uil uil-user align-middle me-1"></i> ورود </a>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+            </ul><!--end login button-->
+            <!-- End Logo container-->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- End mobile menu toggle-->
+                </div>
+            </div>
+
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+                    <li><a href="/" class="sub-menu-item">صفحه اصلی </a></li>
+                    <cache expires-after="@TimeSpan.FromMinutes(30)">
+                        @await Component.InvokeAsync("ProductCategriesForMenuComponent")
+                    </cache>
+                    <cache expires-after="@TimeSpan.FromMinutes(30)">
+                        @await Component.InvokeAsync("BlogCategriesForMenuComponent")
+                    </cache>
+                    <cache expires-after="@TimeSpan.FromMinutes(30)">
+                        @await Component.InvokeAsync("VideosCategriesForMenuComponent")
+                    </cache>
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a class="sub-menu-item">@User.Identity.Name خوش آمدید  </a></li>
+                    }
+
+                </ul><!--end navigation menu-->
+
+            </div><!--end navigation-->
+        </div><!--end container-->
+    </header><!--end header-->
+
+
+
+
+    @RenderBody()
+
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                    
+                    <p class="mt-4">فروشگاه کالا </p>
+                    <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="linkedin" class="fea icon-sm fea-social"></i></a></li>
+                    </ul><!--end icon-->
+                </div><!--end col-->
+
+                <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <h5 class="text-light footer-head">شرکت </h5>
+                    <ul class="list-unstyled footer-list mt-4">
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> درباره ما </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> خدمات </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> تیم </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> قیمت گذاری </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> پروژه </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> مشاغل </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> وبلاگ </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> ورود </a></li>
+                    </ul>
+                </div><!--end col-->
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <h5 class="text-light footer-head">لینک های مفید </h5>
+                    <ul class="list-unstyled footer-list mt-4">
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> خدمات سایت </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> حریم خصوصی </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> مستند </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> تغییرات </a></li>
+                        <li><a href="/" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> اجزاء </a></li>
+                    </ul>
+                </div><!--end col-->
+
+                <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <h5 class="text-light footer-head">خبرنامه </h5>
+                    <p class="mt-4">ثبت نام کنید و آخرین نکات را از طریق ایمیل دریافت کنید.</p>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+    </footer><!--end footer-->
+    <!-- Footer End -->
+    <!-- Footer End -->
+    <!-- Product View Start -->
+    <!-- Product View End -->
+    <!-- Wishlist Popup Start -->
+    <!-- Wishlist Popup End -->
+    <!-- Back to top -->
+    <a href="#" onclick="topFunction()" id="back-to-top" class="btn btn-icon btn-primary back-to-top"><i data-feather="arrow-up" class="icons"></i></a>
+    <!-- Back to top -->
+    <!-- end Style switcher -->
+    <!-- javascript -->
+    <script src="/Landrick/js/bootstrap.bundle.min.js"  async ></script>
+    <!-- SLIDER -->
+    <script src="/Landrick/js/tiny-slider.js"  async ></script>
+    <!-- Icons -->
+    <script src="/Landrick/js/feather.min.js"  async ></script>
+    <!-- Switcher -->
+    <script src="/Landrick/js/switcher.js"  async ></script>
+    <!-- Main Js -->
+    <script src="/Landrick/js/plugins.init.js"  async ></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+    <script src="/Landrick/js/app.js"  async ></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+    @RenderSection("Scripts", false)
+
+</body>
+
+</html>

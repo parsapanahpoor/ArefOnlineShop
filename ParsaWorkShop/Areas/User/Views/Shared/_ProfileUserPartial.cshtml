@@ -1,0 +1,26 @@
+﻿@using Application.Interfaces
+@inject IUserService _UserService
+@using Application.ViewModels
+@{ SideBarUserPanelViewModel user = _UserService.GetSideBarUserPanelData(User.Identity.Name); }
+
+<!-- Sidebar user panel (optional) -->
+
+
+<div class="card-body">
+    <div class="row align-items-center">
+        <div class="col-lg-7 col-md-2 text-md-start text-center">
+            <img src="/Images/UserAvatar/@user.ImageName" class="avatar avatar-large rounded-circle shadow d-block mx-auto" alt="">
+        </div><!--end col-->
+
+        <div class="col-lg-5 col-md-9">
+            <div class="row ">
+                <div class="col-md-10 text-md-start text-center ">
+                    <h5 class="title mb-0">@user.UserName</h5>
+
+
+                </div><!--end col-->
+
+            </div><!--end row-->
+        </div><!--end col-->
+    </div><!--end row-->
+</div>

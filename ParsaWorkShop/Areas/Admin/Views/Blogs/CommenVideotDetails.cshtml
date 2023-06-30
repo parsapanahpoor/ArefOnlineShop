@@ -1,0 +1,170 @@
+﻿@model Domain.Models.Comment.Comment
+@using Application.Convertors
+@{
+    ViewData["Title"] = "مشاهده ی کامنت ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>اطلاعات کامنت و نویسنده   </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">مدیریت کامنت ها  </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <div class="row col-12">
+        <div class="col-md-7">
+            <!-- Box Comment -->
+            <div class="card card-widget">
+                <div class="card-header">
+                    <div class="user-block">
+
+                    </div>
+
+                    <div class="card-body">
+                        <img class="img-fluid pad" src="/Images/Blog/image/@Model.Video.VideoImageName" alt="Photo">
+
+
+                    </div>
+                    <!-- /.user-block -->
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
+                        </button>
+                        <button type="button" class="btn btn-tool" data-widget="collapse">
+                        </button>
+                        <button type="button" class="btn btn-tool" data-widget="remove">
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <!-- /.card-body -->
+                <div class="card-footer card-comments">
+                    <div class="card-comment">
+                        <!-- User image -->
+                        <img class="img-circle img-sm" src="/Images/UserAvatar/@Model.Users.UserAvatar" alt="User Image">
+
+                        <div class="comment-text">
+                            <span class="username">
+                                @Model.Users.UserName
+                                <span class="text-muted float-left">@Model.CreateDate</span>
+                            </span><!-- /.username -->
+                            @Model.CommentBody
+                        </div>
+                        <!-- /.comment-text -->
+                    </div>
+                    <!-- /.card-comment -->
+                    <!-- /.card-comment -->
+                </div>
+                <!-- /.card-footer -->
+                <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+        </div>
+
+        <div class="col-md-5">
+            <!-- Widget: user widget style 2 -->
+            <div class="card card-widget widget-user-2">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-warning">
+                    <div class="widget-user-image">
+                        <img class="img-circle elevation-2" src="/Images/UserAvatar/@Model.Users.UserAvatar" alt="User Avatar">
+                    </div>
+                    <!-- /.widget-user-image -->
+                    <h3 class="widget-user-username">@Model.Users.UserName</h3>
+                </div>
+                <div class="card-footer p-0">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                ‌@Model.Users.Email <span class="float-left badge bg-primary">ایمیل</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                @Model.Users.PhoneNumber <span class="float-left badge bg-info">تلفن همراه </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                @Model.Users.RegisterDate.ToShamsi() <span class="float-left badge bg-warning">تاریخ عضویت </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            @if (Model.Users.IsActive)
+                            {<a href="#" class="nav-link">
+                                    ‌ <span class="float-left badge bg-success">وضعیت فعال  </span>
+                                </a>}
+                            @if (!Model.Users.IsActive)
+                            {<a href="#" class="nav-link">
+                                    ‌ <span class="float-left badge bg-danger">غیر فعال   </span>
+                                </a>}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card card-warning" style="margin-top:20px;">
+                <div class="card-header">
+                    <h3 class="card-title">آیا میخواهید به  پروفایل کاربر بروید ؟</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form">
+
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <a href="/Admin/Users/Delete/@Model.UserId" style="color:white" class="btn btn-block btn-primary btn-lg">برسی کاربر  </a>
+
+                        @if (Model.Users.IsActive)
+                        {
+                            <a href="/Admin/Users/LockUser?Userid=@Model.UserId&&id=1" class="btn btn-block btn-danger btn-lg"> غیر فعال کردن کاربر   </a>
+
+                        }
+                        @if (!Model.Users.IsActive)
+                        {
+                            <a href="/Admin/Users/LockUser?Userid=@Model.UserId&&id=2" class="btn btn-block btn-warning btn-lg"> فعال کردن کاربر  </a>
+
+                        }
+                    </div>
+                </form>
+            </div>
+
+            <div class="card card-danger" style="margin-top:20px;">
+                <div class="card-header">
+                    <h3 class="card-title">آیا می خواهید کامنت شخص مورد نظر پاک  شود ؟</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form">
+
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <a href="/Admin/Blogs/DeleteVideoComment/@Model.CommentId" style="color:white" class="btn btn-block btn-danger btn-lg">حذف </a>
+                        <a href="/Admin/Blogs/ShowBlogCommentsInAdmin" class="btn btn-block btn-primary btn-lg">بازگشت </a>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- /.widget-user -->
+
+
+        </div>
+    </div>
+
+</div>

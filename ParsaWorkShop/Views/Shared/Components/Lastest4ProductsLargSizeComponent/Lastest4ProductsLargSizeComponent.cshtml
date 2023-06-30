@@ -1,0 +1,48 @@
+﻿@model List<Domain.Models.Product.Product>
+
+
+
+
+
+<div class="col-12 mt-4">
+    <div class="tns-outer" id="tns2-ow">
+        <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">1 to 4</span>  of 8</div><div id="tns2-mw" class="tns-ovh">
+            <div class="tns-inner" id="tns2-iw">
+                <div class="tiny-four-item  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2" style="transform: translate3d(0%, 0px, 0px);">
+                    @foreach (var item in Model)
+                    {<div class="tiny-slide tns-item tns-slide-active" id="tns2-item0">
+
+                            <div class="card shop-list border-0 position-relative m-2">
+                                <ul class="label list-unstyled mb-0">
+                                    <li><a href="/Products/SinglePageProducts/@item.ProductID" class="badge badge-link rounded-pill bg-primary">جدید  </a></li>
+                                    @if (item.IsInOffer == true)
+                                    {
+                                                    <li><a href="/Products/SinglePageProducts/@item.ProductID" class="badge badge-link rounded-pill bg-warning">@item.OfferPercent% تفیف  </a></li>
+}
+                                </ul>
+                                <div class="shop-image position-relative overflow-hidden rounded shadow">
+                                    <a href="/Products/SinglePageProducts/@item.ProductID"><img src="/Images/Product/image/@item.ProductImageName" style="width:261px;height:200px;" class="img-fluid" alt=""></a>
+                                 
+                                </div>
+                                <div class="card-body content pt-4 p-2">
+                                    <a href="/Products/SinglePageProducts/@item.ProductID" class="text-dark product-name h6">@item.ProductTitle  </a>
+                                    <div class="d-flex justify-content-between mt-1">
+                                        <h6 class="text-muted small fst-italic mb-0 mt-1">@item.ShortDescription </h6>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-1">
+                                        <h6 class="text-muted small fst-italic mb-0 mt-1">@item.Price.ToString("#,0") تومان </h6>
+                                        @if (item.IsInOffer == true)
+                                        {
+                                    <h6 class="text-muted small fst-italic mb-0 mt-1"> <del style="color:red;">@item.OldPrice.Value.ToString("#,0") تومان</del>  </h6>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end col-->

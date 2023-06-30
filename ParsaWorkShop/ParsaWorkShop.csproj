@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.10.0" />
+    <PackageReference Include="ZarinPalSandbox" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\IoC\IoC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="wwwroot\Images\Blog\image\" />
+    <Folder Include="wwwroot\Images\Blog\Videos\" />
+    <Folder Include="wwwroot\Images\Blog\thumb\" />
+    <Folder Include="wwwroot\Images\Product\image\" />
+    <Folder Include="wwwroot\Images\Product\ProducGallery\" />
+    <Folder Include="wwwroot\Images\Product\thumb\" />
+    <Folder Include="wwwroot\Images\UserAvatar\thumb\" />
+  </ItemGroup>
+
+</Project>

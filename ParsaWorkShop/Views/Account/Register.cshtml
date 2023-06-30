@@ -1,0 +1,154 @@
+﻿@using Application.ViewModels
+@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "ثبت نام ";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>ثبت نام </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+    <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
+    <meta name="author" content="JafarAbbasi" />
+    <meta name="email" content="jabasi26@gmail.com" />
+    <meta name="website" content="https://www.rtl-theme.com/author/tn_plugin/" />
+    <meta name="Version" content="v3.0.0" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <!-- Bootstrap -->
+    <link href="/Landrick/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link href="/Landrick/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/Landrick/unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <!-- Main Css -->
+    <link href="/Landrick/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="/Landrick/css/colors/default.css" rel="stylesheet" id="color-opt">
+
+</head>
+
+<body>
+
+
+    <div class="back-to-home rounded d-none d-sm-block">
+        <a href="/" class="btn btn-icon btn-primary"><i data-feather="home" class="icons"></i></a>
+    </div>
+
+    <!-- شوع آن -->
+    <section class="cover-user bg-white">
+        <div class="container-fluid px-0">
+            <div class="row g-0 position-relative">
+                <div class="col-lg-4 cover-my-30 order-2">
+                    <div class="cover-user-img d-lg-flex align-items-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card border-0" style="z-index: 1">
+                                    <div class="card-body p-0">
+                                        <h4 class="card-title text-center">ثبت نام </h4>
+                                        <form class="login-form mt-4" asp-controller="Account" asp-action="Register">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">نام کاربری  <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                                            <input type="text" class="form-control ps-5" placeholder=" نام کاربری  " asp-for="UserName" required="">
+                                                            <span style="color:red" asp-validation-for="UserName"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">ایمیل شما <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="mail" class="fea icon-sm icons"></i>
+                                                            <input type="email" class="form-control ps-5" placeholder="ایمیل" asp-for="Email" required="">
+                                                            <span style="color:red" asp-validation-for="Email"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">موبایل شما <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                                            <input type="text" class="form-control ps-5" placeholder="موبایل" asp-for="PhoneNumber" required="">
+                                                            <span style="color:red" asp-validation-for="PhoneNumber"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">رمز عبور  <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="key" class="fea icon-sm icons"></i>
+                                                            <input type="password" class="form-control ps-5" asp-for="Password" placeholder="رمز عبور " required="">
+                                                            <span style="color:red" asp-validation-for="Password"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label"> تکرار رمز عبور  <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="key" class="fea icon-sm icons"></i>
+                                                            <input type="password" class="form-control ps-5" asp-for="RePassword" placeholder="رمز عبور " required="">
+                                                            <span style="color:red" asp-validation-for="RePassword"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+
+                                                <div class="col-md-12">
+                                                    <div class="d-grid">
+                                                        <button class="btn btn-primary">ثبت نام </button>
+                                                    </div>
+                                                </div><!--end col-->
+
+
+
+                                                <div class="mx-auto">
+                                                    <p class="mb-0 mt-3"><small class="text-dark me-2">قبلاً حساب دارید؟</small> <a href="/Login" class="text-dark fw-bold">وارد شوید </a></p>
+                                                </div>
+                                            </div><!--end row-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--end row-->
+                    </div> <!-- end about detail -->
+                </div> <!-- end col -->
+
+                <div class="col-lg-8 offset-lg-4 padding-less img order-1" style="background-image:url('/Landrick/images/user/02.jpg')" data-jarallax='{"speed": 0.5}'></div><!-- end col -->
+            </div><!--end row-->
+        </div><!--end container fluid-->
+    </section><!--end section-->
+    <!-- پایان آن -->
+    <!-- end Style switcher -->
+    <!-- javascript -->
+    <script src="/Landrick/js/bootstrap.bundle.min.js"></script>
+    <!-- Icons -->
+    <script src="/Landrick/js/feather.min.js"></script>
+    <!-- Switcher -->
+    <script src="/Landrick/js/switcher.js"></script>
+    <!-- Main Js -->
+    <script src="/Landrick/js/plugins.init.js"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+    <script src="/Landrick/js/app.js"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+</body>
+
+</html>

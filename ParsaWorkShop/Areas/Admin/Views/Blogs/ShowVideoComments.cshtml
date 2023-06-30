@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Domain.Models.Comment.Comment>
+@using Application.Convertors
+@{
+    ViewData["Title"] = "برسی کامنت ها ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper" style="min-height: 862px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>برسی کامنت ها    </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">مدیریت کامنت ها  </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <div class="row col-12">
+        <div class="col-md-10" style="margin:auto">
+            <!-- Box Comment -->
+            <div class="card card-widget">
+                <div class="card-header">
+                    <div class="user-block">
+
+                    </div>
+
+                    <div class="card-body">
+                        <img class="img-fluid pad" src="/Images/Blog/image/@ViewData["BlogImageName"]" alt="Photo">
+
+
+                    </div>
+                    <!-- /.user-block -->
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-toggle="tooltip" title="" data-original-title="Mark as read">
+                        </button>
+                        <button type="button" class="btn btn-tool" data-widget="collapse">
+                        </button>
+                        <button type="button" class="btn btn-tool" data-widget="remove">
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <!-- /.card-body -->
+
+                @foreach (var item in Model)
+                {
+                <div class="card-footer card-comments">
+                    <div class="card-comment">
+                        <!-- User image -->
+                        <img class="img-circle img-sm" src="/Images/UserAvatar/@item.Users.UserAvatar" alt="User Image">
+
+                        <div class="comment-text">
+                            <span class="username">
+                                @item.Users.UserName
+                                <span class="text-muted float-left">
+                                    @item.CreateDate.ToShamsi()
+
+                                    <a style="color:white" class="btn btn-success btn-sm"
+                                       href="/Blog/SingleVideoPage/@item.VideoId">پاسخ   </a>
+
+                                    <a style="color:white" class="btn btn-danger btn-sm "
+                                       asp-action="CommenVideotDetails" asp-area="Admin" asp-controller="Blogs" asp-route-commenid="@item.CommentId">حذف  </a>
+
+                                </span>
+                            </span><!-- /.username -->
+                            @item.CommentBody
+                        </div>
+                    </div>
+              
+                </div>
+
+                }
+                <!-- /.card-footer -->
+                <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+        </div>
+
+
+
+
+    </div>
+
+</div>

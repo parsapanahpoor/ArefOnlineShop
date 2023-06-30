@@ -1,0 +1,168 @@
+﻿@model Application.ViewModels.EditUserViewModel
+@using Domain.Models.Users
+@{
+    ViewData["Title"] = "نمایش اطلاعات   ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List<Role> Roles = ViewData["Roles"] as List<Role>;
+
+}
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1> نمایش اطلاعات کاربری </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active"> نمایش کاربر   </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <form asp-action="Edit" asp-controller="Users" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="AvatarName" />
+        <input type="hidden" asp-for="Password" />
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-7">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">اطلاعات کاربری  </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div role="form" asp-action="Create" asp-controller="Users" asp-area="Admin">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> نام کاربری </label>
+                                        <input type="text" asp-for="UserName" readonly class="form-control" id="exampleInputEmail1" placeholder="نام کاربری  را وارد کنید">
+                                        <span asp-validation-for="UserName" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> شماره تلفن   </label>
+                                        <input type="text" asp-for="PhoneNumber" readonly class="form-control" id="exampleInputEmail1" placeholder="شماره تلفن  را وارد کنید">
+                                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">آدرس ایمیل</label>
+                                        <input type="email" asp-for="Email" readonly class="form-control" id="exampleInputEmail1" placeholder="ایمیل را وارد کنید">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                                    </div>
+                                   
+
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">بازگشت به عقب </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-5">
+                        <!-- Horizontal Form -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">  تصویر  </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+                                <div class="card-body row">
+                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="/Images/UserAvatar/@Model.AvatarName" alt="upload_img">
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" readonly asp-for="UserAvatar">
+                                            <label class="custom-file-label" for="exampleInputFile">انتخاب فایل</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <!-- /.card-footer -->
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+                        <!-- /.card -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">  نقش ها   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        @foreach (var item in Roles)
+                                        {
+                                            <br />
+                                            <input class="form-check-input" readonly type="checkbox" name="SelectedRoles" value="@item.RoleId" @((Model.UserRoles.Any(r => r == item.RoleId) ? "checked" : "")) style="padding-right: 20px; margin-right: 5px; ">
+                                            <label class="form-check-label" style="margin-right: 30px;"> @item.RoleTitle</label>
+                                        }
+                                    </div>
+
+
+
+                                </div>                            <!-- /.card-footer -->
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </form>
+
+
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#UserAvatar").change(function () {
+            readURL(this);
+        });
+    </script>
+}

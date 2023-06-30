@@ -1,0 +1,324 @@
+﻿@model Domain.Models.Blog.Video
+@using Domain.Models.Blog;
+@{
+    ViewData["Title"] = "اطلاعات ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List<BlogCategory> BlogsCategories = ViewData["BlogsCategories"] as List<BlogCategory>;
+
+}
+
+<head>
+    <style>
+
+        .hiddenn {
+            display: none;
+        }
+    </style>
+</head>
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>ویرایش ویدیو ی  </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">ویرایش ویدیو ی    </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <form asp-action="Delete" asp-controller="Videos" asp-area="Admin" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="CreateDate" />
+        <input type="hidden" asp-for="VideoId" />
+        <input type="hidden" asp-for="VideoImageName" />
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="IsActive" />
+        <input type="hidden" asp-for="DemoFileName" />
+
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-7">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">اطلاعات ویدیو   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div role="form" asp-action="Create" asp-controller="Users" asp-area="Admin">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> عنوان  ویدیو </label>
+                                        <input type="text" readonly asp-for="VideoTitle" class="form-control" id="exampleInputEmail1" placeholder="عنوان  ویدیو  را وارد کنید">
+                                        <span asp-validation-for="VideoTitle" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">   نویسنده </label>
+                                        <input type="text" readonly value="@Model.Users.UserName" class="form-control" id="exampleInputEmail1" placeholder="عنوان  ویدیو  را وارد کنید">
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> توضیح مختصر    </label>
+                                        <input type="text" readonly asp-for="ShortDescription" class="form-control" id="exampleInputEmail1" placeholder="توضیح مختصر  را وارد کنید">
+                                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">توضیح کامل </label>
+                                        <textarea type="email" readonly asp-for="LongDescription" class="form-control" id="LongDescription" placeholder="توضیح کامل را وارد کنید"></textarea>
+                                        <span asp-validation-for="LongDescription" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label> نوع ویدیو  </label>
+                                        <select id="VideoType" asp-for="IsAparat" class="form-control">
+
+                                            @if (Model.IsAparat)
+                                            {
+
+                                                <option selected value="@true">لینک ویدیو ی گرفته شده از   آپارات </option>
+
+                                            }
+                                            @if (!Model.IsAparat)
+                                            {
+
+                                                <option selected value="@false">آپلود ویدیو بر روی سرور وب سایت ای تکشو </option>
+
+
+                                            }
+
+
+
+                                        </select>
+                                    </div>
+                                    @if (Model.IsAparat)
+                                    {
+                                        <div id="Aparat" class=" form-group ">
+                                            <label>ویدیو ی آپارات</label>
+                                            <textarea class="form-control" asp-for="AparatFileName" name="AparatFileName" rows="2" placeholder="کد گرفته  شده از آپارات را به طور کامل در اینجا وارد کنید  ..."></textarea>
+                                        </div>
+
+                                    }
+
+
+                                    @if (!Model.IsAparat)
+                                    {
+
+                                        <div id="Server" class=" form-group ">
+                                            <label for="exampleInputFile">آپلود ویدیو   </label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="demoUp" id="exampleInputFile">
+                                                    <label class="custom-file-label" for="exampleInputFile">انتخاب ویدیو </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    }
+                                    <div id="Server" class=" form-group hiddenn">
+                                        <label for="exampleInputFile">آپلود ویدیو   </label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" readonly class="custom-file-input" name="demoUp" id="exampleInputFile">
+                                                <label class="custom-file-label" for="exampleInputFile">انتخاب ویدیو </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1"> تگ ها   </label>
+                                        <input type="text" asp-for="Tags" readonly class="form-control" id="exampleInputPassword1" placeholder="تگ ها را با - ار هم جدا کنید ">
+                                        <span asp-validation-for="Tags" class="text-danger"></span>
+
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="card-footer">
+
+                                    @if (ViewData["Delete"] != null)
+                                    {
+
+                                        <a asp-action="Delete" asp-route-id="@Model.VideoId" asp-controller="Videos" asp-area="Admin" class="btn btn-danger">حذف </a>
+
+                                    }
+
+                                    <a asp-action="Index" asp-controller="Videos" asp-area="Admin" class="btn btn-primary  ">بازگشت به عقب </a>
+                                </div>
+                            </div>
+                                </div>
+
+
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-5">
+                        <!-- Horizontal Form -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">  تصویر  </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+                                <div class="card-body row">
+                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="~/Images/Blog/image/@Model.VideoImageName" alt="upload_img">
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <label class="custom-file-label" for="exampleInputFile">انتخاب فایل</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <!-- /.card-footer -->
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+                        <!-- /.card -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">  دسته بندی ها   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        @foreach (var category in BlogsCategories.Where(p => p.ParentId == null))
+                                        {
+                                            <div style="padding-right: 40px; margin-right:10px; margin-top:10px;">
+                                                <input class="form-check-input" @((Model.VideoSelectedCategory.Any(r => r.BlogCategoryId == category.BlogCategoryId) ? "checked" : "")) type="checkbox" name="SelectedCategory" value="@category.BlogCategoryId">
+                                                <label class="form-check-label"> @category.CategoryTitle</label>
+                                            </div>
+
+                                            @if (BlogsCategories.Any(p => p.ParentId == category.ParentId))
+                                            {
+                                                @foreach (var sub in BlogsCategories.Where(p => p.ParentId == category.BlogCategoryId))
+                                                {
+                                                    <div style=" padding-right: 60px; margin-right: 20px; margin-top:5px;">
+
+                                                        <input class="form-check-input" @((Model.VideoSelectedCategory.Any(r => r.BlogCategoryId == sub.BlogCategoryId) ? "checked" : "")) type="checkbox" name="SelectedCategory" value="@sub.BlogCategoryId">
+                                                        <label class="form-check-label"> @sub.CategoryTitle</label>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+
+                                    </div>
+
+
+
+                                </div>                            <!-- /.card-footer -->
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </form>
+
+
+</div>
+
+@section Scripts
+{
+
+    <script>
+
+        function ChangeSelect() {
+
+            let e = document.getElementById("VideoType");
+            let value = e.options[e.selectedIndex].value;
+
+
+            if (value == "@true") {
+
+                document.getElementById("Aparat").classList.remove('hiddenn');
+                document.getElementById("Server").classList.add('hiddenn');
+
+
+            }
+            else if (value == "@false") {
+
+                document.getElementById("Server").classList.remove('hiddenn');
+                document.getElementById("Aparat").classList.add('hiddenn');
+
+
+
+            }
+            else {
+
+                document.getElementById("Server").classList.add('hiddenn');
+                document.getElementById("Aparat").classList.add('hiddenn');
+
+            }
+
+
+
+
+
+        }
+
+
+
+    </script>
+
+
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgBlogUp").change(function () {
+            readURL(this);
+        });
+    </script>
+
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+
+        CKEDITOR.replace('LongDescription', {
+            customConfig: '/js/Config.js'
+        });
+
+    </script>
+
+
+}

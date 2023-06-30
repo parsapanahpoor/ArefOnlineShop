@@ -1,0 +1,132 @@
+﻿@model Domain.Models.Product.ProductFeature
+@using Domain.Models.Product
+
+@{ ViewData["Title"] = "مدیریت ویژگی محصولات ";
+                Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; }
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">مدیریت ویژگی محصول  </h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">مدیریت ویژگی محصول  </li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+
+    <div class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary ">
+                    <div class="card-header">
+                        <h3 class="card-title"> ویژگی جدید </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="ProductFeaturs" asp-area="Admin" asp-controller="Products" method="post">
+                        @Html.HiddenFor(m => m.ProductID)
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> عنوان ویژگی </label>
+                                <input type="text" asp-for="FeatureTitle" class="form-control" id="exampleInputEmail1" placeholder="عنوان ویژگی را وارد کنید">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">مقدار</label>
+                                <input type="text" asp-for="FeatureValue" class="form-control" id="exampleInputPassword1" placeholder="مقدار را وارد کنید">
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ارسال</button>
+                            <a asp-action="Index" asp-controller="Products" asp-area="Admin" class="btn btn-primary">بازگشت  </a>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">جدول ویژگی های این محصول  </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            @{ List<ProductFeature> list = ViewBag.Features;
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>عنوان ویژگی </th>
+                                        <th>مقدار ویژگی </th>
+                                        <th style="width: 50px">  </th>
+                                    </tr>
+
+                                    @foreach (var item in list)
+                                    {
+                        <tr id="feature_@(item.FeatureID)">
+                            <td>@item.FeatureID</td>
+                            <td>
+                                @item.FeatureTitle
+                            </td>
+                            <td>
+                                @item.FeatureValue
+                            </td>
+                            <td>
+                                <a style="color:white" class="btn btn-sm btn-danger" onclick="DeleteFeature(@item.FeatureID)">
+                                    حذف
+                                </a>
+                            </td>
+                        </tr>}
+
+
+                                </tbody> }
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+@section Scripts{
+    <script>
+        function DeleteFeature(id) {
+            if (confirm('آیا از حذف مطمئن هستید ؟')) {
+                $.get("/Admin/Products/DeleteFeature/" + id,
+                    function () {
+                        $("#feature_" + id).hide('slow');
+                    });
+            }
+        }
+    </script>
+}

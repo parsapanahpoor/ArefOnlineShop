@@ -1,0 +1,184 @@
+﻿@model List<Domain.Models.Order.FinancialTransaction>
+@using Application.Convertors
+@{
+    ViewData["Title"] = "مدیریت مالی ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    decimal ExportMoney = ViewBag.ExportMoney;
+    decimal ReciveMoney = ViewBag.ReciveMoney;
+}
+
+
+@section Styls
+    {
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.css">
+
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>مدیریت مالی</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active"> مدیریت مالی</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-6">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success elevation-1">
+                        <i class="fa fa-dollar"></i>
+                    </span><div class="info-box-content">
+                        <span class="info-box-text"> واریزی به صندوق </span> <span class="info-box-number"> @ReciveMoney.ToString("#,0") تومان</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <div class="info-box">
+                    <span class="info-box-icon bg-danger elevation-1">
+                        <i class="fa fa-dollar"></i>
+                    </span><div class="info-box-content">
+                        <span class="info-box-text"> برداشتی از صندوق </span> <span class="info-box-number"> @ExportMoney.ToString("#,0") تومان </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+
+                <div class="card ">
+                    <div class="card-header">
+                        <div class="card-tools">
+
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width:10px;" aria-label="عکس  : activate to sort column ascending">خریدار   </th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کاربری  : activate to sort column descending">     نام مشتری</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="موبایل : activate to sort column ascending">موبایل مشتری  </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="موبایل : activate to sort column ascending"> تاریخ  </th>
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label=" activate to sort column ascending">مبلغ پرداخت شده </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label=" activate to sort column ascending"> شناسه </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label=" activate to sort column ascending">شناسه </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label=" activate to sort column ascending"> وضعیت  </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    <img class="direct-chat-img" style="width:50px;height:50px;" src="/Images/UserAvatar/@item.Order.User.UserAvatar" alt="message user image">
+                                                </td>
+                                                <td>@item.Order.User.UserName</td>
+                                                <td>@item.Order.User.PhoneNumber</td>
+
+                                                <td>@item.CreateDate.ToShamsi()</td>
+                                                <td>@item.Price.ToString("#,0") تومان </td>
+                                                <td>
+                                                    <div class="badge badge-success">شناسه ی پرداخت </div>
+                                                </td>
+                                                <td>
+                                                    <div class="badge badge-success">شناسه ی پرداخت </div>
+                                                </td>
+                                                <td>
+                                                    @if (item.FinancialTransactionTypeID == 1)
+                                                    {
+                                                        <div class="btn btn-success"> واریزی </div>
+                                                    }
+                                                    @if (item.FinancialTransactionTypeID == 2)
+                                                    {
+                                                        <div class="btn btn-danger"> برداشتی  </div>
+                                                    }
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section> <!-- /.content -->
+</div>
+
+
+
+
+@section scripts{
+    <!-- ./wrapper -->
+
+    <script src="/Admin_Panel/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <!-- SlimScroll -->
+    <!-- FastClick -->
+    <script src="/Admin_Panel/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+            });
+            $('#example2').DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "autoWidth": false
+            });
+        });</script>
+}
+

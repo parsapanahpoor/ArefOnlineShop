@@ -1,0 +1,138 @@
+﻿@model List<Domain.Models.Users.User>
+
+@{
+    ViewData["Title"] = "حذف شدگان ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styls
+    {
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.css">
+
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>کاربران حذف شده </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">حذف شدگان </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+
+                <div class="card ">
+                    <div class="card-header">
+                        <h3 class="card-title">لیست با جستجوی پیشرفته</h3>
+                        <div class="card-tools">
+                            
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 2px;" aria-label="کد: activate to sort column ascending">کد </th>
+
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 400.583px;" aria-sort="ascending" aria-label="نام کاربری  : activate to sort column descending">
+                                                نام کاربری
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 300.5px;" aria-label="موبایل : activate to sort column ascending">موبایل </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 400.6px;" aria-label=" activate to sort column ascending">ایمیل </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    <img class="direct-chat-img" style="width:50px;height:50px;" src="/UserAvatar/@item.UserAvatar" alt="message user image">
+
+                                                </td>
+                                                <td>@item.UserName</td>
+                                                <td>@item.PhoneNumber</td>
+                                                <td>@item.Email</td>
+                                         
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>    <!-- /.content -->
+</div>
+
+
+
+
+@section scripts{
+    <!-- ./wrapper -->
+
+    <script src="/Admin_Panel/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <!-- SlimScroll -->
+    <!-- FastClick -->
+    <script src="/Admin_Panel/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/Admin_Panel/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+    <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "language": {
+                        "paginate": {
+                            "next": "بعدی",
+                            "previous": "قبلی"
+                        }
+                    },
+                    "info": false,
+                });
+                $('#example2').DataTable({
+                    "language": {
+                        "paginate": {
+                            "next": "بعدی",
+                            "previous": "قبلی"
+                        }
+                    },
+                    "info": false,
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "autoWidth": false
+                });
+            });
+    </script>
+}
+

@@ -1,0 +1,14 @@
+﻿@using Application.Interfaces
+@inject IUserService _UserService
+@using Application.ViewModels
+@{ SideBarUserPanelViewModel user = _UserService.GetSideBarUserPanelData(User.Identity.Name); }
+
+<!-- Sidebar user panel (optional) -->
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+        <img src="/Images/UserAvatar/@user.ImageName" style="height:85px;width:85px;" class="img-circle elevation-2" alt="User Image">
+    </div>
+    <div class="info">
+        <a href="#" style="margin-top:20px;" class="d-block">@user.UserName</a>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model List<Domain.Models.Users.Locations>
+@{
+    ViewData["Title"] = "آدرس و نشانی ";
+}
+
+
+<div class="col-lg-8 col-12">
+
+
+    <div class="border-bottom pb-4 text-center">
+
+        <a href="/User/Location/AddNewLocation" class="btn btn-success">افزودن نشانی   </a>
+        <!-- <p class="text-muted mb-0">من کار خود را به عنوان یک کارآموز آغاز کرده ام و خودم را اثبات می کنم و با راهنمایی خوب به همه نقاط عطف می رسم و به مدیر پروژه می رسم. در این سفر ، من تمام رویه هایی را می شناسم که من را به یک توسعه دهنده ، رهبر تیم و یک مدیر پروژه خوب تبدیل می کند.</p> -->
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div class="table-responsive bg-white shadow rounded">
+                <table class="table mb-0 table-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="border-bottom">#</th>
+                            <th scope="col" class="border-bottom"> کدپستی </th>
+                            <th scope="col" class="border-bottom"> آدرس</th>
+                            <th scope="col" class="border-bottom"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.LocationID</th>
+                                <td>@item.PostalCode</td>
+                                <td>@item.LocationAddress</td>
+                                <td>
+                                <a href="/User/Location/EditLocation/@item.LocationID" class="btn btn-outline-primary mt-2 me-2">ویرایش </a>
+                                <a href="/User/Location/DeleteLocation/@item.LocationID" class="btn btn-outline-danger mt-2 me-2">حذف </a>
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div><!--end col-->
+
+
+    </div><!--end row-->
+</div>

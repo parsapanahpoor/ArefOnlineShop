@@ -1,0 +1,25 @@
+﻿@using Application.Convertors
+@using Domain.Models.Comment
+@model Tuple<List<Comment>, int>
+
+@{ Layout = null; }
+
+@foreach (var item in Model.Item1)
+{
+
+<li class="mt-4">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+            <a class="pe-3" href="#">
+                <img src="/images/UserAvatar/@item.Users.UserAvatar" class="img-fluid avatar avatar-md-sm rounded-circle shadow" alt="img">
+            </a>
+            <div class="commentor-detail">
+                <h6 class="mb-0"><a href="javascript:void(0)" class="text-dark media-heading">@item.Users.UserName</a></h6>
+                <small class="text-muted">@item.CreateDate.ToShamsi()</small>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3">
+        <p class="text-muted fst-italic p-3 bg-light rounded">" @item.CommentBody "</p>
+    </div>
+</li>}

@@ -1,0 +1,159 @@
+﻿@model Tuple<List<Domain.Models.Blog.Video>, int>
+@using Domain.Models.Blog
+@using Application.Convertors
+@{ ViewData["Title"] = "ویدیو های برتر   "; }
+
+
+<section class="bg-half bg-light d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title">  ویدیو های برتر   </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="/">فروشگاه کالا </a></li>
+                                <li class="breadcrumb-item"><a href="/Blog/Video">ویدیو های برتر </a></li>
+                                <li class="breadcrumb-item active" aria-current="page"> ویدیوها </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section>
+
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+
+<form id="formFilter" asp-action="Video" asp-controller="Blog" method="get">
+    <input type="hidden" id="pageid" name="pageId" value="@ViewBag.pageId.ToString()" />
+    <input type="hidden" name="Categroyid" value="@ViewBag.Categroyid" />
+
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-12">
+                    <div class="card border-0 sidebar sticky-bar">
+                        <div class="card-body p-0">
+                            <!-- SEARCH -->
+                            <div class="widget">
+                                <div class="input-group mb-3 border rounded">
+                                    <input type="text" id="s" name="filter" value="@ViewBag.filter" class="form-control border-0" placeholder="جستجوی عنوان ...">
+                                    <button type="submit" class="input-group-text bg-white border-0" id="searchsubmit"><i class="uil uil-search"></i></button>
+                                </div>
+                            </div>
+                            <!-- SEARCH -->
+                            <!-- Categories -->
+                            <div class="widget mt-4 pt-2">
+                                <h5 class="widget-title">دسته بندیها </h5>
+                                @{ List<BlogCategory> groups = ViewBag.Groups as List<BlogCategory>;
+                                    List<int> selected = ViewBag.selectedGroups as List<int>; }
+
+
+
+                                <ul class="list-unstyled  blog-categories">
+                                    @foreach (var group in groups.Where(g => g.ParentId == null))
+                                    {
+
+                        <li style="padding-bottom: 0px;">
+                            <a asp-action="Video" asp-controller="Blog" asp-route-Categroyid="@group.BlogCategoryId">@group.CategoryTitle</a>
+                            @if (groups.Any(g => g.ParentId == group.BlogCategoryId))
+                            {
+            <ul class="mr-1  mb-2 blog-categories" style="list-style:none">
+                @foreach (var sub in groups.Where(g => g.ParentId == group.BlogCategoryId))
+                {
+
+<li style="padding-bottom: 0px;"><a class="ml-2" asp-action="Video" asp-controller="Blog" asp-route-Categroyid="@sub.BlogCategoryId">@sub.CategoryTitle</a></li>
+}
+            </ul>}
+                        </li>}
+                                </ul>
+
+
+                                <div class="widget mt-4 pt-2">
+                                    <h5 class="widget-title"> جدیدترین ویدیوها  </h5>
+                                    <ul class="list-unstyled mt-4 mb-0">
+
+                                        @await Component.InvokeAsync("LastestVideosSmallSizeComponent")
+
+
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-lg-9 col-md-8 col-12 mt-5 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="row">
+
+                        @foreach (var item in Model.Item1)
+                        {
+
+                    <div class="col-lg-6 col-md-6 mb-4 pb-2">
+                        <div class="card blog rounded border-0 shadow overflow-hidden">
+                            <div class="position-relative">
+                                <img src="/Images/Blog/thumb/@item.VideoImageName" style="height:226px" class="card-img-top" alt="...">
+                                <div class="overlay rounded-top bg-dark"></div>
+                            </div>
+                            <div class="card-body content">
+                                <h5><a href="/Blog/SingleVideoPage/@item.VideoId" class="card-title title text-dark">@item.VideoTitle  </a></h5>
+                                <h6 class="text-muted small fst-italic mb-0 mt-1">@item.ShortDescription </h6>
+
+                                <div class="post-meta d-flex justify-content-between mt-3">
+                                    <a href="/Blog/SingleVideoPage/@item.VideoId" class="text-muted readmore">ادامه مطلب  <i class="uil uil-angle-left-b align-middle"></i></a>
+                                </div>
+                            </div>
+                            <div class="author">
+                                <small class="text-light user d-block"><i class="uil uil-user"></i>  @item.Users.UserName</small>
+                                <small class="text-light date"><i class="uil uil-calendar-alt"></i> @item.CreateDate.ToShamsi()</small>
+                            </div>
+                        </div>
+                    </div>}
+
+                        <div class="col-12 mt-4 pt-2">
+
+                            @if (Model.Item2 > 1)
+                            {
+                                int pageCount = ViewBag.pageId;
+                                int next = pageCount + 1;
+                                int last = pageCount - 1;
+                    <ul class="pagination justify-content-center mb-0">
+                        <li class="page-item"><a class="page-link" onclick="changePage(@next)" href="#" aria-label="Previous"><i class="mdi mdi-arrow-left"></i> بعدی </a></li>
+
+                        @for (int i = 1; i <= (int)Model.Item2; i++)
+                        {
+
+                    <li class="page-item  @((ViewBag.pageId == i ?"active":""))"><a class="page-link" onclick="changePage(@i)" href="#">@i</a></li>}
+                        <li class="page-item"><a class="page-link" onclick="changePage(@last)" href="#" aria-label="Next">قبلی   <i class="mdi mdi-arrow-right"></i></a></li>
+
+
+                    </ul>}
+                        </div>
+
+                    </div><!--end row-->
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+    </section>
+</form>
+
+@section Scripts
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>function changePage(pageid) {
+                $("#pageid").val(pageid);
+                $("#formFilter").submit();
+            }</script>
+
+}

@@ -1,0 +1,117 @@
+﻿@model Domain.Models.Order.ReturnedProducts
+@{
+    ViewData["Title"] = "برسی مرجوعی ";
+    Domain.Models.Users.Locations locations = ViewBag.Location as Domain.Models.Users.Locations;
+
+}
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1> برسی مرجوعی</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active"> برسی مرجوعی   </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-7">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">اطلاعات کاربری  </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div role="form" asp-action="Create" asp-controller="Users" asp-area="Admin">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> نام کاربری </label>
+                                        <input type="text" value="@Model.Users.UserName" readonly class="form-control" id="exampleInputEmail1" placeholder="نام کاربری  را وارد کنید">
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> شماره تلفن   </label>
+                                        <input type="text" value="@Model.Users.PhoneNumber" readonly class="form-control" id="exampleInputEmail1" placeholder="شماره تلفن  را وارد کنید">
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">کدپستی </label>
+                                        <input type="text" value="@locations.PostalCode" readonly class="form-control" id="exampleInputPassword1">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">آدرس </label>
+                                        <textarea type="password" readonly class="form-control" id="exampleInputPassword1">@locations.LocationAddress</textarea>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">دیلیل مرجوعی  </label>
+                                        <textarea type="password" readonly class="form-control" id="exampleInputPassword1">@Model.Description</textarea>
+
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <a asp-action="AcceptReturnRequest" asp-controller="OrderTracking" asp-area="Admin" asp-route-id="@Model.ReturnedProductID" class="btn btn-outline-success">تایید درخواست    </a>
+                                    <a asp-action="DeclineReturnRequest" asp-controller="OrderTracking" asp-area="Admin" asp-route-id="@Model.ReturnedProductID" class="btn btn-outline-danger">نپذیرفتن درخواست    </a>
+                                    <a asp-action="ListOfReturnedProducts" asp-controller="OrderTracking" asp-area="Admin" class="btn btn-outline-primary">بازگشت  </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-5">
+                        <!-- Horizontal Form -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">  تصویر کاربر   </h3>
+                            </div>
+
+                            <div class="form-horizontal">
+                                <div class="card-body row">
+                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="/Images/UserAvatar/@Model.Users.UserAvatar" alt="upload_img">
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Horizontal Form -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">  تصویر کالا   </h3>
+                            </div>
+
+                            <div class="form-horizontal">
+                                <div class="card-body row">
+                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="/Images/Product/image/@Model.OrderDetails.Product.ProductImageName" alt="upload_img">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+
+
+</div>

@@ -1,0 +1,170 @@
+﻿@model Domain.Models.Blog.Video
+@using Application.Convertors
+@{
+    ViewData["Title"] = Model.VideoTitle;
+}
+
+<section class="bg-half bg-light d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title">  @Model.VideoTitle </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="/">خانه </a></li>
+                                <li class="breadcrumb-item"><a href="/Blog/Video">ویدیوهای برتر </a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@Model.VideoTitle</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section>
+
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-md-2 d-none d-md-block">
+
+                    </div>
+                    <div class="col-md-12">
+                        <ul class="list-unstyled d-flex justify-content-between mt-4">
+                            <li class="list-inline-item user me-2"><a href="javascript:void(0)" class="text-muted"><i class="uil uil-user text-dark"></i>  @Model.Users.UserName</a></li>
+                            <li class="list-inline-item date text-muted"><i class="uil uil-calendar-alt text-dark"></i>  @Model.CreateDate.ToShamsi()</li>
+                        </ul>
+
+                        @if (Model.IsAparat)
+                        {
+                            <div class="img-fluid rounded-md shadow">
+                                @Html.Raw(Model.AparatFileName)
+                            </div>
+                        }
+                        @if (!Model.IsAparat)
+                        {
+                            <div class="img-fluid rounded-md shadow">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <video class="embed-responsive-item" src="~/Images/Blog/Videos/@Model.DemoFileName" allowfullscreen=""></video>
+                                </div>
+                            </div>
+                        }
+
+                        <h5 class="mt-4">@Model.ShortDescription</h5>
+
+                        <p class="text-muted">@Html.Raw(Model.LongDescription)</p>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            <div id="comments" class="card shadow rounded border-0 mt-4">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-0">ارسال نظر :</h5>
+
+                                    <form asp-action="CreateVideoComments" asp-controller="Blog"
+                                          data-ajax="true"
+                                          data-ajax-method="post"
+                                          data-ajax-mode="replace"
+                                          data-ajax-update="#listComment"
+                                          data-ajax-success="Success"
+                                          id="contactForm" class="contact-form p-4 rounded bg-color-grey" method="POST">
+                                        <input type="hidden" name="comment.VideoId" value="@Model.VideoId" />
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">نظر شما</label>
+                                                    <div class="form-icon position-relative">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle fea icon-sm icons"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                                                        <textarea id="comment_Comment" name="comment.CommentBody" placeholder="کامنت شما" rows="5" class="form-control ps-5" required=""></textarea>
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">نام  <span class="text-danger">*</span></label>
+                                                    <div class="form-icon position-relative">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user fea icon-sm icons"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                                        <input readonly value="@User.Identity.Name" type="text" placeholder="نام" class="form-control ps-5" required="">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+
+
+                                            <div class="col-md-12">
+                                                <div class="send d-grid">
+                                                    <button type="submit" class="btn btn-primary">ارسال پیام</button>
+                                                </div>
+                                            </div><!--end col-->
+                                        </div><!--end row-->
+                                    </form><!--end form-->
+                                </div>
+                            </div>
+
+
+                            <div class="card shadow rounded border-0 mt-4">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-0">نظرات :</h5>
+
+                                    <ul class="media-list list-unstyled mb-0" id="listComment">
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        }
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="alert alert-danger">
+                                جهت درج نظر باید وارد سایت شوید
+                            </div>
+                        }
+
+                    <div class="card shadow rounded border-0 mt-4">
+                        @await Component.InvokeAsync("LastestVideoComponent")
+                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts
+    {
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        function Success() {
+            $("#comment_Comment").val("");
+        }
+
+        $(function() {
+            $("#listComment").load("/Blog/ShowCommentVideo/" + @Model.VideoId);
+        });
+
+        function pageComment(pageid) {
+            $("#listComment").load("/Blog/ShowCommentVideo/" + @Model.VideoId+"?pageId="+pageid);
+        }
+    </script>
+}

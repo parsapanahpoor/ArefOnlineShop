@@ -1,0 +1,223 @@
+﻿@model Domain.Models.Product.Product
+@using Domain.Models.Product;
+
+@{ ViewData["Title"] = "ویرایش";
+                Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+                List<ProductCategories> ProductCategories = ViewData["ProductCategories"] as List<ProductCategories>; }
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>ویرایش محصول   </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">ویرایش  محصول    </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <form asp-action="Edit" asp-controller="Products" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+
+        <input type="hidden" asp-for="CreateDate" />
+        <input type="hidden" asp-for="ProductID" />
+        <input type="hidden" asp-for="ProductImageName" />
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="IsActive" />
+        <input type="hidden" asp-for="IsInOffer" />
+        <input type="hidden" asp-for="OfferPercent" />
+        <input type="hidden" asp-for="OldPrice" />
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-7">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">اطلاعات محصول    </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div role="form" asp-action="Create" asp-controller="Users" asp-area="Admin">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> عنوان  محصول </label>
+                                        <input type="text" asp-for="ProductTitle" class="form-control" id="exampleInputEmail1" placeholder="عنوان  محصول  را وارد کنید">
+                                        <span asp-validation-for="ProductTitle" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> توضیح مختصر    </label>
+                                        <input type="text" asp-for="ShortDescription" class="form-control" id="exampleInputEmail1" placeholder="توضیح مختصر  را وارد کنید">
+                                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">توضیح کامل </label>
+                                        <textarea type="email" asp-for="LongDescription" class="form-control" id="LongDescription" placeholder="توضیح کامل را وارد کنید"></textarea>
+                                        <span asp-validation-for="LongDescription" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1"> قیمت محصول    </label>
+                                        <input type="number" asp-for="Price" class="form-control" id="exampleInputPassword1" placeholder="قیمت محصول به ریال وارد شود   ">
+                                        <span asp-validation-for="Price" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1"> تعداد موجودی محصول   </label>
+                                        <input type="number" asp-for="ProductCount" class="form-control" id="exampleInputPassword1" placeholder="تعداد موجودی محصول را به عدد  وارد کنید  ">
+                                        <span asp-validation-for="ProductCount" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">تگ ها  </label>
+                                        <input type="text" asp-for="Tags" class="form-control" id="exampleInputPassword1" placeholder="تگ ها را با - ار هم جدا کنید ">
+                                        <span asp-validation-for="Tags" class="text-danger"></span>
+
+                                    </div>
+
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+
+                                    @if (ViewBag.Delete == false && ViewBag.Detail == false)
+                                    {
+                        <button type="submit" class="btn btn-success">ارسال</button>}
+                                    @if (ViewBag.Delete != false)
+                                    {
+
+                        <a asp-action="Delete" asp-route-id="@Model.ProductID" asp-controller="Products" asp-area="Admin" class="btn btn-danger">حذف   </a>}
+
+
+
+                                    <a asp-action="Index" asp-controller="Products" asp-area="Admin" class="btn btn-primary">بازگشت به عقب </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-5">
+                        <!-- Horizontal Form -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">  تصویر  </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+                                <div class="card-body row">
+                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="~/Images/Product/image/@Model.ProductImageName" alt="upload_img">
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="imgProductUp" id="imgBlogUp">
+                                            <label class="custom-file-label" for="exampleInputFile">انتخاب فایل</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <!-- /.card-footer -->
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+                        <!-- /.card -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">  دسته بندی ها   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        @foreach (var category in ProductCategories.Where(p => p.ParentId == null))
+                                        {
+                            <div style="padding-right: 40px; margin-right:10px; margin-top:10px;">
+                                <input class="form-check-input" @((Model.ProductSelectedCategory.Any(r => r.ProductCategoryId == category.ProductCategoryId) ? "checked" : "")) type="checkbox" name="SelectedCategory" value="@category.ProductCategoryId">
+                                <label class="form-check-label"> @category.CategoryTitle</label>
+                            </div>
+
+                                            @if (ProductCategories.Any(p => p.ParentId == category.ParentId))
+                                            {
+                            @foreach (var sub in ProductCategories.Where(p => p.ParentId == category.ProductCategoryId))
+                            {
+        <div style=" padding-right: 60px; margin-right: 20px; margin-top:5px;">
+
+            <input class="form-check-input" @((Model.ProductSelectedCategory.Any(r => r.ProductCategoryId == sub.ProductCategoryId) ? "checked" : "")) type="checkbox" name="SelectedCategory" value="@sub.ProductCategoryId">
+            <label class="form-check-label"> @sub.CategoryTitle</label>
+        </div>}}}
+
+                                    </div>
+
+
+
+                                </div>                            <!-- /.card-footer -->
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </form>
+
+
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgBlogUp").change(function () {
+            readURL(this);
+        });
+    </script>
+
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+
+        CKEDITOR.replace('LongDescription', {
+            customConfig: '/js/Config.js'
+        });
+
+    </script>
+
+}

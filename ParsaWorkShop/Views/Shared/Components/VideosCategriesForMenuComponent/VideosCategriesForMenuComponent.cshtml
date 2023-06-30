@@ -1,0 +1,13 @@
+﻿@model List<Domain.Models.Blog.BlogCategory>
+
+
+
+<li class="has-submenu parent-menu-item">
+    <a href="/Blog/Video">  ویدیوهای برتر   </a><span class="menu-arrow"></span>
+    <ul class="submenu">
+        @foreach (var item in Model.Where(p => p.ParentId == null))
+        {
+            <li><a asp-action="Video" asp-controller="Blog" asp-route-Categroyid="@item.BlogCategoryId" class="sub-menu-item">@item.CategoryTitle </a></li>
+        }
+    </ul>
+</li>

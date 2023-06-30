@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Domain.Models.Blog.Video>
+@using Application.Convertors
+
+@foreach (var item in Model)
+{
+
+<li class="d-flex mt-4 align-items-center">
+    <a href="/Blog/SingleVideoPage/@item.VideoId">
+        <img src="/Images/Blog/thumb/@item.VideoImageName" class="img-fluid avatar avatar-small rounded shadow" style="height:auto;" alt="">
+    </a>
+    <div class="flex-1 content ms-3">
+        <a href="/Blog/SingleVideoPage/@item.VideoId" class="text-dark h6">@item.VideoTitle  </a>
+        <h6 class="text-muted small fst-italic mb-0 mt-1">@item.CreateDate.ToShamsi() </h6>
+
+
+    </div>
+</li>}

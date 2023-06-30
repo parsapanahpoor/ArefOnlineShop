@@ -1,0 +1,127 @@
+﻿@using Application.ViewModels
+@model LoginViewModel
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>ورود </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+    <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
+    <meta name="author" content="JafarAbbasi" />
+    <meta name="email" content="jabasi26@gmail.com" />
+    <meta name="website" content="https://www.rtl-theme.com/author/tn_plugin/" />
+    <meta name="Version" content="v3.0.0" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <!-- Bootstrap -->
+    <link href="/Landrick/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link href="/Landrick/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/Landrick/unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <!-- Main Css -->
+    <link href="/Landrick/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="/Landrick/css/colors/default.css" rel="stylesheet" id="color-opt">
+
+</head>
+
+<body>
+   
+
+    <div class="back-to-home rounded d-none d-sm-block">
+        <a href="/" class="btn btn-icon btn-primary"><i data-feather="home" class="icons"></i></a>
+    </div>
+
+    <!-- شوع آن -->
+    <section class="cover-user bg-white">
+        <div class="container-fluid px-0">
+            <div class="row g-0 position-relative">
+                <div class="col-lg-4 cover-my-30 order-2">
+                    <div class="cover-user-img d-flex align-items-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card login-page border-0" style="z-index: 1">
+                                    <div class="card-body p-0">
+                                        <h4 class="card-title text-center">وارد شدن </h4>
+                                        <form class="login-form mt-4" asp-action="Login" asp-controller="Account">
+                                            <input type="hidden" name="ReturnUrl" value="@ViewBag.Return"/>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">موبایل کاربر <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                                            <input type="text" class="form-control ps-5" placeholder="موبایل کاربر" asp-for="phoneNumber" required="">
+                                                            <span style="color:red" asp-validation-for="phoneNumber"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">رمز عبور  <span class="text-danger">*</span></label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="key" class="fea icon-sm icons"></i>
+                                                            <input type="password" class="form-control ps-5" asp-for="Password" placeholder="رمز عبور " required="">
+                                                            <span style="color:red" asp-validation-for="Password"></span>
+
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+
+                                                <div class="col-lg-12">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="mb-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" asp-for="RememberMe" id="flexCheckDefault">
+                                                                <label class="form-check-label" for="flexCheckDefault">مرا به خاطر بسپار </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+
+                                                <div class="col-lg-12 mb-0">
+                                                    <div class="d-grid">
+                                                        <button class="btn btn-primary">ورود </button>
+                                                    </div>
+                                                </div><!--end col-->
+
+
+                                                <div class="col-12 text-center">
+                                                    <p class="mb-0 mt-3"><small class="text-dark me-2">حسابی ندارید؟ </small> <a href="/Register" class="text-dark fw-bold">ثبت نام کنید </a></p>
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div> <!-- end about detail -->
+                </div> <!-- end col -->
+
+                <div class="col-lg-8 offset-lg-4 padding-less img order-1" style="background-image:url('/Landrick/images/user/01.jpg')" data-jarallax='{"speed": 0.5}'></div><!-- end col -->
+            </div><!--end row-->
+        </div><!--end container fluid-->
+    </section><!--end section-->
+    <!-- پایان آن -->
+    <!-- end Style switcher -->
+    <!-- javascript -->
+    <script src="/Landrick/js/bootstrap.bundle.min.js"></script>
+    <!-- Icons -->
+    <script src="/Landrick/js/feather.min.js"></script>
+    <!-- Switcher -->
+    <script src="/Landrick/js/switcher.js"></script>
+    <!-- Main Js -->
+    <script src="/Landrick/js/plugins.init.js"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+    <script src="/Landrick/js/app.js"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+</body>
+
+</html>

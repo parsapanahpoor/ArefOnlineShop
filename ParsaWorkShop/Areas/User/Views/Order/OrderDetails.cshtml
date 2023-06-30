@@ -1,0 +1,58 @@
+﻿@model List<Domain.Models.Order.OrderDetails>
+@{
+    ViewData["Title"] = "ریز فاکتور ";
+}
+
+
+<div class="col-lg-8 col-12">
+
+
+    <div class="border-bottom pb-4 text-center">
+
+        <h5>سفارشات</h5>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div class="table-responsive bg-white shadow rounded">
+                <table class="table mb-0 table-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="border-bottom">
+                                نام کالا
+                            </th>
+                            <th scope="col" class="border-bottom">
+                                تعداد سفارش
+                            </th>
+                            <th scope="col" class="border-bottom">
+                                مبلغ پرداختی
+                            </th>
+                            <th scope="col" class="border-bottom">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>@item.Product.ProductTitle</th>
+                                <td>@item.Count</td>
+                                <td>@item.Price.ToString("#,0") تومان </td>
+                                <td>
+                                    <a 
+                                       asp-action="RequestForReturnProduct" asp-area="User" asp-controller="Order" asp-route-id="@item.OrderDetailID"
+                                       class="btn btn-outline-warning btn-pills">درخواست مرجوعی</a>
+                                </td>
+
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div><!--end col-->
+
+
+    </div><!--end row-->
+</div>

@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "آدرس و نشانی ";
+}
+
+<section class="bg-half bg-light d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title">  آدرس ها و نشانی  </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="/">فروشگاه کالا </a></li>
+                                <li class="breadcrumb-item"><a href="#">فاکتور </a></li>
+                                <li class="breadcrumb-item active" aria-current="page"> آدرس و نشانی  </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section>
+
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6">
+                <div class="rounded shadow-lg p-4">
+                    <h5 class="mb-0">افزودن آدرس  :</h5>
+
+                    <form class="mt-4" asp-action="AddTheUserLocations" asp-controller="order" id="frmCalculateShipping" method="post">
+                        <input type="hidden" name="orderid" value="@ViewBag.orderid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">کد پستی  <span class="text-danger">*</span></label>
+                                    <input id="firstname" type="text" class="form-control" placeholder="کد پستی خود را وارد کنید " name="PostalCode">
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">آدرس  <span class="text-danger">*</span></label>
+                                    <input type="text"  id="phone" class="form-control"  placeholder="آدرس خود را وارد کنید " name="LocationAddress">
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-12">
+                                <div class="mt-4 pt-2">
+                                    <div class="d-grid">
+                                        <input type="submit" class="btn btn-primary" value="ثبت و پردازش  ">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </form><!--end form-->
+                </div>
+
+
+            </div><!--end col-->
+
+            <div class="col-lg-7 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="col-12">
+                    <div class="table-responsive bg-white shadow">
+                        <table class="table table-center table-padding mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="border-bottom py-3">کدپستی</th>
+                                    <th class="border-bottom py-3 text-center">آدرس </th>
+                                    <th class="border-bottom py-3"> </th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>                              
+
+                            @if (ViewBag.UserLocations != null)
+                            {
+                                List<Domain.Models.Users.Locations> Locations = ViewBag.UserLocations as List<Domain.Models.Users.Locations>;
+
+                                foreach (var item in Locations)
+                                {
+
+                                <tr class="shop-list">
+
+                                    <td class="text-center">@item.PostalCode </td>
+                                    <td class="text-center ">@item.LocationAddress</td>
+                                    <td>
+                                        <a href="/order/AcceptFactor?oredrid=@ViewBag.orderid&&Locationid=@item.LocationID" class="btn btn-pills btn-outline btn-rounded btn-success name=" selectedGroups" value="@item.LocationID" btn-with-arrow mb-2">انتخاب<span><i class="fas fa-chevron-left"></i></span></a>
+                                    </td>
+                                </tr>
+                                   
+
+                                }
+                            }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>            </div>
+        </div><!--end row-->
+    </div><!--end container-->
+</section>

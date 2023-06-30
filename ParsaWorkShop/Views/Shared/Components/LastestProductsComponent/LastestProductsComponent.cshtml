@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Domain.Models.Product.Product>
+@using Application.Convertors
+
+
+<div class="container mt-100 mt-60">
+    <div class="row">
+        <div class="col-12">
+            <h5 class="mb-0">محصولات جدید    </h5>
+        </div><!--end col-->
+    </div><!--end row-->
+
+    <div class="row col-md-11 " style="margin: auto;">
+        @foreach (var item in Model)
+        {
+<div class="col-lg-3 col-md-4 col-12 mt-4 pt-2">
+    <div class="card shop-list border-0 position-relative">
+        <ul class="label list-unstyled mb-0">
+            <li><a href="/Products/SinglePageProducts/@item.ProductID" class="badge badge-link rounded-pill bg-primary">جدید  </a></li>
+            @if (item.IsInOffer == true)
+            {
+                <li><a href="/Products/SinglePageProducts/@item.ProductID" class="badge badge-link rounded-pill bg-warning">@item.OfferPercent% تفیف  </a></li>
+                                }
+
+        </ul>
+        <div class="shop-image position-relative overflow-hidden rounded shadow">
+            <a href="/Products/SinglePageProducts/@item.ProductID"> <img src="/Images/Product/thumb/@item.ProductImageName" style="width:261px;height:200px;" class="img-fluid" alt=""></a>
+
+            <ul class="list-unstyled shop-icons">
+                <li class="mt-2"><a href="/order/AddToShopCart/@item.ProductID"  class="btn btn-icon btn-pills btn-soft-warning "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart icons"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></a></li>
+            </ul>
+        </div>
+        <div class="card-body content pt-4 p-2">
+            <a href="/Products/SinglePageProducts/@item.ProductID" class="text-dark product-name h6"> @item.ProductTitle</a>
+            <div class="d-flex justify-content-between mt-1">
+                <h6 class="text-muted small fst-italic mb-0 mt-1">@item.ShortDescription  </h6>
+            </div>
+            <div class="d-flex justify-content-between mt-1">
+                <h6 class="text-muted small fst-italic mb-0 mt-1">@item.Price.ToString("#,0") تومان  </h6>
+
+                @if (item.IsInOffer == true)
+                {
+            <h6 class="text-muted small fst-italic mb-0 mt-1"> <del style="color:red;">@item.OldPrice.Value.ToString("#,0") تومان</del>  </h6>
+
+                                }
+            </div>
+        </div>
+    </div>
+</div><!--end col-->}
+
+    </div><!--end row-->
+</div>
