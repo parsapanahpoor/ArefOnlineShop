@@ -1,4 +1,6 @@
-﻿using Application.Convertors;
+﻿#region Usings
+
+using Application.Convertors;
 using Application.Genarator;
 using Application.Interfaces;
 using Application.ViewModels;
@@ -6,15 +8,18 @@ using Domain.Models.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using ParsaWorkShop.Web.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
+#endregion
+
 namespace ParsaWorkShop.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : SiteBaseController
     {
         #region Ctor
 

@@ -1,4 +1,5 @@
-﻿using Domain.Models.Order;
+﻿using Domain.Models.Common;
+using Domain.Models.Order;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,11 +9,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Models.Users
 {
-    public class User
+    public class User : BaseEntity
     {
-
-        [Key]
-        public int UserId { get; set; }
+        #region properties
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -52,8 +51,37 @@ namespace Domain.Models.Users
 
         public bool IsDelete { get; set; }
 
+        [Display(Name = "کد فعالسازی ایمیل")]
+        [Required(ErrorMessage = "این فیلد الزامی است .")]
+        [MaxLength(100, ErrorMessage = "تعداد کاراکتر های {0} نمیتواند بیشتر از {1} باشد")]
+        public string? EmailActivationCode { get; set; }
+
+        [Display(Name = "کد فعالسازی موبایل")]
+        [Required(ErrorMessage = "این فیلد الزامی است .")]
+        [MaxLength(100, ErrorMessage = "تعداد کاراکتر های {0} نمیتواند بیشتر از {1} باشد")]
+        public string MobileActivationCode { get; set; }
+
+        public bool IsMobileConfirm { get; set; } = false;
+
+        public bool IsEmailConfirm { get; set; } = false;
+
+        public bool IsBan { get; set; } = false;
+
+        public bool IsAdmin { get; set; } = false;
+
+        public bool BanForTicket { get; set; }
+
+        public bool BanForComment { get; set; }
+
+        public int WalletBalance { get; set; }
+
+        [Display(Name = "تاریخ انقضای تایم اس ام اس فعال سازی ")]
+        public DateTime? ExpireMobileSMSDateTime { get; set; }
+
+        #endregion
 
         #region Relations
+
         public List<UserRole> UserRoles { get; set; }
         public List<Blog.Blog> Blogs { get; set; }
         public List<Blog.Video> Video { get; set; }
@@ -65,7 +93,5 @@ namespace Domain.Models.Users
         public List<ReturnedProducts> ReturnedProducts { get; set; }
 
         #endregion
-
     }
-
 }

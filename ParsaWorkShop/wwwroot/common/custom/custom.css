@@ -1,0 +1,163 @@
+﻿#DiabetHelp1 {
+    border: 2px solid #eeeff7;
+    border-radius: 8px;
+    color: #081b3a;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    padding: 0px 10px 0px 10px;
+    line-height: 3.5rem;
+    background: #fd5b03;
+}
+
+#BloodPressureHelp1 {
+    border: 2px solid #eeeff7;
+    border-radius: 8px;
+    color: #081b3a;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    padding: 0px 10px 0px 10px;
+    line-height: 3.5rem;
+    background: #fd5b03;
+}
+
+.d-none {
+    display: none;
+}
+
+.avatar-style {
+    width: 50px;
+    height: 50px;
+}
+
+.image-style {
+    width: 100%;
+    max-height: 250px;
+    max-width: 250px;
+    border-radius: 100%;
+}
+
+.Article-Priew {
+    width: 100%;
+    max-height: 250px;
+    max-width: 370px;
+    border-radius: 5px;
+}
+
+#ArticleImage {
+    border-radius: 50%;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.file-input-style {
+    color: #858585;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #858585;
+    border-radius: 5px;
+    padding: 6px 0;
+    font-size: 13px;
+}
+
+.fix-input {
+    position: relative !important;
+    top: 2px !important;
+    margin-left: 6px !important;
+    font-size: 14px !important;
+    width: 100% !important;
+    line-height: 40px !important;
+    height: 40px !important;
+    padding: 0 15px !important;
+    border: 1px solid #e4ecef !important;
+    color: #56707c !important;
+    font-size: 14px !important;
+    word-spacing: -1px !important;
+    margin-top: 8px !important;
+    border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    -webkit-border-radius: 3px !important;
+}
+
+.display-block {
+    display: block !important;
+}
+
+.label-style {
+    color: gray;
+    font-size: 12px;
+    display: block;
+    margin: 3px -5px 0 0;
+}
+
+.ck-editor__editable_inline {
+    min-height: 20rem !important;
+}
+
+.databox-bottom {
+    height: 55px !important;
+}
+
+.margin-top-27 {
+    margin-top: 27px !important;
+}
+
+tags.tagify {
+    height: auto !important;
+}
+
+.databox-text {
+    font-size: 13px !important;
+}
+
+.databox-number {
+    font-size: 14px !important;
+}
+
+.databox.databox-vertical.databox-xlg {
+    height: 181px !important;
+    background-color: white !important;
+}
+
+.ml-10px {
+    margin-left: 10px;
+}
+
+.mr-8px {
+    margin-right: 8px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.middle {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.mr-10px {
+    margin-right: 10px;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.mb-2px {
+    margin-bottom: 2px !important;
+}
+
+.mt-10px {
+    margin-top: 10px !important;
+}
+
+.mt-5px {
+    margin-top: 5px !important;
+}

@@ -1,0 +1,114 @@
+.bd-main, .bd-next, .bd-prev {
+    background-color: #FFF !important;
+    margin: 0 !important;
+}
+
+.bd-goto-today, .bd-table thead tr th {
+    text-align: center !important;
+}
+
+.bd-hide {
+    display: none
+}
+
+.bd-dropdown, .bd-next, .bd-prev {
+    display: inline-block !important;
+    float: right !important;
+}
+
+.bd-main {
+    border: 1px solid #000 !important;
+    padding: 5px !important;
+    z-index: 9999 !important;
+    width: auto !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19) !important;
+}
+
+.bd-calendar, .bd-title {
+    width: 210px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+    .bd-calendar table {
+        border: none !important;
+        width: 210px !important;
+    }
+
+.bd-dropdown select {
+    width: 100% !important;
+    height: 30px !important;
+    border: none !important;
+    cursor: pointer !important;
+}
+
+.bd-empty-cell, .bd-next, .bd-prev, .bd-table-days button {
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 0 !important;
+}
+
+.bd-next, .bd-prev {
+    cursor: pointer !important;
+    background-repeat: no-repeat !important;
+    background-position: 50% 50% !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.bd-table thead {
+    background-color: #555 !important;
+    color: #FFF !important;
+}
+
+    .bd-table thead tr {
+        height: 30px !important;
+        cursor: context-menu !important;
+    }
+
+.bd-table tbody tr td {
+    border: none !important;
+}
+
+.bd-table-days button {
+    cursor: pointer !important;
+    background-color: #F8F8F8 !important;
+    border: 0 !important;
+}
+
+    .bd-table-days button:hover {
+        color: red !important;
+        font-weight: 700 !important;
+        background-color: #E7E7E7 !important;
+    }
+
+.bd-today {
+    background-color: #DFF0D8 !important;
+    color: green !important;
+}
+
+.bd-holiday {
+    background-color: #FDE8E8 !important
+}
+
+.bd-selected-day {
+    color: red !important;
+    font-weight: 700 !important;
+}
+
+.bd-goto-today {
+    width: 210px !important;
+    height: 30px !important;
+    color: #FFF !important;
+    background-color: #555 !important;
+    padding-top: 5px !important;
+    cursor: pointer !important;
+}
+
+#bd-year-DatePicker0 {
+    width: 60px !important;
+}
+
+#bd-month-DatePicker0 {
+    width: 90px !important
+}
