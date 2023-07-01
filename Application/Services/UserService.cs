@@ -60,7 +60,6 @@ namespace Application.Services
         {
             User user = new User()
             {
-                ActiveCode = RandomNumberGenerator.GetNumber(),
                 Email = FixedText.FixEmail(register.Email),
                 IsActive = true,
                 PhoneNumber = register.Mobile,
@@ -83,7 +82,6 @@ namespace Application.Services
             User addUser = new User();
             addUser.Password = user.Password;
             addUser.PhoneNumber = user.PhoneNumber;
-            addUser.ActiveCode = Genarator.RandomNumberGenerator.GetNumber();
             addUser.Email = user.Email;
             addUser.IsActive = true;
             addUser.RegisterDate = DateTime.Now;
@@ -446,7 +444,7 @@ namespace Application.Services
 
             #region Send Verification Code SMS
 
-            var result = $"https://api.kavenegar.com/v1/564672526D58694D3477685571796F7372574F576C476B6366785462356D3164683370395A2B61356D6E383D/verify/lookup.json?receptor={User.PhoneNumber}&token={User.MobileActivationCode}&template=Register";
+            var result = $"https://api.kavenegar.com/v1/6A427559367558527A76485753667A5779587337736735753945747946474F347A346A65356E7A567A51413D/verify/lookup.json?receptor={User.PhoneNumber}&token={User.MobileActivationCode}&template=Register";
             var results = client.GetStringAsync(result);
 
             #endregion
@@ -481,7 +479,7 @@ namespace Application.Services
 
             #region Send Verification Code SMS
 
-            var result = $"https://api.kavenegar.com/v1/564672526D58694D3477685571796F7372574F576C476B6366785462356D3164683370395A2B61356D6E383D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
+            var result = $"https://api.kavenegar.com/v1/6A427559367558527A76485753667A5779587337736735753945747946474F347A346A65356E7A567A51413D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
             var results = client.GetStringAsync(result);
 
             //var message = Messages.SendActivationRegisterSms(user.MobileActivationCode);
@@ -578,7 +576,7 @@ namespace Application.Services
 
             #region Send Verification Code SMS
 
-            var result = $"https://api.kavenegar.com/v1/564672526D58694D3477685571796F7372574F576C476B6366785462356D3164683370395A2B61356D6E383D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
+            var result = $"https://api.kavenegar.com/v1/6A427559367558527A76485753667A5779587337736735753945747946474F347A346A65356E7A567A51413D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
             var results = client.GetStringAsync(result);
 
             #endregion

@@ -54,8 +54,6 @@ namespace ParsaWorkShop.Controllers
 
             #endregion
 
-            TempData[SuccessMessage] = "Hello";
-
             return View();
         }
 
@@ -166,6 +164,7 @@ namespace ParsaWorkShop.Controllers
 
                     #endregion
 
+                    TempData[SuccessMessage] = "Login Successfully";
                     return RedirectToAction("Index", "Home");
             }
 
@@ -241,11 +240,11 @@ namespace ParsaWorkShop.Controllers
                 switch (result)
                 {
                     case ActiveMobileByActivationCodeResult.Success:
-                        TempData[SuccessMessage] = "حساب کاربری شما با موفقیت فعال شد!";
+                        TempData[SuccessMessage] = "You Profile Active Successfully";
                         return RedirectToAction(nameof(Login));
 
                     case ActiveMobileByActivationCodeResult.AccountNotFound:
-                        TempData[ErrorMessage] = "اطلاعات وارد شده اشتباه می باشد!";
+                        TempData[ErrorMessage] = "This is problem with Input Informations";
                         return RedirectToAction("ActiveUserByMobileActivationCode", new { Mobile = activeMobileByActivationCodeViewModel.Mobile, Resend = false });
                 }
             }

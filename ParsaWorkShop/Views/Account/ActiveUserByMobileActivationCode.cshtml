@@ -1,9 +1,9 @@
-﻿@using Application.ViewModels
-@model RegisterViewModel
+﻿@model Application.ViewModels.SiteSide.Account.ActiveMobileByActivationCodeViewModel
 
 @{
     ViewData["Title"] = "ثبت نام ";
     Layout = null;
+    var Time = ViewBag.Time;
 }
 
 
@@ -36,6 +36,28 @@
     <link href="/common/sweetalert/sweetalert.css" rel="stylesheet" />
     <link href="/common/custom/custom.css" rel="stylesheet" />
 
+    <style>
+        .jst-hours {
+            float: left;
+        }
+
+        .jst-minutes {
+            float: left;
+        }
+
+        .jst-seconds {
+            float: left;
+        }
+
+        .jst-clearDiv {
+            clear: both;
+        }
+
+        .jst-timeout {
+            color: red;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -56,8 +78,9 @@
                                 <div class="card border-0" style="z-index: 1">
                                     <div class="card-body p-0">
                                         <h4 class="card-title text-center">ثبت نام </h4>
-                                        <form class="login-form mt-4" asp-controller="Account" asp-action="Register">
+                                        <form method="post" asp-area="" asp-controller="Account" asp-action="ActiveUserByMobileActivationCode">
 
+                                            <input type="hidden" asp-for="Mobile" value=@ViewBag.Mobile />
 
                                             @if (User.Identity.IsAuthenticated && Context.Request.Query["ReturnUrl"] != "")
                                             {
@@ -67,28 +90,14 @@
 
                                             }
 
-
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">نام کاربری  <span class="text-danger">*</span></label>
+                                                        <label class="form-label">کد فعالسازی ارسال شده  <span class="text-danger">*</span></label>
                                                         <div class="form-icon position-relative">
                                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" class="form-control ps-5" placeholder=" نام کاربری  " asp-for="UserName" required="">
-                                                            <span style="color:red" asp-validation-for="UserName"></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-
-
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">ایمیل شما <span class="text-danger">*</span></label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="mail" class="fea icon-sm icons"></i>
-                                                            <input type="email" class="form-control ps-5" placeholder="ایمیل" asp-for="Email" required="">
-                                                            <span style="color:red" asp-validation-for="Email"></span>
+                                                            <input type="text" class="form-control ps-5" placeholder=" کد فعالسازی ارسال شده  " asp-for="MobileActiveCode" required="">
+                                                            <span style="color:red" asp-validation-for="MobileActiveCode"></span>
 
                                                         </div>
                                                     </div>
@@ -96,61 +105,27 @@
 
                                                 <div class="col-md-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">موبایل شما <span class="text-danger">*</span></label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" class="form-control ps-5" placeholder="موبایل" asp-for="Mobile" required="">
-                                                            <span style="color:red" asp-validation-for="Mobile"></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">رمز عبور  <span class="text-danger">*</span></label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="key" class="fea icon-sm icons"></i>
-                                                            <input type="password" class="form-control ps-5" asp-for="Password" placeholder="رمز عبور " required="">
-                                                            <span style="color:red" asp-validation-for="Password"></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-               
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label class="form-label"> تکرار رمز عبور  <span class="text-danger">*</span></label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="key" class="fea icon-sm icons"></i>
-                                                            <input type="password" class="form-control ps-5" asp-for="RePassword" placeholder="رمز عبور " required="">
-                                                            <span style="color:red" asp-validation-for="RePassword"></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <div class="form-icon position-relative">
-                                                            <input type="checkbox" asp-for="SiteRoles" id="test1">
-                                                            <label class="form-label">  با   شرایط و ضوابط سایت موافق</label>
-
+                                                        <div class="remember-me-wrap" style="margin-left:50px;">
+                                                            <p class="timerCounter" data-seconds-left="@Time" id="timer"></p>
                                                         </div>
                                                     </div>
                                                 </div><!--end col-->
 
                                                 <div class="col-md-12">
                                                     <div class="d-grid">
-                                                        <button class="btn btn-primary">ثبت نام </button>
+                                                        <button class="btn btn-primary">تایید </button>
                                                     </div>
                                                 </div><!--end col-->
 
 
+                                                <div class="col-md-12 mt-3">
+                                                    <div class="d-grid">
+                                                        <a id="SMS" asp-area="" asp-controller="Account" asp-action="ActiveUserByMobileActivationCode" asp-route-Mobile="@ViewBag.Mobile" asp-route-Resend="true" class="btn btn-primary" style="display: none">
+                                                            <span> ارسال مجدد کد  </span>
+                                                            </a>
+                                                    </div>
+                                                </div><!--end col-->
 
-                                                <div class="mx-auto">
-                                                    <p class="mb-0 mt-3"><small class="text-dark me-2">قبلاً حساب دارید؟</small> <a href="/Login" class="text-dark fw-bold">وارد شوید </a></p>
-                                                </div>
                                             </div><!--end row-->
                                         </form>
                                     </div>
@@ -186,7 +161,27 @@
     <script src="~/common/sweetalert/sweetalert.js"></script>
     <script src="~/common/custom/custom.js"></script>
 
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/common/Simple-Countdown-Timer-Plugin-jQuery/jquery.simple.timer.js"></script>
+    <script src="~/common/Simple-Countdown-Timer-Plugin-jQuery/examples/bundle.js"></script>
+    <script src="~/common/Simple-Countdown-Timer-Plugin-jQuery/examples/dojo.js"></script>
     <partial name="_Notification" />
+
+    <script>
+        $(function () {
+
+            $("#timer").startTimer({
+                onComplete: function () {
+                    $("#SMS").css({ 'display': 'block' });
+                    $("#timer").css({ 'display': 'none' });
+                }
+            });
+
+        });
+    </script>
+
+
 
 
 </body>

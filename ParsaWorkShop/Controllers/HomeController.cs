@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsaWorkShop.Models;
+using ParsaWorkShop.Web.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : SiteBaseController
     {
         #region Ctor
         private readonly ILogger<HomeController> _logger;

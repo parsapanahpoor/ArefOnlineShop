@@ -65,7 +65,7 @@ namespace Data.Repository
 
         public User GetUserByActiveCode(string ActiveCode)
         {
-            return _context.Users.FirstOrDefault(p => p.ActiveCode == ActiveCode);
+            return _context.Users.FirstOrDefault(p => p.MobileActivationCode == ActiveCode);
         }
 
         public User GetUserByEmail(string email)
