@@ -24,6 +24,9 @@
     <!-- Main Css -->
     <link href="/Landrick/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt"  async />
     <link href="/Landrick/css/colors/default.css" rel="stylesheet" id="color-opt" async >
+
+    <partial name="_HeaderReferences" />
+
 </head>
 
 <body>
@@ -187,6 +190,11 @@
     <!-- Main Js -->
     <script src="/Landrick/js/plugins.init.js"  async ></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
     <script src="/Landrick/js/app.js"  async ></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+
+    <partial name="_FooterReferences" />
+
+    <partial name="_Notification" />
+
     @RenderSection("Scripts", false)
 
 </body>

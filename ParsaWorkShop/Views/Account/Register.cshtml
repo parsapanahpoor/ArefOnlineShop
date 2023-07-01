@@ -53,6 +53,17 @@
                                     <div class="card-body p-0">
                                         <h4 class="card-title text-center">ثبت نام </h4>
                                         <form class="login-form mt-4" asp-controller="Account" asp-action="Register">
+
+
+                                            @if (User.Identity.IsAuthenticated && Context.Request.Query["ReturnUrl"] != "")
+                                            {
+                                                <div class="alert alert-danger mt-3">
+                                                    <p>کاربر گرامی @User.Identity.Name  شما مجوز ورود به بخش درخواست شده را ندارید.</p>
+                                                </div>
+
+                                            }
+
+
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="mb-3">
@@ -84,8 +95,8 @@
                                                         <label class="form-label">موبایل شما <span class="text-danger">*</span></label>
                                                         <div class="form-icon position-relative">
                                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" class="form-control ps-5" placeholder="موبایل" asp-for="PhoneNumber" required="">
-                                                            <span style="color:red" asp-validation-for="PhoneNumber"></span>
+                                                            <input type="text" class="form-control ps-5" placeholder="موبایل" asp-for="Mobile" required="">
+                                                            <span style="color:red" asp-validation-for="Mobile"></span>
 
                                                         </div>
                                                     </div>
@@ -102,6 +113,17 @@
                                                         </div>
                                                     </div>
                                                 </div><!--end col-->
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">  با   شرایط و ضوابط سایت موافق</label>
+                                                        <div class="form-icon position-relative">
+                                                            <i data-feather="key" class="fea icon-sm icons"></i>
+                                                            <input type="checkbox" asp-for="SiteRoles" id="test1">
+
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label"> تکرار رمز عبور  <span class="text-danger">*</span></label>

@@ -8,10 +8,12 @@ using Domain.Models.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using ParsaWorkShop.HttpManager;
 using ParsaWorkShop.Web.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -33,42 +35,66 @@ namespace ParsaWorkShop.Controllers
 
         #region Register
 
-        [Route("Register")]
-        public ActionResult Register()
+        [HttpGet("Register")]
+        [RedirectHomeIfLoggedInActionFilter]
+        public async Task<ActionResult> Register(string? mobile)
         {
+            #region Redirect Mobile 
+
+            if (!string.IsNullOrEmpty(mobile))
+            {
+                TempData[SuccessMessage] = "لطفا اطلاعات خواسته شده را جهت ادامه ی مراحل ثبت نام وارد نمایید.";
+
+                return View(new RegisterViewModel()
+                {
+                    Mobile = mobile
+                });
+            }
+
+            #endregion
 
             return View();
         }
-        [HttpPost]
-        [Route("Register")]
-        public ActionResult Register(RegisterViewModel register)
+
+        [HttpPost("Register"), ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel register)
         {
+            #region Model State Validations
+
             if (!ModelState.IsValid)
             {
+                TempData[ErrorMessage] = "مقادیر وارد شده معتبر نمی باشد . ";
                 return View(register);
             }
 
-            if (_userService.IsExistUserName(register.UserName))
+            #endregion
+
+            #region Register User Methods
+
+            var result = await _userService.RegisterUser(register);
+
+            switch (result)
             {
-                ModelState.AddModelError("UserName", "نام کاربری معتبر نمی باشد");
-                return View(register);
+                case RegisterUserResult.MobileExist:
+                    TempData[ErrorMessage] = "تلفن همراه وارد شده تکراری می باشد";
+                    TempData[InfoMessage] = "در صورتی که از قبل در سایت ثبت نام کردید از گزینه ی ورود به سایت استفاده کنید";
+                    ModelState.AddModelError("Mobile", "تلفن همراه وارد شده تکراری می باشد");
+                    break;
+
+                case RegisterUserResult.SiteRoleNotAccept:
+                    TempData[ErrorMessage] = "قوانین سایت باید پذیرفته شوند ";
+                    break;
+
+                case RegisterUserResult.Success:
+                    TempData[SuccessMessage] = "ثبت نام شما با موفقیت انجام شد .";
+                    TempData[InfoMessage] = $"پیامی  حاوی کد فعالسازی حساب کاربری به {register.Mobile} ارسال شد .";
+
+                    return RedirectToAction("ActiveUserByMobileActivationCode", new { Mobile = register.Mobile });
             }
 
-            if (_userService.IsExistEmail(FixedText.FixEmail(register.Email)))
-            {
-                ModelState.AddModelError("Email", "ایمیل معتبر نمی باشد");
-                return View(register);
-            }
+            #endregion
 
-            if (_userService.IsExistPhoneNumber(FixedText.FixEmail(register.PhoneNumber)))
-            {
-                ModelState.AddModelError("PhoneNumber", "شماره ی وارد شده معتبر نمی باشد ");
-                return View(register);
-            }
-
-            _userService.AddUerByService(register);
-
-            return Redirect("/Login");
+            return View(register);
         }
 
         #endregion

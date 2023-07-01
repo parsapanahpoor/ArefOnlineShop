@@ -1,6 +1,9 @@
-﻿using Application.ViewModels;
+﻿using Application.Generators;
+using Application.Security;
+using Application.ViewModels;
 using Domain.Models.ContactUs;
 using Domain.Models.Users;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +14,8 @@ namespace Application.Interfaces
 {
     public interface IUserService
     {
+        #region Old Version 
+
         bool IsExistUserName(string userName);
         bool IsExistEmail(string email);
         bool IsExistPhoneNumber(string PhoneNumber);
@@ -38,7 +43,6 @@ namespace Application.Interfaces
 
         #endregion
 
-
         #region Panel Admin
 
         List<User> GetUsers();
@@ -51,7 +55,6 @@ namespace Application.Interfaces
 
         #endregion
 
-
         #region ContactUs
 
         void addMessage(ContactUs contactus);
@@ -60,6 +63,17 @@ namespace Application.Interfaces
 
         #endregion
 
+        #endregion
+
+        #region Site Side
+
+        Task<RegisterUserResult> RegisterUser(RegisterViewModel register);
+
+        Task<bool> IsExistsUserByEmail(string email);
+
+        Task<bool> IsExistUserByMobile(string mobile);
+
+        #endregion
 
     }
 }

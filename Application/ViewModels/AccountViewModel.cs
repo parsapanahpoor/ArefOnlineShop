@@ -24,7 +24,7 @@ namespace Application.ViewModels
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
 
-        public string PhoneNumber { get; set; }
+        public string Mobile { get; set; }
 
         [Display(Name = "کلمه عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -36,6 +36,8 @@ namespace Application.ViewModels
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
         public string RePassword { get; set; }
+
+        public bool SiteRoles { get; set; }
     }
     public class LoginViewModel
     {
@@ -92,5 +94,12 @@ namespace Application.ViewModels
         [Compare("Password", ErrorMessage = "کلمه های عبور وارد شده مغایرت دارند.")]
         public string RePassword { get; set; }
 
+    }
+
+    public enum RegisterUserResult
+    {
+        Success,
+        MobileExist,
+        SiteRoleNotAccept
     }
 }

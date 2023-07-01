@@ -1,16 +1,22 @@
 ﻿using Application.Convertors;
 using Application.Genarator;
+using Application.Generators;
 using Application.Interfaces;
+using Application.Security;
+using Application.StaticTools;
 using Application.ViewModels;
+using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.ContactUs;
 using Domain.Models.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +25,21 @@ namespace Application.Services
 {
     public class UserService : IUserService
     {
+        #region Ctor
 
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly ParsaWorkShopContext _context;
+        private static readonly HttpClient client = new HttpClient();
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, ParsaWorkShopContext context)
         {
             _userRepository = userRepository;
+            _context = context;
         }
+
+        #endregion
+
+        #region Old Version Codes
 
         public void addMessage(ContactUs contactus)
         {
@@ -48,7 +62,7 @@ namespace Application.Services
                 ActiveCode = RandomNumberGenerator.GetNumber(),
                 Email = FixedText.FixEmail(register.Email),
                 IsActive = true,
-                PhoneNumber = register.PhoneNumber,
+                PhoneNumber = register.Mobile,
                 Password = register.Password,
                 RegisterDate = DateTime.Now,
                 UserAvatar = "Defult.jpg",
@@ -372,5 +386,81 @@ namespace Application.Services
             _userRepository.UpdateUser(user);
             _userRepository.Savechanges();
         }
+
+        #endregion
+
+        #region Site Side 
+
+        public async Task<RegisterUserResult> RegisterUser(RegisterViewModel register)
+        {
+            #region Model State Validation 
+
+            //Fix Email Format
+            var mobile = register.Mobile.Trim().ToLower().SanitizeText();
+
+            //Check Email Address
+            if (await IsExistsUserByEmail(register.Email))
+            {
+                return RegisterUserResult.MobileExist;
+            }
+
+            //Check Mobile Number
+            if (await IsExistUserByMobile(register.Mobile))
+            {
+                return RegisterUserResult.MobileExist;
+            }
+
+            //Field about Accept Site Roles
+            if (register.SiteRoles == false)
+            {
+                return RegisterUserResult.SiteRoleNotAccept;
+            }
+
+            //Hash Password
+            var password = PasswordHasher.EncodePasswordMd5(register.Password.SanitizeText());
+
+            #endregion
+
+            #region Add User 
+
+            //Create User
+            var User = new User()
+            {
+                //Email = email,
+                Password = password,
+                UserName = mobile,
+                PhoneNumber = register.Mobile.SanitizeText(),
+                EmailActivationCode = CodeGenerator.GenerateUniqCode(),
+                MobileActivationCode = new Random().Next(10000, 999999).ToString(),
+                ExpireMobileSMSDateTime = DateTime.Now,
+                IsAdmin = false
+            };
+
+            await _context.Users.AddAsync(User);
+            await _context.SaveChangesAsync();
+
+            #endregion
+
+            #region Send Verification Code SMS
+
+            var result = $"https://api.kavenegar.com/v1/564672526D58694D3477685571796F7372574F576C476B6366785462356D3164683370395A2B61356D6E383D/verify/lookup.json?receptor={User.PhoneNumber}&token={User.MobileActivationCode}&template=Register";
+            var results = client.GetStringAsync(result);
+
+            #endregion
+
+            return RegisterUserResult.Success;
+        }
+
+        public async Task<bool> IsExistsUserByEmail(string email)
+        {
+            return await _context.Users.AnyAsync(s => s.Email == email.Trim().ToLower() && !s.IsDelete);
+        }
+
+        public async Task<bool> IsExistUserByMobile(string mobile)
+        {
+            return await _context.Users.AnyAsync(p => p.PhoneNumber == mobile && !p.IsDelete);
+        }
+
+        #endregion
     }
 }
