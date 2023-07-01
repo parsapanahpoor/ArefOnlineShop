@@ -1,27 +1,31 @@
-﻿using Domain.Models.Blog;
+﻿#region Usings
+
+using Domain.Models.Blog;
 using Domain.Models.Comment;
 using Domain.Models.ContactUs;
 using Domain.Models.Order;
 using Domain.Models.Permissions;
 using Domain.Models.Product;
+using Domain.Models.SiteSetting;
 using Domain.Models.Slider;
 using Domain.Models.Users;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+#endregion
 
 namespace Data.Context
 {
     public class ParsaWorkShopContext : DbContext
     {
-        public ParsaWorkShopContext(DbContextOptions<ParsaWorkShopContext> options): base(options)
+        #region Ctor
+
+        public ParsaWorkShopContext(DbContextOptions<ParsaWorkShopContext> options) : base(options)
         {
 
         }
 
+        #endregion
 
         #region User
 
@@ -89,6 +93,14 @@ namespace Data.Context
 
         #endregion
 
+        #region Site Setting
+
+        public DbSet<SiteSetting> SiteSettings { get; set; }
+
+        #endregion
+
+        #region Model Creating
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -134,5 +146,7 @@ namespace Data.Context
             base.OnModelCreating(modelBuilder);
         }
 
+
+        #endregion
     }
 }

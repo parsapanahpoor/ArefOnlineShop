@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Models.Users
 {
-    public class User : BaseEntity
+    public class User 
     {
         #region properties
+
+        public int UserId { get; set; }
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
