@@ -39,12 +39,15 @@ namespace Application.ViewModels
 
         public bool SiteRoles { get; set; }
     }
+
+    #region Login 
+
     public class LoginViewModel
     {
         [Display(Name = "تلفن همراه ")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
-        public string phoneNumber { get; set; }
+        public string Mobile { get; set; }
 
         [Display(Name = "کلمه عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -53,7 +56,20 @@ namespace Application.ViewModels
 
         [Display(Name = "مرا به خاطر بسپار")]
         public bool RememberMe { get; set; }
+
+        public string? ReturnUrl { get; set; }
     }
+
+    public enum LoginResult
+    {
+        Success,
+        UserNotFound,
+        UserIsBan,
+        MobileNotActivated
+    }
+
+    #endregion
+
     public class ForgotPasswordViewModel
     {
         [Display(Name = "موبایل ")]

@@ -1,6 +1,7 @@
 ﻿using Application.Generators;
 using Application.Security;
 using Application.ViewModels;
+using Application.ViewModels.SiteSide.Account;
 using Domain.Models.ContactUs;
 using Domain.Models.Users;
 using Microsoft.EntityFrameworkCore;
@@ -73,7 +74,18 @@ namespace Application.Interfaces
 
         Task<bool> IsExistUserByMobile(string mobile);
 
-        #endregion
+        Task<User?> GetUserByMobile(string mobile);
 
+        Task<LoginResult> CheckUserForLogin(LoginViewModel login);
+
+        Task ResendActivationCodeSMS(string Mobile);
+
+        Task<ActiveMobileByActivationCodeResult> ActiveUserMobile(ActiveMobileByActivationCodeViewModel activeMobileByActivationCodeViewModel);
+
+        Task<ForgotPasswordResult> RecoverUserPassword(ForgetPasswordViewModel forgot);
+
+        Task<ResetPasswordResult> ResetUserPassword(ResetPasswordViewModel pass, string mobile);
+
+        #endregion
     }
 }

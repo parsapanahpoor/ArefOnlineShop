@@ -4,6 +4,7 @@ using Application.Convertors;
 using Application.Genarator;
 using Application.Interfaces;
 using Application.ViewModels;
+using Application.ViewModels.SiteSide.Account;
 using Domain.Models.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -53,6 +54,8 @@ namespace ParsaWorkShop.Controllers
 
             #endregion
 
+            TempData[SuccessMessage] = "Hello";
+
             return View();
         }
 
@@ -101,58 +104,256 @@ namespace ParsaWorkShop.Controllers
 
         #region login
 
-        [Route("Login")]
-        public ActionResult Login(string ReturnUrl = "/")
+        [HttpGet("Login")]
+        [RedirectHomeIfLoggedInActionFilter]
+        public async Task<ActionResult> Login(string ReturnUrl = "/")
         {
             ViewBag.Return = ReturnUrl;
 
             return View();
         }
 
-        [HttpPost]
-        [Route("Login")]
-        public ActionResult Login(LoginViewModel login, string ReturnUrl)
+        [HttpPost("Login"), ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel login, string ReturnUrl)
         {
             if (!ModelState.IsValid)
             {
+                TempData[ErrorMessage] = "مقادیر وارد شده معتبر نمی باشد .";
                 return View(login);
             }
 
-            var user = _userService.LoginUser(login);
+            var result = await _userService.CheckUserForLogin(login);
 
-            if (user != null)
+            switch (result)
             {
-                #region SetCoockie
+                case LoginResult.UserNotFound:
+                    TempData[ErrorMessage] = "کاربری با اطلاعات وارد شده یافت نشد .";
+                    break;
+                case LoginResult.UserIsBan:
+                    TempData[WarningMessage] = "دسترسی شما به سایت محدود شده است .";
+                    break;
+                case LoginResult.MobileNotActivated:
+                    TempData[WarningMessage] = "حساب کاربری شما فعال نشده است";
+                    return RedirectToAction("ActiveUserByMobileActivationCode", new { Mobile = login.Mobile, Resend = true });
 
-                if (user.IsActive)
+                case LoginResult.Success:
+
+                    #region Login User
+
+                    // var user = await _userService.GetUserByEmail(login.Mobile);
+                    var user = await _userService.GetUserByMobile(login.Mobile);
+
+                    var claims = new List<Claim>
                 {
-                    var claims = new List<Claim>()
-                    {
-                        new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
-                        new Claim(ClaimTypes.Name,user.UserName)
-                    };
+                    new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                    new Claim(ClaimTypes.Name, user.UserName)
+                };
+
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(identity);
+                    var properties = new AuthenticationProperties { IsPersistent = login.RememberMe };
 
-                    var properties = new AuthenticationProperties
+                    await HttpContext.SignInAsync(principal, properties);
+
+                    #endregion
+
+                    #region Return To URL
+
+                    if (!string.IsNullOrEmpty(login.ReturnUrl))
                     {
-                        IsPersistent = login.RememberMe
-                    };
-                    HttpContext.SignInAsync(principal, properties);
+                        return Redirect(login.ReturnUrl);
+                    }
 
-                    return Redirect(ReturnUrl);
-                }
+                    #endregion
 
-                #endregion
-                else
-                {
-                    ModelState.AddModelError("phoneNumber", "حساب کاربری شما فعال نمی باشد");
-                }
+                    return RedirectToAction("Index", "Home");
             }
-            ModelState.AddModelError("phoneNumber", "کاربری با مشخصات وارد شده یافت نشد");
+
             return View(login);
         }
 
+
+        #endregion
+
+        #region Active mobile user
+
+        [HttpGet("Active-mobile/{Mobile}/{Resend?}")]
+        public async Task<IActionResult> ActiveUserByMobileActivationCode(string Mobile, bool Resend = false)
+        {
+            #region Model State Validation 
+
+            if (Mobile == null)
+            {
+                return NotFound();
+            }
+
+            #endregion
+
+            #region Is Exist User 
+
+            if (await _userService.IsExistUserByMobile(Mobile) == false)
+            {
+                return NotFound();
+            }
+
+            #endregion
+
+            #region Resend SMS
+
+            if (Resend)
+            {
+                await _userService.ResendActivationCodeSMS(Mobile);
+            }
+
+            #endregion
+
+            #region Get User By User ID
+
+            var user = await _userService.GetUserByMobile(Mobile);
+
+            #endregion
+
+            #region Time Counter Initilize
+
+            var SiteSettingSMSTimer = 2;
+
+            DateTime expireMinut = user.ExpireMobileSMSDateTime.Value.AddMinutes(SiteSettingSMSTimer);
+
+            var TimerMinut = expireMinut - DateTime.Now;
+
+            ViewBag.Time = TimerMinut.TotalMinutes * 60;
+
+            ViewBag.Mobile = Mobile;
+
+            #endregion
+
+            return View();
+        }
+
+        [HttpPost("Active-mobile/{Mobile}/{Resend?}"), ValidateAntiForgeryToken]
+        public async Task<IActionResult> ActiveUserByMobileActivationCode(ActiveMobileByActivationCodeViewModel activeMobileByActivationCodeViewModel)
+        {
+            #region Active User Mobile
+
+            if (ModelState.IsValid)
+            {
+                var result = await _userService.ActiveUserMobile(activeMobileByActivationCodeViewModel);
+                switch (result)
+                {
+                    case ActiveMobileByActivationCodeResult.Success:
+                        TempData[SuccessMessage] = "حساب کاربری شما با موفقیت فعال شد!";
+                        return RedirectToAction(nameof(Login));
+
+                    case ActiveMobileByActivationCodeResult.AccountNotFound:
+                        TempData[ErrorMessage] = "اطلاعات وارد شده اشتباه می باشد!";
+                        return RedirectToAction("ActiveUserByMobileActivationCode", new { Mobile = activeMobileByActivationCodeViewModel.Mobile, Resend = false });
+                }
+            }
+
+            #endregion
+
+            return View(activeMobileByActivationCodeViewModel);
+        }
+
+        #endregion
+
+        #region forgot password
+
+        [HttpGet("ForgotPassword")]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost("ForgotPassword"), ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgetPasswordViewModel forgot)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _userService.RecoverUserPassword(forgot);
+                switch (result)
+                {
+                    case ForgotPasswordResult.VerificationSmsFaildFromParsGreen:
+                        TempData[ErrorMessage] = " کد تایید جدید برای شما ارسال نشد!";
+                        TempData[ErrorMessage] = "لطفا با پشتیبانی سایت تماس بگیرید!";
+                        ModelState.AddModelError("Mobile", "لطفا با پشتیبانی سایت تماس بگیرید");
+                        break;
+                    case ForgotPasswordResult.NotFound:
+                        TempData[WarningMessage] = "کاربر مورد نظر یافت نشد";
+                        break;
+                    case ForgotPasswordResult.FailSendEmail:
+                        TempData[WarningMessage] = "در ارسال ایمیل مشکلی رخ داد";
+                        break;
+                    case ForgotPasswordResult.UserIsBlocked:
+                        TempData[ErrorMessage] = "حساب کاربری شما بسته شده است!";
+                        break;
+                    case ForgotPasswordResult.SuccessSendEmail:
+                        TempData[WarningMessage] = "کد جدید برای شما ارسال شد";
+                        return RedirectToAction("ResetPassword", "Account", new { mobile = forgot.Mobile });
+                    case ForgotPasswordResult.Success:
+                        TempData[SuccessMessage] = "کد تایید جدید برای شما ارسال شد";
+                        return RedirectToAction("ResetPassword", "Account", new { mobile = forgot.Mobile });
+                }
+            }
+
+            return View(forgot);
+        }
+
+        #endregion
+
+        #region reset password
+
+        [HttpGet("reset-pass/{mobile}")]
+        public async Task<IActionResult> ResetPassword(string mobile, bool resend)
+        {
+            #region Send Model To View
+
+            ViewBag.Mobile = mobile;
+
+            var user = await _userService.GetUserByMobile(mobile);
+
+            if (user == null) return NotFound();
+
+            if (resend)
+            {
+                await _userService.ResendActivationCodeSMS(mobile);
+            }
+
+            var SiteSettingSMSTimer = 2;
+            DateTime expireMinut = user.ExpireMobileSMSDateTime.Value.AddMinutes(SiteSettingSMSTimer);
+
+            var TimerMinut = expireMinut - DateTime.Now;
+
+            ViewBag.Time = TimerMinut.TotalMinutes * 60;
+
+
+            #endregion
+
+            return View();
+        }
+
+        [HttpPost("reset-pass/{mobile}"), ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(string mobile, ResetPasswordViewModel reset)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = await _userService.ResetUserPassword(reset, mobile);
+                switch (res)
+                {
+                    case ResetPasswordResult.NotFound:
+                        TempData[WarningMessage] = "کاربری با مشخصات وارد شده یافت نشد";
+                        return Redirect("/");
+                    case ResetPasswordResult.WrongActiveCode:
+                        TempData[ErrorMessage] = "کد تایید وارد شده صحیح نمی باشد";
+                        break;
+                    case ResetPasswordResult.Success:
+                        TempData[SuccessMessage] = "کلمه عبور شما با موفقیت تغییر پیدا کرد";
+                        await HttpContext.SignOutAsync();
+                        return RedirectToAction("Login", "Account", new { area = "" });
+                }
+            }
+            return View(reset);
+        }
 
         #endregion
 

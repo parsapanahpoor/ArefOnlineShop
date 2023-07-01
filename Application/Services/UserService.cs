@@ -5,6 +5,7 @@ using Application.Interfaces;
 using Application.Security;
 using Application.StaticTools;
 using Application.ViewModels;
+using Application.ViewModels.SiteSide.Account;
 using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.ContactUs;
@@ -377,7 +378,7 @@ namespace Application.Services
 
         public User LoginUser(LoginViewModel login)
         {
-            string PhoneNumber = FixedText.FixEmail(login.phoneNumber);
+            string PhoneNumber = FixedText.FixEmail(login.Mobile);
             return _userRepository.LoginUser(PhoneNumber, login.Password);
         }
 
@@ -426,14 +427,16 @@ namespace Application.Services
             //Create User
             var User = new User()
             {
-                //Email = email,
+                Email = register.Email,
                 Password = password,
                 UserName = mobile,
                 PhoneNumber = register.Mobile.SanitizeText(),
                 EmailActivationCode = CodeGenerator.GenerateUniqCode(),
                 MobileActivationCode = new Random().Next(10000, 999999).ToString(),
                 ExpireMobileSMSDateTime = DateTime.Now,
-                IsAdmin = false
+                IsAdmin = false,
+                UserAvatar = "Defult.jpg",
+                RegisterDate = DateTime.Now,
             };
 
             await _context.Users.AddAsync(User);
@@ -459,6 +462,152 @@ namespace Application.Services
         public async Task<bool> IsExistUserByMobile(string mobile)
         {
             return await _context.Users.AnyAsync(p => p.PhoneNumber == mobile && !p.IsDelete);
+        }
+
+        public async Task<User?> GetUserByMobile(string mobile)
+        {
+            return await _context.Users.FirstOrDefaultAsync(s =>
+                s.PhoneNumber == mobile.Trim().ToLower() && !s.IsDelete);
+        }
+
+        public async Task ResendActivationCodeSMS(string Mobile)
+        {
+            var user = await GetUserByMobile(Mobile);
+            user.MobileActivationCode = new Random().Next(10000, 999999).ToString();
+            user.ExpireMobileSMSDateTime = DateTime.Now;
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            #region Send Verification Code SMS
+
+            var result = $"https://api.kavenegar.com/v1/564672526D58694D3477685571796F7372574F576C476B6366785462356D3164683370395A2B61356D6E383D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
+            var results = client.GetStringAsync(result);
+
+            //var message = Messages.SendActivationRegisterSms(user.MobileActivationCode);
+
+            //await _smsservice.SendSimpleSMS(user.Mobile, message);
+
+            #endregion
+
+        }
+
+        public async Task<LoginResult> CheckUserForLogin(LoginViewModel login)
+        {
+            // get email and password
+            var password = PasswordHasher.EncodePasswordMd5(login.Password.SanitizeText());
+            var mobile = login.Mobile.Trim().ToLower().SanitizeText();
+
+            // get user by email
+            var user = await GetUserByMobile(mobile);
+
+            // check user exists
+            if (user == null) return LoginResult.UserNotFound;
+
+            // check user password
+            if (!user.Password.Equals(password)) return LoginResult.UserNotFound;
+
+            // check user ban status
+            if (user.IsBan) return LoginResult.UserIsBan;
+
+            // check user activation
+            if (!user.IsMobileConfirm) return LoginResult.MobileNotActivated;
+
+            return LoginResult.Success;
+        }
+
+        public async Task<ActiveMobileByActivationCodeResult> ActiveUserMobile(ActiveMobileByActivationCodeViewModel activeMobileByActivationCodeViewModel)
+        {
+            #region Get User By Mobile
+
+            if (!await IsExistUserByMobile(activeMobileByActivationCodeViewModel.Mobile.SanitizeText()))
+            {
+                return ActiveMobileByActivationCodeResult.AccountNotFound;
+            }
+
+            var user = await GetUserByMobile(activeMobileByActivationCodeViewModel.Mobile.SanitizeText());
+            if (user == null) return ActiveMobileByActivationCodeResult.AccountNotFound;
+
+            #endregion
+
+            #region Validation Activation Code
+
+            if (user.MobileActivationCode != activeMobileByActivationCodeViewModel.MobileActiveCode)
+            {
+                return ActiveMobileByActivationCodeResult.AccountNotFound;
+            }
+
+            #endregion
+
+            #region Update User 
+
+            user.IsMobileConfirm = true;
+            user.MobileActivationCode = new Random().Next(10000, 999999).ToString();
+
+            await _context.SaveChangesAsync();
+
+            #endregion
+
+            return ActiveMobileByActivationCodeResult.Success;
+        }
+
+        public async Task<ForgotPasswordResult> RecoverUserPassword(ForgetPasswordViewModel forgot)
+        {
+            #region Get User By Mobile
+
+            var user = await GetUserByMobile(forgot.Mobile);
+            if (user == null) return ForgotPasswordResult.NotFound;
+
+            if (user != null && user.IsBan)
+            {
+                return ForgotPasswordResult.UserIsBlocked;
+            }
+
+            #endregion
+
+            #region Update User Info
+
+            user.MobileActivationCode = new Random().Next(10000, 999999).ToString();
+            user.ExpireMobileSMSDateTime = DateTime.Now;
+
+            _context.Users.Update(user);
+
+            await _context.SaveChangesAsync();
+
+            #endregion
+
+            #region Send Verification Code SMS
+
+            var result = $"https://api.kavenegar.com/v1/564672526D58694D3477685571796F7372574F576C476B6366785462356D3164683370395A2B61356D6E383D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
+            var results = client.GetStringAsync(result);
+
+            #endregion
+
+            return ForgotPasswordResult.Success;
+        }
+
+        public async Task<ResetPasswordResult> ResetUserPassword(ResetPasswordViewModel pass, string mobile)
+        {
+            #region Get User By Mobile
+
+            var user = await GetUserByMobile(mobile);
+            if (user == null) return ResetPasswordResult.NotFound;
+
+            if (user.MobileActivationCode != pass.ActiveCode) return ResetPasswordResult.WrongActiveCode;
+
+            #endregion
+
+            #region Update User Info
+
+            user.Password = PasswordHasher.EncodePasswordMd5(pass.Password.SanitizeText());
+            user.IsMobileConfirm = true;
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            #endregion
+
+            return ResetPasswordResult.Success;
         }
 
         #endregion
