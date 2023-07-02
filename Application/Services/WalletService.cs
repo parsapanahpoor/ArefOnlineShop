@@ -148,7 +148,7 @@ namespace Application.Services.Implementation
         }
 
         //Create New Wallet Transaction For Redirext To The Bank Portal
-        public async Task CreateNewWalletTransactionForRedirextToTheBankPortal(int userId, int price, GatewayType gateway, string authority, string description, ulong? requestId)
+        public async Task CreateNewWalletTransactionForRedirextToTheBankPortal(int userId, int price, GatewayType gateway, string authority, string description, int? requestId)
         {
             #region Fill Wallet 
 
@@ -195,7 +195,7 @@ namespace Application.Services.Implementation
         }
 
         //Find Wallet Transaction For Redirect To The Bank Portal 
-        public async Task<Wallet?> FindWalletTransactionForRedirectToTheBankPortal(int userId, GatewayType gateway, ulong? requestId, string authority, int amount)
+        public async Task<Wallet?> FindWalletTransactionForRedirectToTheBankPortal(int userId, GatewayType gateway, int? requestId, string authority, int amount)
         {
             return await _walletRepository.FindWalletTransactionForRedirectToTheBankPortal(userId, gateway, requestId, authority, amount);
         }

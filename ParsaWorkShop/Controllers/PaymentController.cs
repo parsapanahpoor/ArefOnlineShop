@@ -38,7 +38,7 @@ namespace DoctorFAM.Web.Controllers
 
         #region Paymnet Method
 
-        public async Task<IActionResult> PaymentMethod(GatewayType gatewayType, int amount, string description, string returURL , ulong? requestId)
+        public async Task<IActionResult> PaymentMethod(GatewayType gatewayType, int amount, string description, string returURL , ulong? orderId)
         {
             #region Get User By Id
 

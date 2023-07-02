@@ -42,7 +42,7 @@ namespace Domain.Models.Wallet
 
     public bool IsFinally { get; set; }
 
-    public ulong? RequestId { get; set; }
+    public int? RequestId { get; set; }
 
     #endregion
 

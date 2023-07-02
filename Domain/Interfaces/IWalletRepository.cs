@@ -48,7 +48,7 @@ namespace Domain.Interfaces
         Task CreateWalletData(WalletData walletData);
 
         //Find Wallet Transaction For Redirect To The Bank Portal 
-        Task<Wallet?> FindWalletTransactionForRedirectToTheBankPortal(int userId, GatewayType gateway, ulong? requestId, string authority, int amount);
+        Task<Wallet?> FindWalletTransactionForRedirectToTheBankPortal(int userId, GatewayType gateway, int? requestId, string authority, int amount);
 
         //Update Wallet With Calculate Balance
         Task UpdateWalletWithCalculateBalance(Wallet wallet);
