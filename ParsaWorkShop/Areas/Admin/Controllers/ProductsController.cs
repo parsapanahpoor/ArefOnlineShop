@@ -13,7 +13,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    [PermissionChecker(1)]
+    //[PermissionChecker(1)]
 
     public class ProductsController : Controller
     {
@@ -59,6 +59,17 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                #region Check Category 
+
+                if (SelectedCategory == null || !SelectedCategory.Any())
+                {
+                    ViewData["ProductCategories"] = _product.GetAllProductCategories();
+
+                    return View(product);
+                }
+
+                #endregion
+
                 var user = _user.GetUserByUserName(User.Identity.Name);
                 var ProductID = _product.AddProduct(product, imgProductUp, user);
                 _product.AddCategoryToProduct(SelectedCategory, ProductID);

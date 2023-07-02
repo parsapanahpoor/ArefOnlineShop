@@ -177,6 +177,15 @@ namespace DoctorFAM.Data.Repository
             await SaveChangesAsync();
         }
 
+        //Create Wallet Without Calculate
+        public async Task<ulong> CreateWalletWithoutCalculateWithReturnValue(Wallet wallet)
+        {
+            await _context.Wallets.AddAsync(wallet);
+            await SaveChangesAsync();
+
+            return wallet.Id;
+        }
+
         //Create Wallet Data
         public async Task CreateWalletData(WalletData walletData)
         {
@@ -291,7 +300,7 @@ namespace DoctorFAM.Data.Repository
         #region Site Side 
 
         //Get Home Visit Transaction For Cancelation Home Visit Request 
-        public async Task<Wallet?> GetHomeVisitTransactionForCancelationHomeVisitRequest(ulong requestId)
+        public async Task<Wallet?> GetHomeVisitTransactionForCancelationHomeVisitRequest(int requestId)
         {
             return await _context.Wallets.Where(p => p.RequestId == requestId).FirstOrDefaultAsync();
         }

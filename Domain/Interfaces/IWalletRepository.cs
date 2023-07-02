@@ -39,10 +39,13 @@ namespace Domain.Interfaces
         Task<int> GetUserWalletBalance(int userId);
 
         //Get Home Visit Transaction For Cancelation Home Visit Request 
-        Task<Wallet?> GetHomeVisitTransactionForCancelationHomeVisitRequest(ulong requestId);
+        Task<Wallet?> GetHomeVisitTransactionForCancelationHomeVisitRequest(int requestId);
 
         //Create Wallet Without Calculate
         Task CreateWalletWithoutCalculate(Wallet wallet);
+
+        //Create Wallet Without Calculate
+        Task<ulong> CreateWalletWithoutCalculateWithReturnValue(Wallet wallet);
 
         //Create Wallet Data
         Task CreateWalletData(WalletData walletData);

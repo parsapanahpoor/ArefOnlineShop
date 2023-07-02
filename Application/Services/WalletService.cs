@@ -148,7 +148,7 @@ namespace Application.Services.Implementation
         }
 
         //Create New Wallet Transaction For Redirext To The Bank Portal
-        public async Task CreateNewWalletTransactionForRedirextToTheBankPortal(int userId, int price, GatewayType gateway, string authority, string description, int? requestId)
+        public async Task CreateNewWalletTransactionForRedirextToTheBankPortal(int userId, int price, GatewayType gateway, string authority, string description, int requestId)
         {
             #region Fill Wallet 
 
@@ -161,18 +161,14 @@ namespace Application.Services.Implementation
                 Price = price,
                 Description = description,
                 IsFinally = false,
+                RequestId = requestId
             };
-
-            if (requestId.HasValue)
-            {
-                wallet.RequestId = requestId;
-            }
 
             #endregion
 
             #region Add Wallet Method 
 
-            await _walletRepository.CreateWalletWithoutCalculate(wallet);
+            var walletId = await _walletRepository.CreateWalletWithoutCalculateWithReturnValue(wallet);
 
             #endregion
 
@@ -182,7 +178,7 @@ namespace Application.Services.Implementation
             {
                 GatewayType = gateway,
                 TrackingCode = authority,
-                WalletId = wallet.Id
+                WalletId = walletId
             };
 
             #endregion

@@ -38,7 +38,7 @@ namespace DoctorFAM.Web.Controllers
 
         #region Paymnet Method
 
-        public async Task<IActionResult> PaymentMethod(GatewayType gatewayType, int amount, string description, string returURL , ulong? orderId)
+        public async Task<IActionResult> PaymentMethod(GatewayType gatewayType, int amount, string description, string returURL , int orderId)
         {
             #region Get User By Id
 
@@ -77,7 +77,7 @@ namespace DoctorFAM.Web.Controllers
 
                         #region Create Wallet With False Finally
 
-                        await _walletService.CreateNewWalletTransactionForRedirextToTheBankPortal(user.UserId , amount , gatewayType , authority.Trim() , description , requestId);
+                        await _walletService.CreateNewWalletTransactionForRedirextToTheBankPortal(user.UserId , amount , gatewayType , authority.Trim() , description , orderId);
 
                         #endregion
 

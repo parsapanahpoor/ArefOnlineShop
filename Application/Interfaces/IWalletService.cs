@@ -33,7 +33,7 @@ namespace Application.Services.Interfaces
         Task<WalletViewModel> GetWalletById(ulong id);
 
         //Create New Wallet Transaction For Redirext To The Bank Portal
-        Task CreateNewWalletTransactionForRedirextToTheBankPortal(int userId, int price, GatewayType gateway, string authority, string description, int? requestId);
+        Task CreateNewWalletTransactionForRedirextToTheBankPortal(int userId, int price, GatewayType gateway, string authority, string description, int requestId);
 
         //Find Wallet Transaction For Redirect To The Bank Portal 
         Task<Wallet?> FindWalletTransactionForRedirectToTheBankPortal(int userId, GatewayType gateway, int? requestId, string authority, int amount);
