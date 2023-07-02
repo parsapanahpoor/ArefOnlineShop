@@ -24,6 +24,8 @@ namespace Data.Repository
 
         #endregion
 
+        #region Old Versions
+
         public void addMessage(ContactUs contactus)
         {
             _context.ContactUs.Add(contactus);
@@ -36,12 +38,10 @@ namespace Data.Repository
             return user.UserId;
         }
 
-    
         public bool CompareOldPassword(string hashOldPassword, string username)
         {
             return _context.Users.Any(u => u.UserName == username && u.Password == hashOldPassword);
         }
-
 
         public List<ContactUs> GetAllMessages()
         {
@@ -76,6 +76,11 @@ namespace Data.Repository
         public User GetUserById(int Userid)
         {
             return _context.Users.Find(Userid);
+        }
+
+        public async Task<User> GetUserByIdAsync(int Userid)
+        {
+            return await _context.Users.FindAsync(Userid);
         }
 
         public User GetUserByPhoneNumber(string PhoneNumber)
@@ -140,6 +145,15 @@ namespace Data.Repository
             _context.Update(user);
         }
 
+        #endregion
 
+        #region Generals
+
+        public async Task<bool> IsExistUserById(int userId)
+        {
+            return await _context.Users.AnyAsync(p => !p.IsDelete && p.UserId == userId);
+        }
+
+        #endregion
     }
 }

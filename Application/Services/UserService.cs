@@ -297,6 +297,11 @@ namespace Application.Services
             return _userRepository.GetUserById(Userid);
         }
 
+        public async Task<User> GetUserByIdAsync(int Userid)
+        {
+            return await _userRepository.GetUserByIdAsync(Userid);
+        }
+
         public User GetUserByPhoneNumber(string PhoneNumber)
         {
             return _userRepository.GetUserByPhoneNumber(PhoneNumber.Trim().ToLower());
