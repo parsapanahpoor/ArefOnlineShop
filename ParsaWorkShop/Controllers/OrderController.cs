@@ -329,6 +329,9 @@ namespace ParsaWorkShop.Controllers
                             //Charge User Wallet
                             await _walletService.UpdateWalletAndCalculateUserBalanceAfterBankingPayment(wallet);
 
+                            //Pay Order Amount 
+                            await _walletService.PayOrderAmount(user.UserId , Amount , order.OrderId);
+
                             #region Finalize Order
 
                             _order.IsfinallyForOredr(order);

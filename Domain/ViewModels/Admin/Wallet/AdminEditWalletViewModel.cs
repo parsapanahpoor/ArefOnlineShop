@@ -2,7 +2,7 @@
 {
     public class AdminEditWalletViewModel : AdminCreateWalletViewModel
     {
-        public ulong WalletId { get; set; }
+        public int WalletId { get; set; }
     }
 
     public enum AdminEditWalletResponse

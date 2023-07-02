@@ -14,23 +14,25 @@ namespace Application.Services.Interfaces
     {
         #region Wallet
 
+        Task<bool> PayOrderAmount(int userId, int price, int orderId);
+
         Task<FilterWalletViewModel> FilterWalletsAsync(FilterWalletViewModel filter);
 
         Task<int?> GetSumUserWalletAsync(int userId);
 
-        Task<AdminEditWalletViewModel?> GetWalletForEditAsync(ulong walletId);
+        Task<AdminEditWalletViewModel?> GetWalletForEditAsync(int walletId);
 
         Task<AdminCreateWalletResponse> CreateWalletAsync(AdminCreateWalletViewModel model);
 
         Task<AdminEditWalletResponse> EditWalletAsync(AdminEditWalletViewModel model);
 
-        Task ConfirmPayment(ulong payId, string authority, string refId);
+        Task ConfirmPayment(int payId, string authority, string refId);
 
-        Task<bool> RemoveWalletAsync(ulong walletId);
+        Task<bool> RemoveWalletAsync(int walletId);
 
-        Task<ulong> ChargeUserWallet(AdminCreateWalletViewModel wallet);
+        Task<int> ChargeUserWallet(AdminCreateWalletViewModel wallet);
 
-        Task<WalletViewModel> GetWalletById(ulong id);
+        Task<WalletViewModel> GetWalletById(int id);
 
         //Create New Wallet Transaction For Redirext To The Bank Portal
         Task CreateNewWalletTransactionForRedirextToTheBankPortal(int userId, int price, GatewayType gateway, string authority, string description, int requestId);

@@ -1,4 +1,5 @@
 ﻿
+using Application.Interfaces;
 using Application.Services.Interfaces;
 using Domain.Interfaces;
 using Domain.Models.Wallet;
@@ -29,6 +30,24 @@ namespace Application.Services.Implementation
         #endregion
 
         #region Wallet
+
+        public async Task<bool> PayOrderAmount(int userId, int price, int orderId)
+        {
+            var wallet = new Wallet
+            {
+                UserId = userId,
+                TransactionType = TransactionType.Withdraw,
+                GatewayType = GatewayType.Zarinpal,
+                PaymentType = PaymentType.Buy,
+                Price = price,
+                Description = "پرداخت مبلغ خرید",
+                IsFinally = true,
+                RequestId = orderId
+            };
+
+            await _walletRepository.CreateWalletAsync(wallet);
+            return true;
+        }
 
         public Task<FilterWalletViewModel> FilterWalletsAsync(FilterWalletViewModel filter)
         {
@@ -86,7 +105,7 @@ namespace Application.Services.Implementation
             return AdminEditWalletResponse.Success;
         }
 
-        public async Task<bool> RemoveWalletAsync(ulong walletId)
+        public async Task<bool> RemoveWalletAsync(int walletId)
         {
             var wallet = await _walletRepository.GetWalletByWalletIdAsync(walletId);
 
@@ -101,12 +120,12 @@ namespace Application.Services.Implementation
             return true;
         }
 
-        public Task<AdminEditWalletViewModel?> GetWalletForEditAsync(ulong walletId)
+        public Task<AdminEditWalletViewModel?> GetWalletForEditAsync(int walletId)
         {
             return _walletRepository.GetWalletForEditAsync(walletId);
         }
 
-        public async Task<ulong> ChargeUserWallet(AdminCreateWalletViewModel wallet)
+        public async Task<int> ChargeUserWallet(AdminCreateWalletViewModel wallet)
         {
             if (await _userRepository.IsExistUserById(wallet.UserId))
             {
@@ -125,7 +144,7 @@ namespace Application.Services.Implementation
             return 0;
         }
 
-        public async Task<WalletViewModel> GetWalletById(ulong id)
+        public async Task<WalletViewModel> GetWalletById(int id)
         {
             var wallet = await _walletRepository.GetWalletById(id);
 
@@ -142,7 +161,7 @@ namespace Application.Services.Implementation
             return newWallet;
         }
 
-        public async Task ConfirmPayment(ulong payId, string authority, string refId)
+        public async Task ConfirmPayment(int payId, string authority, string refId)
         {
             await _walletRepository.ConfirmPayment(payId, authority, refId);
         }

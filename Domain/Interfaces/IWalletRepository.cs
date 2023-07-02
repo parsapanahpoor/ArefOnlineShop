@@ -16,21 +16,21 @@ namespace Domain.Interfaces
 
         Task<FilterWalletViewModel> FilterWalletsAsync(FilterWalletViewModel filter);
 
-        Task<Wallet?> GetWalletByWalletIdAsync(ulong walletId);
+        Task<Wallet?> GetWalletByWalletIdAsync(int walletId);
 
         Task<int> GetSumUserWalletAsync(int userId);
 
-        Task<AdminEditWalletViewModel?> GetWalletForEditAsync(ulong walletId);
+        Task<AdminEditWalletViewModel?> GetWalletForEditAsync(int walletId);
 
         Task CreateWalletAsync(Wallet wallet);
 
         Task EditWalletAsync(Wallet wallet);
 
-        Task ConfirmPayment(ulong payId, string authority, string refId);
+        Task ConfirmPayment(int payId, string authority, string refId);
 
-        Task<Wallet> GetWalletById(ulong id);
+        Task<Wallet> GetWalletById(int id);
 
-        Task<ulong> CreateWallet(Wallet charge);
+        Task<int> CreateWallet(Wallet charge);
 
         Task<int> GetUserTotalDepositTransactions(int userId);
 
