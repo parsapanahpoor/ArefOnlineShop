@@ -79,7 +79,12 @@ namespace ParsaWorkShop.Controllers
                 case RegisterUserResult.MobileExist:
                     TempData[ErrorMessage] = "تلفن همراه وارد شده تکراری می باشد";
                     TempData[InfoMessage] = "در صورتی که از قبل در سایت ثبت نام کردید از گزینه ی ورود به سایت استفاده کنید";
-                    ModelState.AddModelError("Mobile", "تلفن همراه وارد شده تکراری می باشد");
+                    ModelState.AddModelError("UserName", "تلفن همراه وارد شده تکراری می باشد");
+                    break;
+
+                case RegisterUserResult.UsernameExist:
+                    TempData[ErrorMessage] = "نام کاربری وارد شده تکراری می باشد.";
+                    ModelState.AddModelError("Mobile", "نام کاربری وارد شده تکراری می باشد.");
                     break;
 
                 case RegisterUserResult.SiteRoleNotAccept:
