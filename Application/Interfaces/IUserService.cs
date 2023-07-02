@@ -26,6 +26,7 @@ namespace Application.Interfaces
         User GetUserByPhoneNumber(string PhoneNumber);
         User GetUserByActiveCode(string ActiveCode);
         User GetUserById(int Userid);
+        Task<User> GetUserByIdAsync(int Userid);
         void UpdateUser(User user);
         void DeleteUser(int userId);
         int GetUserIdByUserName(string userName);
@@ -75,6 +76,8 @@ namespace Application.Interfaces
         Task<bool> IsExistUserByMobile(string mobile);
 
         Task<User?> GetUserByMobile(string mobile);
+
+        Task<bool> IsExistUserByUsername(string userName);
 
         Task<LoginResult> CheckUserForLogin(LoginViewModel login);
 

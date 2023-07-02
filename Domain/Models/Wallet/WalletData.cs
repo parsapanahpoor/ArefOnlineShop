@@ -1,10 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Domain.Models.Common;
 
 namespace Domain.Models.Wallet
 {
     public class WalletData : BaseEntity
     {
+        [Key]
+        public int WalletDataId { get; set; }
+
+        public DateTime CreateDate { get; set; } = DateTime.Now;
+
+        public bool IsDelete { get; set; } = false;
+
         public string? TrackingCode { get; set; }
 
         public string? ReferenceCode { get; set; }
@@ -14,7 +22,7 @@ namespace Domain.Models.Wallet
         public GatewayType GatewayType { get; set; }
 
         [Required]
-        public ulong WalletId { get; set; }
+        public int WalletId { get; set; }
 
         #region Relations
 

@@ -297,6 +297,11 @@ namespace Application.Services
             return _userRepository.GetUserById(Userid);
         }
 
+        public async Task<User> GetUserByIdAsync(int Userid)
+        {
+            return await _userRepository.GetUserByIdAsync(Userid);
+        }
+
         public User GetUserByPhoneNumber(string PhoneNumber)
         {
             return _userRepository.GetUserByPhoneNumber(PhoneNumber.Trim().ToLower());
@@ -409,6 +414,12 @@ namespace Application.Services
                 return RegisterUserResult.MobileExist;
             }
 
+            //Check Username
+            if (await IsExistUserByUsername(register.UserName))
+            {
+                return RegisterUserResult.UsernameExist;
+            }
+
             //Field about Accept Site Roles
             if (register.SiteRoles == false)
             {
@@ -460,6 +471,11 @@ namespace Application.Services
         public async Task<bool> IsExistUserByMobile(string mobile)
         {
             return await _context.Users.AnyAsync(p => p.PhoneNumber == mobile && !p.IsDelete);
+        }
+
+        public async Task<bool> IsExistUserByUsername(string userName)
+        {
+            return await _context.Users.AnyAsync(p => p.UserName == userName && !p.IsDelete);
         }
 
         public async Task<User?> GetUserByMobile(string mobile)

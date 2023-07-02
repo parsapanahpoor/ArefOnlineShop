@@ -1,6 +1,9 @@
 ﻿using Application.Interfaces;
 using Application.Services;
+using Application.Services.Implementation;
+using Application.Services.Interfaces;
 using Data.Repository;
+using DoctorFAM.Data.Repository;
 using Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -26,9 +29,9 @@ namespace IoC
             service.AddScoped<ILocationService, LocationService>();
             service.AddScoped<IFinancialTransactionService, FinancialTransactionService>();
             service.AddScoped<IReturendProductsService, ReturendProductsService>();
+            service.AddScoped<IWalletService, WalletService>();
 
             #endregion
-
 
             #region Data Layer
 
@@ -41,9 +44,9 @@ namespace IoC
             service.AddScoped<IOrderRepository, OrderRepository>();
             service.AddScoped<IFinancialTransactionRepository, FinancialTransactionRepository>();
             service.AddScoped<IReturendProductsRepository, ReturendProductsReposiotry>();
+            service.AddScoped<IWalletRepository, WalletRepository>();
 
             #endregion
-
         }
     }
 }
