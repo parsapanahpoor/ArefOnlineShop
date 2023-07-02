@@ -14,7 +14,7 @@ namespace Domain.Models.Wallet
         public GatewayType GatewayType { get; set; }
 
         [Required]
-        public ulong WalletId { get; set; }
+        public int WalletId { get; set; }
 
         #region Relations
 

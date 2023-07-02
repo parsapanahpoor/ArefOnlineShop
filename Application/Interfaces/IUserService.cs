@@ -77,6 +77,8 @@ namespace Application.Interfaces
 
         Task<User?> GetUserByMobile(string mobile);
 
+        Task<bool> IsExistUserByUsername(string userName);
+
         Task<LoginResult> CheckUserForLogin(LoginViewModel login);
 
         Task ResendActivationCodeSMS(string Mobile);

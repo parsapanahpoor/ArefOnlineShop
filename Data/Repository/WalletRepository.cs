@@ -133,7 +133,7 @@ namespace DoctorFAM.Data.Repository
             return filter;
         }
 
-        public Task<Wallet?> GetWalletByWalletIdAsync(ulong walletId)
+        public Task<Wallet?> GetWalletByWalletIdAsync(int walletId)
         {
             return Task.FromResult(_context.Wallets.FirstOrDefault(w => w.Id == walletId));
         }
@@ -184,7 +184,7 @@ namespace DoctorFAM.Data.Repository
             await SaveChangesAsync();
         }
 
-        public async Task ConfirmPayment(ulong payId, string authority, string refId)
+        public async Task ConfirmPayment(int payId, string authority, string refId)
         {
             var payment = await _context.Wallets.FirstOrDefaultAsync(w => w.Id == payId);
             if (payment != null)
@@ -217,7 +217,7 @@ namespace DoctorFAM.Data.Repository
             var walletBalance = await GetUserWalletBalance(wallet.UserId);
         }
 
-        public Task<AdminEditWalletViewModel?> GetWalletForEditAsync(ulong walletId)
+        public Task<AdminEditWalletViewModel?> GetWalletForEditAsync(int walletId)
         {
             return Task.FromResult(_context.Wallets
                 .Include(w => w.User)
@@ -235,14 +235,14 @@ namespace DoctorFAM.Data.Repository
                 }).FirstOrDefault());
         }
 
-        public async Task<Wallet?> GetWalletById(ulong id)
+        public async Task<Wallet?> GetWalletById(int id)
         {
             return await _context.Wallets.Include(w => w.User)
                 .Include(w => w.WalletData)
                 .FirstOrDefaultAsync(w => !w.IsDelete && w.Id == id && !w.IsFinally);
         }
 
-        public async Task<ulong> CreateWallet(Wallet charge)
+        public async Task<int> CreateWallet(Wallet charge)
         {
             await _context.Wallets.AddAsync(charge);
             await SaveChangesAsync();
@@ -291,7 +291,7 @@ namespace DoctorFAM.Data.Repository
         #region Site Side 
 
         //Get Home Visit Transaction For Cancelation Home Visit Request 
-        public async Task<Wallet?> GetHomeVisitTransactionForCancelationHomeVisitRequest(ulong requestId)
+        public async Task<Wallet?> GetHomeVisitTransactionForCancelationHomeVisitRequest(int requestId)
         {
             return await _context.Wallets.Where(p => p.RequestId == requestId).FirstOrDefaultAsync();
         }

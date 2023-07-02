@@ -13,7 +13,7 @@ namespace Domain.ViewModels.Admin.Wallet
     {
         #region Properties
 
-        public ulong Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public ulong UserId { get; set; }
 
