@@ -9,6 +9,7 @@ using Domain.Models.Product;
 using Domain.Models.SiteSetting;
 using Domain.Models.Slider;
 using Domain.Models.Users;
+using Domain.Models.Wallet;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -90,6 +91,14 @@ namespace Data.Context
         public DbSet<ReturnedProducts> ReturnedProducts { get; set; }
         public DbSet<ReturnedProductType> ReturnedProductTypes { get; set; }
         public DbSet<FinancialTransactionType> FinancialTransactionType { get; set; }
+
+        #endregion
+
+        #region Wallet
+
+        public DbSet<Wallet> Wallets { get; set; }
+
+        public DbSet<WalletData> WalletData { get; set; }
 
         #endregion
 
