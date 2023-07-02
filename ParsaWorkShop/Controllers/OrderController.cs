@@ -1,4 +1,6 @@
-﻿using Application.Interfaces;
+﻿#region Usings
+
+using Application.Interfaces;
 using Domain.Models.Order;
 using Domain.Models.Product;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace ParsaWorkShop.Controllers
 {
@@ -32,6 +36,9 @@ namespace ParsaWorkShop.Controllers
         }
 
         #endregion
+
+        #region Add To Shop Cart
+
         public IActionResult AddToShopCart(int? id)
         {
             if (id == null)
@@ -67,6 +74,11 @@ namespace ParsaWorkShop.Controllers
             return RedirectToAction(nameof(ShopCart));
         }
 
+
+        #endregion
+
+        #region Shop Cart
+
         public IActionResult ShopCart()
         {
             int userid = _user.GetUserIdByUserName(User.Identity.Name);
@@ -84,6 +96,11 @@ namespace ParsaWorkShop.Controllers
             return View(order);
         }
 
+
+        #endregion
+
+        #region Remove Product From Shop Cart
+
         public IActionResult RemoveProductFromShopCart(int? id)
         {
             if (id == null)
@@ -94,6 +111,10 @@ namespace ParsaWorkShop.Controllers
 
             return RedirectToAction(nameof(ShopCart));
         }
+
+        #endregion
+
+        #region Plus Product From Order Detail
 
         public IActionResult PlusProductFromOrderDetail(int? id)
         {
@@ -106,6 +127,10 @@ namespace ParsaWorkShop.Controllers
             return RedirectToAction(nameof(ShopCart));
         }
 
+        #endregion
+
+        #region Minus Product From Order Detail
+
         public IActionResult MinusProductFromOrderDetail(int? id)
         {
             if (id == null)
@@ -116,6 +141,10 @@ namespace ParsaWorkShop.Controllers
 
             return RedirectToAction(nameof(ShopCart));
         }
+
+        #endregion
+
+        #region Get The User Locations
 
         public IActionResult GetTheUserLocations(int? id)
         {
@@ -131,6 +160,10 @@ namespace ParsaWorkShop.Controllers
             return View();
         }
 
+        #endregion
+
+        #region Add The User Locations
+
         [HttpPost]
         public IActionResult AddTheUserLocations(int orderid, string LocationAddress, string PostalCode)
         {
@@ -144,6 +177,10 @@ namespace ParsaWorkShop.Controllers
 
             return Redirect("/order/GetTheUserLocations?id=" + orderid);
         }
+
+        #endregion
+
+        #region Accept Factor
 
         public IActionResult AcceptFactor(int? oredrid, int Locationid)
         {
@@ -162,6 +199,12 @@ namespace ParsaWorkShop.Controllers
 
             return View();
         }
+
+
+        #endregion
+
+        #region Payment
+
         public IActionResult Payment(int? id)
         {
             if (id == null)
@@ -192,6 +235,11 @@ namespace ParsaWorkShop.Controllers
 
             return View();
         }
+
+
+        #endregion
+
+        #region online Payment
 
         [Route("OnlinePayment/{id}")]
         public IActionResult onlinePayment(int id)
@@ -230,5 +278,9 @@ namespace ParsaWorkShop.Controllers
 
             return View();
         }
+
+        #endregion
+
+
     }
 }
