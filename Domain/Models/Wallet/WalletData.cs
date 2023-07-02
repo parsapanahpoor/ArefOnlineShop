@@ -4,7 +4,7 @@ using Domain.Models.Common;
 
 namespace Domain.Models.Wallet
 {
-    public class WalletData : BaseEntity
+    public class WalletData 
     {
         [Key]
         public int WalletDataId { get; set; }

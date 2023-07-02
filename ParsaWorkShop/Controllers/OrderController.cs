@@ -1,14 +1,26 @@
 ﻿#region Usings
 
+using AngleSharp.Io;
+using Application.Convertors;
+using Application.Extensions;
 using Application.Interfaces;
+using Application.Services;
+using Application.StaticTools;
+using Domain.DTOs.ZarinPal;
 using Domain.Models.Order;
 using Domain.Models.Product;
+using Domain.Models.Wallet;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Application.Services.Interfaces;
 
 #endregion
 
@@ -24,15 +36,18 @@ namespace ParsaWorkShop.Controllers
         private IOrderService _order;
         private ILocationService _location;
         private IFinancialTransactionService _financial;
+        private readonly IWalletService _walletService;
 
         public OrderController(IUserService user, IProductService product, IOrderService order, ILocationService location,
-                                    IFinancialTransactionService financial)
+                                    IFinancialTransactionService financial, IWalletService walletService)
         {
             _user = user;
             _product = product;
             _order = order;
             _location = location;
             _financial = financial;
+            _walletService = walletService;
+
         }
 
         #endregion
@@ -184,11 +199,8 @@ namespace ParsaWorkShop.Controllers
 
         public IActionResult AcceptFactor(int? oredrid, int Locationid)
         {
-            if (oredrid == null)
-            {
-                return NotFound();
-            }
-            int userid = _user.GetUserIdByUserName(User.Identity.Name);
+            if (oredrid == null) return NotFound();
+
             Orders order = _order.GetOrderByOrderID((int)oredrid);
 
             Orders NewOrder = _order.UpdateOrderByLocationid(order, Locationid);
@@ -200,19 +212,19 @@ namespace ParsaWorkShop.Controllers
             return View();
         }
 
-
         #endregion
 
         #region Payment
 
         public IActionResult Payment(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            #region Initial Order Amount
+
+            if (id == null) return NotFound();
+
             Orders order = _order.GetOrderByOrderID((int)id);
             List<OrderDetails> orderDetails = _order.GetAllOrderDetailsByOrderID(order.OrderId);
+
             int Amount = 0;
 
             foreach (var item in orderDetails)
@@ -220,20 +232,21 @@ namespace ParsaWorkShop.Controllers
                 Amount = Amount + (int)(item.Price * item.Count);
             }
 
-            #region Online Payment
-
-            var payment = new ZarinpalSandbox.Payment((int)Amount);
-
-            var res = payment.PaymentRequest("پرداخت  ", "http://zanbilkola.ir/OnlinePayment/" + order.OrderId, "Parsapanahpoor@yahoo.com", "09117878804");
-
-            if (res.Result.Status == 100)
-            {
-                return Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + res.Result.Authority);
-            }
-
             #endregion
 
-            return View();
+            #region Online Payment
+
+            return RedirectToAction("PaymentMethod", "Payment", new
+            {
+                gatewayType = GatewayType.Zarinpal,
+                amount = Amount,
+                description = "شارژ حساب کاربری برای پرداخت هزینه ی حرید",
+                returURL = $"{PathTools.SiteAddress}/OnlinePayment/" + order.OrderId,
+                orderId = order.OrderId,
+
+            });
+
+            #endregion
         }
 
 
@@ -242,45 +255,115 @@ namespace ParsaWorkShop.Controllers
         #region online Payment
 
         [Route("OnlinePayment/{id}")]
-        public IActionResult onlinePayment(int id)
+        public async Task<IActionResult> onlinePayment(int id)
         {
-            if (HttpContext.Request.Query["Status"] != "" &&
-                HttpContext.Request.Query["Status"].ToString().ToLower() == "ok"
-                && HttpContext.Request.Query["Authority"] != "")
+            #region Get User By User Id
+
+            var user = await _user.GetUserByIdAsync(User.GetUserId());
+            if (user == null) NotFound();
+
+            #endregion
+
+            #region Initial Order Amount
+
+            Orders order = _order.GetOrderByOrderID(id);
+            List<OrderDetails> orderDetails = _order.GetAllOrderDetailsByOrderID(order.OrderId);
+
+            int Amount = 0;
+
+            foreach (var item in orderDetails)
             {
-                string authority = HttpContext.Request.Query["Authority"];
+                Amount = Amount + (int)(item.Price * item.Count);
+            }
 
-                Orders order = _order.GetOrderByOrderID(id);
-                List<OrderDetails> orderDetails = _order.GetAllOrderDetailsByOrderID(id);
+            #endregion
 
-                int Amount = 0;
+            try
+            {
+                #region Fill Parametrs
 
-                foreach (var item in orderDetails)
+                VerifyParameters parameters = new VerifyParameters();
+
+                if (HttpContext.Request.Query["Authority"] != "")
                 {
-                    Amount = Amount + (int)(item.Price * item.Count);
+                    parameters.authority = HttpContext.Request.Query["Authority"];
                 }
 
-                var payment = new ZarinpalSandbox.Payment(Amount);
-                var res = payment.Verification(authority).Result;
-                if (res.Status == 100)
-                {
-                    ViewBag.code = res.RefId;
-                    ViewBag.IsSuccess = true;
-                    _order.IsfinallyForOredr(order);
-                    _financial.AddFinancialTransactionAfterPaymentOrder(order.OrderId, Amount, "", "");
+                parameters.amount = Amount.ToString();
+                parameters.merchant_id = PathTools.merchant;
 
-                    foreach (var item in orderDetails)
+                #endregion
+
+                using (HttpClient client = new HttpClient())
+                {
+                    #region Verify Payment
+
+                    var json = JsonConvert.SerializeObject(parameters);
+
+                    HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PostAsync(URLs.verifyUrl, content);
+
+                    string responseBody = await response.Content.ReadAsStringAsync();
+
+                    JObject jodata = JObject.Parse(responseBody);
+
+                    string data = jodata["data"].ToString();
+
+                    JObject jo = JObject.Parse(responseBody);
+
+                    string errors = jo["errors"].ToString();
+
+                    #endregion
+
+                    if (data != "[]")
                     {
-                        _product.MinusProductCountAfterSale(item.ProductID, item.Count);
+                        //Authority Code
+                        string refid = jodata["data"]["ref_id"].ToString();
+
+                        //Get Wallet Transaction For Validation 
+                        var wallet = await _walletService.FindWalletTransactionForRedirectToTheBankPortal(user.UserId, GatewayType.Zarinpal, order.OrderId, parameters.authority, Amount);
+
+                        if (wallet != null)
+                        {
+                            //Charge User Wallet
+                            await _walletService.UpdateWalletAndCalculateUserBalanceAfterBankingPayment(wallet);
+
+                            //Pay Order Amount 
+                            await _walletService.PayOrderAmount(user.UserId , Amount , order.OrderId);
+
+                            #region Finalize Order
+
+                            _order.IsfinallyForOredr(order);
+
+                            foreach (var item in orderDetails)
+                            {
+                                _product.MinusProductCountAfterSale(item.ProductID, item.Count);
+                            }
+
+                            #endregion
+
+                            return RedirectToAction("PaymentResult", "Payment", new { IsSuccess = true, refId = refid });
+                        }
+                    }
+                    else if (errors != "[]")
+                    {
+                        string errorscode = jo["errors"]["code"].ToString();
+
+                        return BadRequest($"error code {errorscode}");
+
                     }
                 }
             }
+            catch (Exception ex)
+            {
 
-            return View();
+                throw ex;
+            }
+
+            return NotFound();
         }
 
         #endregion
-
-
     }
 }
