@@ -6,7 +6,6 @@ using Domain.Models.ContactUs;
 using Domain.Models.Order;
 using Domain.Models.Permissions;
 using Domain.Models.Product;
-using Domain.Models.SiteSetting;
 using Domain.Models.Slider;
 using Domain.Models.Users;
 using Domain.Models.Wallet;
@@ -99,20 +98,6 @@ namespace Data.Context
         public DbSet<ReturnedProducts> ReturnedProducts { get; set; }
         public DbSet<ReturnedProductType> ReturnedProductTypes { get; set; }
         public DbSet<FinancialTransactionType> FinancialTransactionType { get; set; }
-
-        #endregion
-
-        #region Wallet
-
-        public DbSet<Wallet> Wallets { get; set; }
-
-        public DbSet<WalletData> WalletData { get; set; }
-
-        #endregion
-
-        #region Site Setting
-
-        public DbSet<SiteSetting> SiteSettings { get; set; }
 
         #endregion
 
