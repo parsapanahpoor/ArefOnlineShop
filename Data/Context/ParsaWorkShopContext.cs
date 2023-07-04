@@ -9,6 +9,7 @@ using Domain.Models.Product;
 using Domain.Models.SiteSetting;
 using Domain.Models.Slider;
 using Domain.Models.Users;
+using Domain.Models.Wallet;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -40,6 +41,14 @@ namespace Data.Context
 
         public DbSet<Permission> Permission { get; set; }
         public DbSet<RolePermission> RolePermission { get; set; }
+
+        #endregion
+
+        #region Wallet
+
+        public DbSet<Wallet> Wallet { get; set; }
+
+        public DbSet<WalletData> WalletData { get; set; }
 
         #endregion
 
