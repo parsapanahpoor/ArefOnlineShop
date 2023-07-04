@@ -12,7 +12,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
     [Authorize]
     //[PermissionChecker(1)]
 
-    public class HomeController : Controller
+    public class HomeController : AdminBaseController
     {
 
         public IActionResult Index()
