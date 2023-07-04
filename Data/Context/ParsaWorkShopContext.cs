@@ -102,6 +102,14 @@ namespace Data.Context
 
         #endregion
 
+        #region Wallet
+
+        public DbSet<Wallet> Wallets { get; set; }
+
+        public DbSet<WalletData> WalletData { get; set; }
+
+        #endregion
+
         #region Site Setting
 
         public DbSet<SiteSetting> SiteSettings { get; set; }

@@ -10,7 +10,7 @@ namespace Domain.Models.Common
     public abstract class BaseEntity
     {
         [Key]
-        public ulong Id { get; set; }
+        public int Id { get; set; }
 
         public DateTime CreateDate { get; set; } = DateTime.Now;
 

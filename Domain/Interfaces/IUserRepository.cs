@@ -20,12 +20,11 @@ namespace Domain.Interfaces
         User GetUserByPhoneNumber(string PhoneNumber);
         User GetUserByActiveCode(string ActiveCode);
         User GetUserById(int Userid);
+        Task<User> GetUserByIdAsync(int Userid);
         void UpdateUser(User user);
         int GetUserIdByUserName(string userName);
         User GetUserByUserName(string username);
         List<int> GetUsersRoles(User user);
-
-
 
         #region User Panel
 
@@ -33,8 +32,6 @@ namespace Domain.Interfaces
         List<User> GetUsersInRoles(int Role);
 
         #endregion
-
-
 
         #region Panel Admin
 
@@ -44,13 +41,17 @@ namespace Domain.Interfaces
 
         #endregion
 
-
-
         #region ContactUs
 
         void addMessage(ContactUs contactus);
         List<ContactUs> GetAllMessages();
         ContactUs GetMessageById(int id);
+
+        #endregion
+
+        #region Generals
+
+        Task<bool> IsExistUserById(int userId);
 
         #endregion
     }
