@@ -1,0 +1,82 @@
+﻿@model Domain.ViewModels.Admin.UsersCommentAboutSite.CreateUsersCommentsAdminSideViewModel
+@using Domain.Models.Blog;
+@{
+    ViewData["Title"] = "نظر جدید ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts
+    {
+
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>افزودن نظر جدید </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">افزودن نظر جدید </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <form asp-action="CreateUserComment" asp-controller="UsersCommentAboutSite" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">اطلاعات نظر کاربر   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div role="form" asp-action="Create" asp-controller="Users" asp-area="Admin">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> نام کاربر </label>
+                                        <input type="text" asp-for="Username" class="form-control" id="exampleInputEmail1" placeholder="نام کاربر  را وارد کنید">
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> متن نظر </label>
+                                        <textarea asp-for="CommentText" class="form-control" id="exampleInputEmail1" placeholder="متن نظر  را وارد کنید">
+
+                                            </textarea>
+                                        <span asp-validation-for="CommentText" class="text-danger"></span>
+
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-success">ارسال</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </form>
+
+
+</div>
+
