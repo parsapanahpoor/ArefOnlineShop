@@ -1,0 +1,151 @@
+﻿@model Domain.ViewModels.Admin.Slider.CreateSliderAdminSideViewModel
+@using Domain.Models.Blog;
+@{
+    ViewData["Title"] = "اسلایدر جدید ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts
+    {
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgBlogUp").change(function () {
+            readURL(this);
+        });
+    </script>
+
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>افزودن اسلایدر جدید </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">افزودن اسلایدر جدید </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <form asp-action="CreateSlider" asp-controller="Slider" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-7">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">اطلاعات اسلایدر   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div role="form" asp-action="Create" asp-controller="Users" asp-area="Admin">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> متن اول اسلایدر </label>
+                                        <input type="text" asp-for="FirstText" class="form-control" id="exampleInputEmail1" placeholder="متن اول اسلایدر  را وارد کنید">
+                                        <span asp-validation-for="FirstText" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> متن دوم اسلایدر </label>
+                                        <input type="text" asp-for="SecondeText" class="form-control" id="exampleInputEmail1" placeholder="متن دوم اسلایدر  را وارد کنید">
+                                        <span asp-validation-for="SecondeText" class="text-danger"></span>
+
+                                    </div>
+
+                                           <div class="form-group">
+                                        <label for="exampleInputEmail1"> متن سوم اسلایدر </label>
+                                        <input type="text" asp-for="ThirdText" class="form-control" id="exampleInputEmail1" placeholder="متن سوم اسلایدر  را وارد کنید">
+                                        <span asp-validation-for="ThirdText" class="text-danger"></span>
+
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1"> لینک اسلایدر </label>
+                                            <input type="text" asp-for="Link" class="form-control" id="exampleInputEmail1" placeholder="لینک اسلایدر  را وارد کنید">
+                                            <span asp-validation-for="Link" class="text-danger"></span>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1"> کد رنگ اسلایدر </label>
+                                            <input type="text" asp-for="ColorCode" class="form-control" id="exampleInputEmail1" placeholder="کد رنگ اسلایدر  را وارد کنید">
+                                            <span asp-validation-for="ColorCode" class="text-danger"></span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-success">ارسال</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-5">
+                        <!-- Horizontal Form -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">  تصویر  </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+                                <div class="card-body row">
+                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="~/Images/Blog/image/no-photo.png" alt="upload_img">
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="imgBlogUp" id="imgBlogUp">
+                                            <label class="custom-file-label" for="exampleInputFile">انتخاب فایل</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <!-- /.card-footer -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </form>
+
+
+</div>
+
