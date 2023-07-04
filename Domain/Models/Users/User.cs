@@ -85,7 +85,6 @@ namespace Domain.Models.Users
         public List<Blog.Video> Video { get; set; }
         public List<Product.Product> Product { get; set; }
         public List<Comment.Comment> Comments { get; set; }
-        public List<Slider.Slider> Sliders { get; set; }
         public List<Order.Orders> Orders { get; set; }
         public List<Locations> Locations { get; set; }
         public List<ReturnedProducts> ReturnedProducts { get; set; }
