@@ -27,6 +27,8 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         #endregion
 
+        #region Index
+
         public IActionResult Index(bool Create = false, bool Edit = false, bool Delete = false)
         {
             ViewBag.Create = Create;
@@ -35,6 +37,11 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
             return View(_product.GetAllProductCategories());
         }
+
+
+        #endregion
+
+        #region Create 
 
         public IActionResult Create(int? id)
         {
@@ -56,6 +63,10 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(productCategories);
         }
 
+        #endregion
+
+        #region Edit
+
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -70,7 +81,6 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             }
             return View(productCategories);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -90,6 +100,11 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
             return View(productCategories);
         }
+
+
+        #endregion
+
+        #region Delete
 
         public IActionResult Delete(int? id)
         {
@@ -116,6 +131,6 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return Redirect("/Admin/ProductCategories/Index?Delete=true");
         }
 
-
+        #endregion
     }
 }

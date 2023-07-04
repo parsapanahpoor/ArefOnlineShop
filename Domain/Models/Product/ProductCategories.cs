@@ -24,13 +24,12 @@ namespace Domain.Models.Product
         [Display(Name = "گروه اصلی")]
         public int? ParentId { get; set; }
 
+        public string ImageName { get; set; }
+
         #region Relations
 
         public  List<ProductSelectedCategory> ProductSelectedCategory { get; set; }
 
         #endregion
-
-
-
     }
 }
