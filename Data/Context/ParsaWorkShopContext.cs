@@ -7,6 +7,7 @@ using Domain.Models.Order;
 using Domain.Models.Permissions;
 using Domain.Models.Product;
 using Domain.Models.Slider;
+using Domain.Models.UserCommentAboutSite;
 using Domain.Models.Users;
 using Domain.Models.Wallet;
 using Microsoft.EntityFrameworkCore;
@@ -98,6 +99,12 @@ namespace Data.Context
         public DbSet<ReturnedProducts> ReturnedProducts { get; set; }
         public DbSet<ReturnedProductType> ReturnedProductTypes { get; set; }
         public DbSet<FinancialTransactionType> FinancialTransactionType { get; set; }
+
+        #endregion
+
+        #region Users Comments About Site
+
+        public DbSet<UsersCommentsAboutSite> UsersCommentsAboutSites { get; set; }
 
         #endregion
 
