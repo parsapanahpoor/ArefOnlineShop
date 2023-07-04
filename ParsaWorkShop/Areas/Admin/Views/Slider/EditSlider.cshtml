@@ -1,7 +1,8 @@
-﻿@model Domain.ViewModels.Admin.Slider.CreateSliderAdminSideViewModel
+﻿@model Domain.ViewModels.Admin.Slider.EditSliderViewModel
 @using Domain.Models.Blog;
+@using Application.StaticTools;
 @{
-    ViewData["Title"] = "اسلایدر جدید ";
+    ViewData["Title"] = "ویرایش اسلایدر ";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -35,18 +36,19 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>افزودن اسلایدر جدید </h1>
+                    <h1> ویرایش اسلایدر </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
-                        <li class="breadcrumb-item active">افزودن اسلایدر جدید </li>
+                        <li class="breadcrumb-item active"> ویرایش اسلایدر </li>
                     </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-    <form asp-action="CreateSlider" asp-controller="Slider" asp-area="Admin" method="post" enctype="multipart/form-data">
+    <form asp-action="EditSlider" asp-controller="Slider" asp-area="Admin" method="post" enctype="multipart/form-data">
+        <input asp-for="SliderId" type="hidden"/>
 
         <section class="content">
             <div class="container-fluid">
@@ -76,7 +78,7 @@
 
                                     </div>
 
-                                           <div class="form-group">
+                                    <div class="form-group">
                                         <label for="exampleInputEmail1"> متن سوم اسلایدر </label>
                                         <input type="text" asp-for="ThirdText" class="form-control" id="exampleInputEmail1" placeholder="متن سوم اسلایدر  را وارد کنید">
                                         <span asp-validation-for="ThirdText" class="text-danger"></span>
@@ -121,7 +123,7 @@
                             <!-- form start -->
                             <div class="form-horizontal">
                                 <div class="card-body row">
-                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="~/Images/Product/image/no-photo.png" alt="upload_img">
+                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="@PathTools.SliderPath/@Model.ImageName" alt="upload_img">
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">

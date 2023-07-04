@@ -22,6 +22,15 @@ namespace Domain.Interfaces
         //Add To The Data Base 
         Task AddToTheDataBase(Slider slider);
 
+        //Fill Edit Slider View Model
+        Task<EditSliderViewModel?> FillEditSliderViewModel(int sliderId);
+
+        //Get Sldier By Id
+        Task<Slider?> GetSldierById(int sliderId);
+
+        //Update Slider Method 
+        Task UpdateSliderMethod(Slider slider);
+
         #endregion
     }
 }

@@ -22,6 +22,12 @@ namespace Application.Interfaces
         //Add Slider Admin Side
         Task<bool> AddSliderAdminSide(CreateSliderAdminSideViewModel slider, IFormFile sliderImage);
 
+        //Fill Edit Slider View Model
+        Task<EditSliderViewModel?> FillEditSliderViewModel(int sliderId);
+
+        //Edit Slider Admin Side 
+        Task<bool> EditSliderAdminSidel(EditSliderViewModel model, IFormFile? imgBlogUp);
+
         #endregion
     }
 }

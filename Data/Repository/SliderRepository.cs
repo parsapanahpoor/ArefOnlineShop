@@ -52,6 +52,39 @@ namespace Data.Repository
             await _context.SaveChangesAsync();
         }
 
+        //Fill Edit Slider View Model
+        public async Task<EditSliderViewModel?> FillEditSliderViewModel(int sliderId)
+        {
+            return await _context.Slider
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete && p.SliderId == sliderId)
+                                 .Select(p => new EditSliderViewModel()
+                                 {
+                                     ColorCode = p.ColorCode,
+                                     FirstText = p.FirstText,
+                                     Link = p.Link,
+                                     SecondeText = p.SecondeText,
+                                     SliderId = p.SliderId,
+                                     ThirdText = p.ThirdText,
+                                     ImageName = p.SliderImageName
+                                 })
+                                 .FirstOrDefaultAsync();
+        }
+
+        //Get Sldier By Id
+        public async Task<Slider?> GetSldierById(int sliderId)
+        {
+            return await _context.Slider
+                                 .FirstOrDefaultAsync(p => !p.IsDelete && p.SliderId == sliderId);
+        }
+
+        //Update Slider Method 
+        public async Task UpdateSliderMethod(Slider slider)
+        {
+            _context.Slider.Update(slider);
+            await _context.SaveChangesAsync();
+        }
+
         #endregion
     }
 }

@@ -64,5 +64,44 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         }
 
         #endregion
+
+        #region Edit Slider 
+
+        [HttpGet]
+        public async Task<IActionResult> EditSlider(int sliderId)
+        {
+            var model = await _sliderService.FillEditSliderViewModel(sliderId);
+            if(model == null) return NotFound();
+
+            return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditSlider(EditSliderViewModel model, IFormFile? imgBlogUp)
+        {
+            #region Model State Validation 
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            #endregion
+
+            #region Add Slider To The Data Base
+
+            var res = await _sliderService.EditSliderAdminSidel(model, imgBlogUp);
+            if (res)
+            {
+                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                return RedirectToAction(nameof(ListOfSliders));
+            }
+
+            #endregion
+
+            return View(model);
+        }
+
+        #endregion
     }
 }

@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 #endregion
@@ -74,6 +72,58 @@ namespace Application.Services
 
             //Add To The Data Base
             await _sliderRepository.AddToTheDataBase(sliderEntity);
+
+            return true;
+        }
+
+        //Fill Edit Slider View Model
+        public async Task<EditSliderViewModel?> FillEditSliderViewModel(int sliderId)
+        {
+            return await _sliderRepository.FillEditSliderViewModel(sliderId);
+        }
+
+        //Edit Slider Admin Side 
+        public async Task<bool> EditSliderAdminSidel(EditSliderViewModel model, IFormFile? imgBlogUp)
+        {
+            #region Get Slider By Id 
+
+            var slider = await _sliderRepository.GetSldierById(model.SliderId);
+            if (slider == null) { return false; }
+
+            #endregion
+
+            #region Edit Slider Fields
+
+            slider.FirstText = model.FirstText;
+            slider.SecondeText = model.SecondeText;
+            slider.ThirdText = model.ThirdText;
+            slider.Link = model.Link;
+            slider.ColorCode = model.ColorCode;
+
+            #region Update Slider Image
+
+            if (imgBlogUp != null)
+            {
+                var imageName = Guid.NewGuid() + Path.GetExtension(imgBlogUp.FileName);
+                imgBlogUp.AddImageToServer(imageName, PathTools.SliderPathServer, 400, 300, PathTools.SliderPathThumbServer);
+
+                if (!string.IsNullOrEmpty(slider.SliderImageName))
+                {
+                    slider.SliderImageName.DeleteImage(PathTools.SliderPathServer, PathTools.SliderPathThumbServer);
+                }
+
+                slider.SliderImageName = imageName;
+            }
+
+            #endregion
+
+            #endregion
+
+            #region Update Method
+
+            await _sliderRepository.UpdateSliderMethod(slider);
+
+            #endregion
 
             return true;
         }
