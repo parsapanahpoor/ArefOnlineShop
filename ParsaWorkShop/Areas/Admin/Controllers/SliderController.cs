@@ -103,5 +103,26 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         }
 
         #endregion
+
+        #region Delete Slider
+
+        public async Task<IActionResult> DeleteSlider(int sliderId)
+        {
+            #region Delete Slider 
+
+            var res = await _sliderService.DeleteSlider(sliderId);
+            if (res)
+            {
+                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                return RedirectToAction(nameof(ListOfSliders));
+            }
+
+            #endregion
+
+            TempData[ErrorMessage] = "عملیات باشکست مواجه شده است.";
+            return RedirectToAction(nameof(ListOfSliders));
+        }
+
+        #endregion
     }
 }

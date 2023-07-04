@@ -1,5 +1,6 @@
 ﻿#region Using
 
+using AngleSharp.Html;
 using Application.Extensions;
 using Application.Interfaces;
 using Application.StaticTools;
@@ -9,6 +10,7 @@ using Domain.ViewModels.Admin.Slider;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -38,7 +40,7 @@ namespace Application.Services
         }
 
         //Add Slider Admin Side
-        public async Task<bool> AddSliderAdminSide(CreateSliderAdminSideViewModel slider , IFormFile sliderImage)
+        public async Task<bool> AddSliderAdminSide(CreateSliderAdminSideViewModel slider, IFormFile sliderImage)
         {
             #region Fill Slider 
 
@@ -116,6 +118,37 @@ namespace Application.Services
             }
 
             #endregion
+
+            #endregion
+
+            #region Update Method
+
+            await _sliderRepository.UpdateSliderMethod(slider);
+
+            #endregion
+
+            return true;
+        }
+
+        //Delete Slider 
+        public async Task<bool> DeleteSlider(int sliderId)
+        {
+            #region Get Slider By Id 
+
+            var slider = await _sliderRepository.GetSldierById(sliderId);
+            if (slider == null) { return false; }
+
+            #endregion
+
+            #region Delete Slider 
+
+            slider.IsDelete = true;
+
+
+            if (!string.IsNullOrEmpty(slider.SliderImageName))
+            {
+                slider.SliderImageName.DeleteImage(PathTools.SliderPathServer, PathTools.SliderPathThumbServer);
+            }
 
             #endregion
 

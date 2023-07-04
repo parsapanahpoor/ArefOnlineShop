@@ -28,6 +28,9 @@ namespace Application.Interfaces
         //Edit Slider Admin Side 
         Task<bool> EditSliderAdminSidel(EditSliderViewModel model, IFormFile? imgBlogUp);
 
+        //Delete Slider 
+        Task<bool> DeleteSlider(int sliderId);
+
         #endregion
     }
 }
