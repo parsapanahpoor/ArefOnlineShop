@@ -15,9 +15,9 @@ namespace Application.Interfaces
         #region ProductCategories
 
         List<ProductCategories> GetAllProductCategories();
-        void AddProductCategories(ProductCategories productCategories);
+        void AddProductCategories(ProductCategories productCategories, IFormFile? imageName);
         ProductCategories GetProductCatgeoriesById(int id);
-        void UpdateProductCategories(ProductCategories productCategories, int id);
+        void UpdateProductCategories(ProductCategories productCategories, int id, IFormFile? imgBlogUp);
         void DeleteProductCategories(int id);
 
         #endregion

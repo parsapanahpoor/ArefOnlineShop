@@ -53,6 +53,16 @@ namespace Application.StaticTools
         public static readonly string SliderPathThumbServer = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Slider/thumb/");
 
         #endregion
+
+        #region Slider
+
+        public static readonly string ProductCategoryPath = "/Images/ProductCategory/main/";
+        public static readonly string ProductCategoryPathServer = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/ProductCategory/main/");
+
+        public static readonly string ProductCategoryPathThumb = "/Images/ProductCategory/thumb/";
+        public static readonly string ProductCategoryPathThumbServer = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/ProductCategory/thumb/");
+
+        #endregion
     }
 
 }

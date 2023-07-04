@@ -2,6 +2,7 @@
 using Application.Security;
 using Domain.Models.Product;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -53,13 +54,14 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("ProductCategoryId,CategoryTitle,IsDelete,ParentId")] ProductCategories productCategories)
+        public IActionResult Create([Bind("ProductCategoryId,CategoryTitle,IsDelete,ParentId")] ProductCategories productCategories ,  IFormFile? imgBlogUp)
         {
             if (ModelState.IsValid)
             {
-                _product.AddProductCategories(productCategories);
+                _product.AddProductCategories(productCategories , imgBlogUp);
                 return Redirect("/Admin/ProductCategories/Index?Create=true");
             }
+
             return View(productCategories);
         }
 
@@ -84,7 +86,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("ProductCategoryId,CategoryTitle,IsDelete,ParentId")] ProductCategories productCategories)
+        public IActionResult Edit(int id, [Bind("ProductCategoryId,CategoryTitle,IsDelete,ParentId")] ProductCategories productCategories, IFormFile? imgBlogUp)
         {
             if (id != productCategories.ProductCategoryId)
             {
@@ -93,7 +95,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                _product.UpdateProductCategories(productCategories, id);
+                _product.UpdateProductCategories(productCategories, id , imgBlogUp);
 
                 return Redirect("/Admin/ProductCategories/Index?Edit=true");
             }

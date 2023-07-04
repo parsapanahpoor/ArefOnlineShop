@@ -5,6 +5,29 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+@section Scripts
+    {
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgAvatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgBlogUp").change(function () {
+            readURL(this);
+        });
+    </script>
+
+}
+
 <div class="content-wrapper" style="min-height: 805px;">
 
     <!-- Content Header (Page header) -->
@@ -24,8 +47,9 @@
         </div><!-- /.container-fluid -->
     </section>
     <section class="content">
+        <form role="form" asp-action="Create" asp-area="Admin" asp-controller="ProductCategories" method="post" enctype="multipart/form-data">
         <div class="row">
-            <div class="col-12">
+            <div class="col-7">
 
                 <div class="card card-primary">
                     <div class="card-header">
@@ -33,7 +57,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" asp-action="Create" asp-area="Admin" asp-controller="ProductCategories" method="post">
+
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1"> دسته بندی جدید </label>
@@ -46,10 +70,39 @@
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">ارسال</button>
                         </div>
-                    </form>
                 </div>
             </div>
+
+            <div class="col-md-5">
+                <!-- Horizontal Form -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">  تصویر  </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="form-horizontal">
+                        <div class="card-body row">
+                            <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="~/Images/Product/image/no-photo.png" alt="upload_img">
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="imgBlogUp" id="imgBlogUp">
+                                    <label class="custom-file-label" for="exampleInputFile">انتخاب فایل</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- /.card-footer -->
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+        </form>
     </section>
 
 </div>

@@ -1,9 +1,12 @@
 ﻿using Application.Convertors;
+using Application.Extensions;
 using Application.Genarator;
 using Application.Interfaces;
 using Application.Security;
+using Application.StaticTools;
 using Domain.Interfaces;
 using Domain.Models.Product;
+using Domain.Models.Slider;
 using Domain.Models.Users;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -91,12 +94,24 @@ namespace Application.Services
             return product.ProductID;
         }
 
-        public void AddProductCategories(ProductCategories productCategories)
+        public void AddProductCategories(ProductCategories productCategories, IFormFile? catimageName)
         {
             ProductCategories cat = new ProductCategories();
             cat.CategoryTitle = productCategories.CategoryTitle;
             cat.IsDelete = false;
             cat.ParentId = productCategories.ParentId;
+
+            #region Add Slider Image
+
+            if (catimageName != null)
+            {
+                var imageName = Guid.NewGuid() + Path.GetExtension(catimageName.FileName);
+                catimageName.AddImageToServer(imageName, PathTools.ProductCategoryPathServer, 400, 300, PathTools.ProductCategoryPathThumbServer);
+
+                cat.ImageName = imageName;
+            }
+
+            #endregion
 
             _product.AddProductCategories(cat);
         }
@@ -143,6 +158,12 @@ namespace Application.Services
         {
             ProductCategories productCategories = GetProductCatgeoriesById(id);
             productCategories.IsDelete = true;
+
+
+            if (!string.IsNullOrEmpty(productCategories.ImageName))
+            {
+                productCategories.ImageName.DeleteImage(PathTools.ProductCategoryPathServer, PathTools.ProductCategoryPathThumbServer);
+            }
 
             _product.UpdateProductCategories(productCategories);
         }
@@ -319,7 +340,7 @@ namespace Application.Services
             int skip = (pageId - 1) * take;
             int pageCount = (products.Count() / take);
 
-            if ((pageCount % 2) == 0 || (pageCount % 2) != 0 )
+            if ((pageCount % 2) == 0 || (pageCount % 2) != 0)
             {
                 pageCount += 1;
             }
@@ -384,10 +405,27 @@ namespace Application.Services
             return product.ProductID;
         }
 
-        public void UpdateProductCategories(ProductCategories productCategories, int id)
+        public void UpdateProductCategories(ProductCategories productCategories, int id, IFormFile? imgBlogUp)
         {
             ProductCategories category = GetProductCatgeoriesById(id);
             category.CategoryTitle = productCategories.CategoryTitle;
+
+            #region Update Image
+
+            if (imgBlogUp != null)
+            {
+                var imageName = Guid.NewGuid() + Path.GetExtension(imgBlogUp.FileName);
+                imgBlogUp.AddImageToServer(imageName, PathTools.ProductCategoryPathServer, 400, 300, PathTools.ProductCategoryPathThumbServer);
+
+                if (!string.IsNullOrEmpty(category.ImageName))
+                {
+                    category.ImageName.DeleteImage(PathTools.ProductCategoryPathServer, PathTools.ProductCategoryPathThumbServer);
+                }
+
+                category.ImageName = imageName;
+            }
+
+            #endregion
 
             _product.UpdateProductCategories(category);
         }
