@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,6 @@ namespace Domain.Models.Order
 {
     public class Orders
     {
-
         [Key]
         public int OrderId { get; set; }
 
@@ -20,6 +20,10 @@ namespace Domain.Models.Order
         public DateTime CreateDate { get; set; }
 
         public bool IsFinally { get; set; }
+
+        public int? DiscountUserSelected { get; set; }
+
+        public int? Price { get; set; }
 
         [ForeignKey("Locations")]
         public int? LocationID { get; set; }
