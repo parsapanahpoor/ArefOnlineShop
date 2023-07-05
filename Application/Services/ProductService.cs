@@ -1,4 +1,6 @@
-﻿using Application.Convertors;
+﻿#region Using
+
+using Application.Convertors;
 using Application.Extensions;
 using Application.Genarator;
 using Application.Interfaces;
@@ -8,6 +10,7 @@ using Domain.Interfaces;
 using Domain.Models.Product;
 using Domain.Models.Slider;
 using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Product;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -16,16 +19,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+#endregion
+
 namespace Application.Services
 {
     public class ProductService : IProductService
     {
+        #region Ctor
+
         private IProductRepository _product;
 
         public ProductService(IProductRepository product)
         {
             _product = product;
         }
+
+        #endregion
+
+        #region OLd Methods
 
         public void AddCategoryToProduct(List<int> Categories, int ProductID)
         {
@@ -434,5 +446,17 @@ namespace Application.Services
         {
             _product.UpdateProduct(product);
         }
+
+        #endregion
+
+        #region Site Side 
+
+        //Fill Product Detail Site Side View Model
+        public async Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id)
+        {
+            return await _product.FillProductDetailSiteSideViewModel(id);
+        }
+
+        #endregion
     }
 }

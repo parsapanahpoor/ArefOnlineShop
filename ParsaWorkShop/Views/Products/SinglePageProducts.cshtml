@@ -1,4 +1,4 @@
-﻿@model Domain.Models.Product.Product
+﻿@model Domain.ViewModels.SiteSide.Product.ProductDetailSiteSideViewModel
 @{
     ViewData["Title"] = Model.ProductTitle;
 }
@@ -83,8 +83,31 @@
                 </div><!--end row-->
 
                 <div class="mt-4 pt-2">
-                    <a href="/order/AddToShopCart/@Model.ProductID" class="btn btn-soft-primary ms-2">افزودن به سبد</a>
-                </div>
+                    <a href="/order/AddToShopCart/@Model.ProdcutId" class="btn btn-soft-primary ms-2">افزودن به سبد</a>
+                </div> 
+                
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (ViewBag.IsFavoriteProduct == true)
+                    {
+                        <div class="mt-4 pt-2">
+                            <a asp-action="AddOrRemoveProductToTheFavorite" asp-area="" asp-controller="Products" asp-route-productId="@Model.ProdcutId" class="btn btn-soft-primary ms-2">حذف از علاقه مندی</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mt-4 pt-2">
+                            <a asp-action="AddOrRemoveProductToTheFavorite" asp-area="" asp-controller="Products" asp-route-productId="@Model.ProdcutId" class="btn btn-soft-primary ms-2">افزودن به علاقه مندی</a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="mt-4 pt-2">
+                        <a asp-action="AddOrRemoveProductToTheFavorite" asp-area="" asp-controller="Products" asp-route-productId="@Model.ProdcutId" class="btn btn-soft-primary ms-2">افزودن به علاقه مندی</a>
+                    </div>
+                }
+                
             </div>
         </div><!--end col-->
     </div><!--end row-->
@@ -159,7 +182,7 @@
                                           data-ajax-success="Success"
                                           id="contactForm" method="POST">
 
-                                        <input type="hidden" name="comment.ProductID" value="@Model.ProductID" />
+                                        <input type="hidden" name="comment.ProductID" value="@Model.ProdcutId" />
 
                                         <div class="row">
                                             <div class="col-12">
@@ -239,11 +262,11 @@
         }
 
         $(function() {
-            $("#listComment").load("/Products/ShowComment/" + @Model.ProductID);
+            $("#listComment").load("/Products/ShowComment/" + @Model.ProdcutId);
         });
 
         function pageComment(pageid) {
-            $("#listComment").load("/Products/ShowComment/" + @Model.ProductID+"?pageId="+pageid);
+            $("#listComment").load("/Products/ShowComment/" + @Model.ProdcutId+"?pageId=" + pageid);
         }
     </script>
 }

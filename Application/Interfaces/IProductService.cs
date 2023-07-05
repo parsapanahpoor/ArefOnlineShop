@@ -1,5 +1,8 @@
-﻿using Domain.Models.Product;
+﻿#region Using
+
+using Domain.Models.Product;
 using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Product;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -7,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#endregion
+
 namespace Application.Interfaces
 {
     public interface IProductService
     {
-
         #region ProductCategories
 
         List<ProductCategories> GetAllProductCategories();
@@ -21,7 +25,6 @@ namespace Application.Interfaces
         void DeleteProductCategories(int id);
 
         #endregion
-
 
         #region Product
 
@@ -45,7 +48,6 @@ namespace Application.Interfaces
 
         #endregion
 
-
         #region ProductFeatures
 
         List<ProductFeature> GetProductFeaturs(int id);
@@ -59,13 +61,19 @@ namespace Application.Interfaces
         void DeleteAllProductGAlleries(List<ProductGallery> productGalleries);
         #endregion
 
-
         #region Offer
 
         List<Product> GetAllProductsInOffer();
         List<Product> GetAllProductsNotInOffer();
         void DeleteProductFromOffer(Product product);
         List<Product> GetLastestOfferProducts();
+
+        #endregion
+
+        #region Site Side 
+
+        //Fill Product Detail Site Side View Model
+        Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id);
 
         #endregion
     }

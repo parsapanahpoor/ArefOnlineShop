@@ -1,6 +1,9 @@
-﻿using Data.Context;
+﻿#region Using
+
+using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Product;
+using Domain.ViewModels.SiteSide.Product;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,16 +11,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+#endregion
+
 namespace Data.Repository
 {
     public class ProductRepository : IProductRepository
     {
+        #region Ctor
+
         private ParsaWorkShopContext _context;
 
         public ProductRepository(ParsaWorkShopContext context)
         {
             _context = context;
         }
+
+        #endregion
+
+        #region Old Methods
 
         public void AddCategoryToProduct(ProductSelectedCategory product)
         {
@@ -83,7 +95,7 @@ namespace Data.Repository
         public IQueryable<Product> GetAllProductForIQueryAble()
         {
             return _context.product.Include(p => p.Users).Include(p => p.ProductSelectedCategory)
-                                   .Where(p => p.IsActive && p.ProductCount > 0).OrderByDescending(p => p.CreateDate);                         
+                                   .Where(p => p.IsActive && p.ProductCount > 0).OrderByDescending(p => p.CreateDate);
         }
 
         public List<Product> GetAllProducts()
@@ -118,7 +130,7 @@ namespace Data.Repository
 
         public List<Product> GetLastestOfferProducts()
         {
-            return _context.product.Where(p => p.IsInOffer == true).OrderByDescending(p=>p.CreateDate).Take(4).ToList();
+            return _context.product.Where(p => p.IsInOffer == true).OrderByDescending(p => p.CreateDate).Take(4).ToList();
         }
 
         public List<Product> GetLastestProductsIndexPageUnder4()
@@ -176,14 +188,13 @@ namespace Data.Repository
         public IQueryable<Product> GetProductsHaveThisCategory(int category)
         {
             return _context.ProductSelectedCategory.Where(p => p.ProductCategoryId == category).Include(p => p.Product)
-                            .ThenInclude(p => p.Users).Select(p => p.Product);                                            
+                            .ThenInclude(p => p.Users).Select(p => p.Product);
         }
 
         public bool IsExistPRoduct(int productid)
         {
             return _context.product.Any(p => p.ProductID == productid);
         }
-
         public int ProductCount()
         {
             return _context.product.Count();
@@ -211,5 +222,42 @@ namespace Data.Repository
             Savechanges();
         }
 
+        #endregion
+
+        #region Site Side 
+
+        //Fill Product Detail Site Side View Model
+        public async Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id)
+        {
+            return await _context.product
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete && p.ProductID == id)
+                                 .Select(p => new ProductDetailSiteSideViewModel()
+                                 {
+                                     CreateDate = p.CreateDate,
+                                     IsInOffer = p.IsInOffer,
+                                     LongDescription = p.LongDescription,
+                                     OfferPercent = p.OfferPercent,
+                                     OldPrice = p.OldPrice,
+                                     Price = p.Price,
+                                     ProdcutId = p.ProductID,
+                                     ProductCount = p.ProductCount,
+                                     ProductTitle = p.ProductTitle,
+                                     ProductImageName = p.ProductImageName,
+                                     ShortDescription = p.ShortDescription,
+                                     Tags = p.Tags,
+                                     ProductFeatures = _context.ProductFeature
+                                                              .AsNoTracking()
+                                                              .Where(s => s.ProductID == p.ProductID)
+                                                              .ToList(),
+                                     ProductGallery = _context.ProductGallery
+                                                              .AsNoTracking()
+                                                              .Where(s => s.ProductID == p.ProductID)
+                                                              .ToList(),
+                                 })
+                                 .FirstOrDefaultAsync();
+        }
+
+        #endregion
     }
 }

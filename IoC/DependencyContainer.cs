@@ -33,6 +33,7 @@ namespace IoC
             service.AddScoped<ISliderService, SliderService>();
             service.AddScoped<IUsersCommentAboutSiteService, UsersCommentAboutSiteService>();
             service.AddScoped<IDiscountCodeService, DiscountCodeService>();
+            service.AddScoped<IFavoriteProductsService, FavoriteProductsService>();
 
             #endregion
 
@@ -52,6 +53,7 @@ namespace IoC
             service.AddScoped<ISliderRepository, SliderRepository>();
             service.AddScoped<IUsersCommentAboutSiteRepository, UsersCommentAboutSiteRepository>();
             service.AddScoped<IDiscountCodeRepository, DiscountCodeRepository>();
+            service.AddScoped<IFavoriteProductRepository, FavoriteProductRepository>();
 
             #endregion
         }

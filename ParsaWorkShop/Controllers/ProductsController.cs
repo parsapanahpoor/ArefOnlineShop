@@ -1,6 +1,9 @@
-﻿using Application.Interfaces;
+﻿using Application.Extensions;
+using Application.Interfaces;
 using Domain.Models.Comment;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ParsaWorkShop.Web.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +11,22 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : SiteBaseController
     {
         #region Ctor
 
         private IUserService _user;
         private IProductService _product;
         private ICommentService _comment;
+        private readonly IFavoriteProductsService _favoriteProductsService;
 
-        public ProductsController(IUserService user, IProductService product, ICommentService comment)
+        public ProductsController(IUserService user, IProductService product, ICommentService comment
+                                    , IFavoriteProductsService favoriteProductsService)
         {
             _user = user;
             _product = product;
             _comment = comment;
+            _favoriteProductsService = favoriteProductsService;
         }
 
         #endregion
@@ -41,14 +47,23 @@ namespace ParsaWorkShop.Controllers
 
         #region Single Page Products
 
-        public IActionResult SinglePageProducts(int? id)
+        public async Task<IActionResult> SinglePageProducts(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            return View(_product.GetProductForShowInSingleProducPage((int)id));
+            #region Favorite Product
+
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.IsFavoriteProduct = await _favoriteProductsService.IsUserSelectedThisProductForHisFavoriteProducts(id.Value , User.GetUserId());
+            }
+
+            #endregion
+
+            return View(await _product.FillProductDetailSiteSideViewModel((int)id));
         }
 
         #endregion
@@ -71,6 +86,25 @@ namespace ParsaWorkShop.Controllers
         {
             return View(_comment.GetProductComment(id, pageId));
         }
+
+        #endregion
+
+        #region Add Or Remove Product To The Favorite
+
+        [Authorize, HttpGet]
+        public async Task<IActionResult> AddOrRemoveProductToTheFavorite(int productId)
+        {
+            var res = await _favoriteProductsService.AddorRemoveProductFromFavorite(productId , User.GetUserId());
+            if (res)
+            {
+                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                return RedirectToAction(nameof(SinglePageProducts) , new { id = productId});
+            }
+
+            TempData[ErrorMessage] = "اطلاعات وارد شده صحیح نمی باشد.";
+            return RedirectToAction(nameof(SinglePageProducts), new { id = productId });
+        }
+
         #endregion
     }
 }

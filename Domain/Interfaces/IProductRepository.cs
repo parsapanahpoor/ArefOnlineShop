@@ -1,4 +1,5 @@
 ﻿using Domain.Models.Product;
+using Domain.ViewModels.SiteSide.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,6 @@ namespace Domain.Interfaces
         void Savechanges();
 
         #endregion
-
 
         #region Product
 
@@ -44,7 +44,6 @@ namespace Domain.Interfaces
 
         #endregion
 
-
         #region ProductFeatures
 
         List<ProductFeature> GetProductFeaturs(int id);
@@ -63,6 +62,13 @@ namespace Domain.Interfaces
         List<Product> GetAllProductsInOffer();
         List<Product> GetAllProductsNotInOffer();
         List<Product> GetLastestOfferProducts();
+
+        #endregion
+
+        #region Site Side
+
+        //Fill Product Detail Site Side View Model
+        Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id);
 
         #endregion
     }

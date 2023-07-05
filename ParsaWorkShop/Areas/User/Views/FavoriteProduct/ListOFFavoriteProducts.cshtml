@@ -1,0 +1,53 @@
+﻿@model List<Domain.ViewModels.UserPanel.FavoriteProducts.FavoriteProductsUserPanelSideViewModel>
+@using Application.Convertors
+
+@{
+    ViewData["Title"] = "لیست محصولات علاقه مندی شما";
+}
+
+<div class="col-lg-8 col-12">
+
+
+    <div class="border-bottom pb-4 text-center">
+
+        <h5>لیست محصولات علاقه مندی شما</h5>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div class="table-responsive bg-white shadow rounded">
+                <table class="table mb-0 table-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="border-bottom">#</th>
+                            <th scope="col" class="border-bottom">نام محصول</th>
+                            <th scope="col" class="border-bottom">تاریخ درج</th>
+                            <th scope="col" class="border-bottom"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th scope="row">@item.ProductId</th>
+                                    <th scope="row">@item.ProductName</th>
+                                    <td>@item.CreateDate.ToShamsi()</td>
+                                    <td>
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" class="btn btn-outline-primary mt-2 me-2">
+                                            مشاهده ی محصول
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div><!--end col-->
+
+
+    </div><!--end row-->
+</div>
