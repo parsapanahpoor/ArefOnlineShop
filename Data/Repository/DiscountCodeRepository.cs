@@ -3,11 +3,15 @@
 using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Discount;
+using Domain.Models.Order;
+using Domain.Models.Users;
 using Domain.ViewModels.Admin.DiscountCode;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +27,7 @@ namespace Data.Repository
 
         public DiscountCodeRepository(ParsaWorkShopContext context)
         {
-                _context = context;
+            _context = context;
         }
 
         #endregion
@@ -35,8 +39,8 @@ namespace Data.Repository
         {
             return await _context.DiscountCodes
                                  .AsNoTracking()
-                                 .Where(p=> !p.IsDelete)
-                                 .Select(p=> new ListOfDiscountCodeAdminSideViewModel()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new ListOfDiscountCodeAdminSideViewModel()
                                  {
                                      Code = p.Code,
                                      DiscountPercentage = p.DiscountPercentage,
@@ -44,7 +48,7 @@ namespace Data.Repository
                                      Id = p.Id,
                                      CountOfUsage = _context.DiscountCodeSelectedUsers
                                                             .AsNoTracking()
-                                                            .Where (s=> !s.IsDelete && s.DiscountId == p.Id)
+                                                            .Where(s => !s.IsDelete && s.DiscountId == p.Id)
                                                             .Count()
                                  })
                                  .ToListAsync();
@@ -62,7 +66,7 @@ namespace Data.Repository
         {
             return await _context.DiscountCodes
                                  .AsNoTracking()
-                                 .FirstOrDefaultAsync(p=> !p.IsDelete && p.Id == id);
+                                 .FirstOrDefaultAsync(p => !p.IsDelete && p.Id == id);
         }
 
         //Edit Discount Code 
@@ -85,8 +89,8 @@ namespace Data.Repository
                                      OrdeId = p.OrderId,
                                      User = _context.Users
                                                     .AsNoTracking()
-                                                    .Where(s=> !s.IsDelete && s.UserId == p.UserId)
-                                                    .Select(s=> new UserSelectedDiscount()
+                                                    .Where(s => !s.IsDelete && s.UserId == p.UserId)
+                                                    .Select(s => new UserSelectedDiscount()
                                                     {
                                                         Mobile = s.PhoneNumber,
                                                         UserId = s.UserId,
@@ -97,6 +101,63 @@ namespace Data.Repository
                                  })
                                  .OrderByDescending(p => p.CreateDate)
                                  .ToListAsync();
+        }
+
+        #endregion
+
+        #region Site Side 
+
+        //Get Discont Code By Discount Name
+        public async Task<DiscountCode> GetDiscontCodeByDiscountName(string discountName)
+        {
+            return await _context.DiscountCodes
+                                 .AsNoTracking()
+                                 .FirstOrDefaultAsync(p => !p.IsDelete && p.Code == discountName);
+        }
+
+        //Get Oerder By Order ID And User ID
+        public async Task<Orders> GetOerderByOrderIDAndUserID(int ordersId, int userId)
+        {
+            return await _context.Orders
+                                 .AsNoTracking()
+                                 .FirstOrDefaultAsync(p => p.Userid == userId && p.OrderId == ordersId);
+        }
+
+        //Check Is Exist Any User Selected Discount By Order And User And Discount ID
+        public async Task<bool> CheckIsExistAnyUserSelectedDiscountByOrderAndUserAndDiscountID(int orderId, int userId, int discountId)
+        {
+            return await _context.DiscountCodeSelectedUsers
+                                 .AnyAsync(p => !p.IsDelete && p.UserId == userId && p.OrderId == orderId && p.DiscountId == discountId);
+        }
+
+        //Add Discount Selected User To The Data Base 
+        public async Task AddDiscountSelectedUserToTheDataBase(DiscountCodeSelectedFromUser selectedUser)
+        {
+            await _context.DiscountCodeSelectedUsers.AddAsync(selectedUser);
+            await _context.SaveChangesAsync();
+        }
+
+        //Update Order
+        public async Task UpdateOrder(Orders order)
+        {
+            _context.Orders.Update(order);
+            await _context.SaveChangesAsync();
+        }
+
+        //Get Discount Percentage With User Selected Discount 
+        public async Task<int> GetDiscountPercentageWithUserSelectedDiscount(int userSelectedDiscountId)
+        {
+            var discontCodeId = await _context.DiscountCodeSelectedUsers
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete && p.Id == userSelectedDiscountId)
+                                 .Select(p => p.DiscountId)
+                                 .FirstOrDefaultAsync();
+
+            return await _context.DiscountCodes
+                                 .AsNoTracking()
+                                 .Where(p=> !p.IsDelete && p.Id == discontCodeId)
+                                 .Select(p=> p.DiscountPercentage)
+                                 .FirstOrDefaultAsync();      
         }
 
         #endregion

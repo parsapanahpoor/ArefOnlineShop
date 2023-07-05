@@ -1,5 +1,6 @@
 ﻿#region Using
 
+using Domain.Models.Order;
 using Domain.ViewModels.Admin.DiscountCode;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,15 @@ namespace Application.Interfaces
 
         //Fill List Of Discount Selected From User Admin Side View Model
         Task<List<ListOfDiscountSelectedFromUserAdminSideViewModel>> FillListOfDiscountSelectedFromUserAdminSideViewModel(int id);
+
+        //Add Discount To The Order
+        Task<int?> AddDiscountToTheOrder(int orderId, int userId, string discountName);
+
+        //Add Discount To The Order Price
+        Task<int> AddDiscountToTheOrderPrice(int discountSelectedUserId, int amount);
+
+        //Update Order
+        Task UpdateOrder(Orders order);
 
         #endregion
     }

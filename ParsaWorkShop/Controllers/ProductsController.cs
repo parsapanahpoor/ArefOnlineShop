@@ -25,6 +25,8 @@ namespace ParsaWorkShop.Controllers
 
         #endregion
 
+        #region Index
+
         public IActionResult Index(int? Categroyid, int pageId = 1, string filter = "", string orderByType = "date")
         {
             ViewBag.Groups = _product.GetAllProductCategories();
@@ -32,8 +34,13 @@ namespace ParsaWorkShop.Controllers
             ViewBag.Categroyid = Categroyid;
             ViewBag.Filter = filter;
 
-            return View(_product.GetProductsForShowInHomePage(Categroyid, pageId, filter, 15 , orderByType));
+            return View(_product.GetProductsForShowInHomePage(Categroyid, pageId, filter, 15, orderByType));
         }
+
+        #endregion
+
+        #region Single Page Products
+
         public IActionResult SinglePageProducts(int? id)
         {
             if (id == null)
@@ -43,6 +50,8 @@ namespace ParsaWorkShop.Controllers
 
             return View(_product.GetProductForShowInSingleProducPage((int)id));
         }
+
+        #endregion
 
         #region ProductsComments
 
@@ -63,6 +72,5 @@ namespace ParsaWorkShop.Controllers
             return View(_comment.GetProductComment(id, pageId));
         }
         #endregion
-
     }
 }

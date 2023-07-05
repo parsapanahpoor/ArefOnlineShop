@@ -3,9 +3,12 @@
 using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Models.Discount;
+using Domain.Models.Order;
 using Domain.ViewModels.Admin.DiscountCode;
 using Microsoft.AspNetCore.Razor.Language;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Database;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +24,13 @@ namespace Application.Services
         #region Ctor 
 
         private readonly IDiscountCodeRepository _discountCodeRepository;
+        private readonly IOrderService _orderService;
 
-        public DiscountCodeService(IDiscountCodeRepository discountCode)
+        public DiscountCodeService(IDiscountCodeRepository discountCode, IOrderService orderService)
         {
             _discountCodeRepository = discountCode;
+            _orderService = orderService;
+
         }
 
         #endregion
@@ -128,6 +134,108 @@ namespace Application.Services
         public async Task<List<ListOfDiscountSelectedFromUserAdminSideViewModel>> FillListOfDiscountSelectedFromUserAdminSideViewModel(int id)
         {
             return await _discountCodeRepository.FillListOfDiscountSelectedFromUserAdminSideViewModel(id);
+        }
+
+        #endregion
+
+        #region Site Side 
+
+        //Add Discount To The Order
+        public async Task<int?> AddDiscountToTheOrder(int orderId, int userId, string discountName )
+        {
+            #region Get Discount By Discount Code 
+
+            var discount = await _discountCodeRepository.GetDiscontCodeByDiscountName(discountName);
+            if (discount == null) return null;
+
+            #endregion
+
+            #region Check 
+
+            var order = await _discountCodeRepository.GetOerderByOrderIDAndUserID(orderId, userId);
+            if (order == null) return null;
+
+            #endregion
+
+            #region Check Validation 
+
+            var check = await _discountCodeRepository.CheckIsExistAnyUserSelectedDiscountByOrderAndUserAndDiscountID(orderId , userId , discount.Id);
+            if (check == true) return null;
+
+            #endregion
+
+            #region Add Discount To The Order And Discount Selected User
+
+            #region Discount Selected User
+
+            DiscountCodeSelectedFromUser userSelected = new DiscountCodeSelectedFromUser()
+            {
+                CreateDate = DateTime.Now,
+                DiscountId = discount.Id,
+                IsDelete = false,
+                UserId = userId,
+                OrderId = order.OrderId
+            };
+
+            //Add To The Data Base 
+            await _discountCodeRepository.AddDiscountSelectedUserToTheDataBase(userSelected);
+
+            #endregion
+
+            #region Order
+
+            order.DiscountUserSelected = userSelected.Id;
+
+            //Update Order
+            await _discountCodeRepository.UpdateOrder(order);
+
+            #endregion
+
+            #endregion
+
+            #region Initial Order Price After Discount
+
+            List<OrderDetails> orderDetails = _orderService.GetAllOrderDetailsByOrderID(order.OrderId);
+
+            int Amount = 0;
+
+            foreach (var item in orderDetails)
+            {
+                Amount = Amount + (int)(item.Price * item.Count);
+            }
+
+            //Initial Disacount
+            Amount = (Amount * discount.DiscountPercentage) / 100;
+
+            #endregion
+
+            return Amount;
+        }
+
+        //Add Discount To The Order Price
+        public async Task<int> AddDiscountToTheOrderPrice(int discountSelectedUserId , int amount)
+        {
+            #region Get Discount Percentage
+
+            int percentage = await _discountCodeRepository.GetDiscountPercentageWithUserSelectedDiscount(discountSelectedUserId);
+            if (percentage == 0) return 0;
+
+            #endregion
+
+            #region Initial amount
+
+            //Initial Disacount
+            amount = (amount * percentage) / 100;
+
+            #endregion
+
+            return amount;
+        }
+
+        //Update Order
+        public async Task UpdateOrder(Orders order)
+        {
+            await _discountCodeRepository.UpdateOrder(order);
         }
 
         #endregion

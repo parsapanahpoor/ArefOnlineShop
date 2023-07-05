@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "تایید فاکتور ";
+    int? discountPrice = ViewBag.discountPrice as int?;
 }
 
 <section class="bg-half bg-light d-table w-100">
@@ -57,7 +57,7 @@
                                 @foreach (var item in orderDetails)
                                 {
                                     <tr class="shop-list">
-                                        <td class="h6"><a  class="text-danger">X</a></td>
+                                        <td class="h6"><a class="text-danger">X</a></td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <img src="/Images/Product/thumb/@item.Product.ProductImageName" class="img-fluid avatar avatar-small rounded shadow" style="height:auto;" alt="">
@@ -68,7 +68,11 @@
                                         <td class="text-center qty-icons">
                                             <input min="0" value="@item.Count" name="points" type="text" class="btn btn-icon btn-soft-primary qty-btn quantity">
                                         </td>
-                                        <td class="text-center fw-bold">@{decimal price = item.Price * item.Count; } @price.ToString("#,0") تومان</td>
+                                        <td class="text-center fw-bold">
+                                            @{
+                                                decimal price = item.Price * item.Count;
+                                            } @price.ToString("#,0") تومان
+                                        </td>
                                     </tr>
                                 }
 
@@ -107,33 +111,85 @@
 
                 </div><!--end col-->
             </div>
-            <div class="col-lg-4 col-md-6 ms-auto mt-4 pt-2">
-                @if (ViewBag.orderDetails != null)
-                {
-                    List<Domain.Models.Order.OrderDetails> orderDetails = ViewBag.orderDetails as List<Domain.Models.Order.OrderDetails>;
 
-                    <div class="table-responsive bg-white rounded shadow">
-                        <table class="table table-center table-padding mb-0">
-                            <tbody>
-                                <tr>
-                                    <td class="h6">جمع کل </td>
-                                    <td class="text-center fw-bold">@orderDetails.Sum(p => p.Price * p.Count).ToString("#,0") تومان</td>
-                                </tr>
 
-                                <tr class="bg-light">
-                                    <td class="h6"> مبلغ قابل پرداخت  </td>
-                                    <td class="text-center fw-bold">@orderDetails.Sum(p => p.Price * p.Count).ToString("#,0") تومان</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                }
-             
-                        <div class="mt-4 pt-2 text-end">
-                            <a href="/order/Payment/@ViewBag.OrderID" class="btn btn-primary">پرداخت صورتحساب  </a>
+            <div class="col-lg-4 col-md-6 mt-4 pt-2">
+
+                <div class="col-lg-12 col-md-12  pt-2">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="rounded shadow-lg p-4">
+
+                            <form asp-action="AddDiscountForOrder" asp-controller="order" method="post">
+
+                                <input type="hidden" value="@ViewBag.OrderID" name="orderId" />
+                                <input type="hidden" value="@ViewBag.Locationid" name="Locationid" />
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">آیا کدتخفیف دارید ؟ </label>
+                                            <input name="DiscountCode" type="text" class="form-control" placeholder="کدتخفیف خود را وارد کنید">
+                                        </div>
+                                    </div><!--end col-->
+
+                                    <div class="col-12">
+                                        <div class="mt-2 pt-2">
+                                            <div class="d-grid">
+                                                <input type="submit" class="btn btn-primary" value="اعمال کد تخفیف  ">
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+
+                                </div><!--end row-->
+
+                            </form>
+
+
                         </div>
 
-            </div><!--end col-->
+
+                    </div><!--end col-->
+                </div>
+
+                <div class="col-lg-12 col-md-12 ms-auto  pt-2">
+                    @if (ViewBag.orderDetails != null)
+                    {
+                        List<Domain.Models.Order.OrderDetails> orderDetails = ViewBag.orderDetails as List<Domain.Models.Order.OrderDetails>;
+
+                        <div class="table-responsive bg-white rounded shadow">
+                            <table class="table table-center table-padding mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td class="h6">جمع کل </td>
+                                        <td class="text-center fw-bold">@orderDetails.Sum(p => p.Price * p.Count).ToString("#,0") تومان</td>
+                                    </tr>
+
+                                    <tr class="bg-light">
+                                        <td class="h6"> مبلغ قابل پرداخت  </td>
+                                        @if (discountPrice.HasValue)
+                                        {
+                                            <td class="text-center fw-bold">@discountPrice.Value.ToString("#,0") تومان</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center fw-bold">@orderDetails.Sum(p => p.Price * p.Count).ToString("#,0") تومان</td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+
+                    <div class="mt-4 pt-2 text-end">
+                        <a href="/order/Payment/@ViewBag.OrderID" class="btn btn-primary">پرداخت صورتحساب  </a>
+                    </div>
+
+                </div><!--end col-->
+
+            </div>
+
+
+
         </div><!--end row-->
     </div><!--end container-->
 </section>

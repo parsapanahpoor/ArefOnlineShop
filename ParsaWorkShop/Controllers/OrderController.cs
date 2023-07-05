@@ -21,13 +21,14 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Services.Interfaces;
+using ParsaWorkShop.Web.Controllers;
 
 #endregion
 
 namespace ParsaWorkShop.Controllers
 {
     [Authorize]
-    public class OrderController : Controller
+    public class OrderController : SiteBaseController
     {
         #region Ctor
 
@@ -37,9 +38,10 @@ namespace ParsaWorkShop.Controllers
         private ILocationService _location;
         private IFinancialTransactionService _financial;
         private readonly IWalletService _walletService;
+        private readonly IDiscountCodeService _discountCodeService;
 
         public OrderController(IUserService user, IProductService product, IOrderService order, ILocationService location,
-                                    IFinancialTransactionService financial, IWalletService walletService)
+                                    IFinancialTransactionService financial, IWalletService walletService, IDiscountCodeService discountCodeService)
         {
             _user = user;
             _product = product;
@@ -47,7 +49,7 @@ namespace ParsaWorkShop.Controllers
             _location = location;
             _financial = financial;
             _walletService = walletService;
-
+            _discountCodeService = discountCodeService;
         }
 
         #endregion
@@ -197,7 +199,7 @@ namespace ParsaWorkShop.Controllers
 
         #region Accept Factor
 
-        public IActionResult AcceptFactor(int? oredrid, int Locationid)
+        public IActionResult AcceptFactor(int? oredrid, int Locationid, int? discountPrice)
         {
             if (oredrid == null) return NotFound();
 
@@ -208,15 +210,39 @@ namespace ParsaWorkShop.Controllers
             ViewBag.orderDetails = _order.GetAllOrderDetailsByOrderID(NewOrder.OrderId);
             ViewBag.UserLocations = _order.GetUserLocationByOrderId(NewOrder.OrderId);
             ViewBag.OrderID = NewOrder.OrderId;
+            ViewBag.Locationid = Locationid;
+            ViewBag.discountPrice = discountPrice;
 
             return View();
         }
 
         #endregion
 
+        #region Add Discount For Order
+
+        [HttpPost]
+        public async Task<IActionResult> AddDiscountForOrder(int orderId, int Locationid, string DiscountCode)
+        {
+            #region Add Discount To The Order
+
+            var res = await _discountCodeService.AddDiscountToTheOrder(orderId, User.GetUserId(), DiscountCode);
+            if (res != null)
+            {
+                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                return RedirectToAction(nameof(AcceptFactor), new { oredrid = orderId, Locationid = Locationid, discountPrice = res });
+            }
+
+            #endregion
+
+            TempData[ErrorMessage] = "عملیات باشکست مواجه شده است.";
+            return RedirectToAction(nameof(AcceptFactor), new { oredrid = orderId, Locationid = Locationid });
+        }
+
+        #endregion
+
         #region Payment
 
-        public IActionResult Payment(int? id)
+        public async Task<IActionResult> Payment(int? id)
         {
             #region Initial Order Amount
 
@@ -232,19 +258,44 @@ namespace ParsaWorkShop.Controllers
                 Amount = Amount + (int)(item.Price * item.Count);
             }
 
-            #endregion
+            #region Add Discount To Pice
 
-            #region Online Payment
-
-            return RedirectToAction("PaymentMethod", "Payment", new
+            if (order.DiscountUserSelected.HasValue)
             {
-                gatewayType = GatewayType.Zarinpal,
-                amount = Amount,
-                description = "شارژ حساب کاربری برای پرداخت هزینه ی حرید",
-                returURL = $"{PathTools.SiteAddress}/OnlinePayment/" + order.OrderId,
-                orderId = order.OrderId,
+                Amount = await _discountCodeService.AddDiscountToTheOrderPrice(order.DiscountUserSelected.Value, Amount);
 
-            });
+                //Update Order
+                order.Price = Amount;
+                await _discountCodeService.UpdateOrder(order);
+
+                return RedirectToAction("PaymentMethod", "Payment", new
+                {
+                    gatewayType = GatewayType.Zarinpal,
+                    amount = Amount,
+                    description = "شارژ حساب کاربری برای پرداخت هزینه ی حرید",
+                    returURL = $"{PathTools.SiteAddress}/OnlinePayment/" + order.OrderId,
+                    orderId = order.OrderId,
+
+                });
+            }
+            else
+            {
+                //Update Order
+                order.Price = Amount;
+                await _discountCodeService.UpdateOrder(order);
+
+                return RedirectToAction("PaymentMethod", "Payment", new
+                {
+                    gatewayType = GatewayType.Zarinpal,
+                    amount = Amount,
+                    description = "شارژ حساب کاربری برای پرداخت هزینه ی حرید",
+                    returURL = $"{PathTools.SiteAddress}/OnlinePayment/" + order.OrderId,
+                    orderId = order.OrderId,
+
+                });
+            }
+
+            #endregion
 
             #endregion
         }
@@ -269,12 +320,7 @@ namespace ParsaWorkShop.Controllers
             Orders order = _order.GetOrderByOrderID(id);
             List<OrderDetails> orderDetails = _order.GetAllOrderDetailsByOrderID(order.OrderId);
 
-            int Amount = 0;
-
-            foreach (var item in orderDetails)
-            {
-                Amount = Amount + (int)(item.Price * item.Count);
-            }
+            int Amount = order.Price.Value;
 
             #endregion
 
@@ -330,7 +376,7 @@ namespace ParsaWorkShop.Controllers
                             await _walletService.UpdateWalletAndCalculateUserBalanceAfterBankingPayment(wallet);
 
                             //Pay Order Amount 
-                            await _walletService.PayOrderAmount(user.UserId , Amount , order.OrderId);
+                            await _walletService.PayOrderAmount(user.UserId, Amount, order.OrderId);
 
                             #region Finalize Order
 
