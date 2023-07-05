@@ -32,6 +32,7 @@ namespace IoC
             service.AddScoped<IWalletService, WalletService>();
             service.AddScoped<ISliderService, SliderService>();
             service.AddScoped<IUsersCommentAboutSiteService, UsersCommentAboutSiteService>();
+            service.AddScoped<IDiscountCodeService, DiscountCodeService>();
 
             #endregion
 
@@ -50,6 +51,7 @@ namespace IoC
             service.AddScoped<IWalletRepository, WalletRepository>();
             service.AddScoped<ISliderRepository, SliderRepository>();
             service.AddScoped<IUsersCommentAboutSiteRepository, UsersCommentAboutSiteRepository>();
+            service.AddScoped<IDiscountCodeRepository, DiscountCodeRepository>();
 
             #endregion
         }

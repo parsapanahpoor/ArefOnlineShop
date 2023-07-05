@@ -1,0 +1,79 @@
+﻿@model Domain.ViewModels.Admin.DiscountCode.EditDiscoutCodeAdminSideViewModel
+@{
+    ViewData["Title"] = "کدهای تخفیف  ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts
+    {
+
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>ویرایش کدهای تخفیف  </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">ویرایش کدهای تخفیف  </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <form asp-action="EditDiscountCode" asp-controller="DiscountCode" asp-area="Admin" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">اطلاعات کدهای تخفیف    </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div role="form" asp-action="Create" asp-controller="Users" asp-area="Admin">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> عنوان تخفیف  </label>
+                                        <input type="text" asp-for="DiscountTitle" class="form-control" id="exampleInputEmail1" placeholder="عنوان تخفیف را وارد کنید">
+                                        <span asp-validation-for="DiscountTitle" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> درصد کدتخفیف  </label>
+                                        <input type="number" min="0" max="100" asp-for="DiscountPercentage" class="form-control" id="exampleInputEmail1" placeholder="درصد کدتخفیف را وارد کنید">
+                                        <span asp-validation-for="DiscountPercentage" class="text-danger"></span>
+
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">ویرایش</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </form>
+
+
+</div>
+
