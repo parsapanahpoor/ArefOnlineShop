@@ -29,7 +29,6 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             _returnProducts = returnProducts;
         }
 
-        [PermissionChecker(1)]
         public IActionResult Index()
         {
             List<Orders> Orders = _order.GetAllOrdersForShowInAdminPanel();
@@ -37,7 +36,6 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(Orders);
         }
 
-        [PermissionChecker(1)]
         public IActionResult CheckUserInformation(int? id)
         {
             if (id == null)
@@ -51,7 +49,6 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(user);
         }
 
-        [PermissionChecker(1)]
         public IActionResult CheckOrderDetails(int? id)
         {
             if (id == null)
@@ -64,7 +61,6 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(orderDetails);
         }
 
-        [PermissionChecker(1)]
         public IActionResult AccountingList()
         {
             List<FinancialTransaction> financials = _financial.GetAllFinancialTransaction();
