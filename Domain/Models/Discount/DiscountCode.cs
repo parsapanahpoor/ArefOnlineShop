@@ -15,6 +15,8 @@ namespace Domain.Models.Discount
     {
         #region property
 
+        public string DiscountTitle { get; set; }
+
         public string Code { get; set; }
 
         public int DiscountPercentage { get; set; }
