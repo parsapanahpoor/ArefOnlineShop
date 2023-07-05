@@ -60,7 +60,7 @@ namespace Application.Services
         {
             User user = new User()
             {
-                Email = FixedText.FixEmail(register.Email),
+                Email = FixedText.FixEmail("@yahoo.com"),
                 IsActive = true,
                 PhoneNumber = register.Mobile,
                 Password = register.Password,
@@ -402,12 +402,6 @@ namespace Application.Services
             //Fix Email Format
             var mobile = register.Mobile.Trim().ToLower().SanitizeText();
 
-            //Check Email Address
-            if (await IsExistsUserByEmail(register.Email))
-            {
-                return RegisterUserResult.MobileExist;
-            }
-
             //Check Mobile Number
             if (await IsExistUserByMobile(register.Mobile))
             {
@@ -436,7 +430,7 @@ namespace Application.Services
             //Create User
             var User = new User()
             {
-                Email = register.Email,
+                Email = new Random().Next(10000, 999999).ToString()+"@yahoo.com",
                 Password = password,
                 UserName = mobile,
                 PhoneNumber = register.Mobile.SanitizeText(),

@@ -4,6 +4,7 @@ using Domain.Models.Blog;
 using Domain.Models.Comment;
 using Domain.Models.ContactUs;
 using Domain.Models.Discount;
+using Domain.Models.FavoriteProducts;
 using Domain.Models.Order;
 using Domain.Models.Permissions;
 using Domain.Models.Product;
@@ -89,6 +90,12 @@ namespace Data.Context
         public DbSet<Product> product { get; set; }
         public DbSet<ProductFeature> ProductFeature { get; set; }
         public DbSet<ProductGallery> ProductGallery { get; set; }
+
+        #endregion
+
+        #region Favorite Products
+
+        public DbSet<FavoriteProducts> FavoriteProducts{ get; set; }
 
         #endregion
 
