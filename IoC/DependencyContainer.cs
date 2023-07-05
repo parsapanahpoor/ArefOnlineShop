@@ -2,6 +2,7 @@
 using Application.Services;
 using Application.Services.Implementation;
 using Application.Services.Interfaces;
+using Application.SiteServices;
 using Data.Repository;
 using DoctorFAM.Data.Repository;
 using Domain.Interfaces;
@@ -34,6 +35,7 @@ namespace IoC
             service.AddScoped<IUsersCommentAboutSiteService, UsersCommentAboutSiteService>();
             service.AddScoped<IDiscountCodeService, DiscountCodeService>();
             service.AddScoped<IFavoriteProductsService, FavoriteProductsService>();
+            service.AddScoped<ISiteSettingService, SiteSettingService>();
 
             #endregion
 
@@ -54,6 +56,7 @@ namespace IoC
             service.AddScoped<IUsersCommentAboutSiteRepository, UsersCommentAboutSiteRepository>();
             service.AddScoped<IDiscountCodeRepository, DiscountCodeRepository>();
             service.AddScoped<IFavoriteProductRepository, FavoriteProductRepository>();
+            service.AddScoped<ISiteSettingRepsitory, SiteSettingRepsitory>();
 
             #endregion
         }
