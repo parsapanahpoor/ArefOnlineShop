@@ -90,6 +90,8 @@ namespace Data.Context
         public DbSet<Product> product { get; set; }
         public DbSet<ProductFeature> ProductFeature { get; set; }
         public DbSet<ProductGallery> ProductGallery { get; set; }
+        public DbSet<ProductsSize> ProductsSizes { get; set; }
+        public DbSet<ProductColor> ProductColors{ get; set; }
 
         #endregion
 
