@@ -3,6 +3,7 @@
 using Domain.Models.Blog;
 using Domain.Models.Comment;
 using Domain.Models.ContactUs;
+using Domain.Models.Discount;
 using Domain.Models.Order;
 using Domain.Models.Permissions;
 using Domain.Models.Product;
@@ -99,6 +100,14 @@ namespace Data.Context
         public DbSet<ReturnedProducts> ReturnedProducts { get; set; }
         public DbSet<ReturnedProductType> ReturnedProductTypes { get; set; }
         public DbSet<FinancialTransactionType> FinancialTransactionType { get; set; }
+
+        #endregion
+
+        #region Discount
+
+        public DbSet<DiscountCode> DiscountCodes { get; set; }
+
+        public DbSet<DiscountCodeSelectedFromUser>  DiscountCodeSelectedUsers { get; set; }
 
         #endregion
 
