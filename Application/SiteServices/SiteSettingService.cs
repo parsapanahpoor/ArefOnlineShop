@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -153,6 +154,84 @@ namespace Application.SiteServices
             await _siteSettingRepsitory.UpdateColor(color);
 
             #endregion
+
+            return true;
+        }
+
+        #endregion
+
+        #region Size
+
+        //Fill ListOfColorsAdminSideViewModel
+        public async Task<List<ListOfColorsAdminSideViewModel>> FillListOfColorsAdminSideViewModel()
+        {
+            return await _siteSettingRepsitory.FillListOfColorsAdminSideViewModel();
+        }
+
+        //Create Size Admin Side 
+        public async Task<bool> CreateSize(CreateSizeAdminSideViewMolde model)
+        {
+            #region Fill Entity
+
+            ProductsSize size = new ProductsSize()
+            {
+                SizeTitle = model.SizeName
+            };
+
+            #endregion
+
+            //Add To The Data Base
+            await _siteSettingRepsitory.AddSizeToTheDataBase(size);
+
+            return true;
+        }
+
+        //Fill EditSizeAdminSideViewModel
+        public async Task<EditSizeAdminSideViewModel> FillEditSizeAdminSideViewModel(int id)
+        {
+            return await _siteSettingRepsitory.FillEditSizeAdminSideViewModel(id);
+        }
+
+        //edit Size 
+        public async Task<bool> EditSize(EditSizeAdminSideViewModel model)
+        {
+            #region Get Size 
+
+            var size = await _siteSettingRepsitory.GetSizeById(model.SizeId);
+            if (size == null) return false;
+
+            #endregion
+
+            #region Update 
+
+            size.SizeTitle = model.SizeName;
+
+            #endregion
+
+            //Update Method 
+            await _siteSettingRepsitory.UpdateSize(size);
+
+            return true;
+        }
+
+        //Delete Size 
+        public async Task<bool> DeleteSize(int id)
+        {
+            #region Get Size 
+
+            var size = await _siteSettingRepsitory.GetSizeById(id);
+            if (size == null) return false;
+
+            #endregion
+
+            #region Update 
+
+            size.IsDelete = true;
+
+            #endregion
+
+            //Update Method 
+            await _siteSettingRepsitory.UpdateSize(size);
 
             return true;
         }

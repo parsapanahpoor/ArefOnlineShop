@@ -38,6 +38,25 @@ namespace Application.Interfaces
 
         #endregion
 
+        #region Size
+
+        //Fill ListOfColorsAdminSideViewModel
+        Task<List<ListOfColorsAdminSideViewModel>> FillListOfColorsAdminSideViewModel();
+
+        //Create Size Admin Side 
+        Task<bool> CreateSize(CreateSizeAdminSideViewMolde model);
+
+        //Fill EditSizeAdminSideViewModel
+        Task<EditSizeAdminSideViewModel> FillEditSizeAdminSideViewModel(int id);
+
+        //edit Size 
+        Task<bool> EditSize(EditSizeAdminSideViewModel model);
+
+        //Delete Size 
+        Task<bool> DeleteSize(int id);
+
+        #endregion
+
         #endregion
     }
 }

@@ -87,6 +87,60 @@ namespace Data.Repository
 
         #endregion
 
+        #region Size 
+
+        //Fill ListOfColorsAdminSideViewModel
+        public async Task<List<ListOfColorsAdminSideViewModel>> FillListOfColorsAdminSideViewModel()
+        {
+            return await _context.ProductsSizes
+                                 .AsNoTracking()
+                                 .Where(p=> !p.IsDelete )
+                                 .Select(p=> new ListOfColorsAdminSideViewModel()
+                                 {
+                                     Id = p.Id,
+                                     SizeTitle = p.SizeTitle,
+                                 })
+                                 .ToListAsync();
+        }
+
+        //Add Size To The DataBase
+        public async Task AddSizeToTheDataBase(ProductsSize size)
+        {
+            await _context.ProductsSizes.AddAsync(size);
+            await _context.SaveChangesAsync();
+        }
+
+        //Fill EditSizeAdminSideViewModel
+        public async Task<EditSizeAdminSideViewModel> FillEditSizeAdminSideViewModel(int id)
+        {
+            return await _context.ProductsSizes
+                                 .AsNoTracking()
+                                 .Where(p=> !p.IsDelete && p.Id == id)
+                                 .Select(p=> new EditSizeAdminSideViewModel()
+                                 {
+                                     SizeId = p.Id,
+                                     SizeName = p.SizeTitle
+                                 })
+                                 .FirstOrDefaultAsync();
+        }
+
+        //Get Size By Id 
+        public async Task<ProductsSize> GetSizeById(int id)
+        {
+            return await _context.ProductsSizes
+                                 .AsNoTracking()
+                                 .FirstOrDefaultAsync(p => !p.IsDelete && p.Id == id);
+        }
+
+        //Update Size 
+        public async Task UpdateSize(ProductsSize size)
+        {
+            _context.ProductsSizes.Update(size);
+            await _context.SaveChangesAsync();
+        }
+
+        #endregion
+
         #endregion
     }
 

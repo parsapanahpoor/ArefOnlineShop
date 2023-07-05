@@ -2,6 +2,7 @@
 
 using Domain.Models.Product;
 using Domain.ViewModels.Admin.SiteSetting;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,25 @@ namespace Domain.Interfaces
 
         //Update Color 
         Task UpdateColor(ProductColor color);
+
+        #region Size
+
+        //Fill ListOfColorsAdminSideViewModel
+        Task<List<ListOfColorsAdminSideViewModel>> FillListOfColorsAdminSideViewModel();
+
+        //Add Size To The DataBase
+        Task AddSizeToTheDataBase(ProductsSize size);
+
+        //Fill EditSizeAdminSideViewModel
+        Task<EditSizeAdminSideViewModel> FillEditSizeAdminSideViewModel(int id);
+
+        //Get Size By Id 
+        Task<ProductsSize> GetSizeById(int id);
+
+        //Update Size 
+        Task UpdateSize(ProductsSize size);
+
+        #endregion
 
         #endregion
     }

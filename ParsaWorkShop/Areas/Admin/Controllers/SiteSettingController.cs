@@ -138,5 +138,118 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         #endregion
 
         #endregion
+
+        #region Color
+
+        #region List Of Colors
+
+        public async Task<IActionResult> ListOfSizes()
+        {
+            return View(await _siteSettingService.FillListOfColorsAdminSideViewModel());
+        }
+
+        #endregion
+
+        #region Create Size 
+
+        [HttpGet]
+        public async Task<IActionResult> CreateSize()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateSize(CreateSizeAdminSideViewMolde model)
+        {
+                #region Model State Validation 
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            #endregion
+
+            #region Add Slider To The Data Base
+
+            var res = await _siteSettingService.CreateSize(model);
+            if (res)
+            {
+                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                return RedirectToAction(nameof(ListOfSizes));
+            }
+
+            #endregion
+
+            return View(model);
+        }
+
+        #endregion
+
+        #region Edit Size 
+
+        [HttpGet]
+        public async Task<IActionResult> EditSize(int id)
+        {
+            #region Fill Model
+
+            var model = await _siteSettingService.FillEditSizeAdminSideViewModel(id);
+            if (model == null) return NotFound();
+
+            #endregion
+
+            return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditSize(EditSizeAdminSideViewModel model)
+        {
+            #region Model State Validation 
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            #endregion
+
+            #region Add Size To The Data Base
+
+            var res = await _siteSettingService.EditSize(model);
+            if (res)
+            {
+                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                return RedirectToAction(nameof(ListOfSizes));
+            }
+
+            #endregion
+
+            return View(model);
+        }
+
+        #endregion
+
+        #region Delete Size
+
+        public async Task<IActionResult> DeleteSize(int id)
+        {
+            #region Delete Size
+
+            var res = await _siteSettingService.DeleteSize(id);
+            if (res)
+            {
+                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                return RedirectToAction(nameof(ListOfSizes));
+            }
+
+            #endregion
+
+            TempData[ErrorMessage] = "عملیات باشکست مواجه شده است.";
+            return RedirectToAction(nameof(ListOfSizes));
+        }
+
+        #endregion
+
+        #endregion
     }
 }

@@ -1,0 +1,76 @@
+﻿@model Domain.ViewModels.Admin.SiteSetting.EditSizeAdminSideViewModel
+@using Domain.Models.Blog;
+@{
+    ViewData["Title"] = "ویرایش سایز ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts
+    {
+
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>ویرایش سایز </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">ویرایش سایز </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <form asp-action="EditSize" asp-controller="SiteSetting" asp-area="Admin" method="post" enctype="multipart/form-data">
+        <input asp-for="SizeId" type="hidden" />
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">اطلاعات سایز   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div role="form" asp-action="Create" asp-controller="Users" asp-area="Admin">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1"> نام سایز </label>
+                                        <input type="text" asp-for="SizeName" class="form-control" id="exampleInputEmail1" placeholder="نام سایز  را وارد کنید">
+                                        <span asp-validation-for="SizeName" class="text-danger"></span>
+
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">ارسال</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </form>
+
+
+</div>
+
