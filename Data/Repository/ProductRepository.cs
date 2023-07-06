@@ -6,8 +6,10 @@ using Domain.Models.Product;
 using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -289,6 +291,134 @@ namespace Data.Repository
                                      SizeTitle = p.SizeTitle
                                  })
                                  .ToListAsync();
+        }
+
+        //Add Product Selected Sizes Without Save Changes
+        public async Task AddProductSelectedSizesWithoutSaveChanges(List<ProductSelectedSize> selectedSize)
+        {
+            await _context.ProductSelectedSizes.AddRangeAsync(selectedSize);
+        }
+
+        //Add Product Selected Color Without Save Changes
+        public async Task AddProductSelectedColorWithoutSaveChanges(List<ProductSelectedColors> selectedColors)
+        {
+            await _context.ProductSelectedColors.AddRangeAsync(selectedColors);
+        }
+
+        //Save Changes
+        public async Task SaveChanges()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        //Get All Product Selected Size
+        public async Task<List<int>> GetAllProductSelectedSize(int productId)
+        {
+            return await _context.ProductSelectedSizes
+                                  .Where(p => !p.IsDelete && p.ProductId == productId)
+                                  .Select(p => p.SizeId)
+                                  .ToListAsync();
+        }
+
+        //Get All Product Selected Color
+        public async Task<List<int>> GetAllProductSelectedColor(int productId)
+        {
+            return await _context.ProductSelectedColors
+                                  .Where(p => !p.IsDelete && p.ProductId == productId)
+                                  .Select(p => p.ColorId)
+                                  .ToListAsync();
+        }
+
+        //Update Product Color And Sizes
+        public async Task UpdateProductColorAndSizes(int productId)
+        {
+            #region Update Colors
+
+            //Remove Last Datas
+            var lastColorRecords = _context.ProductSelectedColors
+                                           .Where(p => !p.IsDelete && p.ProductId == productId)
+                                           .ToList();
+
+            if(lastColorRecords != null && lastColorRecords.Any()) _context.ProductSelectedColors.RemoveRange(lastColorRecords);
+
+            #endregion
+
+            #region Update Sizes
+
+            //Remove Last Datas
+            var lastSizesRecords = _context.ProductSelectedSizes
+                                           .Where(p => !p.IsDelete && p.ProductId == productId)
+                                           .ToList();
+
+            if (lastSizesRecords != null && lastSizesRecords.Any())  _context.ProductSelectedSizes.RemoveRange(lastSizesRecords);
+
+            #endregion
+
+            await SaveChanges();
+        }
+
+        //Get Product Selected Color By Product Id
+        public async Task<List<ProductColor>> GetProductSelectedColorByProductId(int productId)
+        {
+            #region Get Selected Color
+
+            var colorsId  = await _context.ProductSelectedColors
+                                          .AsNoTracking()
+                                          .Where(p=> !p.IsDelete && p.ProductId == productId)
+                                          .Select(p=> p.ColorId)
+                                          .ToListAsync();
+
+            #endregion
+
+            //Get Colors
+            List<ProductColor> returnModel = new List<ProductColor>();
+
+            if (colorsId != null && colorsId.Any())
+            {
+                foreach (var colorId in colorsId)
+                {
+                    ProductColor childModel = new ProductColor();
+
+                    childModel = await _context.ProductColors
+                                                .FirstOrDefaultAsync(p => !p.IsDelete && p.Id == colorId);
+
+                    returnModel.Add(childModel);
+                }
+            }
+
+            return returnModel;
+        }
+
+        //Get Product Selected Size By Product Id
+        public async Task<List<ProductsSize>> GetProductSelectedSizeByProductId(int productId)
+        {
+            #region Get Selected Size
+
+            var sizesId = await _context.ProductSelectedSizes
+                                          .AsNoTracking()
+                                          .Where(p => !p.IsDelete && p.ProductId == productId)
+                                          .Select(p => p.SizeId)
+                                          .ToListAsync();
+
+            #endregion
+
+            //Get Sizes
+            List<ProductsSize> returnModel = new List<ProductsSize>();
+
+            if (sizesId != null && sizesId.Any())
+            {
+                foreach (var sizeId in sizesId)
+                {
+                    ProductsSize childModel = new ProductsSize();
+
+                    childModel = await _context.ProductsSizes
+                                                .FirstOrDefaultAsync(p => !p.IsDelete && p.Id == sizeId);
+
+                    returnModel.Add(childModel);
+                }
+            }
+
+            return returnModel;
         }
 
         #endregion

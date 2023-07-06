@@ -75,16 +75,72 @@
                             <div class="d-flex shop-list align-items-center">
                                 <h6 class="mb-0">موجودی در انبار : </h6>
                                 <div class="qty-icons ms-3">
-                                    <dive min="0" name="quantity" value="0" type="number" class="btn btn-icon btn-soft-primary qty-btn quantity">@Model.ProductCount عدد
+                                    <dive min="0" name="quantity" value="0" type="number" class="btn btn-icon btn-soft-primary qty-btn quantity">@Model.ProductCount 
                                 </div>
                             </div>
                         </div>
                     </div><!--end col-->
-                </div><!--end row-->
+
+                    <form asp-action="AddToShopCart" asp-controller="Order" asp-area="" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" value="@Model.ProdcutId" name="id">
+
+                        @if (Model.ProductColors != null && Model.ProductColors.Any())
+                        {
+                            <div class="row mt-4 pt-2">
+                                <div class="col-lg-12 col-12 mt-4 mt-lg-0">
+                                    <div class="d-flex shop-list align-items-center">
+                                        <h6 class="mb-0">انتخاب رنگ :  </h6>
+
+                                        <select name="selectColor" id="cars">
+
+                                            @foreach (var color in Model.ProductColors)
+                                            {
+                                                <option value="@color.Id">@color.ColorTitle</option>
+                                            }
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--end col-->
+                        }
+
+                        @if (Model.ProductsSizes != null && Model.ProductsSizes.Any())
+                        {
+                            <div class="row mt-4 pt-2">
+                                <div class="col-lg-12 col-12 mt-4 mt-lg-0">
+                                    <div class="d-flex shop-list align-items-center">
+                                        <h6 class="mb-0">انتخاب سایز :  </h6>
+
+                                        <select name="selectSize" id="cars">
+
+                                            @foreach (var size in Model.ProductsSizes)
+                                            {
+                                                <option value="@size.Id">@size.SizeTitle</option>
+                                            }
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--end col-->
+                        }
+
+                <!--end row-->
 
                 <div class="mt-4 pt-2">
-                    <a href="/order/AddToShopCart/@Model.ProdcutId" class="btn btn-soft-primary ms-2">افزودن به سبد</a>
-                </div> 
+                            <button type="submit"  class="btn btn-soft-primary ms-2">افزودن به سبد</button>
+                </div>
+
+                </form>
+
+                </div>
+                  
                 
                 @if (User.Identity.IsAuthenticated)
                 {

@@ -86,6 +86,18 @@ namespace Application.Interfaces
         //Fill List Of Product Size For Choose Admin Side View Model
         Task<List<ListOfProductSizesForChooseAdminSideViewModel>> FillListOfProductSizesForChooseAdminSideViewModel();
 
+        //Add Color And Size For This Product
+        Task<bool> AddColorAndSizeForThisProduct(int productId, List<int> colorIds, List<int> sizesId);
+
+        //Get All Product Selected Size
+        Task<List<int>> GetAllProductSelectedSize(int productId);
+
+        //Get All Product Selected Color
+        Task<List<int>> GetAllProductSelectedColor(int productId);
+
+        //Update Product Selected Colors And Sizes
+        Task<bool> UpdateProductSelectedColorsAndSizes(int productId, List<int> colorsId, List<int> sizesId);
+
         #endregion
     }
 }

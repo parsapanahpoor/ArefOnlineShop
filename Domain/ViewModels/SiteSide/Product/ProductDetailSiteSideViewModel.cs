@@ -42,6 +42,10 @@ namespace Domain.ViewModels.SiteSide.Product
 
         public List<ProductGallery> ProductGallery { get; set; }
 
+        public List<ProductColor> ProductColors { get; set; }
+
+        public List<ProductsSize> ProductsSizes { get; set; }
+
         #endregion
     }
 }

@@ -82,6 +82,30 @@ namespace Domain.Interfaces
         //Fill List Of Product Size For Choose Admin Side View Model
         Task<List<ListOfProductSizesForChooseAdminSideViewModel>> FillListOfProductSizesForChooseAdminSideViewModel();
 
+        //Add Product Selected Sizes Without Save Changes
+        Task AddProductSelectedSizesWithoutSaveChanges(List<ProductSelectedSize> selectedSize);
+
+        //Add Product Selected Color Without Save Changes
+        Task AddProductSelectedColorWithoutSaveChanges(List<ProductSelectedColors> selectedColors);
+
+        //Save Changes
+        Task SaveChanges();
+
+        //Get All Product Selected Size
+        Task<List<int>> GetAllProductSelectedSize(int productId);
+
+        //Get All Product Selected Color
+        Task<List<int>> GetAllProductSelectedColor(int productId);
+
+        //Update Product Color And Sizes
+        Task UpdateProductColorAndSizes(int productId);
+
+        //Get Product Selected Color By Product Id
+        Task<List<ProductColor>> GetProductSelectedColorByProductId(int productId);
+
+        //Get Product Selected Size By Product Id
+        Task<List<ProductsSize>> GetProductSelectedSizeByProductId(int productId);
+
         #endregion
     }
 }

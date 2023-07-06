@@ -20,7 +20,7 @@ namespace Application.Services
 
         public void AddOneMoreProductToTheShopCart(int orderid, int productid)
         {
-            OrderDetails orderDetails = _order.AddOneMoreProductToTheShopCart(orderid , productid);
+            OrderDetails orderDetails = _order.AddOneMoreProductToTheShopCart(orderid, productid);
             orderDetails.Count = orderDetails.Count + 1;
 
             _order.UpdateOrderDetail(orderDetails);
@@ -28,6 +28,8 @@ namespace Application.Services
 
         public int AddOrderToTheShopCart(int userid)
         {
+            #region Initial Order
+
             Orders order = new Orders()
             {
                 Userid = userid,
@@ -36,6 +38,8 @@ namespace Application.Services
                 LocationID = null
             };
             _order.AddOrderToTheShopCart(order);
+
+            #endregion
 
             return order.OrderId;
         }
@@ -131,7 +135,7 @@ namespace Application.Services
 
         public bool IsExistOrderDetailFromUserFromToday(int orderid, int productid)
         {
-            return _order.IsExistOrderDetailFromUserFromToday( orderid,  productid);
+            return _order.IsExistOrderDetailFromUserFromToday(orderid, productid);
         }
 
         public bool IsExistOrderFromUserFromToday(int userid)

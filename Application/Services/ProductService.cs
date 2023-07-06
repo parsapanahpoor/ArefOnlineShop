@@ -457,7 +457,21 @@ namespace Application.Services
         //Fill Product Detail Site Side View Model
         public async Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id)
         {
-            return await _product.FillProductDetailSiteSideViewModel(id);
+            var returnModel = await _product.FillProductDetailSiteSideViewModel(id);
+
+            #region Color
+
+            returnModel.ProductColors = await _product.GetProductSelectedColorByProductId(id);
+
+            #endregion
+
+            #region Sizes
+
+            returnModel.ProductsSizes = await _product.GetProductSelectedSizeByProductId(id);
+
+            #endregion
+
+            return returnModel;
         }
 
         #endregion
@@ -476,10 +490,80 @@ namespace Application.Services
             return await _product.FillListOfProductSizesForChooseAdminSideViewModel();
         }
 
-        //Add Color And Size For This Product 
-        public async Task<IActionResult> AddColorAndSizeForThisProduct(int productId , List<int> colorIds , List<int> sizesId)
+        //Add Color And Size For This Product
+        public async Task<bool> AddColorAndSizeForThisProduct(int productId, List<int> colorIds, List<int> sizesId)
         {
-            
+            #region Add Color 
+
+            List<ProductSelectedColors> productColors = new List<ProductSelectedColors>();
+
+            foreach (var color in colorIds)
+            {
+                ProductSelectedColors childModel = new ProductSelectedColors()
+                {
+                    ColorId = color,
+                    ProductId = productId,
+                };
+
+                productColors.Add(childModel);
+            }
+
+            await _product.AddProductSelectedColorWithoutSaveChanges(productColors);
+
+            #endregion
+
+            #region Add Size 
+
+            List<ProductSelectedSize> productSize = new List<ProductSelectedSize>();
+
+            foreach (var sizeId in sizesId)
+            {
+                ProductSelectedSize sizeChildModel = new ProductSelectedSize()
+                {
+                    SizeId = sizeId,
+                    ProductId = productId,
+                };
+
+                productSize.Add(sizeChildModel);
+            }
+
+            await _product.AddProductSelectedSizesWithoutSaveChanges(productSize);
+
+            #endregion
+
+            await _product.SaveChanges();
+
+            return true;
+        }
+
+        //Get All Product Selected Size
+        public async Task<List<int>> GetAllProductSelectedSize(int productId)
+        {
+            return await _product.GetAllProductSelectedSize(productId);
+        }
+
+        //Get All Product Selected Color
+        public async Task<List<int>> GetAllProductSelectedColor(int productId)
+        {
+            return await _product.GetAllProductSelectedColor(productId);
+        }
+
+        //Update Product Selected Colors And Sizes
+        public async Task<bool> UpdateProductSelectedColorsAndSizes(int productId, List<int> colorsId, List<int> sizesId)
+        {
+            #region Delete Last Records
+
+            await _product.UpdateProductColorAndSizes(productId);
+
+            #endregion
+
+            #region Add New Records
+
+            await AddColorAndSizeForThisProduct(productId , colorsId , sizesId);
+
+            #endregion
+
+            return true;
         }
 
         #endregion

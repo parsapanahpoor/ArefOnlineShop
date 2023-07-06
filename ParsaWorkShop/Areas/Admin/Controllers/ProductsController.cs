@@ -85,6 +85,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
                 _product.AddCategoryToProduct(SelectedCategory, ProductID);
 
                 //Add Color And Size For This Product
+                var res = await _product.AddColorAndSizeForThisProduct(ProductID, SelectColor, SelectSize);
 
                 return Redirect("/Admin/Products/Index?Create=true");
 
@@ -102,7 +103,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         #region Edit Products 
 
-        public IActionResult Edit(int? id, bool Detail = false, bool Delete = false)
+        public async Task<IActionResult> Edit(int? id, bool Detail = false, bool Delete = false)
         {
             ViewBag.Detail = Detail;
             ViewBag.Delete = Delete;
@@ -117,16 +118,33 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            #region View Bags
+
+            //Categories
             ViewData["ProductCategories"] = _product.GetAllProductCategories();
             ViewData["ProductSelectedCategories"] = _product.GetAllProductSelectedCategories();
+
+            //Sizes
+            ViewData["Size"] = await _product.FillListOfProductSizesForChooseAdminSideViewModel();
+            ViewData["ProductSelectedSize"] = await _product.GetAllProductSelectedSize(product.ProductID);
+
+
+            //Colors
+            ViewData["Color"] = await _product.FillListOfProductColorsForChooseAdminSideViewModel();
+            ViewData["ProductSelectedColor"] = await _product.GetAllProductSelectedColor(product.ProductID);
+
+            #endregion
 
             return View(product);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("ProductID,UserId,ProductTitle,ShortDescription,LongDescription,ProductImageName,OfferPercent,IsInOffer,ProductCount,Price,Tags,CreateDate,IsActive,IsDelete,OldPrice")] Product product, IFormFile imgProductUp, List<int> SelectedCategory)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductID,UserId,ProductTitle,ShortDescription,LongDescription,ProductImageName,OfferPercent,IsInOffer,ProductCount,Price,Tags,CreateDate,IsActive,IsDelete,OldPrice")] Product product, IFormFile imgProductUp, List<int> SelectedCategory, List<int> selectedColor, List<int> selectedSize)
         {
+            #region Product
+
             if (id != product.ProductID)
             {
                 return NotFound();
@@ -134,14 +152,36 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-
+                //Update Products
                 var productid = _product.UpdateProduct(product, imgProductUp);
+
+                //Update Selected Categories
                 _product.EditProductSelectedCategory(SelectedCategory, productid);
+
+                //Update Selected Colors And Selected Sizes
+                await _product.UpdateProductSelectedColorsAndSizes(productid , selectedColor , selectedSize);
 
                 return Redirect("/Admin/Products/Index?Edit=true");
             }
+
+            #endregion
+
+            #region View Bags
+
+            //Categories
             ViewData["ProductCategories"] = _product.GetAllProductCategories();
             ViewData["ProductSelectedCategories"] = _product.GetAllProductSelectedCategories();
+
+            //Sizes
+            ViewData["Size"] = await _product.FillListOfProductSizesForChooseAdminSideViewModel();
+            ViewData["ProductSelectedSize"] = await _product.GetAllProductSelectedSize(product.ProductID);
+
+
+            //Colors
+            ViewData["Color"] = await _product.FillListOfProductColorsForChooseAdminSideViewModel();
+            ViewData["ProductSelectedColor"] = await _product.GetAllProductSelectedColor(product.ProductID);
+
+            #endregion
 
             return View(product);
         }

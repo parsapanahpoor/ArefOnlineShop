@@ -22,6 +22,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Services.Interfaces;
 using ParsaWorkShop.Web.Controllers;
+using Domain.ViewModels.SiteSide.Order;
 
 #endregion
 
@@ -56,26 +57,37 @@ namespace ParsaWorkShop.Controllers
 
         #region Add To Shop Cart
 
-        public IActionResult AddToShopCart(int? id)
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult AddToShopCart(IncomingProductInBasketSiteSideViewModel model)
         {
-            if (id == null)
+            #region Model State Validation
+
+            if (model.id == null)
             {
                 return NotFound();
             }
-            if (!_product.IsExistPRoduct((int)id))
+            if (!_product.IsExistPRoduct((int)model.id))
             {
                 return NotFound();
             }
-            int userid = _user.GetUserIdByUserName(User.Identity.Name);
-            Product product = _product.GetProductByID((int)id);
+
+            #endregion
+
+            #region Initial Order
+
+            //Get UserId 
+            int userid = User.GetUserId();
+
+            //Get Product By Product Id
+            Product product = _product.GetProductByID((int)model.id);
 
             if (_order.IsExistOrderFromUserFromToday(userid))
             {
                 Orders order = _order.GetOrderForShopCart(userid);
 
-                if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)id))
+                if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id))
                 {
-                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)id);
+                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id);
                 }
                 else
                 {
@@ -88,9 +100,10 @@ namespace ParsaWorkShop.Controllers
                 _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price);
             }
 
+            #endregion
+
             return RedirectToAction(nameof(ShopCart));
         }
-
 
         #endregion
 
