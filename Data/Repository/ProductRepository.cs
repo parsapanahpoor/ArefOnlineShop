@@ -3,6 +3,7 @@
 using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Product;
+using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -256,6 +257,38 @@ namespace Data.Repository
                                                               .ToList(),
                                  })
                                  .FirstOrDefaultAsync();
+        }
+
+        #endregion
+
+        #region Admin Side 
+
+        //Fill List Of Product Colors For Choose Admin Side View Model
+        public async Task<List<ListOfProductColorsForChooseAdminSideViewModel>> FillListOfProductColorsForChooseAdminSideViewModel()
+        {
+            return await _context.ProductColors
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new ListOfProductColorsForChooseAdminSideViewModel()
+                                 {
+                                     ColorId = p.Id,
+                                     ColorTitle = p.ColorTitle
+                                 })
+                                 .ToListAsync();
+        }
+
+        //Fill List Of Product Size For Choose Admin Side View Model
+        public async Task<List<ListOfProductSizesForChooseAdminSideViewModel>> FillListOfProductSizesForChooseAdminSideViewModel()
+        {
+            return await _context.ProductsSizes
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new ListOfProductSizesForChooseAdminSideViewModel()
+                                 {
+                                     SizeId = p.Id,
+                                     SizeTitle = p.SizeTitle
+                                 })
+                                 .ToListAsync();
         }
 
         #endregion

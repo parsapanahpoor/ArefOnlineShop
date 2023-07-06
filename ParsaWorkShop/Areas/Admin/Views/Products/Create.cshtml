@@ -6,10 +6,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 
     List<ProductCategories> ProductCategories = ViewData["ProductCategories"] as List<ProductCategories>;
+    List<Domain.ViewModels.Admin.Product.ListOfProductSizesForChooseAdminSideViewModel> sizes = ViewData["Size"] as List<Domain.ViewModels.Admin.Product.ListOfProductSizesForChooseAdminSideViewModel>;
+    List<Domain.ViewModels.Admin.Product.ListOfProductColorsForChooseAdminSideViewModel> colors = ViewData["Color"] as List<Domain.ViewModels.Admin.Product.ListOfProductColorsForChooseAdminSideViewModel>;
 
 }
-
-
 
 <div class="content-wrapper" style="min-height: 805px;">
     <!-- Content Header (Page header) -->
@@ -156,6 +156,64 @@
                                                         <label class="form-check-label"> @sub.CategoryTitle</label>
                                                     </div>
                                                 }
+                                            }
+                                        }
+
+                                    </div>
+
+
+
+                                </div>                            <!-- /.card-footer -->
+                            </div>
+                        </div>
+
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">  رنگ ها   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        @if (colors != null && colors.Any())
+                                        {
+                                            foreach (var color in colors)
+                                            {
+                                                <div style="padding-right: 40px; margin-right:10px; margin-top:10px;">
+                                                    <input class="form-check-input" type="checkbox" name="SelectColor" value="@color.ColorId">
+                                                    <label class="form-check-label"> @color.ColorTitle</label>
+                                                </div>
+                                            }
+                                        }
+
+                                    </div>
+
+
+
+                                </div>                            <!-- /.card-footer -->
+                            </div>
+                        </div>
+
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">  سایز ها   </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        @if (sizes != null && sizes.Any())
+                                        {
+                                            foreach (var size in sizes)
+                                            {
+                                                <div style="padding-right: 40px; margin-right:10px; margin-top:10px;">
+                                                    <input class="form-check-input" type="checkbox" name="SelectColor" value="@size.SizeId">
+                                                    <label class="form-check-label"> @size.SizeTitle</label>
+                                                </div>
                                             }
                                         }
 

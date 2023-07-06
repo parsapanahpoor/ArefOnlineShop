@@ -1,5 +1,7 @@
 ﻿using Domain.Models.Product;
+using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +71,16 @@ namespace Domain.Interfaces
 
         //Fill Product Detail Site Side View Model
         Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id);
+
+        #endregion
+
+        #region Admin Side 
+
+        //Fill List Of Product Colors For Choose Admin Side View Model
+        Task<List<ListOfProductColorsForChooseAdminSideViewModel>> FillListOfProductColorsForChooseAdminSideViewModel();
+
+        //Fill List Of Product Size For Choose Admin Side View Model
+        Task<List<ListOfProductSizesForChooseAdminSideViewModel>> FillListOfProductSizesForChooseAdminSideViewModel();
 
         #endregion
     }

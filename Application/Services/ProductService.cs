@@ -10,8 +10,11 @@ using Domain.Interfaces;
 using Domain.Models.Product;
 using Domain.Models.Slider;
 using Domain.Models.Users;
+using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -455,6 +458,28 @@ namespace Application.Services
         public async Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id)
         {
             return await _product.FillProductDetailSiteSideViewModel(id);
+        }
+
+        #endregion
+
+        #region Admin Side 
+
+        //Fill List Of Product Colors For Choose Admin Side View Model
+        public async Task<List<ListOfProductColorsForChooseAdminSideViewModel>> FillListOfProductColorsForChooseAdminSideViewModel()
+        {
+            return await _product.FillListOfProductColorsForChooseAdminSideViewModel();
+        }
+
+        //Fill List Of Product Size For Choose Admin Side View Model
+        public async Task<List<ListOfProductSizesForChooseAdminSideViewModel>> FillListOfProductSizesForChooseAdminSideViewModel()
+        {
+            return await _product.FillListOfProductSizesForChooseAdminSideViewModel();
+        }
+
+        //Add Color And Size For This Product 
+        public async Task<IActionResult> AddColorAndSizeForThisProduct(int productId , List<int> colorIds , List<int> sizesId)
+        {
+            
         }
 
         #endregion

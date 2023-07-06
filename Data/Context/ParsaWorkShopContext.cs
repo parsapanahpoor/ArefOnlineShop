@@ -92,7 +92,9 @@ namespace Data.Context
         public DbSet<ProductGallery> ProductGallery { get; set; }
         public DbSet<ProductsSize> ProductsSizes { get; set; }
         public DbSet<ProductColor> ProductColors{ get; set; }
-
+        public DbSet<ProductSelectedSize> ProductSelectedSizes{ get; set; }
+        public DbSet<ProductSelectedColors> ProductSelectedColors{ get; set; }
+        
         #endregion
 
         #region Favorite Products

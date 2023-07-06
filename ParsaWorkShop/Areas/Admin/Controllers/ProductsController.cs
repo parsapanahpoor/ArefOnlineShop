@@ -22,7 +22,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         private IUserService _user;
         private ICommentService _comment;
 
-        public ProductsController(IProductService product, IUserService user , ICommentService comment)
+        public ProductsController(IProductService product, IUserService user, ICommentService comment)
         {
             _product = product;
             _user = user;
@@ -30,6 +30,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         }
         #endregion
 
+        #region List Of Products 
 
         public IActionResult Index(bool Create = false, bool Edit = false, bool Delete = false)
         {
@@ -40,22 +41,22 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(_product.GetAllProducts());
         }
 
-        public IActionResult DeletedProducts()
-        {
-            var product = _product.GetAllDeletedProducts();
-            return View(product);
-        }
+        #endregion
 
-        public IActionResult Create()
+        #region Create Products
+
+        public async Task<IActionResult> Create()
         {
             ViewData["ProductCategories"] = _product.GetAllProductCategories();
+            ViewData["Size"] = await _product.FillListOfProductSizesForChooseAdminSideViewModel();
+            ViewData["Color"] = await _product.FillListOfProductColorsForChooseAdminSideViewModel();
 
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("ProductID,UserId,ProductTitle,ShortDescription,LongDescription,ProductImageName,OfferPercent,IsInOffer,ProductCount,Price,Tags,CreateDate,IsActive,IsDelete")] Product product, IFormFile imgProductUp, List<int> SelectedCategory)
+        public async Task<IActionResult> Create([Bind("ProductID,UserId,ProductTitle,ShortDescription,LongDescription,ProductImageName,OfferPercent,IsInOffer,ProductCount,Price,Tags,CreateDate,IsActive,IsDelete")] Product product, IFormFile imgProductUp, List<int> SelectedCategory, List<int> SelectColor, List<int> SelectSize)
         {
             if (ModelState.IsValid)
             {
@@ -64,22 +65,42 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
                 if (SelectedCategory == null || !SelectedCategory.Any())
                 {
                     ViewData["ProductCategories"] = _product.GetAllProductCategories();
+                    ViewData["Size"] = await _product.FillListOfProductSizesForChooseAdminSideViewModel();
+                    ViewData["Color"] = await _product.FillListOfProductColorsForChooseAdminSideViewModel();
 
                     return View(product);
                 }
 
                 #endregion
 
+                #region Add Product
+
+                //Get User By Name 
                 var user = _user.GetUserByUserName(User.Identity.Name);
+
+                //Add Product To The Data Base
                 var ProductID = _product.AddProduct(product, imgProductUp, user);
+
+                //add Category For Product
                 _product.AddCategoryToProduct(SelectedCategory, ProductID);
 
+                //Add Color And Size For This Product
+
                 return Redirect("/Admin/Products/Index?Create=true");
+
+                #endregion
             }
+
             ViewData["ProductCategories"] = _product.GetAllProductCategories();
+            ViewData["Size"] = await _product.FillListOfProductSizesForChooseAdminSideViewModel();
+            ViewData["Color"] = await _product.FillListOfProductColorsForChooseAdminSideViewModel();
 
             return View(product);
         }
+
+        #endregion
+
+        #region Edit Products 
 
         public IActionResult Edit(int? id, bool Detail = false, bool Delete = false)
         {
@@ -125,12 +146,26 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(product);
         }
 
+        #endregion
+
+        #region Delete Products
+
         public IActionResult Delete(int id)
         {
             var product = _product.GetProductByID(id);
             _product.DeleteProduct(product);
             return Redirect("/Admin/Products/Index?Delete=true");
         }
+
+        public IActionResult DeletedProducts()
+        {
+            var product = _product.GetAllDeletedProducts();
+            return View(product);
+        }
+
+        #endregion
+
+        #region Active Product
 
         public IActionResult LockProduct(int productid, int id)
         {
@@ -148,6 +183,10 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             _product.UpdateProductForLock(product);
             return RedirectToAction(nameof(Index));
         }
+
+        #endregion
+
+        #region Product Featurs
 
         public IActionResult ProductFeaturs(int id)
         {
@@ -175,6 +214,10 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             var feature = _product.GetFeatureById(id);
             _product.DeleteProductFeature(feature);
         }
+
+        #endregion
+
+        #region Gallery
 
         public ActionResult Gallery(int id)
         {
@@ -207,6 +250,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return RedirectToAction("Gallery", new { id = product.ProductID });
         }
 
+        #endregion
 
         #region ProductsComments
 
@@ -245,10 +289,9 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         #endregion
 
-
         #region Offer
 
-        public IActionResult ListOfProductsInOffer(bool Add = false , bool Delete = false)
+        public IActionResult ListOfProductsInOffer(bool Add = false, bool Delete = false)
         {
             if (Add == true)
             {
