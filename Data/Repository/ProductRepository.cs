@@ -8,6 +8,7 @@ using Domain.ViewModels.SiteSide.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.SafeHandles;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -259,6 +260,20 @@ namespace Data.Repository
                                                               .ToList(),
                                  })
                                  .FirstOrDefaultAsync();
+        }
+
+        //Check That Is Exist Product With This Color
+        public async Task<bool> CheckThatIsExistProductWithThisColor(int productId , int colorId)
+        {
+            return await _context.ProductSelectedColors
+                                 .AnyAsync(p=> !p.IsDelete && p.ProductId == productId && p.ColorId == colorId);
+        }
+
+        //Check That Is Exist Product With This Size
+        public async Task<bool> CheckThatIsExistProductWithThisSize(int productId, int sizeId)
+        {
+            return await _context.ProductSelectedSizes
+                                 .AnyAsync(p => !p.IsDelete && p.ProductId == productId && p.SizeId == sizeId);
         }
 
         #endregion

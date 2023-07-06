@@ -4,14 +4,16 @@ using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(ParsaWorkShopContext))]
-    partial class ParsaWorkShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230706095318_Add-ColorId-SizeId-To-The-OrderDetail-Table")]
+    partial class AddColorIdSizeIdToTheOrderDetailTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

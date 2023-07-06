@@ -19,9 +19,11 @@ namespace Data.Repository
             _context = context;
         }
 
-        public OrderDetails AddOneMoreProductToTheShopCart(int orderid, int productid)
+        public OrderDetails AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId)
         {
-            return _context.OrderDetails.SingleOrDefault(p => p.OrderID == orderid && p.ProductID == productid);
+            return _context.OrderDetails
+                           .FirstOrDefault(p => p.OrderID == orderid && p.ProductID == productid
+                                           && p.ColorId == colorId && p.SizeId == sizeId);
         }
 
         public void AddOrderDetails(OrderDetails orderDetails)
@@ -88,9 +90,10 @@ namespace Data.Repository
             return _context.Orders.Any(p => p.LocationID == Locationid);
         }
 
-        public bool IsExistOrderDetailFromUserFromToday(int orderid, int productid)
+        public bool IsExistOrderDetailFromUserFromToday(int orderid, int productid, int colorId, int sizeId)
         {
-            return _context.OrderDetails.Any(p => p.OrderID == orderid && p.ProductID == productid);
+            return _context.OrderDetails
+                           .Any(p => p.OrderID == orderid && p.ProductID == productid && p.ColorId == colorId && p.SizeId == sizeId);
         }
 
         public bool IsExistOrderFromUserFromToday(int userid)

@@ -10,7 +10,6 @@ namespace Domain.Models.Order
 {
     public class OrderDetails
     {
-
         [Key]
         public int OrderDetailID { get; set; }
 
@@ -25,6 +24,10 @@ namespace Domain.Models.Order
         public int Count { get; set; }
 
         public bool IsReturend { get; set; }
+
+        public int ColorId { get; set; }
+
+        public int SizeId { get; set; }
 
         #region Navigations
 

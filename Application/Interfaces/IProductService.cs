@@ -98,6 +98,12 @@ namespace Application.Interfaces
         //Update Product Selected Colors And Sizes
         Task<bool> UpdateProductSelectedColorsAndSizes(int productId, List<int> colorsId, List<int> sizesId);
 
+        //Check That Is Exist Product With This Color
+        Task<bool> CheckThatIsExistProductWithThisColor(int productId, int colorId);
+
+        //Check That Is Exist Product With This Size
+        Task<bool> CheckThatIsExistProductWithThisSize(int productId, int sizeId);
+
         #endregion
     }
 }

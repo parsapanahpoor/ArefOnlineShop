@@ -18,9 +18,9 @@ namespace Application.Services
             _order = order;
         }
 
-        public void AddOneMoreProductToTheShopCart(int orderid, int productid)
+        public void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId)
         {
-            OrderDetails orderDetails = _order.AddOneMoreProductToTheShopCart(orderid, productid);
+            OrderDetails orderDetails = _order.AddOneMoreProductToTheShopCart(orderid, productid , colorId , sizeId);
             orderDetails.Count = orderDetails.Count + 1;
 
             _order.UpdateOrderDetail(orderDetails);
@@ -44,15 +44,21 @@ namespace Application.Services
             return order.OrderId;
         }
 
-        public void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price)
+        public void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price, int colorId, int sizeId)
         {
+            #region Fill Order Detail
+
             OrderDetails orderDetails = new OrderDetails()
             {
                 OrderID = OrderID,
                 ProductID = ProductID,
                 Price = Price,
-                Count = 1
+                Count = 1,
+                ColorId = colorId,
+                SizeId = sizeId
             };
+
+            #endregion
 
             _order.AddOrderDetails(orderDetails);
         }
@@ -133,9 +139,9 @@ namespace Application.Services
             return false;
         }
 
-        public bool IsExistOrderDetailFromUserFromToday(int orderid, int productid)
+        public bool IsExistOrderDetailFromUserFromToday(int orderid, int productid, int colorId, int sizeId)
         {
-            return _order.IsExistOrderDetailFromUserFromToday(orderid, productid);
+            return _order.IsExistOrderDetailFromUserFromToday(orderid, productid , colorId , sizeId);
         }
 
         public bool IsExistOrderFromUserFromToday(int userid)

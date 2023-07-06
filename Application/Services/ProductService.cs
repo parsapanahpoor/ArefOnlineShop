@@ -566,6 +566,18 @@ namespace Application.Services
             return true;
         }
 
+        //Check That Is Exist Product With This Color
+        public async Task<bool> CheckThatIsExistProductWithThisColor(int productId, int colorId)
+        {
+            return await _product.CheckThatIsExistProductWithThisColor(productId, colorId);
+        }
+
+        //Check That Is Exist Product With This Size
+        public async Task<bool> CheckThatIsExistProductWithThisSize(int productId, int sizeId)
+        {
+            return await _product.CheckThatIsExistProductWithThisSize(productId, sizeId);
+        }
+
         #endregion
     }
 }

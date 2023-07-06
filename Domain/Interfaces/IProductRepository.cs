@@ -72,6 +72,12 @@ namespace Domain.Interfaces
         //Fill Product Detail Site Side View Model
         Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id);
 
+        //Check That Is Exist Product With This Color
+        Task<bool> CheckThatIsExistProductWithThisColor(int productId, int colorId);
+
+        //Check That Is Exist Product With This Size
+        Task<bool> CheckThatIsExistProductWithThisSize(int productId, int sizeId);
+
         #endregion
 
         #region Admin Side 

@@ -28,8 +28,8 @@ namespace Domain.Interfaces
 
         #region OrderDetails
 
-        bool IsExistOrderDetailFromUserFromToday(int orderid, int productid);
-        OrderDetails AddOneMoreProductToTheShopCart(int orderid, int productid);
+        bool IsExistOrderDetailFromUserFromToday(int orderid, int productid, int colorId, int sizeId);
+        OrderDetails AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId);
         void UpdateOrderDetail(OrderDetails orderDetails);
         void AddOrderDetails(OrderDetails orderDetails);
         List<OrderDetails> GetAllOrderDetailsByOrderID(int orderid);

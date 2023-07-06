@@ -57,18 +57,37 @@ namespace ParsaWorkShop.Controllers
 
         #region Add To Shop Cart
 
-        [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult AddToShopCart(IncomingProductInBasketSiteSideViewModel model)
+        [HttpPost, ValidateAntiForgeryToken , Authorize]
+        public async Task<IActionResult> AddToShopCart(IncomingProductInBasketSiteSideViewModel model)
         {
             #region Model State Validation
+
+            if (!model.selectColor.HasValue || !model.selectSize.HasValue)
+            {
+                TempData[ErrorMessage] = "You Must Choose Size And Color";
+                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id });
+            }
 
             if (model.id == null)
             {
                 return NotFound();
             }
+
             if (!_product.IsExistPRoduct((int)model.id))
             {
                 return NotFound();
+            }
+
+            if (! await _product.CheckThatIsExistProductWithThisColor(model.id.Value , model.selectColor.Value))
+            {
+                TempData[ErrorMessage] = "There is a problem with datas";
+                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id });
+            }
+
+            if (!await _product.CheckThatIsExistProductWithThisSize(model.id.Value, model.selectSize.Value))
+            {
+                TempData[ErrorMessage] = "There is a problem with datas";
+                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id });
             }
 
             #endregion
@@ -81,23 +100,27 @@ namespace ParsaWorkShop.Controllers
             //Get Product By Product Id
             Product product = _product.GetProductByID((int)model.id);
 
+            //Is Exit Any Order For Current User Today
             if (_order.IsExistOrderFromUserFromToday(userid))
             {
                 Orders order = _order.GetOrderForShopCart(userid);
 
-                if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id))
+                if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id , model.selectColor.Value , model.selectSize.Value))
                 {
-                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id);
+                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id , model.selectColor.Value, model.selectSize.Value);
                 }
                 else
                 {
-                    _order.AddProductToOrderDetail(order.OrderId, product.ProductID, product.Price);
+                    _order.AddProductToOrderDetail(order.OrderId, product.ProductID, product.Price , model.selectColor.Value , model.selectSize.Value);
                 }
             }
             else
             {
+                //Order To The Data Base
                 int orderid = _order.AddOrderToTheShopCart(userid);
-                _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price);
+
+                //Add Order Detail To The Data Base 
+                _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price , model.selectColor.Value , model.selectSize.Value);
             }
 
             #endregion
