@@ -47,7 +47,8 @@ namespace ParsaWorkShop.Controllers
 
         #region Single Page Products
 
-        public async Task<IActionResult> SinglePageProducts(int? id)
+        [HttpGet("SinglePageProducts/{id}/{ProductTitle}")]
+        public async Task<IActionResult> SinglePageProducts(int? id , string ProductTitle)
         {
             if (id == null)
             {
