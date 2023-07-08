@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿#region Usings
+
+using Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsaWorkShop.Models;
 using ParsaWorkShop.Web.Controllers;
@@ -8,22 +11,35 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+#endregion
+
 namespace ParsaWorkShop.Controllers
 {
     public class HomeController : SiteBaseController
     {
         #region Ctor
+
         private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ISiteSettingService _siteSettingService;
+
+        public HomeController(ILogger<HomeController> logger , ISiteSettingService siteSettingService)
         {
             _logger = logger;
+            _siteSettingService = siteSettingService;
         }
+
         #endregion
 
-        [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Client, NoStore = false)]
-        public IActionResult Index()
+        //[ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Client, NoStore = false)]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            #region Fill Model
+
+            var model = await _siteSettingService.FillIndexPageViewModel();
+
+            #endregion
+
+            return View(model);
         }
 
         public IActionResult Privacy()

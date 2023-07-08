@@ -1,7 +1,43 @@
 ﻿   <!--====== BACK TO TOP PART ENDS ======-->
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/ArefSet/src/JS/landing.js"></script>
+<script src="/ArefSet/src/JS/cdn.jsdelivr.net_npm_swiper@9.4.1_swiper-bundle.min.js"></script>
+
+<script type="module">
+    var swiper3 = new Swiper(".swiper3", {
+        direction: "vertical",
+        // spaceBetween: 30,
+        // effect: "fade",
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination3",
+            clickable: true,
+        },
+        autoplay: {
+            delay: 3000,
+        },
+    });
+</script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        effect: "fade",
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        autoplay: {
+            delay: 3000,
+        },
+    });
+</script>
 
 <!--Add By Developer-->
 

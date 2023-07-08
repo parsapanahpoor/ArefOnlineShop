@@ -4,6 +4,7 @@ using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Product;
 using Domain.ViewModels.Admin.SiteSetting;
+using Domain.ViewModels.SiteSide.Home;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -94,8 +95,8 @@ namespace Data.Repository
         {
             return await _context.ProductsSizes
                                  .AsNoTracking()
-                                 .Where(p=> !p.IsDelete )
-                                 .Select(p=> new ListOfColorsAdminSideViewModel()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new ListOfColorsAdminSideViewModel()
                                  {
                                      Id = p.Id,
                                      SizeTitle = p.SizeTitle,
@@ -115,8 +116,8 @@ namespace Data.Repository
         {
             return await _context.ProductsSizes
                                  .AsNoTracking()
-                                 .Where(p=> !p.IsDelete && p.Id == id)
-                                 .Select(p=> new EditSizeAdminSideViewModel()
+                                 .Where(p => !p.IsDelete && p.Id == id)
+                                 .Select(p => new EditSizeAdminSideViewModel()
                                  {
                                      SizeId = p.Id,
                                      SizeName = p.SizeTitle
@@ -142,6 +143,125 @@ namespace Data.Repository
         #endregion
 
         #endregion
-    }
 
+        #region Site Side 
+
+        //Fill Index Page View Model
+        public async Task<IndexPageViewModel> FillIndexPageViewModel()
+        {
+            IndexPageViewModel model = new IndexPageViewModel();
+
+            #region Lastest Aref's Products
+
+            var LastestCategoriesId = await _context.ProductCategories
+                                                 .AsNoTracking()
+                                                 .Where(p => !p.IsDelete)
+                                                 .Select(p => p.ProductCategoryId)
+                                                 .ToListAsync();
+
+            #region First Record For All Products
+
+            LastestsArefProducts AllProducts = new LastestsArefProducts();
+
+            AllProducts.ProdudctCategoryId = null;
+            AllProducts.LastestProducts = await _context.product
+                                                        .AsNoTracking()     
+                                                        .Where(p=> !p.IsDelete)
+                                                        .OrderByDescending(p=> p.CreateDate)
+                                                        .Select(p=> new LastestProducts()
+                                                        {
+                                                            IsInOffer = p.IsInOffer,
+                                                            OldPrice = p.OldPrice,
+                                                            Price = p.Price,
+                                                            ProductId = p.ProductID,
+                                                            ProductImageName = p.ProductImageName,
+                                                            Title = p.ProductTitle
+                                                        })
+                                                        .ToListAsync();
+
+            #endregion
+
+            if (LastestCategoriesId != null && LastestCategoriesId.Any())
+            {
+                foreach (var categoryId in LastestCategoriesId)
+                {
+                    LastestsArefProducts lastestsArefProducts = new LastestsArefProducts();
+
+                    lastestsArefProducts.ProdudctCategoryId = categoryId;
+
+                    //Get Products Selected This Category
+                    var productsId = await _context.ProductSelectedCategory
+                                                   .AsNoTracking()
+                                                   .Where(p => p.ProductCategoryId == categoryId)
+                                                   .OrderByDescending(p => p.CreateDate)
+                                                   .Select(p => p.ProductID)
+                                                   .Take(6)
+                                                   .ToListAsync();
+
+                    if (productsId != null && productsId.Any())
+                    {
+                        foreach (var productId in productsId)
+                        {
+                            LastestProducts productViewModel = new LastestProducts();
+
+                            productViewModel = await _context.product
+                                                             .AsNoTracking()
+                                                             .Where(p => !p.IsDelete && p.ProductID == productId)
+                                                             .Select(p => new LastestProducts()
+                                                             {
+                                                                 IsInOffer = p.IsInOffer,
+                                                                 OldPrice = p.OldPrice,
+                                                                 Price = p.Price,
+                                                                 ProductId = p.ProductID,
+                                                                 ProductImageName = p.ProductImageName,
+                                                                 Title = p.ProductTitle
+                                                             })
+                                                             .FirstOrDefaultAsync();
+
+                            if (productViewModel != null) lastestsArefProducts.LastestProducts.Add(productViewModel);
+                        }
+                    }
+
+                    if (lastestsArefProducts != null) model.LastestsArefProducts.Add(lastestsArefProducts);
+                }
+            }
+
+            #endregion
+
+            #region Categories With Images 
+
+            model.LatestCategoriesWithImages =   await _context.ProductCategories
+                                                               .AsNoTracking()
+                                                               .Where(p => !p.IsDelete && string.IsNullOrEmpty(p.ImageName))
+                                                               .Select(p=> new LatestCategoriesWithImage()
+                                                               {
+                                                                   CategoryId = p.ProductCategoryId,
+                                                                   CategoryTitle = p.CategoryTitle,
+                                                                   ProductImage = p.ImageName
+                                                               })
+                                                               .ToListAsync();
+
+            #endregion
+
+            #region Users Comments
+
+            model.UsersComments = await _context.UsersCommentsAboutSites
+                                                .AsNoTracking()
+                                                .Where(p => !p.IsDelete)
+                                                .OrderByDescending(p=> p.CreateDate)
+                                                .Select(p => new UsersCommentsAboutWebSites()
+                                                {
+                                                    CommentId = p.Id,
+                                                    UserCommentText = p.CommentText,
+                                                    Username = p.Username
+                                                })
+                                                .ToListAsync();
+
+            #endregion
+
+            return model;
+        }
+
+        #endregion
+    }
 }

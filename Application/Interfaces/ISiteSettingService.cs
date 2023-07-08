@@ -3,6 +3,7 @@
 using Application.Extensions;
 using Application.StaticTools;
 using Domain.ViewModels.Admin.SiteSetting;
+using Domain.ViewModels.SiteSide.Home;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,13 @@ namespace Application.Interfaces
         Task<bool> DeleteSize(int id);
 
         #endregion
+
+        #endregion
+
+        #region Site Side 
+
+        //Fill Index Page View Model
+        Task<IndexPageViewModel> FillIndexPageViewModel();
 
         #endregion
     }

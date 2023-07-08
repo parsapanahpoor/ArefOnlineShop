@@ -5,6 +5,7 @@ using Domain.Interfaces;
 using Domain.Models.Product;
 using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
+using Domain.ViewModels.SiteSide.SitSideBar;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.SafeHandles;
 using System;
@@ -274,6 +275,20 @@ namespace Data.Repository
         {
             return await _context.ProductSelectedSizes
                                  .AnyAsync(p => !p.IsDelete && p.ProductId == productId && p.SizeId == sizeId);
+        }
+
+        //List Of Product Categories For Show Site Side Bar
+        public async Task<List<ListOfProductCategoriesForShowInSiteSideBar>> ListOfProductCategoriesForShowSiteSideBar()
+        {
+            return await _context.ProductCategories
+                                 .AsNoTracking()
+                                 .Where(p=> !p.IsDelete)
+                                 .Select(p=> new ListOfProductCategoriesForShowInSiteSideBar()
+                                 {
+                                     CategoryId = p.ProductCategoryId,
+                                     CategoryTitle = p.CategoryTitle
+                                 })
+                                 .ToListAsync();
         }
 
         #endregion

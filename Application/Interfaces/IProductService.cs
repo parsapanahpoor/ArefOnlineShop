@@ -4,6 +4,7 @@ using Domain.Models.Product;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
+using Domain.ViewModels.SiteSide.SitSideBar;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -75,6 +76,9 @@ namespace Application.Interfaces
 
         //Fill Product Detail Site Side View Model
         Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id);
+
+        //Get List Of Product Categries For Show In Site Bar
+        Task<SiteSideBarViewModel> FillSiteSideBar();
 
         #endregion
 

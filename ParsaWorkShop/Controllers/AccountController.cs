@@ -376,6 +376,11 @@ namespace ParsaWorkShop.Controllers
 
         public IActionResult ManageUserForLogin()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction(nameof(Login));
+            }
+
             List<int> UserRoles = _userService.GetUsersRoles(User.Identity.Name);
 
             if (UserRoles.Any() == false)

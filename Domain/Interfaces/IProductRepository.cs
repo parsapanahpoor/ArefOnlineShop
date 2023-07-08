@@ -1,6 +1,7 @@
 ﻿using Domain.Models.Product;
 using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
+using Domain.ViewModels.SiteSide.SitSideBar;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,9 @@ namespace Domain.Interfaces
 
         //Check That Is Exist Product With This Size
         Task<bool> CheckThatIsExistProductWithThisSize(int productId, int sizeId);
+
+        //List Of Product Categories For Show Site Side Bar
+        Task<List<ListOfProductCategoriesForShowInSiteSideBar>> ListOfProductCategoriesForShowSiteSideBar();
 
         #endregion
 

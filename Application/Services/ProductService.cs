@@ -12,9 +12,12 @@ using Domain.Models.Slider;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
+using Domain.ViewModels.SiteSide.SitSideBar;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -472,6 +475,20 @@ namespace Application.Services
             #endregion
 
             return returnModel;
+        }
+
+        //Get List Of Product Categries For Show In Site Bar
+        public async Task<SiteSideBarViewModel> FillSiteSideBar()
+        {
+            SiteSideBarViewModel model = new SiteSideBarViewModel();
+
+            #region List Of Product Category
+
+            model.ListOfProductCategoriesForShowInSiteSideBar = await _product.ListOfProductCategoriesForShowSiteSideBar();
+
+            #endregion
+
+            return model;
         }
 
         #endregion

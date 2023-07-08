@@ -9,6 +9,7 @@ using Domain.Models.Product;
 using Domain.Models.Slider;
 using Domain.ViewModels.Admin.SiteSetting;
 using Domain.ViewModels.Admin.Slider;
+using Domain.ViewModels.SiteSide.Home;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -237,6 +238,16 @@ namespace Application.SiteServices
         }
 
         #endregion
+
+        #endregion
+
+        #region Site Side 
+
+        //Fill Index Page View Model
+        public async Task<IndexPageViewModel> FillIndexPageViewModel()
+        {
+            return await _siteSettingRepsitory.FillIndexPageViewModel();
+        }
 
         #endregion
     }

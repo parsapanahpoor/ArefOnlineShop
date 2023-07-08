@@ -2,6 +2,7 @@
 
 using Domain.Models.Product;
 using Domain.ViewModels.Admin.SiteSetting;
+using Domain.ViewModels.SiteSide.Home;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,13 @@ namespace Domain.Interfaces
         Task UpdateSize(ProductsSize size);
 
         #endregion
+
+        #endregion
+
+        #region Site Side 
+
+        //Fill Index Page View Model
+        Task<IndexPageViewModel> FillIndexPageViewModel();
 
         #endregion
     }
