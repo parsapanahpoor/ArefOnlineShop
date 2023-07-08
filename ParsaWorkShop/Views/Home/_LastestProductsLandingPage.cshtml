@@ -1,4 +1,5 @@
-﻿@model List<Domain.ViewModels.SiteSide.Home.LastestsArefProducts>
+﻿@*@model List<Domain.ViewModels.SiteSide.Home.LastestsArefProducts>
+@using Application.StaticTools
 
 <section class="w-full">
     <div class="flex items-center justify-center mb-5">
@@ -24,7 +25,7 @@
         <div class="tabset max-w-[99%] lg:max-w-[86.5em] mx-auto">
             <!-- Tab 1 -->
             <input type="radio" name="tabset" id="tab1" aria-controls="allProduct" checked />
-                                    
+
             <label for="tab1" class="text-[14px] lg:text-[24px]">همه محصولات</label>
 
             <!-- Tab 2 -->
@@ -37,45 +38,55 @@
 
             <div class="tab-panels">
 
-                <section id="allProduct" class="tab-panel">
-                    <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
-                            <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
-                                <img class="w-full h-full object-cover"
-                                     src="/ArefSet/src/assets/images/landing/Rectangle 5(1).png"
-                                     alt="" />
-                                <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">
-                                    <button class="focus:outline-none bg-transparent w-full h-full">
-                                        افزودن به سبد خرید
-                                    </button>
-                                </div>
-                                <div class="transition-all absolute w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] top-4 left-6 lg:top-6 lg:left-8 opacity-0 flex items-center justify-center bg-[#252525] text-center text-[#fff] likeProduct">
-                                    <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="" />
-                                </div>
-                            </div>
-                            <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
-                                <div class="text-right">
-                                    <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="font-bold text-[14px] lg:text-[20px]">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div class="text-left">
-                                    <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                @if (Model.Any(p => p.ProdudctCategoryId == null))
+                {
+                    <section id="allProduct" class="tab-panel">
+                        <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                    </div>
-                    <!-- <div class=" shadow-lg w-[414px] h-[480px] col-span-1 md:col-span-1 lg:col-span-1"></div> -->
-                </section>
+                            @foreach (var item in Model.Where(p => p.ProdudctCategoryId == null).Select(p=> p.LastestProducts).FirstOrDefault())
+                            {
+                                <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
+                                    <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
+
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
+                                             
+                                             
+                                        <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">
+                                            <button class="focus:outline-none bg-transparent w-full h-full">
+                                                افزودن به سبد خرید
+                                            </button>
+                                        </div>
+                                        <div class="transition-all absolute w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] top-4 left-6 lg:top-6 lg:left-8 opacity-0 flex items-center justify-center bg-[#252525] text-center text-[#fff] likeProduct">
+                                            <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
+                                        <div class="text-right">
+                                            <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                                دسته بندی : کفش
+                                            </p>
+                                            <p class="font-bold text-[14px] lg:text-[20px]">
+                                                لباس ورزشی مردانه
+                                            </p>
+                                        </div>
+                                        <div class="text-left">
+                                            <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
+                                                ۹۹۹٫۰۰۰ تومان
+                                            </p>
+                                            <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
+                                                ۷۹۹٫۰۰۰
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </section>
+
+                }
+
+
 
                 <section id="men" class="tab-panel">
                     <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -171,3 +182,4 @@
     }
 
 </section>
+*@
