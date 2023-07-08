@@ -77,6 +77,10 @@ namespace Domain.ViewModels.SiteSide.Home
 
         public string ProductImage { get; set; }
 
+        public string Div { get; set; }
+
+        public string P{ get; set; }
+
         #endregion
     }
 

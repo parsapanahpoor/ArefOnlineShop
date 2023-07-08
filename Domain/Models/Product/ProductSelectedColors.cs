@@ -16,5 +16,12 @@ namespace Domain.Models.Product
         public int ColorId { get; set; }
 
         #endregion
+
+        #region Relations
+
+        public ProductColor ProductColor { get; set; }
+        public Product Product { get; set; }
+
+        #endregion
     }
 }

@@ -18,6 +18,19 @@ namespace Domain.Models.Product
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string CategoryTitle { get; set; }
 
+        [Display(Name = "کلاس تگ Div")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(500, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        public string DivTagClass { get; set; }
+
+        [Display(Name = "کلاس تگ P")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(500, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        public string PTagClass { get; set; }
+
+        [Display(Name = "الویت نمایش")]
+        public int Priority { get; set; }
+
         [Display(Name = "حذف شده ؟")]
         public bool IsDelete { get; set; }
 

@@ -16,5 +16,12 @@ namespace Domain.Models.Product
         public int SizeId { get; set; }
 
         #endregion
+
+        #region Relations
+
+        public ProductsSize ProductsSize { get; set; }
+        public Product Product { get; set; }
+
+        #endregion
     }
 }

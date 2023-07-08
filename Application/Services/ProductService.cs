@@ -118,6 +118,9 @@ namespace Application.Services
             cat.CategoryTitle = productCategories.CategoryTitle;
             cat.IsDelete = false;
             cat.ParentId = productCategories.ParentId;
+            cat.PTagClass = productCategories.PTagClass;
+            cat.DivTagClass = productCategories.DivTagClass;
+            cat.Priority = productCategories.Priority;
 
             #region Add Slider Image
 
@@ -427,6 +430,9 @@ namespace Application.Services
         {
             ProductCategories category = GetProductCatgeoriesById(id);
             category.CategoryTitle = productCategories.CategoryTitle;
+            category.DivTagClass = productCategories.DivTagClass;
+            category.Priority = productCategories.Priority;
+            category.PTagClass = productCategories.PTagClass;
 
             #region Update Image
 

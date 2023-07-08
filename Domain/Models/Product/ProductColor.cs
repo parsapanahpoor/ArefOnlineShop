@@ -20,5 +20,11 @@ namespace Domain.Models.Product
         public string ColorImage { get; set; }
 
         #endregion
+
+        #region Relations
+
+        public List<ProductSelectedColors> ProductSelectedColors { get; set; }
+
+        #endregion
     }
 }

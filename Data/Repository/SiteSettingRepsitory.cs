@@ -8,6 +8,7 @@ using Domain.ViewModels.SiteSide.Home;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -243,11 +244,14 @@ namespace Data.Repository
             model.LatestCategoriesWithImages =   await _context.ProductCategories
                                                                .AsNoTracking()
                                                                .Where(p => !p.IsDelete && !string.IsNullOrEmpty(p.ImageName))
+                                                               .OrderBy(p=> p.Priority)
                                                                .Select(p=> new LatestCategoriesWithImage()
                                                                {
                                                                    CategoryId = p.ProductCategoryId,
                                                                    CategoryTitle = p.CategoryTitle,
-                                                                   ProductImage = p.ImageName
+                                                                   ProductImage = p.ImageName,
+                                                                   Div = p.DivTagClass,
+                                                                   P= p.PTagClass
                                                                })
                                                                .ToListAsync();
 

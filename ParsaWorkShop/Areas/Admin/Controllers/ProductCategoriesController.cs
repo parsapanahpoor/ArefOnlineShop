@@ -54,7 +54,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("ProductCategoryId,CategoryTitle,IsDelete,ParentId")] ProductCategories productCategories ,  IFormFile? imgBlogUp)
+        public IActionResult Create(ProductCategories productCategories ,  IFormFile? imgBlogUp)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("ProductCategoryId,CategoryTitle,IsDelete,ParentId")] ProductCategories productCategories, IFormFile? imgBlogUp)
+        public IActionResult Edit(int id,ProductCategories productCategories, IFormFile? imgBlogUp)
         {
             if (id != productCategories.ProductCategoryId)
             {

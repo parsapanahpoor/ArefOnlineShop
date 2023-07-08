@@ -3,6 +3,7 @@
 using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Product;
+using Domain.Models.Users;
 using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
@@ -264,10 +265,10 @@ namespace Data.Repository
         }
 
         //Check That Is Exist Product With This Color
-        public async Task<bool> CheckThatIsExistProductWithThisColor(int productId , int colorId)
+        public async Task<bool> CheckThatIsExistProductWithThisColor(int productId, int colorId)
         {
             return await _context.ProductSelectedColors
-                                 .AnyAsync(p=> !p.IsDelete && p.ProductId == productId && p.ColorId == colorId);
+                                 .AnyAsync(p => !p.IsDelete && p.ProductId == productId && p.ColorId == colorId);
         }
 
         //Check That Is Exist Product With This Size
@@ -282,14 +283,55 @@ namespace Data.Repository
         {
             return await _context.ProductCategories
                                  .AsNoTracking()
-                                 .Where(p=> !p.IsDelete)
-                                 .Select(p=> new ListOfProductCategoriesForShowInSiteSideBar()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new ListOfProductCategoriesForShowInSiteSideBar()
                                  {
                                      CategoryId = p.ProductCategoryId,
                                      CategoryTitle = p.CategoryTitle
                                  })
                                  .ToListAsync();
         }
+
+        //List Of Products
+        //public async Task<ListOfProductsViewModel> FilterProducts(ListOfProductsViewModel model)
+        //{
+        //    var query = _context.product
+        //        .Where(s => !s.IsDelete)
+        //        .OrderByDescending(s => s.CreateDate)
+        //        .AsQueryable();
+
+        //    #region State
+
+        //    //switch (filter.CourseActiveStatus)
+        //    //{
+        //    //    case CourseActiveStatus.All:
+        //    //        break;
+        //    //    case CourseActiveStatus.Active:
+        //    //        query = query.Where(s => s.IsActive);
+        //    //        break;
+        //    //    case CourseActiveStatus.NotActive:
+        //    //        query = query.Where(s => !s.IsActive);
+        //    //        break;
+        //    //}
+
+        //    #endregion
+
+        //    #region Filter
+
+           
+
+        //    #endregion
+
+        //    #region Filter Categories
+
+            
+
+        //    #endregion
+
+        //    await filter.Paging(query);
+
+        //    return filter;
+        //}
 
         #endregion
 
@@ -369,7 +411,7 @@ namespace Data.Repository
                                            .Where(p => !p.IsDelete && p.ProductId == productId)
                                            .ToList();
 
-            if(lastColorRecords != null && lastColorRecords.Any()) _context.ProductSelectedColors.RemoveRange(lastColorRecords);
+            if (lastColorRecords != null && lastColorRecords.Any()) _context.ProductSelectedColors.RemoveRange(lastColorRecords);
 
             #endregion
 
@@ -380,7 +422,7 @@ namespace Data.Repository
                                            .Where(p => !p.IsDelete && p.ProductId == productId)
                                            .ToList();
 
-            if (lastSizesRecords != null && lastSizesRecords.Any())  _context.ProductSelectedSizes.RemoveRange(lastSizesRecords);
+            if (lastSizesRecords != null && lastSizesRecords.Any()) _context.ProductSelectedSizes.RemoveRange(lastSizesRecords);
 
             #endregion
 
@@ -392,10 +434,10 @@ namespace Data.Repository
         {
             #region Get Selected Color
 
-            var colorsId  = await _context.ProductSelectedColors
+            var colorsId = await _context.ProductSelectedColors
                                           .AsNoTracking()
-                                          .Where(p=> !p.IsDelete && p.ProductId == productId)
-                                          .Select(p=> p.ColorId)
+                                          .Where(p => !p.IsDelete && p.ProductId == productId)
+                                          .Select(p => p.ColorId)
                                           .ToListAsync();
 
             #endregion

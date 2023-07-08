@@ -1,6 +1,7 @@
 ﻿using Application.Extensions;
 using Application.Interfaces;
 using Domain.Models.Comment;
+using Domain.ViewModels.SiteSide.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ParsaWorkShop.Web.Controllers;
@@ -41,6 +42,15 @@ namespace ParsaWorkShop.Controllers
             ViewBag.Filter = filter;
 
             return View(_product.GetProductsForShowInHomePage(Categroyid, pageId, filter, 15, orderByType));
+        }
+
+        #endregion
+
+        #region List Of Products
+
+        public async Task<IActionResult> ListOfProducts(ListOfProductsViewModel model)
+        {
+            return View();
         }
 
         #endregion

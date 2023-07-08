@@ -18,5 +18,11 @@ namespace Domain.Models.Product
         public string SizeTitle { get; set; }
 
         #endregion
+
+        #region Relations
+
+        public List<ProductSelectedSize> ProductSelectedSizes { get; set; }
+
+        #endregion
     }
 }

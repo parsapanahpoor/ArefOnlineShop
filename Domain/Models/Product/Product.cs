@@ -60,6 +60,8 @@ namespace Domain.Models.Product
         #region Relations
 
         public  List<ProductSelectedCategory> ProductSelectedCategory { get; set; }
+        public  List<ProductSelectedColors> ProductSelectedColors { get; set; }
+        public  List<ProductSelectedSize> ProductSelectedSizes { get; set; }
         public  List<ProductFeature> ProductFeatures { get; set; }
         public  List<ProductGallery> ProductGalleries { get; set; }
         public  List<Order.OrderDetails> OrderDetails { get; set; }
@@ -67,8 +69,5 @@ namespace Domain.Models.Product
         public  User Users { get; set; }
 
         #endregion
-
-
-
     }
 }
