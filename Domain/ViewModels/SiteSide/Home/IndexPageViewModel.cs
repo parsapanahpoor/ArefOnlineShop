@@ -37,6 +37,8 @@ namespace Domain.ViewModels.SiteSide.Home
 
         public int? ProdudctCategoryId { get; set; }
 
+        public string? ProdudctCategoryTitle { get; set; }
+
         public List<LastestProducts> LastestProducts { get; set; }
 
         #endregion

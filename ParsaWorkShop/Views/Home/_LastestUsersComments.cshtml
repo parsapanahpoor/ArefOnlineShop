@@ -1,0 +1,69 @@
+﻿@model List<Domain.ViewModels.SiteSide.Home.UsersCommentsAboutWebSites>
+
+    @if (Model != null && Model.Any())
+{
+    <section class="w-full my-20 bg-no-repeat"
+             style="
+          background-image: url(/ArefSet/src/assets/images/landing/Layer\ 4.svg);
+          background-position: right center;
+          background-size: 40%;
+        ">
+        <div class="max-w-[99%] lg:max-w-[86.5em] min-h-[400px] mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+            <div class="h-[200px] lg:h-auto relative col-span-2 md:col-span-2 lg:col-span-1 grid grid-cols-2 lg:gap-5">
+                <div class="rounded-full px-3 lg:px-0 mb-2 lg:mb-0 absolute right-[3%] bottom-[0%] lg:right-[13%] lg:bottom-[32%] w-[104px] h-[104px] lg:w-[136px] lg:h-[136px]">
+                    <img class="rounded-full w-full h-full object-cover"
+                         src="/ArefSet/src/assets/images/landing/84 1.png"
+                         alt="" />
+                </div>
+
+                <div class="rounded-full absolute left-[15%] bottom-[10%] lg:left-[20%] lg:bottom-[37%] w-[59px] h-[59px] lg:w-[104px] lg:h-[104px]">
+                    <img class="rounded-full w-full h-full object-cover"
+                         src="/ArefSet/src/assets/images/landing/image 3.png"
+                         alt="" />
+                </div>
+
+                <div class="rounded-full absolute right-[25%] top-[10%] lg:right-[40%] lg:top-[8%] w-[55px] h-[55px] lg:w-[72px] lg:h-[72px]">
+                    <img class="rounded-full w-full h-full object-cover"
+                         src="/ArefSet/src/assets/images/landing/image 2.png"
+                         alt="" />
+                </div>
+
+                <div class="rounded-full absolute left-[5%] top-[5%] lg:left-[5%] lg:top-[4%] w-[44px] h-[44px] lg:w-[58px] lg:h-[58px]">
+                    <img class="rounded-full w-full h-full object-cover"
+                         src="/ArefSet/src/assets/images/landing/portrait-handsome-smiling-stylish-young-man 1.png"
+                         alt="" />
+                </div>
+            </div>
+
+            <div class="col-span-2 md:col-span-2 lg:col-span-1">
+                <div class="swiper swiper3">
+                    <div class="swiper-wrapper">
+
+                        @foreach (var usersComments in Model)
+                        {
+                            <div class="swiper-slide relative px-7 md:px-10 lg:px-12 flex flex-col justify-center items-start">
+                                <img class="absolute top-0 left-0"
+                                     src="/ArefSet/src/assets/images/landing/Group 7296.png"
+                                     alt="" />
+                                <img class="absolute bottom-0 right-5 md:right-8 lg:right-11"
+                                     src="/ArefSet/src/assets/images/landing/Group 7492.png"
+                                     alt="" />
+
+                                <p class="">
+                                    @usersComments.UserCommentText
+                                </p>
+                                <p class="text-[#D92626] text-[px] mt-3">@usersComments.Username</p>
+                            </div>
+
+                        }
+
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination swiper-pagination3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+

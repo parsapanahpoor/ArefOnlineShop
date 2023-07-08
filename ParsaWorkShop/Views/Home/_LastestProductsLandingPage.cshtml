@@ -1,4 +1,4 @@
-﻿@*@model List<Domain.ViewModels.SiteSide.Home.LastestsArefProducts>
+﻿@model List<Domain.ViewModels.SiteSide.Home.LastestsArefProducts>
 @using Application.StaticTools
 
 <section class="w-full">
@@ -28,13 +28,17 @@
 
             <label for="tab1" class="text-[14px] lg:text-[24px]">همه محصولات</label>
 
-            <!-- Tab 2 -->
-            <input type="radio" name="tabset" id="tab2" aria-controls="men" />
-            <label for="tab2" class="text-[14px] lg:text-[24px]">مردانه</label>
+            @{
+                int x = 2;
+            }
 
-            <!-- Tab 3 -->
-            <input type="radio" name="tabset" id="tab3" aria-controls="women" />
-            <label for="tab3" class="text-[14px] md:text-[18px] lg:text-[24px]">زنانه</label>
+            @foreach (var category in Model.Where(p => p.ProdudctCategoryId.HasValue))
+            {
+                <input type="radio" name="tabset" id="tab@(x)" aria-controls="@category.ProdudctCategoryTitle" />
+                <label for="tab@(x)" class="text-[14px] lg:text-[24px]">@category.ProdudctCategoryTitle</label>
+
+                x++;
+            }
 
             <div class="tab-panels">
 
@@ -43,19 +47,13 @@
                     <section id="allProduct" class="tab-panel">
                         <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                            @foreach (var item in Model.Where(p => p.ProdudctCategoryId == null).Select(p=> p.LastestProducts).FirstOrDefault())
+                            @foreach (var item in Model.Where(p => p.ProdudctCategoryId == null).Select(p => p.LastestProducts).FirstOrDefault())
                             {
                                 <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
                                     <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
 
                                         <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
-                                             
-                                             
-                                        <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">
-                                            <button class="focus:outline-none bg-transparent w-full h-full">
-                                                افزودن به سبد خرید
-                                            </button>
-                                        </div>
+
                                         <div class="transition-all absolute w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] top-4 left-6 lg:top-6 lg:left-8 opacity-0 flex items-center justify-center bg-[#252525] text-center text-[#fff] likeProduct">
                                             <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="" />
                                         </div>
@@ -63,18 +61,18 @@
                                     <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
                                         <div class="text-right">
                                             <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
-                                                دسته بندی : کفش
                                             </p>
                                             <p class="font-bold text-[14px] lg:text-[20px]">
-                                                لباس ورزشی مردانه
+                                                @item.Title
                                             </p>
                                         </div>
                                         <div class="text-left">
                                             <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
-                                                ۹۹۹٫۰۰۰ تومان
+                                                @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
+
                                             </p>
                                             <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
-                                                ۷۹۹٫۰۰۰
+                                                @item.Price.ToString("#,000") ریال
                                             </p>
                                         </div>
                                     </div>
@@ -86,100 +84,72 @@
 
                 }
 
+                @if (Model.Any(p => p.ProdudctCategoryId.HasValue))
+                {
+                    foreach (var category in Model.Where(p => p.ProdudctCategoryId.HasValue))
+                    {
+                        <section id="@category.ProdudctCategoryTitle" class="tab-panel">
+                            <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                                @foreach (var item in category.LastestProducts)
+                                {
+                                    <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
+                                        <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
+
+                                            <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
+
+                                            <div class="transition-all absolute w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] top-4 left-6 lg:top-6 lg:left-8 opacity-0 flex items-center justify-center bg-[#252525] text-center text-[#fff] likeProduct">
+                                                <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
+                                            <div class="text-right">
+                                                <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                                    @category.ProdudctCategoryTitle
+                                                </p>
+                                                <p class="font-bold text-[14px] lg:text-[20px]">
+                                                    @item.Title
+                                                </p>
+                                            </div>
+                                            <div class="text-left">
+                                                <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
+                                                    @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
+
+                                                </p>
+                                                <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
+                                                    @item.Price.ToString("#,000") ریال
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </section>
+                    }
+
+                }
 
 
-                <section id="men" class="tab-panel">
-                    <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
-                            <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
-                                <img class="w-full h-full object-cover"
-                                     src="/ArefSet/src/assets/images/landing/Rectangle 5(2).png"
-                                     alt="" />
-                                <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">
-                                    <button class="focus:outline-none bg-transparent w-full h-full">
-                                        افزودن به سبد خرید
-                                    </button>
-                                </div>
-                                <div class="transition-all absolute w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] top-4 left-6 lg:top-6 lg:left-8 opacity-0 flex items-center justify-center bg-[#252525] text-center text-[#fff] likeProduct">
-                                    <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="" />
-                                </div>
-                            </div>
-                            <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
-                                <div class="text-right">
-                                    <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="font-bold text-[14px] lg:text-[20px]">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div class="text-left">
-                                    <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class=" shadow-lg w-[414px] h-[480px] col-span-1 md:col-span-1 lg:col-span-1"></div> -->
-                </section>
-
-                <section id="women" class="tab-panel">
-                    <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
-                            <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
-                                <img class="w-full h-full object-cover"
-                                     src="/ArefSet/src/assets/images/landing/Web 1920 – 1 2.png"
-                                     alt="" />
-                                <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">
-                                    <button class="focus:outline-none bg-transparent w-full h-full">
-                                        افزودن به سبد خرید
-                                    </button>
-                                </div>
-                                <div class="transition-all absolute w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] top-4 left-6 lg:top-6 lg:left-8 opacity-0 flex items-center justify-center bg-[#252525] text-center text-[#fff] likeProduct">
-                                    <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="" />
-                                </div>
-                            </div>
-                            <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
-                                <div class="text-right">
-                                    <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="font-bold text-[14px] lg:text-[20px]">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div class="text-left">
-                                    <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
 
             </div>
         </div>
 
+
+
         <div class="max-w-[99%] lg:max-w-[86.5em] mx-auto flex justify-center items-center lg:flex lg:justify-end lg:items-center">
-            <button class="my-3 mt-6 relative hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-7 py-3 flex items-center text-[#7E8285] hover:text-[#fff]">
+            <a asp-action="Index" asp-area="" asp-controller="Products" class="my-3 mt-6 relative hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-7 py-3 flex items-center text-[#7E8285] hover:text-[#fff]">
                 مشاهده همه
                 <img class="ms-2"
                      src="/ArefSet/src/assets/images/landing/arrow-left.png"
                      alt="" />
 
-            </button>
+            </a>
         </div>
 
     }
 
 </section>
-*@
+
+
+

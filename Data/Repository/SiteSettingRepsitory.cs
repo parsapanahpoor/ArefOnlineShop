@@ -153,10 +153,11 @@ namespace Data.Repository
 
             #region Lastest Aref's Products
 
+            List<LastestsArefProducts> lastProcuctsChild = new List<LastestsArefProducts>();
+
             var LastestCategoriesId = await _context.ProductCategories
                                                  .AsNoTracking()
                                                  .Where(p => !p.IsDelete)
-                                                 .Select(p => p.ProductCategoryId)
                                                  .ToListAsync();
 
             #region First Record For All Products
@@ -179,6 +180,8 @@ namespace Data.Repository
                                                         })
                                                         .ToListAsync();
 
+            lastProcuctsChild.Add(AllProducts);
+
             #endregion
 
             if (LastestCategoriesId != null && LastestCategoriesId.Any())
@@ -187,12 +190,13 @@ namespace Data.Repository
                 {
                     LastestsArefProducts lastestsArefProducts = new LastestsArefProducts();
 
-                    lastestsArefProducts.ProdudctCategoryId = categoryId;
+                    lastestsArefProducts.ProdudctCategoryId = categoryId.ProductCategoryId;
+                    lastestsArefProducts.ProdudctCategoryTitle = categoryId.CategoryTitle;
 
                     //Get Products Selected This Category
                     var productsId = await _context.ProductSelectedCategory
                                                    .AsNoTracking()
-                                                   .Where(p => p.ProductCategoryId == categoryId)
+                                                   .Where(p => p.ProductCategoryId == categoryId.ProductCategoryId)
                                                    .OrderByDescending(p => p.CreateDate)
                                                    .Select(p => p.ProductID)
                                                    .Take(6)
@@ -200,6 +204,8 @@ namespace Data.Repository
 
                     if (productsId != null && productsId.Any())
                     {
+                        List<LastestProducts> productChildViewModel = new List<LastestProducts>();
+
                         foreach (var productId in productsId)
                         {
                             LastestProducts productViewModel = new LastestProducts();
@@ -218,13 +224,17 @@ namespace Data.Repository
                                                              })
                                                              .FirstOrDefaultAsync();
 
-                            if (productViewModel != null) lastestsArefProducts.LastestProducts.Add(productViewModel);
+                            if (productViewModel != null) productChildViewModel.Add(productViewModel);
                         }
+
+                        if (productChildViewModel != null) lastestsArefProducts.LastestProducts = productChildViewModel;
                     }
 
-                    if (lastestsArefProducts != null) model.LastestsArefProducts.Add(lastestsArefProducts);
+                    if (lastestsArefProducts != null) lastProcuctsChild.Add(lastestsArefProducts);
                 }
             }
+
+            model.LastestsArefProducts = lastProcuctsChild;
 
             #endregion
 
@@ -232,7 +242,7 @@ namespace Data.Repository
 
             model.LatestCategoriesWithImages =   await _context.ProductCategories
                                                                .AsNoTracking()
-                                                               .Where(p => !p.IsDelete && string.IsNullOrEmpty(p.ImageName))
+                                                               .Where(p => !p.IsDelete && !string.IsNullOrEmpty(p.ImageName))
                                                                .Select(p=> new LatestCategoriesWithImage()
                                                                {
                                                                    CategoryId = p.ProductCategoryId,
