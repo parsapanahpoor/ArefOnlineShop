@@ -1,0 +1,23 @@
+.img-container{
+    box-sizing: initial;
+}
+.img-container>img{
+    transition: all .3s linear;
+    
+}
+.list-product>li{
+    opacity: .7;
+}
+.list-product>li.active{
+    border: 3px solid #000;
+    opacity: 1;
+}
+
+.color>input:checked~.content{
+    border: 2px solid #000;    
+}
+.size>input:checked+label{
+    background-color: #252525;
+    border: 1px solid #252525;    
+    color: #fff;
+}
