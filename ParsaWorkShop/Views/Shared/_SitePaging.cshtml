@@ -1,0 +1,44 @@
+﻿@model Domain.ViewModels.Common.PagingViewModel
+
+<div class="w-full mx-auto lg:flex lg:items-center lg:justify-center hidden">
+    <ul class="flex items-center justify-center gap-4 my-8">
+        @if (Model.StartPage < Model.Page)
+        {
+            <li>
+                <a onclick="FillPageId(@(Model.Page - 1))" class="cursor-pointer hover:bg-[#252525] border-[1px] font-medium border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-4 py-2 flex items-center text-[#7E8285] hover:text-[#fff]">
+                    <svg aria-hidden="true" class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+
+                    قبلی
+                </a>
+            </li>
+        }
+        @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+        {
+            if (Model.Page == i)
+            {
+                <li class="px-4 py-2 border border-gray-700"><a class="cursor-pointer">@i</a></li>
+
+            }
+            else
+            {
+                <li class="px-4 py-2"><a class="cursor-pointer" onclick="FillPageId(@i)">@i</a></li>
+
+            }
+        }
+        @if (Model.EndPage > Model.Page)
+        {
+            <li>
+                <a onclick="FillPageId(@(Model.Page + 1))" class="cursor-pointer hover:bg-[#252525] border-[1px] font-medium border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-4 py-2 flex items-center text-[#7E8285] hover:text-[#fff]">
+                    بعدی
+                    <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </li>
+        }
+
+    </ul>
+
+</div>

@@ -1,0 +1,327 @@
+﻿@model Domain.ViewModels.SiteSide.Product.ListOfProductsViewModel
+@using Domain.ViewModels.SiteSide.Product
+@using Application.StaticTools
+
+@{
+    ViewData["Title"] = "لیست محصولات";
+
+    var categories = ViewData["Categories"] as List<ListOfCategoriesForShowInListOfProducts>;
+    var colors = ViewData["Colors"] as List<ListOfColorsForShowInListOfProducts>;
+    var sizes = ViewData["Sizes"] as List<ListOfSizesForShowInListOfProducts>;
+}
+
+@section Styles
+    {
+    <link rel="stylesheet" href="/ArefSet/src/assets/styles/productList.css" />
+}
+
+@section Scripts
+    {
+    <script>
+        var colorButton = document.getElementsByClassName("theme-button");
+        var i;
+        for (i = 0; i < colorButton.length; i++) {
+            colorButton[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+            });
+        }
+
+        //  price filter
+
+        var lowerSlider = document.querySelector("#lower");
+        var upperSlider = document.querySelector("#upper");
+
+        document.querySelector("#two").value = upperSlider.value;
+        document.querySelector("#one").value = lowerSlider.value;
+
+        var lowerVal = parseInt(lowerSlider.value);
+        var upperVal = parseInt(upperSlider.value);
+
+        upperSlider.oninput = function () {
+            lowerVal = parseInt(lowerSlider.value);
+            upperVal = parseInt(upperSlider.value);
+
+            if (upperVal < lowerVal + 4) {
+                lowerSlider.value = upperVal - 4;
+                if (lowerVal == lowerSlider.min) {
+                    upperSlider.value = 4;
+                }
+            }
+            document.querySelector("#two").value = this.value;
+        };
+
+        lowerSlider.oninput = function () {
+            lowerVal = parseInt(lowerSlider.value);
+            upperVal = parseInt(upperSlider.value);
+            if (lowerVal > upperVal - 4) {
+                upperSlider.value = lowerVal + 4;
+                if (upperVal == upperSlider.max) {
+                    lowerSlider.value = parseInt(upperSlider.max) - 4;
+                }
+            }
+            document.querySelector("#one").value = this.value;
+        };
+
+        function myFunction(e) {
+            document.getElementById("Status").value = e.target.value;
+            $("#filtre").submit();
+        }
+
+    </script>
+}
+
+<main class="mx-auto">
+    <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="/" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>
+                        خانه
+                    </a>
+                </li>
+
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">فروشگاه لیست عارف</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    </section>
+
+    <section class="mx-auto px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] flex items-start justify-center gap-8">
+        <div class="hidden lg:inline-block w-[25%]">
+            <div class="mx-auto flex items-center justify-between py-8 mt-5 border-b-[1px] border-[#D0D0D099]">
+                <p class="text-[#252525] text-[16px] font-semibold">فیلترها :</p>
+                <a asp-action="ListOfProducts" asp-area="" asp-controller="products" class="text-[#C5272D] text-[12px] font-normal">پاک کردن همه</a>
+            </div>
+
+            <form asp-action="ListOfProducts" asp-controller="Products" asp-area="" id="filtre" method="get">
+                <input type="hidden" asp-for="Page" />
+                <input type="hidden" asp-for="Status"/>
+
+                <div class="mx-auto bg-white min-h-sceen w-full relative">
+                    <div class="grid divide-y divide-neutral-200 text-right w-full mx-auto mt-5">
+
+                        @if (categories != null && categories.Any())
+                        {
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                                        <span> دسته بندی</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                                <path d="M6 9l6 6 6-6"></path>
+                                            </svg>
+                                        </span>
+                                    </summary>
+
+                                    @foreach (var category in categories)
+                                    {
+                                        <div class="flex items-center justify-start mb-2">
+                                            <div class="flex items-center mt-4">
+
+                                                @if (Model.CategoriesId != null && Model.CategoriesId.Any() && Model.CategoriesId.Contains(category.CategoryId))
+                                                {
+                                                    <input id="default-checkbox" type="checkbox" checked="checked" name="CategoriesId" value="@category.CategoryId" class="w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                }
+                                                else
+                                                {
+                                                    <input id="default-checkbox" type="checkbox" name="CategoriesId" value="@category.CategoryId" class="w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                }
+
+                                                <label for="default-checkbox" class="ml-2 text-sm font-medium text-[#9B9B9B] dark:text-gray-300 mr-2 text-[20px]">
+                                                    @category.CategoryTitle
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                    }
+
+                                </details>
+                            </div>
+
+                        }
+
+
+                        @if (sizes != null && sizes.Any())
+                        {
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                                        <span> سایز</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                                <path d="M6 9l6 6 6-6"></path>
+                                            </svg>
+                                        </span>
+                                    </summary>
+
+                                    @foreach (var size in sizes)
+                                    {
+                                        <div class="flex items-center justify-start mb-2">
+                                            <div class="flex items-center mt-4">
+
+                                                @if (Model.SizesId != null && Model.SizesId.Any() && Model.SizesId.Contains(size.SizesId))
+                                                {
+                                                    <input id="default-checkbox" type="checkbox" checked="checked" name="SizesId" value="@size.SizesId" class="w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                }
+                                                else
+                                                {
+                                                    <input id="default-checkbox" type="checkbox" name="SizesId" value="@size.SizesId" class="w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                }
+
+                                                <label for="default-checkbox" class="ml-2 text-sm font-medium text-[#9B9B9B] dark:text-gray-300 mr-2 text-[20px]">
+                                                    @size.SizesTitle
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                    }
+
+                                </details>
+                            </div>
+
+                        }
+
+                        @if (colors != null && colors.Any())
+                        {
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                                        <span> رنگ</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                                <path d="M6 9l6 6 6-6"></path>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <div class="flex items-center justify-center gap-2"></div>
+                                    <div class="switcher flex items-center justify-center gap-2">
+                                        @foreach (var color in colors)
+                                        {
+                                            <input type="checkbox" name="ColorsId" value="@color.ColorId" data-theme="indigo" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-indigo-500">
+                                        }
+                                    </div>
+                                </details>
+                            </div>
+                        }
+
+
+                        <div class="py-5">
+                            <details class="group" open="">
+                                <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                                    <span> قیمت</span>
+                                    <span class="transition group-open:rotate-180">
+                                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                            <path d="M6 9l6 6 6-6"></path>
+                                        </svg>
+                                    </span>
+                                </summary>
+                                <div class="price-wrap">
+                                    <span class="price-title">محدوده قیمت :</span>
+                                    <div class="price-wrap-1">
+                                        <input id="one">
+                                        <label for="one">ریال</label>
+                                    </div>
+                                    <div class="price-wrap_line">-</div>
+                                    <div class="price-wrap-2">
+                                        <input id="two">
+                                        <label for="two">ریال</label>
+                                    </div>
+                                </div>
+                                <fieldset class="filter-price">
+                                    <div class="price-field">
+                                        <input type="range" asp-for="MinPrice" min="100" max="5000" value="100" id="lower">
+                                        <input type="range" asp-for="MaxPrice" min="100" max="5000" value="5000" id="upper">
+                                    </div>
+                                </fieldset>
+                            </details>
+                        </div>
+
+                    </div>
+                    <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="w-full lg:w-[75%]">
+            <div class="mx-auto flex items-center justify-between py-6 mt-5 border-b-[1px] border-[#D0D0D099]">
+                <p class="text-[#7D7D7D] text-[14px] font-semibold hidden lg:inline-block">
+                    نمایش <span class="text-[#252525]">@Model.AllEntitiesCount</span> محصول از
+                    <span class="text-[#252525]">@Model.Entities.Count()</span>محصول فروشگاه عارف
+                </p>
+
+                <div class="flex items-center justify-center gap-1 lg:hidden">
+                    <img src="./assets/images/landing/filter.png" alt="">
+                    <p class="text-[#7D7D7D] text-[14px] font-medium lg:hidden inline-block">
+                        فیلتر ها
+                    </p>
+                </div>
+                <div class="flex items-center justify-center gap-3">
+                    <p class="text-[#7D7D7D] text-[14px] font-medium">مرتب سازی بر اساس :</p>
+                    <select asp-for="Status" onchange="myFunction(event)" asp-items="Html.GetEnumSelectList(typeof(FilterStatus))"
+                            
+                    class="py-2 px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                        
+                    </select>
+                </div>
+            </div>
+
+            @if (Model.Entities != null && Model.Entities.Any())
+            {
+                <div class="mx-auto bg-white min-h-sceen w-full">
+
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 divide-y divide-neutral-200 text-right w-full mx-auto mt-5">
+
+                        @foreach (var product in Model.Entities)
+                        {
+                            <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
+                                <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
+                                    <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+
+                                    <div class="transition-all flex flex-col items-end gap-2 absolute top-4 left-6 lg:top-6 lg:left-8 opacity-0 likeProduct">
+                                        <div class="transition-all overflow-hidden w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center hover:justify-around bg-[#252525] text-center text-[#fff] addToFavorite">
+                                            <span class="hidden opacity-0 text-xs whitespace-nowrap translate-x-4">
+                                                افزودن به لیست علاقه مندی
+                                            </span>
+                                            <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
+                                    <div class="text-right">
+                                        <p class="font-bold text-[14px] lg:text-[16px]">
+                                            @product.ProductTitle
+                                        </p>
+                                    </div>
+                                    <div class="text-left">
+                                        <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
+                                            @((product.OldPrice.HasValue) ? $"{product.OldPrice.Value.ToString("#,000")} ریال" : " ")
+                                        </p>
+                                        <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
+                                            @product.Price.ToString("#,000") ریال
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+
+                <partial name="_SitePaging" model="@Model.GetCurrentPaging()" />
+            }
+        </div>
+    </section>
+</main>

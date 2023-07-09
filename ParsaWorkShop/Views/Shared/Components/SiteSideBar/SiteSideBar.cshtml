@@ -235,7 +235,7 @@
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
              id="navbar-sticky">
             <ul class="flex items-center gap-6">
-                <li class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]">
+                <li class="">
                     <a href="/">صفحه اصلی</a>
                 </li>
 
@@ -243,13 +243,13 @@
                 {
                     foreach (var categories in Model.ListOfProductCategoriesForShowInSiteSideBar)
                     {
-                        <li class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]">
-                            <a asp-action="Index" asp-controller="Products" asp-route-Categroyid="@categories.CategoryId">@categories.CategoryTitle</a>
+                        <li class="">
+                            <a asp-action="ListOfProducts" asp-controller="Products" asp-route-CategoriesId="@categories.CategoryId">@categories.CategoryTitle</a>
                         </li>
                     }
                 }
 
-                <li class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]">
+                <li class="">
                     <a href="">تماس با ما</a>
                 </li>
 

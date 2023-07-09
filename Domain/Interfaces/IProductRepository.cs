@@ -82,6 +82,18 @@ namespace Domain.Interfaces
         //List Of Product Categories For Show Site Side Bar
         Task<List<ListOfProductCategoriesForShowInSiteSideBar>> ListOfProductCategoriesForShowSiteSideBar();
 
+        //List Of Products
+        Task<ListOfProductsViewModel> FilterProducts(ListOfProductsViewModel model);
+
+        //List Of Categories For Show In List Of Product
+        Task<List<ListOfCategoriesForShowInListOfProducts>> ListOfCategoriesForShowInListOfProducts();
+
+        //List Of Colors For Show In List Of Products
+        Task<List<ListOfColorsForShowInListOfProducts>> ListOfColorsForShowInListOfProducts();
+
+        //List Of Sizes For Show In List Of Products
+        Task<List<ListOfSizesForShowInListOfProducts>> ListOfSizesForShowInListOfProducts();
+
         #endregion
 
         #region Admin Side 

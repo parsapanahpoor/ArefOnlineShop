@@ -293,45 +293,198 @@ namespace Data.Repository
         }
 
         //List Of Products
-        //public async Task<ListOfProductsViewModel> FilterProducts(ListOfProductsViewModel model)
-        //{
-        //    var query = _context.product
-        //        .Where(s => !s.IsDelete)
-        //        .OrderByDescending(s => s.CreateDate)
-        //        .AsQueryable();
+        public async Task<ListOfProductsViewModel> FilterProducts(ListOfProductsViewModel model)
+        {
+            var query = _context.product
+                .Where(s => !s.IsDelete && s.IsActive)
+                .OrderByDescending(s => s.CreateDate)
+                .AsQueryable();
 
-        //    #region State
+            #region State
 
-        //    //switch (filter.CourseActiveStatus)
-        //    //{
-        //    //    case CourseActiveStatus.All:
-        //    //        break;
-        //    //    case CourseActiveStatus.Active:
-        //    //        query = query.Where(s => s.IsActive);
-        //    //        break;
-        //    //    case CourseActiveStatus.NotActive:
-        //    //        query = query.Where(s => !s.IsActive);
-        //    //        break;
-        //    //}
+            //switch (filter.CourseActiveStatus)
+            //{
+            //    case CourseActiveStatus.All:
+            //        break;
+            //    case CourseActiveStatus.Active:
+            //        query = query.Where(s => s.IsActive);
+            //        break;
+            //    case CourseActiveStatus.NotActive:
+            //        query = query.Where(s => !s.IsActive);
+            //        break;
+            //}
 
-        //    #endregion
+            #endregion
 
-        //    #region Filter
+            #region Filter
 
-           
+            //Color
+            if (model.ColorsId != null && model.ColorsId.Any())
+            {
+                var colorProducts = _context.ProductSelectedColors
+                                .AsNoTracking()
+                                .Include(p => p.Product)
+                                .Where(p => !p.IsDelete && model.ColorsId.Contains(p.ColorId))
+                                .Select(p => p.Product)
+                                .Distinct()
+                                .AsQueryable();
 
-        //    #endregion
+                query = from q in query
+                        join c in colorProducts
+                        on q.ProductID equals c.ProductID
+                        select new Product
+                        {
+                            ProductID = q.ProductID,
+                            CreateDate = q.CreateDate,
+                            IsActive = q.IsActive,
+                            IsDelete = q.IsDelete,
+                            IsInOffer = q.IsInOffer,
+                            OldPrice = q.Price,
+                            Price = q.Price,
+                            ProductImageName = q.ProductImageName,
+                            ProductTitle = q.ProductTitle,
+                        };
+            }
 
-        //    #region Filter Categories
+            //Size
+            if (model.SizesId != null && model.SizesId.Any())
+            {
+                var sizeProducts = _context.ProductSelectedSizes
+                                .Include(p => p.Product)
+                                .Where(p => !p.IsDelete && model.SizesId.Contains(p.SizeId))
+                                .Select(p => p.Product)
+                                .Distinct()
+                                .AsQueryable();
 
-            
+                query = from q in query
+                        join s in sizeProducts
+                        on q.ProductID equals s.ProductID
+                        select new Product
+                        {
+                            ProductID = q.ProductID,
+                            CreateDate = q.CreateDate,
+                            IsActive = q.IsActive,
+                            IsDelete = q.IsDelete,
+                            IsInOffer = q.IsInOffer,
+                            OldPrice = q.Price,
+                            Price = q.Price,
+                            ProductImageName = q.ProductImageName,
+                            ProductTitle = q.ProductTitle,                            
+                        } ;
+            }
 
-        //    #endregion
+            //Size
+            if (model.CategoriesId != null && model.CategoriesId.Any())
+            {
+                var categoryProducts = _context.ProductSelectedCategory
+                                .Include(p => p.Product)
+                                .Where(p => model.CategoriesId.Contains(p.ProductCategoryId))
+                                .Select(p => p.Product)
+                                .Distinct()
+                                .AsQueryable();
 
-        //    await filter.Paging(query);
+                query = from q in query
+                        join c in categoryProducts
+                        on q.ProductID equals c.ProductID
+                        select new Product
+                        {
+                            ProductID = q.ProductID,
+                            CreateDate = q.CreateDate,
+                            IsActive = q.IsActive,
+                            IsDelete = q.IsDelete,
+                            IsInOffer = q.IsInOffer,
+                            OldPrice = q.Price,
+                            Price = q.Price,
+                            ProductImageName = q.ProductImageName,
+                            ProductTitle = q.ProductTitle,
+                        };
+            }
 
-        //    return filter;
-        //}
+            #endregion
+
+            #region Price
+
+            if (model.MinPrice.HasValue)
+            {
+                query = query.Where(p => p.Price >= model.MinPrice.Value);
+            }
+
+            if (model.MaxPrice.HasValue)
+            {
+                query = query.Where(p => p.Price <= model.MaxPrice.Value);
+            }
+
+            #endregion
+
+            await model.Paging(query.Distinct());
+
+            #region Filter Status
+
+            switch (model.Status)
+            {
+                case FilterStatus.All:
+                    break;
+                case FilterStatus.CreateDate:
+                    model.Entities = model.Entities.OrderByDescending(p => p.CreateDate).ToList();
+                    break;
+                case FilterStatus.MinPrice:
+                    model.Entities = model.Entities.OrderBy(p => p.Price).ToList();
+                    break;
+                case FilterStatus.MaxPrice:
+                    model.Entities = model.Entities.OrderByDescending(p => p.Price).ToList();
+                    break;
+                case FilterStatus.Offer:
+                    model.Entities = model.Entities.Where(p => p.OldPrice.HasValue).ToList();
+                    break;
+            }
+
+            #endregion
+
+            return model;
+        }
+
+        //List Of Categories For Show In List Of Product
+        public async Task<List<ListOfCategoriesForShowInListOfProducts>> ListOfCategoriesForShowInListOfProducts()
+        {
+            return await _context.ProductCategories
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete)
+                                 .OrderBy(p => p.Priority)
+                                 .Select(p => new ListOfCategoriesForShowInListOfProducts()
+                                 {
+                                     CategoryId = p.ProductCategoryId,
+                                     CategoryTitle = p.CategoryTitle
+                                 })
+                                 .ToListAsync();
+        }
+
+        //List Of Colors For Show In List Of Products
+        public async Task<List<ListOfColorsForShowInListOfProducts>> ListOfColorsForShowInListOfProducts()
+        {
+            return await _context.ProductColors
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new ListOfColorsForShowInListOfProducts()
+                                 {
+                                     ColorId = p.Id,
+                                     ColorTitle = p.ColorTitle
+                                 })
+                                 .ToListAsync();
+        }
+
+        //List Of Sizes For Show In List Of Products
+        public async Task<List<ListOfSizesForShowInListOfProducts>> ListOfSizesForShowInListOfProducts()
+        {
+            return await _context.ProductsSizes
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new ListOfSizesForShowInListOfProducts()
+                                 {
+                                     SizesId = p.Id,
+                                     SizesTitle = p.SizeTitle
+                                 })
+                                 .ToListAsync();
+        }
 
         #endregion
 

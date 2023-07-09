@@ -497,6 +497,30 @@ namespace Application.Services
             return model;
         }
 
+        //List Of Products
+        public async Task<ListOfProductsViewModel> FilterProducts(ListOfProductsViewModel model)
+        {
+            return await _product.FilterProducts(model);
+        }
+
+        //List Of Categories For Show In List Of Product
+        public async Task<List<ListOfCategoriesForShowInListOfProducts>> ListOfCategoriesForShowInListOfProducts()
+        {
+            return await _product.ListOfCategoriesForShowInListOfProducts();
+        }
+
+        //List Of Colors For Show In List Of Products
+        public async Task<List<ListOfColorsForShowInListOfProducts>> ListOfColorsForShowInListOfProducts()
+        {
+            return await _product.ListOfColorsForShowInListOfProducts();
+        }
+
+        //List Of Sizes For Show In List Of Products
+        public async Task<List<ListOfSizesForShowInListOfProducts>> ListOfSizesForShowInListOfProducts()
+        {
+            return await _product.ListOfSizesForShowInListOfProducts();
+        }
+
         #endregion
 
         #region Admin Side 

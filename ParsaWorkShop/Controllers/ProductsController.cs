@@ -48,9 +48,20 @@ namespace ParsaWorkShop.Controllers
 
         #region List Of Products
 
+        [HttpGet]
         public async Task<IActionResult> ListOfProducts(ListOfProductsViewModel model)
         {
-            return View();
+            #region Model Datas
+
+            ViewData["Categories"] = await _product.ListOfCategoriesForShowInListOfProducts();
+            ViewData["Colors"] = await _product.ListOfColorsForShowInListOfProducts();
+            ViewData["Sizes"] = await _product.ListOfSizesForShowInListOfProducts();
+
+            #endregion
+
+            var retunModel = await _product.FilterProducts(model);
+
+            return View(retunModel);
         }
 
         #endregion
