@@ -296,6 +296,7 @@ namespace Data.Repository
         public async Task<ListOfProductsViewModel> FilterProducts(ListOfProductsViewModel model)
         {
             var query = _context.product
+                .AsNoTracking()
                 .Where(s => !s.IsDelete && s.IsActive)
                 .OrderByDescending(s => s.CreateDate)
                 .AsQueryable();
@@ -339,7 +340,7 @@ namespace Data.Repository
                             IsActive = q.IsActive,
                             IsDelete = q.IsDelete,
                             IsInOffer = q.IsInOffer,
-                            OldPrice = q.Price,
+                            OldPrice = q.OldPrice,
                             Price = q.Price,
                             ProductImageName = q.ProductImageName,
                             ProductTitle = q.ProductTitle,
@@ -366,11 +367,11 @@ namespace Data.Repository
                             IsActive = q.IsActive,
                             IsDelete = q.IsDelete,
                             IsInOffer = q.IsInOffer,
-                            OldPrice = q.Price,
+                            OldPrice = q.OldPrice,
                             Price = q.Price,
                             ProductImageName = q.ProductImageName,
-                            ProductTitle = q.ProductTitle,                            
-                        } ;
+                            ProductTitle = q.ProductTitle,
+                        };
             }
 
             //Size
@@ -393,7 +394,7 @@ namespace Data.Repository
                             IsActive = q.IsActive,
                             IsDelete = q.IsDelete,
                             IsInOffer = q.IsInOffer,
-                            OldPrice = q.Price,
+                            OldPrice = q.OldPrice,
                             Price = q.Price,
                             ProductImageName = q.ProductImageName,
                             ProductTitle = q.ProductTitle,
