@@ -16,6 +16,8 @@ namespace Domain.ViewModels.Admin.SiteSetting
 
         public string ColorName{ get; set; }
 
+        public string ColorCode { get; set; }
+
         #endregion
     }
 }

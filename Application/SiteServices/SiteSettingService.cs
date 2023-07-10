@@ -55,6 +55,7 @@ namespace Application.SiteServices
             ProductColor model = new ProductColor()
             {
                 ColorTitle = color.ColorName,
+                ColorCode = color.ColorCode,
             };
 
             #endregion
@@ -96,6 +97,7 @@ namespace Application.SiteServices
             #region Edit Color Fields
 
             color.ColorTitle = model.ColorName;
+            color.ColorCode = model.ColorCode;
 
             #region Update Color Image
 

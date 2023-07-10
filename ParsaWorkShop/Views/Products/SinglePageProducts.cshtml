@@ -191,10 +191,23 @@
                         <strong> دسته بندی :</strong>
                         @if (Model.ProductCategoryLinkable != null && Model.ProductCategoryLinkable.Any())
                         {
+                            int i = 1;
                             foreach (var category in Model.ProductCategoryLinkable)
                             {
                             <p>
-                                    @category.CategoryTitle /
+                                <a asp-action="ListOfProducts" asp-controller="Products" asp-route-CategoriesId="@category.CategoryId">
+
+                                        @category.CategoryTitle 
+
+                                        @if (Model.ProductCategoryLinkable.Count() > i)
+                                        {
+                                            i = i + 1;
+
+                                            <p>/</p>
+                                            
+                                        }
+
+                                </a>
                             </p>
                             }
                         }
@@ -223,10 +236,10 @@
 
             <div class="inline-block my-5">
                 <p class="text-[#7E8285] text-[16px]">
-                    
-                        <strong class="text-[#D92626] text-[24px]" style="font-family: yekanBakhtBold">
-                            @Model.Price.ToString("#,000")
-                        </strong>
+
+                    <strong class="text-[#D92626] text-[24px]" style="font-family: yekanBakhtBold">
+                        @Model.Price.ToString("#,000")
+                    </strong>
 
                     ریال
                 </p>
@@ -240,93 +253,82 @@
 
             </div>
 
-            <div>
-                <p class="text-[#252525] text-[16px]" style="font-family: yekanBakhtSemiBold">
-                    رنگ موجود:
-                </p>
+            <form>
 
-                <div class="flex justify-center items-center gap-5 mt-3">
+                <div>
+                    <p class="text-[#252525] text-[16px]" style="font-family: yekanBakhtSemiBold">
+                        رنگ موجود:
+                    </p>
 
-                    @if (Model.ProductColors != null && Model.ProductColors.Any())
-                    {
-                        foreach (var color in Model.ProductColors)
+                    <div class="flex justify-center items-center gap-5 mt-3">
+
+                        @if (Model.ProductColors != null && Model.ProductColors.Any())
                         {
+                            foreach (var color in Model.ProductColors)
+                            {
 
-                            <div class="color flex items-center">
-                                <input type="radio" name="colorId" value="@color.Id" id="rad1" checked="" class="hidden">
-                                <div class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-white border-2"></div>
-                                <label for="rad1" class="mr-1 text-[#7E8285] text-[14px]">@color.ColorTitle</label>
-                            </div>
+                                <div style="cursor:pointer" class="color flex items-center">
+                                    <input type="radio" name="colorId" value="@color.Id" id="rad@(color.Id)" checked="" class="hidden">
+                                    <div class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[@color.ColorCode] border-2"></div>
+                                    <label for="rad@(color.Id)" class="mr-1 text-[#7E8285] text-[14px]">@color.ColorTitle</label>
+                                </div>
 
+                            }
                         }
-                    }
 
-                </div>
-            </div>
-
-            <div class="my-5">
-                <p class="text-[#252525] text-[16px]" style="font-family: yekanBakhtSemiBold">
-                    سایز موجود:
-                </p>
-
-                <div class="flex justify-start flex-wrap items-center gap-5 mt-3">
-                    <div class="size flex items-center">
-                        <input type="radio" name="r" id="size1" checked="" class="hidden">
-                        <label for="size1" class="inline-block h-[31px] px-10 border-2 mr-1 text-[#7E8285] text-[12px] lg:text-[14px]">sm</label>
-                        <!-- <div class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px]  bg-white border-2"></div> -->
-                    </div>
-
-                    <div class="size flex items-center">
-                        <input type="radio" name="r" id="size2" class="hidden">
-                        <label for="size2" class="inline-block h-[31px] px-10 border-2 mr-1 text-[#7E8285] text-[12px] lg:text-[14px]">me</label>
-                        <!-- <div class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-black border-2"></div> -->
-                    </div>
-
-                    <div class="size flex items-center">
-                        <input type="radio" name="r" id="size3" class="hidden">
-                        <label for="size3" class="inline-block h-[31px] px-10 border-2 mr-1 text-[#7E8285] text-[12px] lg:text-[14px]">la</label>
-                        <!-- <div class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[#BFBFBF] border-2"></div> -->
-                    </div>
-
-                    <div class="size flex items-center">
-                        <input type="radio" name="r" id="size4" class="hidden">
-                        <label for="size4" class="inline-block h-[31px] px-10 border-2 mr-1 text-[#7E8285] text-[12px] lg:text-[14px]">xl</label>
-                        <!-- <div class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[#2274AE] border-2"></div> -->
-                    </div>
-
-                    <div class="size flex items-center">
-                        <input type="radio" name="r" id="size5" class="hidden">
-                        <label for="size5" class="inline-block h-[31px] px-10 border-2 mr-1 text-[#7E8285] text-[12px] lg:text-[14px]">xxl</label>
-                        <!-- <div class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[#E87C2E] border-2"></div> -->
                     </div>
                 </div>
-            </div>
 
-            <div class="mb-5">
-                <p class="text-[#252525] text-[16px]" style="font-family: yekanBakhtSemiBold">
-                    تعداد :
-                </p>
-                <div class="border-2 w-[147px] h-[46px] mt-2 text-[20px] flex items-center justify-around gap-2">
-                    <button id="addCount">+</button>
-                    <p id="result">1</p>
-                    <button id="removeCount">-</button>
+
+                <div class="my-5">
+                    <p class="text-[#252525] text-[16px]" style="font-family: yekanBakhtSemiBold">
+                        سایز موجود:
+                    </p>
+
+                    <div class="flex justify-start flex-wrap items-center gap-5 mt-3">
+
+                        @if (Model.ProductsSizes != null && Model.ProductsSizes.Any())
+                        {
+                            foreach (var size in Model.ProductsSizes)
+                            {
+                                <div style="cursor:pointer" class="size flex items-center">
+                                    <input type="radio" name="sizeId" value="@size.Id" id="size@(size.Id)" checked="" class="hidden">
+                                    <label for="size@(size.Id)" class="inline-block h-[31px] px-10 border-2 mr-1 text-[#7E8285] text-[12px] lg:text-[14px]">@size.SizeTitle</label>
+                                </div>
+                            }
+                        }
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="flex justify-start flex-wrap items-center mt-3">
-                <button class="text-[16px] text-white bg-[#D92626] w-[224px] h-[45px] lg:flex lg:items-center lg:justify-center gap-1 hidden">
-                    <img src="/ArefSet/src/assets/images/landing/Group 44847.png" alt="">
-                    افزودن به سبد خرید
-                </button>
-                <p class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] border-l-[1px] lg:px-8 px-11 pr-0 border-[#7E8285]">
-                    <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/heartt.png" alt="">
-                    افزودن به علاقه مندی
-                </p>
-                <p class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] lg:px-8 px-11 pl-0">
-                    <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/book.png" alt="">
-                    راهنمای اندازه
-                </p>
-            </div>
+                <div class="mb-5">
+                    <p class="text-[#252525] text-[16px]" style="font-family: yekanBakhtSemiBold">
+                        تعداد :
+                    </p>
+                    <div class="border-2 w-[147px] h-[46px] mt-2 text-[20px] flex items-center justify-around gap-2">
+                        <p style="cursor:pointer" id="addCount">+</p>
+                        <p id="result">1</p>
+                        <p style="cursor:pointer" id="removeCount">-</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-start flex-wrap items-center mt-3">
+                    <button class="text-[16px] text-white bg-[#D92626] w-[224px] h-[45px] lg:flex lg:items-center lg:justify-center gap-1 hidden">
+                        <img src="/ArefSet/src/assets/images/landing/Group 44847.png" alt="">
+                        افزودن به سبد خرید
+                    </button>
+                    <p class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] border-l-[1px] lg:px-8 px-11 pr-0 border-[#7E8285]">
+                        <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/heartt.png" alt="">
+                        افزودن به علاقه مندی
+                    </p>
+                    <p class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] lg:px-8 px-11 pl-0">
+                        <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/book.png" alt="">
+                        راهنمای اندازه
+                    </p>
+                </div>
+
+            </form>
+
         </div>
     </section>
 
@@ -355,7 +357,7 @@
             <div class="tab-panels">
                 <section id="describtion" class="tab-panel border-2 text-right  !p-4 !px-6">
                     <p class="text-[16px] lg:text-[22px] my-2">
-                        <strong class="" style="font-family: yekanBakhtBlack">معرفی</strong> محصول 3
+                        <strong class="" style="font-family: yekanBakhtBlack">معرفی</strong> 
                     </p>
                     <p class="text-[14px] lg:text-[16px] text-[#494949] leading-[26px] lg:leading-[36px] break-all">
                         @Html.Raw(Model.LongDescription)
@@ -365,11 +367,21 @@
 
                 <section id="details" class="tab-panel border-2 text-right  !p-4 !px-6">
                     <p class="text-[16px] lg:text-[22px] my-2">
-                        <strong class="" style="font-family: yekanBakhtBlack">معرفی</strong> محصول 2
+                        <strong class="" style="font-family: yekanBakhtBlack">ویژگی ها </strong>
                     </p>
                     <p class="text-[14px] lg:text-[16px] text-[#494949] leading-[26px] lg:leading-[36px] break-all">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                        <table class="table">
+                            <tbody >
+                                @foreach (var item in Model.ProductFeatures)
+                                {
+                                    <tr>
+                                        <td>@item.FeatureTitle </td>
+                                        <td class="text-muted">@item.FeatureValue</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
                     </p>
 
                     <!-- <div class=" shadow-lg w-[414px] h-[480px] col-span-1 md:col-span-1 lg:col-span-1"></div> -->
@@ -403,10 +415,10 @@
             background-size: cover;
           ">
                 <p class="text-[#252525] sm:text-[24px] md:text-[2.5rem] lg:text-[32px] mt-5 text-center" style="font-family: yekanBakhtExtraBold">
-                    محصولاتی که شاید بپسندید
+                    جدیدترین محصولات
                 </p>
                 <p class="text-[#7E8285] font-medium text-[20px] md:text-[25px] lg:text-[32px] leading-[49.6px] text-center" style="font-family: yekanBakhtRegular">
-                    Products you might like
+                    Newest Products
                 </p>
             </div>
 
