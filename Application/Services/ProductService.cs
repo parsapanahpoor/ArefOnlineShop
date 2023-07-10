@@ -11,6 +11,7 @@ using Domain.Models.Product;
 using Domain.Models.Slider;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Product;
+using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
 using Microsoft.AspNetCore.Http;
@@ -525,6 +526,12 @@ namespace Application.Services
         public async Task<List<ListOfSizesForShowInListOfProducts>> ListOfSizesForShowInListOfProducts()
         {
             return await _product.ListOfSizesForShowInListOfProducts();
+        }
+
+        //Fill Newest 3 Products 
+        public async Task<List<LastestProducts>> FillNewest3Products()
+        {
+            return await _product.FillNewest3Products();
         }
 
         #endregion

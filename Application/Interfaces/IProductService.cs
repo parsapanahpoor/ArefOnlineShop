@@ -3,6 +3,7 @@
 using Domain.Models.Product;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Product;
+using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
 using Microsoft.AspNetCore.Http;
@@ -91,6 +92,9 @@ namespace Application.Interfaces
 
         //List Of Sizes For Show In List Of Products
         Task<List<ListOfSizesForShowInListOfProducts>> ListOfSizesForShowInListOfProducts();
+
+        //Fill Newest 3 Products 
+        Task<List<LastestProducts>> FillNewest3Products();
 
         #endregion
 

@@ -5,6 +5,7 @@ using Domain.Interfaces;
 using Domain.Models.Product;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Product;
+using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
 using Microsoft.EntityFrameworkCore;
@@ -527,6 +528,25 @@ namespace Data.Repository
             #endregion
 
             return model;
+        }
+
+        //Fill Newest 3 Products 
+        public async Task<List<LastestProducts>> FillNewest3Products()
+        {
+            return await _context.product
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new LastestProducts()
+                                 {
+                                     IsInOffer = p.IsInOffer,
+                                     OldPrice = p.OldPrice,
+                                     Price = p.Price,
+                                     ProductId = p.ProductID,
+                                     ProductImageName = p.ProductImageName,
+                                     Title = p.ProductTitle
+                                 })
+                                 .Take(3)
+                                 .ToListAsync();
         }
 
         #endregion

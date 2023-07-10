@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.ViewComponents
 {
-    public class NewestProductsInProductPage : ViewComponent
+    public class NewestProductsInProductPageViewComponent : ViewComponent
     {
         #region Ctor
 
         private readonly IProductService _productService;
 
-        public NewestProductsInProductPage(IProductService productService)
+        public NewestProductsInProductPageViewComponent(IProductService productService)
         {
             _productService = productService;
         }
@@ -25,12 +25,12 @@ namespace ParsaWorkShop.ViewComponents
         {
             #region Categories
 
-            var model = await _productService.FillSiteSideBar();
+            var model = await _productService.FillNewest3Products();
 
             #endregion
 
 
-            return View("SiteSideBar", model);
+            return View("NewestProductsInProductPage", model);
         }
     }
 }

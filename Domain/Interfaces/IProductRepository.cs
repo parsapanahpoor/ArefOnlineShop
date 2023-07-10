@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Product;
 using Domain.ViewModels.Admin.Product;
+using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
 using Microsoft.EntityFrameworkCore;
@@ -96,6 +97,9 @@ namespace Domain.Interfaces
 
         //Fill Product Category Link able
         Task<List<ProductCategoryLinkable>> FillProductCategoryLinkable(int productId);
+
+        //Fill Newest 3 Products 
+        Task<List<LastestProducts>> FillNewest3Products();
 
         #endregion
 
