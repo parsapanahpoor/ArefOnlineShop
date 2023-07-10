@@ -1,4 +1,5 @@
 ﻿@model Domain.ViewModels.SiteSide.Product.ListOfProductsViewModel
+@using Application.Convertors;
 @using Domain.ViewModels.SiteSide.Product
 @using Application.StaticTools
 
@@ -286,7 +287,9 @@
                         {
                             <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
-                                    <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                                    <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                                    </a>   
 
                                     <div class="transition-all flex flex-col items-end gap-2 absolute top-4 left-6 lg:top-6 lg:left-8 opacity-0 likeProduct">
                                         <div class="transition-all overflow-hidden w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center hover:justify-around bg-[#252525] text-center text-[#fff] addToFavorite">
@@ -300,9 +303,9 @@
 
                                 <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
                                     <div class="text-right">
-                                        <p class="font-bold text-[14px] lg:text-[16px]">
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()"   class="font-bold text-[14px] lg:text-[16px]">
                                             @product.ProductTitle
-                                        </p>
+                                        </a>
                                     </div>
                                     <div class="text-left">
                                         <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">

@@ -480,6 +480,12 @@ namespace Application.Services
 
             #endregion
 
+            #region Product Categories 
+
+            returnModel.ProductCategoryLinkable = await _product.FillProductCategoryLinkable(id);
+
+            #endregion
+
             return returnModel;
         }
 

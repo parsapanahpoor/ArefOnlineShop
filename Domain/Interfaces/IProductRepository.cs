@@ -94,6 +94,9 @@ namespace Domain.Interfaces
         //List Of Sizes For Show In List Of Products
         Task<List<ListOfSizesForShowInListOfProducts>> ListOfSizesForShowInListOfProducts();
 
+        //Fill Product Category Link able
+        Task<List<ProductCategoryLinkable>> FillProductCategoryLinkable(int productId);
+
         #endregion
 
         #region Admin Side 

@@ -487,6 +487,48 @@ namespace Data.Repository
                                  .ToListAsync();
         }
 
+        //Fill Product Category Link able
+        public async Task<List<ProductCategoryLinkable>> FillProductCategoryLinkable(int productId)
+        {
+            #region Get Product Categories
+
+            var productSelectedCategories = await _context.ProductSelectedCategory
+                                                          .AsNoTracking() 
+                                                          .Where(p=> p.ProductID == productId)
+                                                          .Select(p=> p.ProductCategoryId)
+                                                          .ToListAsync();
+
+            #endregion
+
+            #region Initial Return Model
+
+            List<ProductCategoryLinkable> model = new List<ProductCategoryLinkable>();
+
+            if (productSelectedCategories != null && productSelectedCategories.Any())
+            {
+                foreach (var categoryId in productSelectedCategories)
+                {
+                    ProductCategoryLinkable childModel = new ProductCategoryLinkable();
+
+                    childModel = await _context.ProductCategories
+                                               .AsNoTracking()
+                                               .Where(p => !p.IsDelete && p.ProductCategoryId == categoryId)
+                                               .Select(p => new ProductCategoryLinkable()
+                                               {
+                                                   CategoryId = categoryId,
+                                                   CategoryTitle = p.CategoryTitle
+                                               })
+                                               .FirstOrDefaultAsync();
+
+                    if (childModel != null) model.Add(childModel);
+                }
+            }
+
+            #endregion
+
+            return model;
+        }
+
         #endregion
 
         #region Admin Side 

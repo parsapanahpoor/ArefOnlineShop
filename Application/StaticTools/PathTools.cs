@@ -83,6 +83,13 @@ namespace Application.StaticTools
         public static readonly string ProductPathThumbServer = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Product/thumb/");
 
         #endregion
+
+        #region Product Gallery
+
+        public static readonly string ProductGalleryPath = "/Images/Product/ProducGallery/";
+        public static readonly string ProductGalleryPathServer = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Product/ProducGallery/");
+
+        #endregion
     }
 
 }

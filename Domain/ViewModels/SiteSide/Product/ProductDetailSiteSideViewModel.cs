@@ -46,6 +46,15 @@ namespace Domain.ViewModels.SiteSide.Product
 
         public List<ProductsSize> ProductsSizes { get; set; }
 
+        public List<ProductCategoryLinkable> ProductCategoryLinkable { get; set; }
+
         #endregion
+    }
+
+    public class ProductCategoryLinkable
+    {
+        public int CategoryId { get; set; }
+
+        public string CategoryTitle { get; set; }
     }
 }
