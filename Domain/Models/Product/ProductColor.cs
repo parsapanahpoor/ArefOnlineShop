@@ -27,6 +27,8 @@ namespace Domain.Models.Product
 
         public List<ProductSelectedColors> ProductSelectedColors { get; set; }
 
+        public List<Order.OrderDetails> OrderDetails { get; set; }
+
         #endregion
     }
 }

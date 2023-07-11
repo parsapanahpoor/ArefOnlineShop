@@ -141,7 +141,7 @@ html,
 .tabset > label {
   position: relative;
   display: inline-block;
-  padding: 15px 15px 25px;
+  padding: 15px 15px 15px;
   border: 1px solid transparent;
   border-bottom: 0;
   cursor: pointer;
@@ -254,4 +254,21 @@ input:focus-visible + label {
     background-repeat: no-repeat;
     background-size: 14px;
     background-position: 50%;
+}
+.activeSideItem{
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.activeSideItem>div>p{
+  color: #fff;
+}
+.activeSideItem>div>.Ellipse{
+  opacity: 1;
+}
+.activeSideItem>img{
+  opacity: 1;
+}
+
+.activeFormItem{
+  color: #D92626;
 }

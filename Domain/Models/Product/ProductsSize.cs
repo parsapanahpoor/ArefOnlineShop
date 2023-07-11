@@ -23,6 +23,8 @@ namespace Domain.Models.Product
 
         public List<ProductSelectedSize> ProductSelectedSizes { get; set; }
 
+        public List<Order.OrderDetails> OrderDetails { get; set; }
+
         #endregion
     }
 }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Domain.Models.Product;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +35,8 @@ namespace Domain.Models.Order
 
         public Orders Order { get; set; }
         public Product.Product Product { get; set; }
+        public ProductsSize Size { get; set; }
+        public ProductColor Color { get; set; }
         public List<ReturnedProducts> ReturnedProducts { get; set; }
 
         #endregion
