@@ -14,18 +14,20 @@ namespace ParsaWorkShop.Areas.User.Controllers
     [Authorize]
     public class LocationController : Controller
     {
-        #region Location
+        #region Ctor
+
         private IUserService _userService;
         private ILocationService _location;
         private IOrderService _order;
+
         public LocationController(IUserService userService, ILocationService lcoation, IOrderService order)
         {
             _userService = userService;
             _location = lcoation;
             _order = order;
         }
-        #endregion
 
+        #endregion
 
         public IActionResult Locations()
         {
@@ -34,18 +36,19 @@ namespace ParsaWorkShop.Areas.User.Controllers
 
             return View(Locations);
         }
+
         public IActionResult AddNewLocation()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddNewLocation(int PostalCode, string LocationAddress)
+        public IActionResult AddNewLocation(int PostalCode, string LocationAddress , string Username , string Mobile , string Email , string CityName , string StateName)
         {
             if (ModelState.IsValid)
             {
                 var userid = _userService.GetUserIdByUserName(User.Identity.Name);
-                _location.AddLocationForUser(userid, PostalCode, LocationAddress);
+                _location.AddLocationForUser(userid, PostalCode, LocationAddress,  Username ,  Mobile ,  Email ,  CityName ,  StateName);
 
                 return RedirectToAction(nameof(Locations));
             }

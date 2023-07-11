@@ -30,13 +30,18 @@ namespace Application.Services
             _location.AddLocation(location);
         }
 
-        public void AddLocationForUser(int userid, int potalcode, string Address)
+        public void AddLocationForUser(int userid, int potalcode, string Address, string Username, string Mobile, string Email, string CityName, string StateName)
         {
             Locations locations = new Locations()
             {
                 UserID = userid,
                 PostalCode = potalcode,
-                LocationAddress = Address
+                LocationAddress = Address,
+                CityName = CityName,
+                Email = Email,
+                Mobile = Mobile,
+                StateName = StateName,
+                Username = Username
             };
 
             _location.AddLocation(locations);

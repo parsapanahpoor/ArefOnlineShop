@@ -11,7 +11,7 @@ namespace Application.Interfaces
     {
         List<Locations> GetAllUserLocations(int userid);
         void AddLocation(int userid, string Address, int Postalcode);
-        void AddLocationForUser(int userid, int potalcode, string Address);
+        void AddLocationForUser(int userid, int potalcode, string Address, string Username, string Mobile, string Email, string CityName, string StateName);
         Locations GetLocationByLocationID(int LocationID);
         void UpdateLocation(Locations locations);
         void DeleteLocation(Locations locations);
