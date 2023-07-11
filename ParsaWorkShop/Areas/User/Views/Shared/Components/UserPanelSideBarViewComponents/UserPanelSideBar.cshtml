@@ -1,0 +1,140 @@
+﻿@model Domain.Models.Users.User
+
+
+<aside id="asideCol" class="w-full lg:w-[305px] border-2 lg:bg-[#252525] lg:flex lg:flex-col lg:items-start lg:sticky lg:top-0 lg:right-0">
+    <div class="w-full text-[#252525] lg:text-white py-5 gap-2">
+        <div class="flex items-center justify-start gap-2 px-5 lg:mb-0 mb-5">
+            <img class="w-[76px] hidden lg:inline-block" src="/ArefSet/src/assets/images/landing/Arefset foo.png" alt="">
+            <div class="">
+                <p class="text-[14px]">داشبورد شما</p>
+                <p class="text-[12px] text-[#828282]">Your dashboard</p>
+            </div>
+        </div>
+
+        <div class="h-[1px] w-[94px] m-5 bg-[#FFFFFF] lg:block hidden"></div>
+
+        <div class="flex items-center justify-start gap-2 px-5">
+            <div class="w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center">
+                <img class="" src="/Images/UserAvatar/@Model.UserAvatar" alt="">
+                <!-- <img src="/ArefSet/src/assets/images/landing/user-pan.png" alt="" /> -->
+            </div>
+            <div class="">
+                <p class="text-[12px]">سلام @Model.UserName</p>
+                <p class="text-[12px] text-[#828282]">خوش امدید</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full text-white bg-[#252525] p-5">
+        <ul class="w-full">
+            <li class="tablinks activeSideItem py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center" id="defaultOpen">
+                <div class="flex items-center">
+                    <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
+                    </div>
+                    <div class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/home.png" alt="">
+                    </div>
+                    <p class="text-[#828282] text-[12px] leading-[24px]">
+                        خلاصه فعالیت ها
+                    </p>
+                </div>
+                <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+            </li>
+            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
+                    </div>
+                    <div class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/bag-2.png" alt="">
+                    </div>
+                    <p class="text-[#828282] text-[12px] leading-[24px]">
+                        سفارشات
+                    </p>
+                </div>
+                <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+            </li>
+            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
+                    </div>
+                    <div class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/heartpanel.png" alt="">
+                    </div>
+                    <p class="text-[#828282] text-[12px] leading-[24px]">
+                        لیست علاقه های من
+                    </p>
+                </div>
+                <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+            </li>
+            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
+                    </div>
+                    <div class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/directbox-notif.png" alt="">
+                    </div>
+                    <p class="text-[#828282] text-[12px] leading-[24px]">
+                        ادرس های من
+                    </p>
+                </div>
+                <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+            </li>
+            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
+                    </div>
+                    <div class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/messages-2panel.png" alt="">
+                    </div>
+                    <p class="text-[#828282] text-[12px] leading-[24px]">
+                        دیدگاه های شما
+                    </p>
+                </div>
+                <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+            </li>
+            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
+                    </div>
+                    <div class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1">
+                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/profile.png" alt="">
+                    </div>
+                    <p class="text-[#828282] text-[12px] leading-[24px]">
+                        اطلاعات حساب کاربری
+                    </p>
+                </div>
+                <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+            </li>
+        </ul>
+
+        <button class="flex items-center justify-center mt-4 mb-7 mx-auto gap-2">
+            <div class="">
+                <img src="/ArefSet/src/assets/images/landing/login.png" alt="">
+            </div>
+            <div class="">
+                <p class="text-[14px] text-[#fff]">خروج از حساب کاربری</p>
+                <p class="text-[12px] text-[#828282]">
+                    Sign out of the user account
+                </p>
+            </div>
+        </button>
+
+        <div class="flex items-center justify-center gap-2">
+            <img class="w-[61.38px]" src="/ArefSet/src/assets/images/landing/Arefset foo.png" alt="">
+        </div>
+
+        <div class="flex items-center justify-center my-7 gap-2">
+            <p class="text-[10px] text-[#828282] leading-[22px] text-center">
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
+                در س
+            </p>
+        </div>
+    </div>
+</aside>

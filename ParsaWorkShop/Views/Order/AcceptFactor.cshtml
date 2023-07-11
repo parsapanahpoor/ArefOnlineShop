@@ -41,7 +41,7 @@
         <div class="w-full relative mt-6 min-h-screen flex flex-col items-start justify-start lg:flex lg:flex-row lg:items-start lg:justify-between">
             <div class="border-2 border-[#B7B7B7] p-5 w-full lg:w-[75vw] mb-4 ">
                 <ul class="w-full lg:flex hidden my-5 gap-5">
-                 
+
                     <li class="w-[39%] text-right
               relative after:content-[''] after:absolute after:right-0 after:-bottom-3 after:w-[53px] after:h-[2px] after:bg-[#D92626]
               ">
@@ -196,22 +196,32 @@
                         }
                         else
                         {
-                            <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-                                @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0")
-                                ریال
-                            </p>
+                            if (Model.Order.Price.HasValue)
+                            {
+                                <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                                    @Model.Order.Price.Value.ToString("#,0")
+                                    ریال
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                                    @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0")
+                                    ریال
+                                </p>
+                            }
                         }
 
                     </div>
-                    <a href="/order/GetTheUserLocations/@Model.Order.Userid" class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
-                        رفتن به صفحه بعد
+                    <a href="/order/Payment/@Model.Order.OrderId" class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
+                        پرداخت
                         <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
                     </a>
 
                     <form asp-action="AddDiscountForOrder" asp-controller="order" method="post">
                         <div class="w-full lg:w-[305px] flex items-center justify-center gap-1 lg:p-0 p-6 bg-[#F6F6F6]">
 
-                            <input type="hidden" value="@ViewBag.OrderID" name="orderId" />
+                            <input type="hidden" value="@Model.Order.OrderId" name="orderId" />
                             <input type="hidden" value="@ViewBag.Locationid" name="Locationid" />
 
                             <div class="border-2 border-[#B7B7B7] w-full h-[65px] flex items-center justify-center">

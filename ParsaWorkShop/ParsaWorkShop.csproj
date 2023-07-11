@@ -34,4 +34,21 @@
     <Folder Include="wwwroot\Images\UserAvatar\thumb\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\ArefSet\src\assets\images\icons\site.webmanifest" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\car.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\download.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\heart.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\Layer 4.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\search-icon.webp" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\star.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\userPanel.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\whatsapp.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\products\features\cash-on-delivery.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\products\features\days-return.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\products\features\express-delivery.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\products\features\original-products.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\products\features\support.svg" />
+  </ItemGroup>
+
 </Project>
