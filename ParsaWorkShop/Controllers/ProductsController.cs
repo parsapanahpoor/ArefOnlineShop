@@ -68,6 +68,7 @@ namespace ParsaWorkShop.Controllers
 
         #region Single Page Products
 
+        [Authorize]
         [HttpGet("SinglePageProducts/{id}/{ProductTitle}")]
         public async Task<IActionResult> SinglePageProducts(int? id , string ProductTitle)
         {
@@ -120,11 +121,11 @@ namespace ParsaWorkShop.Controllers
             if (res)
             {
                 TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
-                return RedirectToAction(nameof(SinglePageProducts) , new { id = productId});
+                return RedirectToAction(nameof(SinglePageProducts) , new { id = productId, ProductTitle = await _product.GetProductTitleWithProductId(productId) });
             }
 
             TempData[ErrorMessage] = "اطلاعات وارد شده صحیح نمی باشد.";
-            return RedirectToAction(nameof(SinglePageProducts), new { id = productId });
+            return RedirectToAction(nameof(SinglePageProducts), new { id = productId, ProductTitle = await _product.GetProductTitleWithProductId(productId) });
         }
 
         #endregion

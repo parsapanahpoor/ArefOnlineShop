@@ -18,10 +18,10 @@ namespace Application.Services
             _order = order;
         }
 
-        public void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId)
+        public void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId , int count)
         {
             OrderDetails orderDetails = _order.AddOneMoreProductToTheShopCart(orderid, productid , colorId , sizeId);
-            orderDetails.Count = orderDetails.Count + 1;
+            orderDetails.Count = orderDetails.Count + count;
 
             _order.UpdateOrderDetail(orderDetails);
         }
@@ -44,7 +44,7 @@ namespace Application.Services
             return order.OrderId;
         }
 
-        public void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price, int colorId, int sizeId)
+        public void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price, int colorId, int sizeId , int count)
         {
             #region Fill Order Detail
 
@@ -53,7 +53,7 @@ namespace Application.Services
                 OrderID = OrderID,
                 ProductID = ProductID,
                 Price = Price,
-                Count = 1,
+                Count = count,
                 ColorId = colorId,
                 SizeId = sizeId
             };

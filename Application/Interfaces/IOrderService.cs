@@ -31,8 +31,8 @@ namespace Application.Interfaces
         #region OrderDetails
 
         bool IsExistOrderDetailFromUserFromToday(int orderid, int productid , int colorId , int sizeId);
-        void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId);
-        void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price, int colorId, int sizeId);
+        void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId , int count);
+        void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price, int colorId, int sizeId, int count);
         List<OrderDetails> GetAllOrderDetailsByOrderID(int orderid);
         bool CheckForProductCount(int Orderid);
         void RemoveProductFromShopCart(int orderdetailid);

@@ -233,6 +233,16 @@ namespace Data.Repository
 
         #region Site Side 
 
+        //Get Product Title With Product Id
+        public async Task<string> GetProductTitleWithProductId(int id)
+        {
+            return await _context.product
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete && p.ProductID == id)
+                                 .Select(p => p.ProductTitle)
+                                 .FirstOrDefaultAsync();
+        }
+
         //Fill Product Detail Site Side View Model
         public async Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id)
         {

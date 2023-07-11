@@ -35,14 +35,19 @@
         let btnAddCounter = document.querySelector("#addCount");
         let btnRemoveCounter = document.querySelector("#removeCount");
         let counter = 1;
+
         document.querySelector("#result").innerHTML = counter;
+        document.getElementById("resultHidden").value = counter;
+
         btnAddCounter.addEventListener("click", function () {
             counter++;
             document.querySelector("#result").innerHTML = counter;
+            document.getElementById("resultHidden").value = counter;
         });
         btnRemoveCounter.addEventListener("click", function () {
             counter--;
             document.querySelector("#result").innerHTML = counter;
+            document.getElementById("resultHidden").value = counter;
         });
 
         // -------------------------------------------------
@@ -123,6 +128,14 @@
 
         window.addEventListener("resize", changeHeight);
     </script>
+
+    <script>
+
+        function ChangeColor(e) {
+            document.getElementById("selectColor").value = e;
+        }
+
+    </script>
 }
 
 
@@ -197,14 +210,14 @@
                             <p>
                                 <a asp-action="ListOfProducts" asp-controller="Products" asp-route-CategoriesId="@category.CategoryId">
 
-                                        @category.CategoryTitle 
+                                        @category.CategoryTitle
 
                                         @if (Model.ProductCategoryLinkable.Count() > i)
                                         {
                                             i = i + 1;
 
-                                            <p>/</p>
-                                            
+                                        <p>/</p>
+
                                         }
 
                                 </a>
@@ -253,7 +266,10 @@
 
             </div>
 
-            <form asp-action="" asp-area="" asp-controller="">
+            <form asp-action="AddToShopCart" asp-controller="Order" asp-area="" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="@Model.ProdcutId" />
+                <input type="hidden" name="Count" id="resultHidden" />
+                <input type="hidden" name="selectColor" id="selectColor" />
 
                 <div>
                     <p class="text-[#252525] text-[16px]" style="font-family: yekanBakhtSemiBold">
@@ -267,8 +283,8 @@
                             foreach (var color in Model.ProductColors)
                             {
 
-                                <div style="cursor:pointer" class="color flex items-center">
-                                    <input type="radio" name="selectColor" value="@color.Id" id="rad@(color.Id)" checked="" class="hidden">
+                                <div style="cursor:pointer" class="color flex items-center" onclick="ChangeColor(@color.Id)">
+                                    <input type="radio" value="@color.Id" id="rad@(color.Id)" checked="" class="hidden">
                                     <div class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[@color.ColorCode] border-2"></div>
                                     <label for="rad@(color.Id)" class="mr-1 text-[#7E8285] text-[14px]">@color.ColorTitle</label>
                                 </div>
@@ -317,10 +333,32 @@
                         <img src="/ArefSet/src/assets/images/landing/Group 44847.png" alt="">
                         افزودن به سبد خرید
                     </button>
-                    <p class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] border-l-[1px] lg:px-8 px-11 pr-0 border-[#7E8285]">
-                        <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/heartt.png" alt="">
-                        افزودن به علاقه مندی
-                    </p>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (ViewBag.IsFavoriteProduct == true)
+                        {
+                            <a asp-action="AddOrRemoveProductToTheFavorite" asp-area="" asp-controller="Products" asp-route-productId="@Model.ProdcutId" class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] border-l-[1px] lg:px-8 px-11 pr-0 border-[#7E8285]">
+                                <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/heartt.png" alt="">
+                                حذف از علاقه مندی
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="AddOrRemoveProductToTheFavorite" asp-area="" asp-controller="Products" asp-route-productId="@Model.ProdcutId" class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] border-l-[1px] lg:px-8 px-11 pr-0 border-[#7E8285]">
+                                <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/heartt.png" alt="">
+                                افزودن به علاقه مندی
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <a asp-action="AddOrRemoveProductToTheFavorite" asp-area="" asp-controller="Products" asp-route-productId="@Model.ProdcutId" class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] border-l-[1px] lg:px-8 px-11 pr-0 border-[#7E8285]">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/heartt.png" alt="">
+                            افزودن به علاقه مندی
+                        </a>
+                    }
+
                     <p class="flex items-center justify-center gap-1 text-[16px] text-[#7E8285] lg:px-8 px-11 pl-0">
                         <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/book.png" alt="">
                         راهنمای اندازه
@@ -357,7 +395,7 @@
             <div class="tab-panels">
                 <section id="describtion" class="tab-panel border-2 text-right  !p-4 !px-6">
                     <p class="text-[16px] lg:text-[22px] my-2">
-                        <strong class="" style="font-family: yekanBakhtBlack">معرفی</strong> 
+                        <strong class="" style="font-family: yekanBakhtBlack">معرفی</strong>
                     </p>
                     <p class="text-[14px] lg:text-[16px] text-[#494949] leading-[26px] lg:leading-[36px] break-all">
                         @Html.Raw(Model.LongDescription)
@@ -371,7 +409,7 @@
                     </p>
                     <p class="text-[14px] lg:text-[16px] text-[#494949] leading-[26px] lg:leading-[36px] break-all">
                         <table class="table">
-                            <tbody >
+                            <tbody>
                                 @foreach (var item in Model.ProductFeatures)
                                 {
                                     <tr>

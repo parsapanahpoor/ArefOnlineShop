@@ -57,7 +57,7 @@ namespace ParsaWorkShop.Controllers
 
         #region Add To Shop Cart
 
-        [HttpPost, ValidateAntiForgeryToken , Authorize]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> AddToShopCart(IncomingProductInBasketSiteSideViewModel model)
         {
             #region Model State Validation
@@ -65,7 +65,7 @@ namespace ParsaWorkShop.Controllers
             if (!model.selectColor.HasValue || !model.selectSize.HasValue)
             {
                 TempData[ErrorMessage] = "You Must Choose Size And Color";
-                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id });
+                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id , ProductTitle = await _product.GetProductTitleWithProductId (model.id.Value)});
             }
 
             if (model.id == null)
@@ -81,13 +81,19 @@ namespace ParsaWorkShop.Controllers
             if (! await _product.CheckThatIsExistProductWithThisColor(model.id.Value , model.selectColor.Value))
             {
                 TempData[ErrorMessage] = "There is a problem with datas";
-                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id });
+                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id, ProductTitle = await _product.GetProductTitleWithProductId(model.id.Value) });
             }
 
             if (!await _product.CheckThatIsExistProductWithThisSize(model.id.Value, model.selectSize.Value))
             {
                 TempData[ErrorMessage] = "There is a problem with datas";
-                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id });
+                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id, ProductTitle = await _product.GetProductTitleWithProductId(model.id.Value) });
+            }
+
+            if (model.Count <= 0)
+            {
+                TempData[ErrorMessage] = "Count Of Request Must More Than 0";
+                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id, ProductTitle = await _product.GetProductTitleWithProductId(model.id.Value) });
             }
 
             #endregion
@@ -107,11 +113,11 @@ namespace ParsaWorkShop.Controllers
 
                 if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id , model.selectColor.Value , model.selectSize.Value))
                 {
-                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id , model.selectColor.Value, model.selectSize.Value);
+                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id , model.selectColor.Value, model.selectSize.Value , model.Count);
                 }
                 else
                 {
-                    _order.AddProductToOrderDetail(order.OrderId, product.ProductID, product.Price , model.selectColor.Value , model.selectSize.Value);
+                    _order.AddProductToOrderDetail(order.OrderId, product.ProductID, product.Price , model.selectColor.Value , model.selectSize.Value , model.Count);
                 }
             }
             else
@@ -120,7 +126,7 @@ namespace ParsaWorkShop.Controllers
                 int orderid = _order.AddOrderToTheShopCart(userid);
 
                 //Add Order Detail To The Data Base 
-                _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price , model.selectColor.Value , model.selectSize.Value);
+                _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price , model.selectColor.Value , model.selectSize.Value , model.Count);
             }
 
             #endregion

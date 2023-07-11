@@ -16,6 +16,8 @@ namespace Domain.ViewModels.SiteSide.Order
 
         public int? selectSize { get; set; }
 
+        public int Count { get; set; }
+
         #endregion
     }
 }

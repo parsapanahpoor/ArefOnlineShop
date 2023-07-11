@@ -464,6 +464,12 @@ namespace Application.Services
 
         #region Site Side 
 
+        //Get Product Title With Product Id
+        public async Task<string> GetProductTitleWithProductId(int id)
+        {
+            return await _product.GetProductTitleWithProductId(id);
+        }
+
         //Fill Product Detail Site Side View Model
         public async Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id)
         {
