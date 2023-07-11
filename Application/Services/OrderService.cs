@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Models.Order;
 using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -191,6 +192,12 @@ namespace Application.Services
             _order.UpdateOrderByLocationid(orders);
 
             return orders;
+        }
+
+        //Fill Invoice Site Side ViewModel
+        public async Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId)
+        {
+            return await _order.FillInvoiceSiteSideViewModel(userId);
         }
     }
 }

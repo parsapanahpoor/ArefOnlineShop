@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Order;
 using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,9 @@ namespace Domain.Interfaces
         void RemoveProductFromShopCart(OrderDetails orderDetails);
         OrderDetails GetOrderDetailByID(int orderdetailid);
         void SaveChanges();
+
+        //Fill Invoice Site Side ViewModel
+        Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId);
 
         #endregion
     }

@@ -138,18 +138,13 @@ namespace ParsaWorkShop.Controllers
 
         #region Shop Cart
 
-        public IActionResult ShopCart()
+        public async Task<IActionResult> ShopCart()
         {
-            int userid = _user.GetUserIdByUserName(User.Identity.Name);
-            Orders order = _order.GetOrderForShopCart(userid);
+            var order =  await _order.FillInvoiceSiteSideViewModel(User.GetUserId());
+
             if (order != null)
             {
-                ViewBag.orderDetails = _order.GetAllOrderDetailsByOrderID(order.OrderId);
-
-                if (_order.CheckForProductCount(order.OrderId))
-                {
-                    ViewBag.error = true;
-                }
+                ViewBag.orderDetails = _order.GetAllOrderDetailsByOrderID(order.Order.OrderId);
             }
 
             return View(order);

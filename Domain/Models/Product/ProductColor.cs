@@ -1,8 +1,10 @@
 ﻿#region Using
 
 using Domain.Models.Common;
+using Domain.Models.Order;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +28,6 @@ namespace Domain.Models.Product
         #region Relations
 
         public List<ProductSelectedColors> ProductSelectedColors { get; set; }
-
-        public List<Order.OrderDetails> OrderDetails { get; set; }
 
         #endregion
     }

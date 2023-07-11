@@ -35,8 +35,6 @@ namespace Domain.Models.Order
 
         public Orders Order { get; set; }
         public Product.Product Product { get; set; }
-        public ProductsSize Size { get; set; }
-        public ProductColor Color { get; set; }
         public List<ReturnedProducts> ReturnedProducts { get; set; }
 
         #endregion

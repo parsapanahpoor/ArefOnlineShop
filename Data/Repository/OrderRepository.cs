@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Models.Order;
 using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Order;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -131,5 +132,55 @@ namespace Data.Repository
             _context.OrderDetails.Update(orderDetails);
             SaveChanges();
         }
+
+        //Fill Invoice Site Side ViewModel
+        public async Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId)
+        {
+            return await _context.Orders
+                           .Where(p => p.Userid == userId && p.CreateDate.Year == DateTime.Now.Year
+                                                   && p.CreateDate.Month == DateTime.Now.Month && p.CreateDate.Day == DateTime.Now.Day
+                                                   && p.IsFinally == false)
+                           .Select(p => new InvoiceSiteSideViewModel()
+                           {
+                               Order = p,
+                               InvoiceOrderDetails = _context.OrderDetails
+                                                             .Where(s => s.OrderID == p.OrderId)
+                                                             .Select(s => new InvoiceOrderDetailSiteSideViewModel()
+                                                             {
+                                                                 Count = s.Count,
+                                                                 OrderDetailID = s.OrderDetailID,
+                                                                 InvoiceColor = _context.ProductColors
+                                                                                        .Where(c => !c.IsDelete && c.Id == s.ColorId)
+                                                                                        .Select(c => new InvoiceColorSiteSideViewModel()
+                                                                                        {
+                                                                                            ColorId = c.Id,
+                                                                                            ColorName = c.ColorTitle,
+                                                                                            ColorCode = c.ColorCode
+                                                                                        })
+                                                                                        .FirstOrDefault(),
+                                                                 InvoiceSize = _context.ProductsSizes
+                                                                                       .Where(size => !size.IsDelete && size.Id == s.SizeId)
+                                                                                       .Select(size => new InvoiceSizeSiteSideViewModel()
+                                                                                       {
+                                                                                           SizeId = size.Id,
+                                                                                           SizeName = size.SizeTitle
+                                                                                       })
+                                                                                       .FirstOrDefault(),
+                                                                 Product = _context.product
+                                                                                   .Where(pro => !pro.IsDelete && pro.ProductID == s.ProductID)
+                                                                                   .Select(pro => new InvoiceProductSiteSideViewModel()
+                                                                                   {
+                                                                                       Price = pro.Price,
+                                                                                       ProductId = pro.ProductID,
+                                                                                       ProductImage = pro.ProductImageName,
+                                                                                       ProductTitle = pro.ProductTitle,
+                                                                                   })
+                                                                                   .FirstOrDefault(),
+                                                             })
+                                                             .ToList()
+                           })
+                           .FirstOrDefaultAsync();
+        }
+
     }
 }

@@ -21,6 +21,20 @@ namespace Domain.Models.Users
 
         public int PostalCode { get; set; }
 
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string Mobile { get; set; }
+
+        public string Email { get; set; }
+
+        [Required]
+        public string CityName { get; set; }
+
+        [Required]
+        public string StateName { get; set; }
+
         #region Navigations
         public User User { get; set; }
         public List<Order.Orders> Orders { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Order;
 using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ namespace Application.Interfaces
         Locations GetUserLocationByOrderID(int orderid);
         bool IsExistLocationInOrder(int Locationid);
         List<Orders> GetOrdersByUsersId(int userid);
+
+        //Fill Invoice Site Side ViewModel
+        Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId);
 
         #endregion
 
