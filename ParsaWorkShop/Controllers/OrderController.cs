@@ -23,6 +23,8 @@ using System.Threading.Tasks;
 using Application.Services.Interfaces;
 using ParsaWorkShop.Web.Controllers;
 using Domain.ViewModels.SiteSide.Order;
+using Microsoft.CodeAnalysis;
+using Domain.Models.Users;
 
 #endregion
 
@@ -65,7 +67,7 @@ namespace ParsaWorkShop.Controllers
             if (!model.selectColor.HasValue || !model.selectSize.HasValue)
             {
                 TempData[ErrorMessage] = "You Must Choose Size And Color";
-                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id , ProductTitle = await _product.GetProductTitleWithProductId (model.id.Value)});
+                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id, ProductTitle = await _product.GetProductTitleWithProductId(model.id.Value) });
             }
 
             if (model.id == null)
@@ -78,7 +80,7 @@ namespace ParsaWorkShop.Controllers
                 return NotFound();
             }
 
-            if (! await _product.CheckThatIsExistProductWithThisColor(model.id.Value , model.selectColor.Value))
+            if (!await _product.CheckThatIsExistProductWithThisColor(model.id.Value, model.selectColor.Value))
             {
                 TempData[ErrorMessage] = "There is a problem with datas";
                 return RedirectToAction("SinglePageProducts", "Products", new { id = model.id, ProductTitle = await _product.GetProductTitleWithProductId(model.id.Value) });
@@ -111,13 +113,13 @@ namespace ParsaWorkShop.Controllers
             {
                 Orders order = _order.GetOrderForShopCart(userid);
 
-                if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id , model.selectColor.Value , model.selectSize.Value))
+                if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id, model.selectColor.Value, model.selectSize.Value))
                 {
-                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id , model.selectColor.Value, model.selectSize.Value , model.Count);
+                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id, model.selectColor.Value, model.selectSize.Value, model.Count);
                 }
                 else
                 {
-                    _order.AddProductToOrderDetail(order.OrderId, product.ProductID, product.Price , model.selectColor.Value , model.selectSize.Value , model.Count);
+                    _order.AddProductToOrderDetail(order.OrderId, product.ProductID, product.Price, model.selectColor.Value, model.selectSize.Value, model.Count);
                 }
             }
             else
@@ -126,7 +128,7 @@ namespace ParsaWorkShop.Controllers
                 int orderid = _order.AddOrderToTheShopCart(userid);
 
                 //Add Order Detail To The Data Base 
-                _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price , model.selectColor.Value , model.selectSize.Value , model.Count);
+                _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price, model.selectColor.Value, model.selectSize.Value, model.Count);
             }
 
             #endregion
@@ -140,7 +142,7 @@ namespace ParsaWorkShop.Controllers
 
         public async Task<IActionResult> ShopCart()
         {
-            var order =  await _order.FillInvoiceSiteSideViewModel(User.GetUserId());
+            var order = await _order.FillInvoiceSiteSideViewModel(User.GetUserId());
 
             if (order != null)
             {
@@ -219,24 +221,38 @@ namespace ParsaWorkShop.Controllers
         #region Add The User Locations
 
         [HttpPost]
-        public IActionResult AddTheUserLocations(int orderid, string LocationAddress, string PostalCode)
+        public IActionResult AddTheUserLocations(int orderid, string LocationAddress, string PostalCode, string Username, string Mobile, string Email, string CityName, string StateName)
         {
             if (ModelState.IsValid)
             {
                 int userid = _user.GetUserIdByUserName(User.Identity.Name);
                 int postalCode = int.Parse(PostalCode);
 
-                _location.AddLocation(userid, LocationAddress, postalCode);
+                var locationId = _location.AddLocation(userid, LocationAddress, postalCode, Username, Mobile, Email, CityName, StateName);
+
+                return RedirectToAction(nameof(PostSendSatus), new { oredrid = orderid, Locationid = locationId });
             }
 
-            return Redirect("/order/GetTheUserLocations?id=" + orderid);
+            return RedirectToAction(nameof(GetTheUserLocations), new { id = orderid });
+        }
+
+        #endregion
+
+        #region Post Send Status
+
+        public async Task<IActionResult> PostSendSatus(int? oredrid, int Locationid)
+        {
+            ViewBag.Locationid = Locationid;
+            ViewBag.Orderid = oredrid;
+
+            return View();
         }
 
         #endregion
 
         #region Accept Factor
 
-        public IActionResult AcceptFactor(int? oredrid, int Locationid, int? discountPrice)
+        public async Task<IActionResult> AcceptFactor(int? oredrid, int Locationid, int? discountPrice)
         {
             if (oredrid == null) return NotFound();
 
@@ -250,7 +266,8 @@ namespace ParsaWorkShop.Controllers
             ViewBag.Locationid = Locationid;
             ViewBag.discountPrice = discountPrice;
 
-            return View();
+            return View(await _order.FillInvoiceSiteSideViewModel(User.GetUserId()));
+
         }
 
         #endregion

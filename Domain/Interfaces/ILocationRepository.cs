@@ -10,7 +10,7 @@ namespace Domain.Interfaces
     public interface ILocationRepository
     {
         List<Locations> GetAllUserLocations(int userid);
-        void AddLocation(Locations locations);
+        int AddLocation(Locations locations);
         Locations GetLocationByLocationID(int LocationID);
         void UpdateLocation(Locations locations);
         void DeleteLocation(Locations locations);

@@ -17,10 +17,12 @@ namespace Data.Repository
             _context = context;
         }
 
-        public void AddLocation(Locations locations)
+        public int AddLocation(Locations locations)
         {
             _context.Locations.Add(locations);
             Savechanges();
+
+            return locations.LocationID;
         }
 
         public void DeleteLocation(Locations locations)

@@ -10,7 +10,7 @@ namespace Application.Interfaces
     public interface ILocationService
     {
         List<Locations> GetAllUserLocations(int userid);
-        void AddLocation(int userid, string Address, int Postalcode);
+        int AddLocation(int userid, string Address, int Postalcode, string Username, string Mobile, string Email, string CityName, string StateName);
         void AddLocationForUser(int userid, int potalcode, string Address, string Username, string Mobile, string Email, string CityName, string StateName);
         Locations GetLocationByLocationID(int LocationID);
         void UpdateLocation(Locations locations);

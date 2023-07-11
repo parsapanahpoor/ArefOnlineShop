@@ -1,0 +1,186 @@
+﻿@{
+    ViewData["Title"] = "روش ارسال ";
+
+    int? orderId = ViewBag.Orderid as int?;
+    int? LocationId = ViewBag.Locationid as int?;
+}
+
+@section Styles
+    {
+    <link href="/ArefSet/dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
+}
+
+<div class="mx-auto my-5">
+    <section class="mx-auto px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+        <div class="border-2 border-[#B7B7B7] w-full min-h-[146px] py-6 lg:py-0 lg:h-[257px] flex flex-col items-center justify-center">
+            <div class="flex items-center justify-center gap-3">
+                <div class="w-[94px]">
+                    <img class="w-full" src="/ArefSet/src/assets/images/landing/Arefset 1.png" alt="">
+                </div>
+                <div>
+                    <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtExtraBold">
+                        صفحه پرداخت عارف
+                    </p>
+                    <p class="text-[14px] text-[#252525]">Aref payment page</p>
+                </div>
+            </div>
+
+            <div class="w-[90%] lg:w-[513px] border-b-2 my-8"></div>
+
+            <div class="h-[26.41px] lg:h-[61px] flex justify-between items-center">
+                <div class="h-full pl-5 flex items-center justify-center gap-2 lg:gap-3">
+                    <div class="w-[21.75px] lg:w-[42px]">
+                        <img class="w-full opacity-70" src="/ArefSet/src/assets/images/landing/address.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-[8px] lg:text-[14px] text-[#777]" style="font-family: yekanBakhtSemiBold">
+                            ادرس ارسال سفارش
+                        </p>
+                        <p class="text-[6px] lg:text-[12px] text-[#B7B7B7]">
+                            Aref payment page
+                        </p>
+                    </div>
+                </div>
+
+                <div class="h-full border-l-2 border-r-2 px-5 flex items-center justify-start gap-2 lg:gap-3">
+                    <div class="w-[21.75px] lg:w-[42px] relative after:content-[''] after:absolute after:right-0 after:-bottom-3 after:w-[53px] after:h-[2px] after:bg-[#D92626]">
+                        <img class="w-full" src="/ArefSet/src/assets/images/landing/truck-tick.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-[8px] lg:text-[14px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            نوع ارسال
+                        </p>
+                        <p class="text-[6px] lg:text-[12px] text-[#B7B7B7]">
+                            Post Type
+                        </p>
+                    </div>
+                </div>
+                <div class="h-full flex items-center pr-5 justify-center gap-2 lg:gap-3">
+                    <div class="w-[21.75px] lg:w-[42px]">
+                        <img class="w-full opacity-70" src="/ArefSet/src/assets/images/landing/receipt-text.png" alt="">
+                    </div>
+                    <div>
+                        <p class="text-[8px] lg:text-[14px] text-[#777]" style="font-family: yekanBakhtSemiBold">
+                            ادرس ارسال سفارش
+                        </p>
+                        <p class="text-[6px] lg:text-[12px] text-[#B7B7B7]">
+                            Aref payment page
+                        </p>
+                    </div>
+                </div>
+                <!-- <div class=" h-full border-l-2 ">1</div>
+                        <div class=" h-full ">3</div>
+                        <div class=" h-full border-l-2 ">2</div> -->
+            </div>
+        </div>
+    </section>
+
+    <section class="mx-auto mt-0 lg:px-0 max-w-[100%] lg:max-w-[86.5em] mb-7">
+        <div class="w-full relative mt-6 min-h-screen flex flex-col items-start justify-start md:flex md:flex-col md:items-start md:justify-start lg:flex lg:flex-row lg:items-start lg:justify-between">
+            <div class="mx-auto w-full lg:w-[75vw] mb-4 px-5 lg:px-0">
+
+                <div class="cardorder w-full mb-3">
+                    <input type="radio" name="card" class="hidden" id="card2">
+                    <label for="card2" class="px-5 lg:px-8 py-4 w-full border-2 flex justify-between items-center transition-all duration-100 transform ease-linear">
+                        <div class="text-red-100 flex items-center justify-between gap-2 lg:gap-6">
+                            <div class="w-[57px] h-[22px] md:w-[111.11px] md:h-[40px] lg:w-[111.11px] lg:h-[40px]">
+                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/pos.png" alt="">
+                            </div>
+                            <p class="text-[#252525] md:text-[16px] text-[10px] lg:text-[16px]" style="font-family: yekanBakhtBold">
+                                ارسال اکسپرس 10,990 تومان (1-2 روز)
+                            </p>
+                        </div>
+
+                        <a href="/order/AcceptFactor?oredrid=@orderId&&Locationid=@LocationId" class="my-3 text-[9px] md:text-[16px] lg:text-[16px] hover:bg-[#fff] border-[1px] border-[#252525] hover:border-[#fff] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-3 py-2 lg:px-7 lg:py-3 flex items-center text-[#252525] hover:!text-[#252525]">
+                            انتخاب ادرس
+                        </a>
+                    </label>
+                </div>
+
+                <div class="cardorder w-full mb-3">
+                    <input type="radio" name="card" class="hidden" id="card3">
+                    <label for="card3" class="px-5 lg:px-8 py-4 w-full border-2 flex justify-between items-center transition-all duration-100 transform ease-linear">
+                        <div class="text-red-100 flex items-center justify-between gap-2 lg:gap-6">
+                            <div class="w-[58.47px] h-[22px] md:w-[106.31px] md:h-[40px] lg:w-[106.31px] lg:h-[40px]">
+                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/logonew 1.png" alt="">
+                            </div>
+                            <p class="text-[#252525] text-[10px] md:text-[16px] lg:text-[16px]" style="font-family: yekanBakhtBold">
+                                ارسال سریع 20,000 تومان (همان روز سفارش)
+                            </p>
+                        </div>
+
+                        <a href="/order/AcceptFactor?oredrid=@orderId&&Locationid=@LocationId" class="my-3 text-[9px] md:text-[16px] lg:text-[16px] hover:bg-[#fff] border-[1px] border-[#252525] hover:border-[#fff] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-3 py-2 lg:px-7 lg:py-3 flex items-center text-[#252525] hover:!text-[#252525]">
+                            انتخاب ادرس
+                        </a>
+                    </label>
+                </div>
+
+                <!-- about mailings -->
+                <div class="mt-20">
+                    <p class="text-[14px] md:text-[20px] lg:text-[20px] text-[#252525]" style="font-family: yekanBakhtBold">
+                        درباره ارسال های پستی ما
+                    </p>
+                    <p class="lg:text-[20px] md:text-[20px] text-[12px] text-[#999] mb-4">
+                        About our mailings
+                    </p>
+                    <p class="lg:text-[16px] md:text-[16px] text-[12px] text-[#888] leading-[31px] md:leading-[42px] lg:leading-[42px]">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                        استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
+                        در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
+                        نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان
+                        جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را
+                        برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در
+                        زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و
+                        دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد
+                        وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات
+                        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                    </p>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-[25vw] flex flex-col-reverse justify-start items-end lg:flex lg:flex-col lg:justify-start lg:items-end lg:sticky lg:top-0 lg:gap-2">
+                <div class="w-full lg:w-[305px] lg:bg-[#F6F6F6] bg-[#FCFCFC] lg:p-4 p-5 flex flex-col justify-between">
+                    <div class="flex justify-between items-center">
+                        <p class="text-[14px] text-[#252525]" style="font-family: yekanBakhtExtraBold">
+                            خلاصه سبد خرید
+                        </p>
+                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            ۲ کالا
+                        </p>
+                    </div>
+                    <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 mt-2 py-3 flex justify-between items-center">
+                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            سود شما از خرید
+                        </p>
+                        <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
+                            (۶٪) ۵,۰۰۰
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            هزینه ارسال:
+                        </p>
+                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            درحال محاسبه
+                        </p>
+                    </div>
+                    <div class="border-[#E7E7E7] border-t-[1px] my-4 py-3 hidden lg:flex lg:justify-between lg:items-center">
+                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            مبلغ قابل پرداخت :
+                        </p>
+                        <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            ۵,۸۱۴,۴۶۰ تومان
+                        </p>
+                    </div>
+                    <a href="/order/AcceptFactor?oredrid=@orderId&&Locationid=@LocationId" class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
+                        رفتن به صفحه پرداخت
+                        <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

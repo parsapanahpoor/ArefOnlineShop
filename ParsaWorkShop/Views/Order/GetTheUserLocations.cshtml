@@ -1,9 +1,6 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "آدرس و نشانی ";
 }
-
-
 
 
 <div class="mx-auto my-5">
@@ -75,60 +72,62 @@
             <div class="mx-auto w-full lg:w-[75vw] mb-4 px-5 lg:px-0">
                 <!-- ------------- form -------------- -->
                 <div class="mx-auto w-full">
-                    <form action="" method="POST">
+                    <form class="mt-4" asp-action="AddTheUserLocations" asp-controller="order" id="frmCalculateShipping" method="post">
+                        <input type="hidden" name="orderid" value="@ViewBag.orderid">
+
                         <!-- <div class="-mx-3 flex flex-wrap"> -->
                         <div class="-mx-3 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
                             <div class="w-full px-3">
                                 <div class="mb-5">
-                                    <label for="fName" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
+                                    <label for="Username" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
                                         نام (اجباری):
                                     </label>
-                                    <input type="text" name="fName" id="fName" placeholder="نام نام خانوادگی" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    <input type="text" name="Username" id="fName" placeholder="نام نام خانوادگی" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                 </div>
                             </div>
 
                             <div class="w-full px-3">
                                 <div class="mb-5">
                                     <label for="lName" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
-                                        نام (اجباری):
+                                        ایمیل :
                                     </label>
-                                    <input type="text" name="lName" id="lName" placeholder="ایمیل خود را وارد کنید" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    <input type="text" name="Email" id="lName" placeholder="ایمیل خود را وارد کنید" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                 </div>
                             </div>
 
                             <div class="w-full px-3 my-3">
                                 <div class="mb-5">
-                                    <label for="state" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
+                                    <label for="StateName" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
                                         استان (اجباری):
                                     </label>
-                                    <input type="text" name="state" id="state" placeholder=" استان" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    <input type="text" name="StateName" id="state" placeholder=" استان" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                 </div>
                             </div>
 
                             <div class="w-full px-3 my-3">
                                 <div class="mb-5">
-                                    <label for="state" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
+                                    <label for="CityName" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
                                         شهرستان (اجباری):
                                     </label>
-                                    <input type="text" name="city" id="city" placeholder=" شهرستان" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    <input type="text" name="CityName" id="city" placeholder=" شهرستان" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                 </div>
                             </div>
 
                             <div class="w-full px-3">
                                 <div class="mb-5">
-                                    <label for="postCode" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
+                                    <label for="PostalCode" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
                                         کدپستی (اجباری):
                                     </label>
-                                    <input type="text" name="postCode" id="postCode" placeholder=" کدپستی" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    <input type="text" name="PostalCode" id="postCode" placeholder=" کدپستی" class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                 </div>
                             </div>
 
                             <div class="w-full px-3">
                                 <div class="mb-5">
-                                    <label for="phoneNumber" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
+                                    <label for="Mobile" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
                                         شماره مبایل (اجباری):
                                     </label>
-                                    <input type="text" name="phoneNumber" id="phoneNumber" placeholder="شماره مبایل خود را وارد کنید " class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    <input type="text" name="Mobile" id="phoneNumber" placeholder="شماره مبایل خود را وارد کنید " class="w-full border border-[#B7B7B7] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                 </div>
                             </div>
                         </div>
@@ -136,7 +135,7 @@
                             <label for="address" class="text-[12px] mb-3 block text-base font-medium text-[#07074D]">
                                 ادرس (اجباری):
                             </label>
-                            <textarea name="address" id="address" rows="3" class="w-full appearance-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" placeholder="متن پیام شما"></textarea>
+                            <textarea name="LocationAddress" id="address" rows="3" class="w-full appearance-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" placeholder="متن پیام شما"></textarea>
                         </div>
 
                         <div class="flex justify-end">
@@ -155,203 +154,55 @@
             </div>
 
             <div class="w-full lg:w-[25vw] flex flex-col-reverse justify-start items-end lg:flex lg:flex-col lg:justify-start lg:items-end lg:sticky lg:top-0 lg:gap-2">
-                <div class="w-full lg:w-[305px] lg:min-h-[372px] lg:bg-[#F6F6F6] bg-[#FCFCFC] lg:p-4 p-5 flex flex-col justify-between">
-                    <div class="flex justify-between items-center">
-                        <p class="text-[14px] text-[#252525]" style="font-family: yekanBakhtExtraBold">
-                            خلاصه سبد خرید
-                        </p>
-                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-                            ۲ کالا
-                        </p>
-                    </div>
-                    <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 mt-2 py-3 flex justify-between items-center">
-                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-                            جمع کل سبد خرید :
-                        </p>
-                        <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
-                            236,000 تومان
-                        </p>
-                    </div>
-                    <ul class="grid grid-cols-2 lg:grid-cols-1 gap-2">
-                        <li class="flex justify-start items-center gap-2 mb-3">
-                            <img src="/ArefSet/src/assets/images/landing/truck.png" alt="">
-                            <p class="text-[#828282] text-[10px]">ارسال از ۲ روز کاری</p>
-                        </li>
-                        <li class="flex justify-start items-center gap-2 mb-3">
-                            <img src="/ArefSet/src/assets/images/landing/truck-fast.png" alt="">
-                            <p class="text-[#828282] text-[10px]">
-                                ارسال فوری در شهر تهران
-                            </p>
-                        </li>
-                        <li class="flex justify-start items-center gap-2 mb-3">
-                            <img src="/ArefSet/src/assets/images/landing/shield-tick.png" alt="">
-                            <p class="text-[#828282] text-[10px]">
-                                گارانتی اصالت و سلامت فیزیکی کالا
-                            </p>
-                        </li>
-                    </ul>
-                    <div class="border-[#E7E7E7] border-t-[1px] my-4 py-3 hidden lg:flex lg:justify-between lg:items-center">
-                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-                            مبلغ قابل پرداخت :
-                        </p>
-                        <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-                            ۵,۸۱۴,۴۶۰ تومان
-                        </p>
-                    </div>
-                    <button class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[13px]">
-                        رفتن به صفحه پرداخت
-                        <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
-                    </button>
-                    <button class="lg:w-full py-3 gap-2 flex items-center justify-center text-[13px] mt-2 hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent text-[#7E8285] hover:text-[#fff]">
-                        <img class="transform rotate-180" src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
-                        بازگشت
-                    </button>
-                </div>
+
+
+                @if (ViewBag.UserLocations != null)
+                {
+                    List<Domain.Models.Users.Locations> Locations = ViewBag.UserLocations as List<Domain.Models.Users.Locations>;
+
+                    foreach (var item in Locations)
+                    {
+
+                        <div class="w-full lg:w-[305px] lg:bg-[#F6F6F6] bg-[#FCFCFC] lg:p-4 p-5 flex flex-col justify-between">
+                           
+                            <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 mt-2 py-3 flex justify-between items-center">
+                                <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                                    موبایل :
+                                </p>
+                                <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
+                                    @item.Mobile
+                                </p>
+                            </div>
+
+                            <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 mt-2 py-3 flex justify-between items-center">
+                                <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                                    کدپستی :
+                                </p>
+                                <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
+                                    @item.PostalCode
+                                </p>
+                            </div>
+                            <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 mt-2 py-3 flex justify-between items-center">
+                                <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                                    شهر :
+                                </p>
+                                <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
+                                    @item.CityName
+                                </p>
+                            </div>
+
+                            <a href="/order/PostSendSatus?oredrid=@ViewBag.orderid&&Locationid=@item.LocationID" class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[13px]">
+                                انتخاب آدرس
+                                <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
+                            </a>
+                        </div>
+
+
+                    }
+                }
+
+
             </div>
         </div>
     </section>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="bg-half bg-light d-table w-100">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12 text-center">
-                <div class="page-next-level">
-                    <h4 class="title">  آدرس ها و نشانی  </h4>
-                    <div class="page-next">
-                        <nav aria-label="breadcrumb" class="d-inline-block">
-                            <ul class="breadcrumb bg-white rounded shadow mb-0">
-                                <li class="breadcrumb-item"><a href="/">فروشگاه کالا </a></li>
-                                <li class="breadcrumb-item"><a href="#">فاکتور </a></li>
-                                <li class="breadcrumb-item active" aria-current="page"> آدرس و نشانی  </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div><!--end col-->
-        </div><!--end row-->
-    </div> <!--end container-->
-</section>
-
-<div class="position-relative">
-    <div class="shape overflow-hidden text-white">
-        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
-        </svg>
-    </div>
-</div>
-
-<section class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-md-6">
-                <div class="rounded shadow-lg p-4">
-                    <h5 class="mb-0">افزودن آدرس  :</h5>
-
-                    <form class="mt-4" asp-action="AddTheUserLocations" asp-controller="order" id="frmCalculateShipping" method="post">
-                        <input type="hidden" name="orderid" value="@ViewBag.orderid">
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label class="form-label">کد پستی  <span class="text-danger">*</span></label>
-                                    <input id="firstname" type="text" class="form-control" placeholder="کد پستی خود را وارد کنید " name="PostalCode">
-                                </div>
-                            </div><!--end col-->
-
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label class="form-label">آدرس  <span class="text-danger">*</span></label>
-                                    <input type="text"  id="phone" class="form-control"  placeholder="آدرس خود را وارد کنید " name="LocationAddress">
-                                </div>
-                            </div><!--end col-->
-                            <div class="col-12">
-                                <div class="mt-4 pt-2">
-                                    <div class="d-grid">
-                                        <input type="submit" class="btn btn-primary" value="ثبت و پردازش  ">
-                                    </div>
-                                </div>
-                            </div><!--end col-->
-                        </div><!--end row-->
-                    </form><!--end form-->
-                </div>
-
-
-            </div><!--end col-->
-
-            <div class="col-lg-7 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <div class="col-12">
-                    <div class="table-responsive bg-white shadow">
-                        <table class="table table-center table-padding mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="border-bottom py-3">کدپستی</th>
-                                    <th class="border-bottom py-3 text-center">آدرس </th>
-                                    <th class="border-bottom py-3"> </th>
-
-                                </tr>
-                            </thead>
-
-                            <tbody>                              
-
-                            @if (ViewBag.UserLocations != null)
-                            {
-                                List<Domain.Models.Users.Locations> Locations = ViewBag.UserLocations as List<Domain.Models.Users.Locations>;
-
-                                foreach (var item in Locations)
-                                {
-
-                                <tr class="shop-list">
-
-                                    <td class="text-center">@item.PostalCode </td>
-                                    <td class="text-center ">@item.LocationAddress</td>
-                                    <td>
-                                        <a href="/order/AcceptFactor?oredrid=@ViewBag.orderid&&Locationid=@item.LocationID" class="btn btn-pills btn-outline btn-rounded btn-success name=" selectedGroups" value="@item.LocationID" btn-with-arrow mb-2">انتخاب<span><i class="fas fa-chevron-left"></i></span></a>
-                                    </td>
-                                </tr>
-                                   
-
-                                }
-                            }
-
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>            </div>
-        </div><!--end row-->
-    </div><!--end container-->
-</section>
