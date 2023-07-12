@@ -14,6 +14,7 @@ using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
+using Domain.ViewModels.UserPanel.Dashboard;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -463,6 +464,12 @@ namespace Application.Services
         #endregion
 
         #region Site Side 
+
+        //User Panel Dashboard View Model
+        public async Task<UserPanelDashboardViewModel> UserPanelDashboardViewModel(int userId)
+        {
+            return await _product.UserPanelDashboardViewModel(userId);
+        }
 
         //Get Product Title With Product Id
         public async Task<string> GetProductTitleWithProductId(int id)

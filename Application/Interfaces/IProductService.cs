@@ -6,6 +6,7 @@ using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
+using Domain.ViewModels.UserPanel.Dashboard;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,9 @@ namespace Application.Interfaces
         #endregion
 
         #region Site Side 
+
+        //User Panel Dashboard View Model
+        Task<UserPanelDashboardViewModel> UserPanelDashboardViewModel(int userId);
 
         //Get Product Title With Product Id
         Task<string> GetProductTitleWithProductId(int id);

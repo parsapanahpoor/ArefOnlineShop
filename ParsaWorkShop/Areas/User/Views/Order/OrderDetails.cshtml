@@ -1,58 +1,73 @@
-﻿@model List<Domain.Models.Order.OrderDetails>
+﻿@using Application.Convertors;
+@using Application.StaticTools;
+@model List<Domain.Models.Order.OrderDetails>
 @{
     ViewData["Title"] = "ریز فاکتور ";
 }
 
 
-<div class="col-lg-8 col-12">
+<main class="mx-auto mt-7 mb-7">
+    <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
+
+        <!-- Side Bar -->
+        @await Component.InvokeAsync("UserPanelSideBarViewComponents")
+
+        <!-- ---------------------- main content ----------------------------------------- -->
+        <div class="w-full border-2 lg:flex min-h-[765px]">
+            <!-- ----- Activities ----- -->
+            <section id="Activities" class="tabcontent w-full flex flex-col items-center justify-start">
 
 
-    <div class="border-bottom pb-4 text-center">
+                <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
+                    <div class="w-full flex justify-between items-center">
+                        <div>
+                            <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
+                                لیست سفارشات شما
+                            </p>
+                            <p class="text-[12px] text-[#828282]">My orders</p>
+                        </div>
+                    </div>
 
-        <h5>سفارشات</h5>
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- card -->
+                            @foreach (var orderDetails in Model)
+                            {
+                                <div class="w-full h-[385px] flex flex-col justify-between items-center">
+                                    <div class="w-full h-[277px]">
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@orderDetails.Product.ProductImageName" alt="">
+                                    </div>
+                                    <div class="w-full flex justify-between items-center">
+                                        <div>
+                                            <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                                                 @orderDetails.Product.ProductTitle
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
+                                                @((orderDetails.Product.IsInOffer.HasValue) ? orderDetails.Product.OldPrice.Value.ToString("#,000") + "ریال" : " ")
+                                            </p>
+                                            <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
+                                                @orderDetails.Price.ToString("#,000")ریال
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full flex justify-between items-center gap-2">
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@orderDetails.Product.ProductID" asp-route-ProductTitle="@orderDetails.Product.ProductTitle.FixTextForUrl()" class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
+                                            مشاهده ی محصول
+                                            <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
 
-    </div>
-    <div class="row">
-        <div class="col-md-12 mt-4">
-            <div class="table-responsive bg-white shadow rounded">
-                <table class="table mb-0 table-center">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="border-bottom">
-                                نام کالا
-                            </th>
-                            <th scope="col" class="border-bottom">
-                                تعداد سفارش
-                            </th>
-                            <th scope="col" class="border-bottom">
-                                مبلغ پرداختی
-                            </th>
-                            <th scope="col" class="border-bottom">
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <th>@item.Product.ProductTitle</th>
-                                <td>@item.Count</td>
-                                <td>@item.Price.ToString("#,0") تومان </td>
-                                <td>
-                                    <a 
-                                       asp-action="RequestForReturnProduct" asp-area="User" asp-controller="Order" asp-route-id="@item.OrderDetailID"
-                                       class="btn btn-outline-warning btn-pills">درخواست مرجوعی</a>
-                                </td>
+                            }
 
-                            </tr>
-                        }
+                        </div>
+                    }
+                </div>
 
-
-                    </tbody>
-                </table>
-            </div>
-        </div><!--end col-->
-
-
-    </div><!--end row-->
-</div>
+            </section>
+        </div>
+    </section>
+</main>

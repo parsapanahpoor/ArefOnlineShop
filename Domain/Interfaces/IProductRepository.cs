@@ -3,6 +3,7 @@ using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
+using Domain.ViewModels.UserPanel.Dashboard;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -137,6 +138,9 @@ namespace Domain.Interfaces
 
         //Get Product Selected Size By Product Id
         Task<List<ProductsSize>> GetProductSelectedSizeByProductId(int productId);
+
+        //User Panel Dashboard View Model
+        Task<UserPanelDashboardViewModel> UserPanelDashboardViewModel(int userId);
 
         #endregion
     }

@@ -1,46 +1,74 @@
 ﻿@model List<Domain.Models.Order.Orders>
 @using Application.Convertors
+@using Application.StaticTools;
 
 @{
     ViewData["Title"] = "پیگیری سفارش ";
 }
 
-<div class="col-lg-8 col-12">
+
+<main class="mx-auto mt-7 mb-7">
+    <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
+
+        <!-- Side Bar -->
+        @await Component.InvokeAsync("UserPanelSideBarViewComponents")
+
+        <!-- ---------------------- main content ----------------------------------------- -->
+        <div class="w-full border-2 lg:flex min-h-[765px]">
+            <!-- ----- Activities ----- -->
+            <section id="Activities" class="tabcontent w-full flex flex-col items-center justify-start">
 
 
-    <div class="border-bottom pb-4 text-center">
+                <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
+                    <div class="w-full flex justify-between items-center">
+                        <div>
+                            <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
+                                لیست سفارشات شما
+                            </p>
+                            <p class="text-[12px] text-[#828282]">My orders</p>
+                        </div>
+                    </div>
 
-        <h5>سفارشات</h5>
-        <!-- <p class="text-muted mb-0">من کار خود را به عنوان یک کارآموز آغاز کرده ام و خودم را اثبات می کنم و با راهنمایی خوب به همه نقاط عطف می رسم و به مدیر پروژه می رسم. در این سفر ، من تمام رویه هایی را می شناسم که من را به یک توسعه دهنده ، رهبر تیم و یک مدیر پروژه خوب تبدیل می کند.</p> -->
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- card -->
+                            @foreach (var order in Model)
+                            {
+                                var product = order.OrderDetails.FirstOrDefault();
 
-    </div>
-    <div class="row">
-        <div class="col-md-12 mt-4">
-            <div class="table-responsive bg-white shadow rounded">
-                <table class="table mb-0 table-center">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="border-bottom">#</th>
-                            <th scope="col" class="border-bottom">تاریخ سفارش</th>
-                            <th scope="col" class="border-bottom"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <th scope="row">@item.OrderId</th>
-                                <td>@item.CreateDate.ToShamsi()</td>
-                                <td><a href="/User/Order/OrderDetails?id=@item.OrderId" class="btn btn-outline-primary mt-2 me-2"> برسی سبد خرید    </a></td>
-                            </tr>
-                        }
+                                <div class="w-full h-[385px] flex flex-col justify-between items-center">
+                                    <div class="w-full h-[277px]">
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.Product.ProductImageName" alt="">
+                                    </div>
+                                    <div class="w-full flex justify-between items-center">
+                                        <div>
+                                            <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                                                تعداد اقلام :  @order.OrderDetails.Count
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
+                                                @((order.Price.HasValue) ? order.Price.Value.ToString("#,000") + "ریال" : "نهایی نشده  ")
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full flex justify-between items-center gap-2">
+                                        <a href="/User/Order/OrderDetails?id=@order.OrderId" class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
+                                            مشاهده ی محصول
+                                            <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
 
+                            }
 
-                    </tbody>
-                </table>
-            </div>
-        </div><!--end col-->
+                        </div>
+                    }
+                </div>
 
+            </section>
+        </div>
+    </section>
+</main>
 
-    </div><!--end row-->
-</div>

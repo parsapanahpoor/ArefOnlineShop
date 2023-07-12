@@ -24,6 +24,10 @@ namespace Domain.ViewModels.UserPanel.FavoriteProducts
 
         public DateTime CreateDate { get; set; }
 
+        public decimal? OldPrice { get; set; }
+
+        public decimal Price { get; set; }
+
         #endregion
     }
 }

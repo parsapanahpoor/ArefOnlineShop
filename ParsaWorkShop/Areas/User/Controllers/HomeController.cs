@@ -1,8 +1,9 @@
 ﻿#region Using
 
+using Application.Extensions;
 using Application.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -13,20 +14,28 @@ namespace ParsaWorkShop.Areas.User.Controllers
         #region Ctor
 
         private IUserService _userservice;
-        public HomeController(IUserService userService)
+
+        private readonly IProductService _productService;
+
+        public HomeController(IUserService userService, IProductService productService)
         {
             _userservice = userService;
+            _productService = productService;
         }
 
         #endregion
 
         #region Index
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var user = _userservice.GetUserByUserName(User.Identity.Name);
+            #region properties
 
-            return View(user);
+            var model = await _productService.UserPanelDashboardViewModel(User.GetUserId());
+
+            #endregion
+
+            return View(model);
         }
 
         #endregion

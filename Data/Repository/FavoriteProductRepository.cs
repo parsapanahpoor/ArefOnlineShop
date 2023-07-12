@@ -59,7 +59,9 @@ namespace Data.Repository
                                                        ProductImage = p.ProductImageName,
                                                        ProductName = p.ProductTitle,
                                                        SeoTitle = p.ProductTitle.Replace(" " , "-"),
-                                                       CreateDate = p.CreateDate
+                                                       CreateDate = p.CreateDate,
+                                                       OldPrice = p.OldPrice,
+                                                       Price = p.Price
                                                    })
                                                    .FirstOrDefaultAsync();
                     if (childModel != null)

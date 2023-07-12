@@ -28,21 +28,21 @@
     <div class="w-full text-white bg-[#252525] p-5">
         <ul class="w-full">
             <li class="tablinks activeSideItem py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center" id="defaultOpen">
-                <div class="flex items-center">
-                    <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
-                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
-                    </div>
-                    <div class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1">
-                        <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/home.png" alt="">
-                    </div>
-                    <p class="text-[#828282] text-[12px] leading-[24px]">
-                        خلاصه فعالیت ها
-                    </p>
-                </div>
-                <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+                <a asp-action="Index" asp-area="User" asp-controller="Home" class="flex items-center">
+                        <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                            <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
+                        </div>
+                        <div class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1">
+                            <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/home.png" alt="">
+                        </div>
+                        <p class="text-[#828282] text-[12px] leading-[24px]">
+                            داشبورد
+                        </p>
+                    </a>
+                    <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
             <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
-                <div class="flex items-center">
+                <a asp-action="Index" asp-area="User" asp-controller="Order" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
                     </div>
@@ -52,11 +52,11 @@
                     <p class="text-[#828282] text-[12px] leading-[24px]">
                         سفارشات
                     </p>
-                </div>
+                </a>
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
             <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
-                <div class="flex items-center">
+                <a asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
                     </div>
@@ -66,7 +66,7 @@
                     <p class="text-[#828282] text-[12px] leading-[24px]">
                         لیست علاقه های من
                     </p>
-                </div>
+                </a>
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
             <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
@@ -98,7 +98,7 @@
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
             <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
-                <div class="flex items-center">
+                <a asp-action="EditUser" asp-area="User" asp-controller="Account" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
                     </div>
@@ -108,7 +108,7 @@
                     <p class="text-[#828282] text-[12px] leading-[24px]">
                         اطلاعات حساب کاربری
                     </p>
-                </div>
+                </a>
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
         </ul>

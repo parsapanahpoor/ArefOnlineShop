@@ -2,12 +2,14 @@
 
 using Data.Context;
 using Domain.Interfaces;
+using Domain.Models.Order;
 using Domain.Models.Product;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
 using Domain.ViewModels.SiteSide.SitSideBar;
+using Domain.ViewModels.UserPanel.Dashboard;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32.SafeHandles;
 using System;
@@ -717,6 +719,86 @@ namespace Data.Repository
             }
 
             return returnModel;
+        }
+
+        //User Panel Dashboard View Model
+        public async Task<UserPanelDashboardViewModel> UserPanelDashboardViewModel(int userId)
+        {
+            UserPanelDashboardViewModel model = new UserPanelDashboardViewModel();
+
+            #region Get User By Id
+
+            model.User = await _context.Users
+                                       .AsNoTracking()
+                                       .FirstOrDefaultAsync(p => !p.IsDelete && p.UserId == userId);
+
+            #endregion
+
+            #region Last Order
+
+            int? lastorder = await _context.Orders
+                                             .AsNoTracking()
+                                             .Where(p => p.Userid == userId)
+                                             .OrderByDescending(p => p.CreateDate)
+                                             .Select(p => p.OrderId)
+                                             .FirstOrDefaultAsync();
+
+            if (lastorder.HasValue)
+            {
+                var proIds = await _context.OrderDetails
+                                                       .AsNoTracking()
+                                                       .Where(p => p.OrderID == lastorder)
+                                                       .Select(p=> p.ProductID)
+                                                       .Take(3)
+                                                       .ToListAsync();
+
+                if (proIds is not null)
+                {
+                    List<Product> products = new List<Product>();
+
+                    foreach (var productId in proIds)
+                    {
+                        var product = await _context.product
+                                                    .AsNoTracking()
+                                                    .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == productId);
+                        if(product != null) products.Add(product);
+                    }
+
+                    model.LastOrder = products;
+                }
+            }
+
+            #endregion
+
+            #region Last Favorite
+
+            var favoriteProds = await _context.FavoriteProducts
+                                              .AsNoTracking()
+                                              .Where(p => !p.IsDelete && p.UserId == userId)
+                                              .OrderByDescending(p => p.CreateDate)
+                                              .Select(p => p.ProductId)
+                                              .Take(3)
+                                              .ToListAsync();
+
+            List<Product> favoirteProducts = new List<Product>();
+
+            if (favoriteProds != null && favoriteProds.Any())
+            {
+                foreach (var prodsId in favoriteProds)
+                {
+                    Product product = await _context.product
+                                                   .AsNoTracking()
+                                                   .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == prodsId);
+
+                    if (product != null) favoirteProducts.Add(product);
+                }
+            }
+
+            model.LastFavoriteProduct = favoirteProducts;
+
+            #endregion
+
+            return model;
         }
 
         #endregion

@@ -71,7 +71,10 @@ namespace Data.Repository
         public List<Orders> GetOrdersByUsersId(int userid)
         {
             return _context.Orders.Where(p => p.IsFinally == true && p.Userid == userid)
-                                        .Include(p => p.OrderDetails).Include(p => p.Locations).ToList();
+                                        .Include(p => p.OrderDetails).ThenInclude(p=> p.Product)
+                                        .Include(p => p.Locations)
+                                        .OrderByDescending(p=> p.CreateDate)
+                                        .ToList();
         }
 
         public Locations GetUserLocationByOrderId(int orderid)

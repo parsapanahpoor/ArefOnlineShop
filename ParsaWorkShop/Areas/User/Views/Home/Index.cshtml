@@ -1,5 +1,8 @@
-﻿@model Domain.Models.Users.User
+﻿@model Domain.ViewModels.UserPanel.Dashboard.UserPanelDashboardViewModel
+@using Application.StaticTools
 @using Application.Convertors
+
+
 @{
     ViewData["Title"] = "پروفایل";
 }
@@ -21,355 +24,101 @@
                     <div class="w-full flex justify-between items-center">
                         <div>
                             <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
-                                سفارش های من
+                                آخرین سفارش من
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <p class="text-[14px] text-[#828282]">۴۳ کالا</p>
+                        <a class="text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">لیست سفارشات من</a>
                     </div>
+                    @if (Model.LastOrder != null && Model.LastOrder.Any())
+                    {
+                        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- card -->
+                            @foreach (var product in Model.LastOrder)
+                            {
+                                <div class="w-full h-[385px] flex flex-col justify-between items-center">
+                                    <div class="w-full h-[277px]">
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                                    </div>
+                                    <div class="w-full flex justify-between items-center">
+                                        <div>
+                                            <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                                                @product.ProductTitle
+                                                </p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
+                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال": " " )
+                                            </p>
+                                            <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
+                                                @product.Price.ToString("#,000")ریال
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full flex justify-between items-center gap-2">
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
+                                            مشاهده ی محصول
+                                            <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+                                        </a>
+                                    </div>
+                                </div>
 
-                    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- card -->
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
-                        </div>
-                        <!-- --- -->
+                            }
 
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
                         </div>
-
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
 
                 <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
                     <div class="w-full flex justify-between items-center">
                         <div>
                             <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
-                                سفارش های من
+                                محصولات علاقه مندی من
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <p class="text-[14px] text-[#828282]">۴۳ کالا</p>
+                        <a class="text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">لیست علاق مندی های من</a>
                     </div>
 
-                    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- card -->
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
+                    @if (Model.LastFavoriteProduct != null && Model.LastFavoriteProduct.Any())
+                    {
+                        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- card -->
+                            @foreach (var product in Model.LastFavoriteProduct)
+                            {
+                                <div class="w-full h-[385px] flex flex-col justify-between items-center">
+                                    <div class="w-full h-[277px]">
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                                    </div>
+                                    <div class="w-full flex justify-between items-center">
+                                        <div>
+                                            <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                                                @product.ProductTitle
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
+                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال": " ")
+                                            </p>
+                                            <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
+                                                @product.Price.ToString("#,000")ریال
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full flex justify-between items-center gap-2">
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
+                                            مشاهده ی محصول
+                                            <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+                                        </a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
-                        </div>
-                        <!-- --- -->
 
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
-                        </div>
+                            }
 
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
 
-                <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
-                    <div class="w-full flex justify-between items-center">
-                        <div>
-                            <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
-                                سفارش های من
-                            </p>
-                            <p class="text-[12px] text-[#828282]">My orders</p>
-                        </div>
-                        <p class="text-[14px] text-[#828282]">۴۳ کالا</p>
-                    </div>
-
-                    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- card -->
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
-                        </div>
-                        <!-- --- -->
-
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                            <div class="w-full h-[277px]">
-                                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/men.png" alt="">
-                            </div>
-                            <div class="w-full flex justify-between items-center">
-                                <div>
-                                    <p class="text-[#7E8285] text-[10px] leading-[15.5px]" style="font-family: yekanBakhtRegular">
-                                        دسته بندی : کفش
-                                    </p>
-                                    <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                        لباس ورزشی مردانه
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                        ۹۹۹٫۰۰۰ تومان
-                                    </p>
-                                    <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                        ۷۹۹٫۰۰۰
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="w-full flex justify-between items-center gap-2">
-                                <button class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
-                                    حذف
-                                </button>
-                                <button class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                    اضافه به سبد خرید
-                                    <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </section>
         </div>
     </section>

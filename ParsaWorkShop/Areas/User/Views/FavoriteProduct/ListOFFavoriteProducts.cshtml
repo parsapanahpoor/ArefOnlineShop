@@ -1,53 +1,76 @@
 ﻿@model List<Domain.ViewModels.UserPanel.FavoriteProducts.FavoriteProductsUserPanelSideViewModel>
 @using Application.Convertors
+@using Application.StaticTools;
 
 @{
     ViewData["Title"] = "لیست محصولات علاقه مندی شما";
 }
 
-<div class="col-lg-8 col-12">
 
+<main class="mx-auto mt-7 mb-7">
+    <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
-    <div class="border-bottom pb-4 text-center">
+        <!-- Side Bar -->
+        @await Component.InvokeAsync("UserPanelSideBarViewComponents")
 
-        <h5>لیست محصولات علاقه مندی شما</h5>
+        <!-- ---------------------- main content ----------------------------------------- -->
+        <div class="w-full border-2 lg:flex min-h-[765px]">
+            <!-- ----- Activities ----- -->
+            <section id="Activities" class="tabcontent w-full flex flex-col items-center justify-start">
 
-    </div>
-    <div class="row">
-        <div class="col-md-12 mt-4">
-            <div class="table-responsive bg-white shadow rounded">
-                <table class="table mb-0 table-center">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="border-bottom">#</th>
-                            <th scope="col" class="border-bottom">نام محصول</th>
-                            <th scope="col" class="border-bottom">تاریخ درج</th>
-                            <th scope="col" class="border-bottom"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model != null && Model.Any())
-                        {
-                            foreach (var item in Model)
+                <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
+                    <div class="w-full flex justify-between items-center">
+                        <div>
+                            <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
+                                محصولات علاقه مندی من
+                            </p>
+                            <p class="text-[12px] text-[#828282]">My Favorites</p>
+                        </div>
+                        <a class="text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">لیست علاق مندی های من</a>
+                    </div>
+
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- card -->
+                            @foreach (var product in Model)
                             {
-                                <tr>
-                                    <th scope="row">@item.ProductId</th>
-                                    <th scope="row">@item.ProductName</th>
-                                    <td>@item.CreateDate.ToShamsi()</td>
-                                    <td>
-                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" class="btn btn-outline-primary mt-2 me-2">
+                                <div class="w-full h-[385px] flex flex-col justify-between items-center">
+                                    <div class="w-full h-[277px]">
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImage" alt="">
+                                    </div>
+                                    <div class="w-full flex justify-between items-center">
+                                        <div>
+                                            <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                                                @product.ProductName
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
+                                                @((product.OldPrice.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال" : " ")
+                                            </p>
+                                            <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
+                                                @product.Price.ToString("#,000")ریال
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full flex justify-between items-center gap-2">
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductId" asp-route-ProductTitle="@product.SeoTitle" class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
                                             مشاهده ی محصول
+                                            <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
                                         </a>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
+
                             }
-                        }
 
-                    </tbody>
-                </table>
-            </div>
-        </div><!--end col-->
+                        </div>
+                    }
+                </div>
+
+            </section>
+        </div>
+    </section>
+</main>
 
 
-    </div><!--end row-->
-</div>
