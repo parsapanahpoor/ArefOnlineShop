@@ -3,8 +3,10 @@
 using Application.Interfaces;
 using Data.Repository;
 using Domain.Interfaces;
+using Domain.Models.ContactUs;
 using Domain.Models.UserCommentAboutSite;
 using Domain.ViewModels.Admin.UsersCommentAboutSite;
+using Domain.ViewModels.SiteSide.ContactUs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +104,34 @@ namespace Application.Services
 
             //Update Data Base
             await _usersCommentAboutSite.UpdateUserComment(origin);
+
+            return true;
+        }
+
+        #endregion
+
+        #region Site Side 
+
+        public async Task<bool> AddContactUs(ContactUsSiteSideViewModel model)
+        {
+            #region Fill Entity
+
+            ContactUs contactUs = new ContactUs()
+            {
+                Email = model.Email,
+                LongDescription = model.LongDescription,
+                PhoneNumber = model.PhoneNumber,
+                ShortDescription = model.ShortDescription,
+                UserName = model.UserName
+            };
+
+            #endregion
+
+            #region Add To The Data Base 
+
+            await _usersCommentAboutSite.AddContactUs(contactUs);
+
+            #endregion
 
             return true;
         }

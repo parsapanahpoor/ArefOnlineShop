@@ -167,7 +167,7 @@
                                         @foreach (var category in ProductCategories.Where(p => p.ParentId == null))
                                         {
                                             <div style="padding-right: 40px; margin-right:10px; margin-top:10px;">
-                                                <input class="form-check-input" @((Model.ProductSelectedCategory.Any(r => r.ProductCategoryId == category.ProductCategoryId) ? "checked" : "")) type="checkbox" name="SelectedCategory" value="@category.ProductCategoryId">
+                                                <input class="form-check-input" @((Model.ProductSelectedCategory != null && Model.ProductSelectedCategory.Any(r => r.ProductCategoryId == category.ProductCategoryId) ? "checked" : "")) type="checkbox" name="SelectedCategory" value="@category.ProductCategoryId">
                                                 <label class="form-check-label"> @category.CategoryTitle</label>
                                             </div>
 
@@ -177,7 +177,7 @@
                                                 {
                                                     <div style=" padding-right: 60px; margin-right: 20px; margin-top:5px;">
 
-                                                        <input class="form-check-input" @((Model.ProductSelectedCategory.Any(r => r.ProductCategoryId == sub.ProductCategoryId) ? "checked" : "")) type="checkbox" name="SelectedCategory" value="@sub.ProductCategoryId">
+                                                        <input class="form-check-input" @((Model.ProductSelectedCategory != null && Model.ProductSelectedCategory.Any(r => r.ProductCategoryId == sub.ProductCategoryId) ? "checked" : "")) type="checkbox" name="SelectedCategory" value="@sub.ProductCategoryId">
                                                         <label class="form-check-label"> @sub.CategoryTitle</label>
                                                     </div>
                                                 }               }          }

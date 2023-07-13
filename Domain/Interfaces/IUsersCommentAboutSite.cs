@@ -1,5 +1,6 @@
 ﻿#region Admin Side 
 
+using Domain.Models.ContactUs;
 using Domain.Models.UserCommentAboutSite;
 using Domain.ViewModels.Admin.UsersCommentAboutSite;
 using System;
@@ -30,6 +31,9 @@ namespace Domain.Interfaces
 
         //Update User Comment 
         Task UpdateUserComment(UsersCommentsAboutSite model);
+
+        //Add Contact Us 
+        Task AddContactUs(ContactUs contactUs);
 
         #endregion
     }

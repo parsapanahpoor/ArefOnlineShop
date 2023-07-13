@@ -1,6 +1,7 @@
 ﻿#region Using
 
 using Domain.ViewModels.Admin.UsersCommentAboutSite;
+using Domain.ViewModels.SiteSide.ContactUs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,12 @@ namespace Application.Interfaces
 
         //Delete Users Comment 
         Task<bool> DeleteUsersComment(int id);
+
+        #endregion
+
+        #region Site Side 
+
+        Task<bool> AddContactUs(ContactUsSiteSideViewModel model);
 
         #endregion
     }

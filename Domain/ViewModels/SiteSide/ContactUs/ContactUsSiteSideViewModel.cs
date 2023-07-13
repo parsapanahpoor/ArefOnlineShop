@@ -4,14 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Domain.Models.ContactUs
+namespace Domain.ViewModels.SiteSide.ContactUs
 {
-    public class ContactUs
+    public class ContactUsSiteSideViewModel
     {
-
-        [Key]
-        public int ContactUsId { get; set; }
+        #region properties
 
         [Display(Name = "نام کاربری")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -37,6 +36,6 @@ namespace Domain.Models.ContactUs
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string LongDescription { get; set; }
 
+        #endregion
     }
-
 }

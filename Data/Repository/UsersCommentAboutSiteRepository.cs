@@ -2,6 +2,7 @@
 
 using Data.Context;
 using Domain.Interfaces;
+using Domain.Models.ContactUs;
 using Domain.Models.UserCommentAboutSite;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.UsersCommentAboutSite;
@@ -81,6 +82,17 @@ namespace Data.Repository
         public async Task UpdateUserComment(UsersCommentsAboutSite model)
         {
             _context.UsersCommentsAboutSites.Update(model);
+            await _context.SaveChangesAsync();
+        }
+
+        #endregion
+
+        #region Site Side 
+
+        //Add Contact Us 
+        public async Task AddContactUs(ContactUs contactUs)
+        {
+            await _context.ContactUs.AddAsync(contactUs);
             await _context.SaveChangesAsync();
         }
 

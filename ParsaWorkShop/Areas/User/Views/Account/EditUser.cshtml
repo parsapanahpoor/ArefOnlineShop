@@ -97,64 +97,6 @@
     </section>
 </main>
 
-
-<div class="col-lg-8 col-12">
-    <div class="card border-0 rounded shadow">
-        <div class="card-body">
-            <h5 class="text-md-start text-center">جزئیات شخصی :</h5>
-            <form asp-action="EditUser" asp-controller="Account" asp-area="User" method="post" enctype="multipart/form-data">
-                <input type="hidden" asp-for="AvatarName" />
-                <div class="mt-3 text-md-start text-center d-sm-flex">
-                    <img src="/Images/UserAvatar/@Model.AvatarName" id="imgAvatar" class="avatar float-md-left avatar-medium rounded-circle shadow me-md-4" alt="">
-
-                    <div class="mt-md-4 mt-3 mt-sm-0">
-                        <input type="file" id="UserAvatar" class="btn btn-primary mt-2" asp-for="UserAvatar">
-
-                    </div>
-                </div>
-
-
-                <div class="row mt-4">
-                    <div class="col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label">نام اصلی </label>
-                            <div class="form-icon position-relative">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user fea icon-sm icons"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                <input asp-for="UserName" id="first" readonly type="text" class="form-control ps-5" placeholder="نام اول :">
-                            </div>
-                        </div>
-                    </div><!--end col-->
-                    <div class="col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label"> موبایل </label>
-                            <div class="form-icon position-relative">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-check fea icon-sm icons"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
-                                <input asp-for="PhoneNumber" id="last" type="text" class="form-control ps-5" placeholder="نام خانوادگی :">
-                            </div>
-                        </div>
-                    </div><!--end col-->
-                    <div class="col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label">ایمیل شما </label>
-                            <div class="form-icon position-relative">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail fea icon-sm icons"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                <input asp-for="Email" id="email" type="email" class="form-control ps-5" placeholder="ایمیل شما :">
-                            </div>
-                        </div>
-                    </div><!--end col-->
-
-                </div><!--end row-->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <input type="submit" id="submit" class="btn btn-primary" value="ذخیره تغییرات">
-                    </div><!--end col-->
-                </div><!--end row-->
-            </form>
-        </div>
-    </div>
-
-
-</div>
 <!--end form-->
 @section Scripts
     {
