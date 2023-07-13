@@ -2,6 +2,7 @@
 
 using AngleSharp.Css.Values;
 using Application.Interfaces;
+using Application.Security;
 using Application.Services;
 using Domain.ViewModels.Admin.SiteSetting;
 using Domain.ViewModels.Admin.Slider;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
+    [PermissionChecker(1)]
     public class SiteSettingController : AdminBaseController
     {
         #region Ctor

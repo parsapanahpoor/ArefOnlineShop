@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Application.Security;
 using Domain.ViewModels.Admin.Slider;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
+    [PermissionChecker(1)]
     public class SliderController : AdminBaseController
     {
         #region Using

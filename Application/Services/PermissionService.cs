@@ -39,7 +39,12 @@ namespace Application.Services
 
         public bool CheckPermission(int permissionId, string userName)
         {
+
             int userid = _userRepository.GetUserIdByUserName(userName);
+
+            User user = _userRepository.GetUserById(userid);
+            if (user.IsAdmin) return true;
+
             List<int> UserRoles = _permissionRepository.GetUserRoles(userid);
 
             if (!UserRoles.Any())

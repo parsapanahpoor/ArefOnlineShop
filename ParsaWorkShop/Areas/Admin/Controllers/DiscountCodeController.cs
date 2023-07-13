@@ -1,6 +1,7 @@
 ﻿#region Using
 
 using Application.Interfaces;
+using Application.Security;
 using Domain.ViewModels.Admin.DiscountCode;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters.Xml;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
+    [PermissionChecker(1)]
     public class DiscountCodeController : AdminBaseController
     {
         #region Ctor 
