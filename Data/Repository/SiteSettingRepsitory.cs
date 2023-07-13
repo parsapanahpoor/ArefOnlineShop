@@ -274,6 +274,16 @@ namespace Data.Repository
 
             #endregion
 
+            #region Slider
+
+            model.Sliders = await _context.Slider
+                                          .AsNoTracking()
+                                          .Where(p => !p.IsDelete)
+                                          .OrderByDescending(p => p.CreateDate)
+                                          .ToListAsync();
+
+            #endregion
+
             return model;
         }
 

@@ -1,5 +1,6 @@
 ﻿#region Using
 
+using Domain.Models.Slider;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,8 @@ namespace Domain.ViewModels.SiteSide.Home
         public List<LastestsArefProducts> LastestsArefProducts { get; set; }
 
         public List<LatestCategoriesWithImage> LatestCategoriesWithImages { get; set; }
+
+        public List<Slider> Sliders { get; set; }
 
         #endregion
     }
