@@ -547,6 +547,18 @@ namespace Application.Services
             return await _product.FillNewest3Products();
         }
 
+        //Get Maximum Prices Of Products
+        public async Task<int> GetMaximumPricesOfProducts()
+        {
+            return await _product.GetMaximumPricesOfProducts();
+        }
+
+        //Get Minimum Prices Of Products
+        public async Task<int> GetMinimumPricesOfProducts()
+        {
+            return await _product.GetMinimumPricesOfProducts();
+        }
+
         #endregion
 
         #region Admin Side 

@@ -57,6 +57,10 @@ namespace ParsaWorkShop.Controllers
             ViewData["Colors"] = await _product.ListOfColorsForShowInListOfProducts();
             ViewData["Sizes"] = await _product.ListOfSizesForShowInListOfProducts();
 
+            ViewData["MaxPrice"] = await _product.GetMaximumPricesOfProducts();
+            ViewData["MinPrice"] = await _product.GetMinimumPricesOfProducts();
+
+
             #endregion
 
             var retunModel = await _product.FilterProducts(model);

@@ -561,6 +561,28 @@ namespace Data.Repository
                                  .ToListAsync();
         }
 
+        //Get Maximum Prices Of Products
+        public async Task<int> GetMaximumPricesOfProducts()
+        {
+            return await _context.product
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete && p.IsActive)
+                                 .OrderByDescending(p => p.Price)
+                                 .Select(p => Convert.ToInt32(p.Price))
+                                 .FirstOrDefaultAsync();
+        }
+
+        //Get Minimum Prices Of Products
+        public async Task<int> GetMinimumPricesOfProducts()
+        {
+            return await _context.product
+                                 .AsNoTracking()
+                                 .Where(p => !p.IsDelete && p.IsActive)
+                                 .OrderBy(p => p.Price)
+                                 .Select(p => Convert.ToInt32(p.Price))
+                                 .FirstOrDefaultAsync();
+        }
+
         #endregion
 
         #region Admin Side 

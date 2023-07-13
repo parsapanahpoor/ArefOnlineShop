@@ -9,6 +9,9 @@
     var categories = ViewData["Categories"] as List<ListOfCategoriesForShowInListOfProducts>;
     var colors = ViewData["Colors"] as List<ListOfColorsForShowInListOfProducts>;
     var sizes = ViewData["Sizes"] as List<ListOfSizesForShowInListOfProducts>;
+
+    var minPrice = ViewData["MinPrice"] as int?;
+    var maxPrice = ViewData["MaxPrice"] as int?;
 }
 
 @section Styles
