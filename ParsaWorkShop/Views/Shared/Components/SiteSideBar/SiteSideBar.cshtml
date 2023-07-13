@@ -19,16 +19,18 @@
         <!-- sm / md -->
 
         <div class="flex md:order-2 gap-2">
-            <div class="hidden md:hidden lg:w-[250px] lg:h-[44px] border-[1px] border-[#B7B7B7] lg:flex justify-start items-center">
-                <img src="/ArefSet/src/assets/images/landing/search-icon.webp"
-                     class="w-5 text-[#252525] mx-3"
-                     alt="" />
-                <input type="search"
-                       class="h-full w-full focus:outline-none"
-                       placeholder="جستجو کنید ..."
-                       name=""
-                       id="" />
-            </div>
+            <form id="Searchfiltre" asp-action="ListOfProducts" asp-area="" asp-controller="Products" method="get">
+                <div class="hidden md:hidden lg:w-[250px] lg:h-[44px] border-[1px] border-[#B7B7B7] lg:flex justify-start items-center">
+                    <img id="SearchIcon" src="/ArefSet/src/assets/images/landing/search-icon.webp"
+                         class="w-5 text-[#252525] mx-3"
+                         alt="" />
+                    <input name="ProductTitle" type="text"
+                           class="h-full w-full focus:outline-none"
+                           placeholder="جستجو کنید ..."
+                           id="" />
+                </div>
+            </form>
+           
             <a asp-area="" asp-action="ShopCart" asp-controller="Order" class="w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center">
                 <img src="/ArefSet/src/assets/images/landing/Shopping bag 1.png" alt="" />
             </a>

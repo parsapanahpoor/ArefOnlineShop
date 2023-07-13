@@ -414,6 +414,12 @@ namespace Data.Repository
                         };
             }
 
+            //Title
+            if (!string.IsNullOrEmpty(model.ProductTitle))
+            {
+                query = query.Where(p => p.ProductTitle.Contains(model.ProductTitle));
+            }
+
             #endregion
 
             #region Price

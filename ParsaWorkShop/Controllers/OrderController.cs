@@ -143,6 +143,11 @@ namespace ParsaWorkShop.Controllers
         public async Task<IActionResult> ShopCart()
         {
             var order = await _order.FillInvoiceSiteSideViewModel(User.GetUserId());
+            if (order == null)
+            {
+                TempData[ErrorMessage] = "There Is not Any Product in your Shop Cart. ";
+                return RedirectToAction("Index", "Home");
+            } 
 
             if (order != null)
             {

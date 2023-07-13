@@ -26,6 +26,8 @@ namespace Domain.ViewModels.SiteSide.Product
 
         public FilterStatus Status { get; set; }
 
+        public string? ProductTitle { get; set; }
+
         #endregion
     }
 
