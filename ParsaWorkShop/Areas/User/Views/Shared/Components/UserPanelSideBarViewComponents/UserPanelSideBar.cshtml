@@ -70,7 +70,7 @@
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
             <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
-                <div class="flex items-center">
+                <a asp-action="Locations" asp-area="User" asp-controller="Location" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
                     </div>
@@ -80,7 +80,7 @@
                     <p class="text-[#828282] text-[12px] leading-[24px]">
                         ادرس های من
                     </p>
-                </div>
+                </a>
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
             <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
@@ -113,7 +113,7 @@
             </li>
         </ul>
 
-        <button class="flex items-center justify-center mt-4 mb-7 mx-auto gap-2">
+        <a asp-action="Logout" asp-area="" asp-controller="Account" class="flex items-center justify-center mt-4 mb-7 mx-auto gap-2">
             <div class="">
                 <img src="/ArefSet/src/assets/images/landing/login.png" alt="">
             </div>
@@ -123,7 +123,7 @@
                     Sign out of the user account
                 </p>
             </div>
-        </button>
+        </a>
 
         <div class="flex items-center justify-center gap-2">
             <img class="w-[61.38px]" src="/ArefSet/src/assets/images/landing/Arefset foo.png" alt="">

@@ -12,7 +12,7 @@ namespace ParsaWorkShop.Areas.User.Controllers
 {
     [Area("User")]
     [Authorize]
-    public class LocationController : Controller
+    public class LocationController : UserPanelBaseController
     {
         #region Ctor
 
@@ -95,7 +95,8 @@ namespace ParsaWorkShop.Areas.User.Controllers
 
             if (_order.IsExistLocationInOrder(locations.LocationID))
             {
-                return NotFound();
+                TempData[ErrorMessage] = "you cant delete this location address";
+                return RedirectToAction(nameof(Locations));
             }
             else
             {

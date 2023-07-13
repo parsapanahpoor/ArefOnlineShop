@@ -169,7 +169,7 @@ namespace Data.Repository
             AllProducts.ProdudctCategoryId = null;
             AllProducts.LastestProducts = await _context.product
                                                         .AsNoTracking()     
-                                                        .Where(p=> !p.IsDelete)
+                                                        .Where(p=> !p.IsDelete && p.IsActive)
                                                         .OrderByDescending(p=> p.CreateDate)
                                                         .Select(p=> new LastestProducts()
                                                         {
@@ -214,7 +214,7 @@ namespace Data.Repository
 
                             productViewModel = await _context.product
                                                              .AsNoTracking()
-                                                             .Where(p => !p.IsDelete && p.ProductID == productId)
+                                                             .Where(p => !p.IsDelete && p.ProductID == productId && p.IsActive)
                                                              .Select(p => new LastestProducts()
                                                              {
                                                                  IsInOffer = p.IsInOffer,

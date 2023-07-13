@@ -250,7 +250,7 @@ namespace Data.Repository
         {
             return await _context.product
                                  .AsNoTracking()
-                                 .Where(p => !p.IsDelete && p.ProductID == id)
+                                 .Where(p => !p.IsDelete && p.ProductID == id && p.IsActive)
                                  .Select(p => new ProductDetailSiteSideViewModel()
                                  {
                                      CreateDate = p.CreateDate,

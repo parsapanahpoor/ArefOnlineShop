@@ -13,62 +13,133 @@
         <!-- Side Bar -->
         @await Component.InvokeAsync("UserPanelSideBarViewComponents")
 
-        <!-- ---------------------- main content ----------------------------------------- -->
+
         <div class="w-full border-2 lg:flex min-h-[765px]">
-            <!-- ----- Activities ----- -->
-            <section id="Activities" class="tabcontent w-full flex flex-col items-center justify-start">
+            <!-- ----- Orders ----- -->
+            <section id="Orders" class="tabcontent w-full flex flex-col items-center justify-start">
 
-
-                <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
-                    <div class="w-full flex justify-between items-center">
-                        <div>
-                            <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
-                                لیست سفارشات شما
-                            </p>
-                            <p class="text-[12px] text-[#828282]">My orders</p>
-                        </div>
+                <div class="border-2 border-[#252525] w-full h-[179px] mt-7 p-5 flex flex-col items-start justify-center gap-5">
+                    <div class="">
+                        <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
+                            سفارش های من
+                        </p>
+                        <p class="text-[12px] text-[#828282]">My orders</p>
                     </div>
 
-                    @if (Model != null && Model.Any())
-                    {
-                        <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- card -->
-                            @foreach (var order in Model)
-                            {
-                                var product = order.OrderDetails.FirstOrDefault();
+                    <div class="h-[26.41px] lg:h-[61px] w-full flex justify-between items-center">
+                        <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
+                            <div class="w-[21.75px] lg:w-[42px] relative after:content-[''] after:absolute after:right-0 after:-bottom-3 after:w-[53px] after:h-[2px] after:bg-[#D92626]">
+                                <img class="w-full" src="/ArefSet/src/assets/images/landing/address.png" alt="">
+                            </div>
+                            <div>
 
-                                <div class="w-full h-[385px] flex flex-col justify-between items-center">
-                                    <div class="w-full h-[277px]">
-                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.Product.ProductImageName" alt="">
-                                    </div>
-                                    <div class="w-full flex justify-between items-center">
-                                        <div>
-                                            <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                                تعداد اقلام :  @order.OrderDetails.Count
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                                @((order.Price.HasValue) ? order.Price.Value.ToString("#,000") + "ریال" : "نهایی نشده  ")
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="w-full flex justify-between items-center gap-2">
-                                        <a href="/User/Order/OrderDetails?id=@order.OrderId" class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
-                                            مشاهده ی محصول
-                                            <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-                                        </a>
+                                <p class="text-[8px] lg:text-[14px] text-[#252525]" style="font-family: yekanBakhtBold">
+                                    جاری
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="h-full flex items-center justify-start gap-2 lg:gap-3">
+                            <div class="w-[21.75px] lg:w-[42px]">
+                                <img class="w-full opacity-70" src="/ArefSet/src/assets/images/landing/box-tick.png" alt="">
+                            </div>
+                            <div>
+
+                                <p class="text-[8px] lg:text-[14px] text-[#252525]" style="font-family: yekanBakhtBold">
+                                    تحویل شده
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="h-full flex items-center justify-start gap-2 lg:gap-3">
+                            <div class="w-[21.75px] lg:w-[42px]">
+                                <img class="w-full opacity-70" src="/ArefSet/src/assets/images/landing/box-remove.png" alt="">
+                            </div>
+                            <div>
+
+                                <p class="text-[8px] lg:text-[14px] text-[#252525]" style="font-family: yekanBakhtBold">
+                                    لغو شده
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
+                            <div class="w-[21.75px] lg:w-[42px]">
+                                <img class="w-full opacity-70" src="/ArefSet/src/assets/images/landing/convert-3d-cube.png" alt="">
+                            </div>
+                            <div>
+
+                                <p class="text-[8px] lg:text-[14px] text-[#252525]" style="font-family: yekanBakhtBold">
+                                    مرجوع شده
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var order in Model.Where(p => p.IsFinally))
+                    {
+
+                        <div class="border-l-2 border-r-2 border-b-2 border-[#252525] w-full p-5 flex flex-col items-start justify-center gap-5">
+                            <div class="w-full border-2 border-[#B7B7B7]">
+                                <div class="w-full p-5 pb-4 flex items-center justify-between">
+                                    <div class="flex items-center justify-start gap-2">
+                                        <img class="w-[24px] h-[24px]" src="/ArefSet/src//assets/images/landing/box-tick.png" alt="">
+                                        <p class="text-[#252525] text-[14px] leading-[19px]" style="font-family: yekanBakhtSemiBold">
+                                            تاریخ درخواست :   @order.CreateDate.ToShamsi()
+                                        </p>
                                     </div>
                                 </div>
 
-                            }
+                                <div class="w-full px-5 flex items-center justify-start">
+                                    <p class="text-[12px] text-[#7E8285]">
+                                        کد سفارش <strong class="text-[#252525]">@order.OrderId</strong>
+                                    </p>
+                                    <img src="/ArefSet/src/assets/images/landing/Ellipse 506.png" class="w-[4px] h-[4px] mx-5" alt="">
+                                    <p class="text-[12px] text-[#7E8285]">
+                                        مبلغ <strong class="text-[#252525]">
+                                            @((order.Price.HasValue) ? order.Price.Value.ToString("#,000") + "ریال" : "نهایی نشده")
+                                        </strong>
+                                    </p>
+                                </div>
 
+                                <div class="w-full p-5 pb-4 flex items-center justify-start">
+
+                                    @foreach (var orderDetails in order.OrderDetails)
+                                    {
+                                        <img src="@PathTools.ProductPathThumb@orderDetails.Product.ProductImageName" class="w-[47px] h-[47px] ml-5" alt="">
+                                    }
+
+                                </div>
+                                <div class="w-full p-5 flex justify-start items-center lg:flex lg:justify-end lg:items-center">
+                                    <a href="/User/Order/OrderDetails?id=@order.OrderId" class="bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 px-6 text-[13px]">
+                                        مشاهده فاکتور
+                                        <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+
                     }
-                </div>
+                }
 
             </section>
         </div>
+
+
     </section>
 </main>
+
+
+
+
+
+
+
+
+
+
 

@@ -4,47 +4,101 @@
 }
 
 
-<div class="col-lg-8 col-12">
+
+<main class="mx-auto mt-7 mb-7">
+    <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
+
+        <!-- Side Bar -->
+        @await Component.InvokeAsync("UserPanelSideBarViewComponents")
 
 
-    <div class="border-bottom pb-4 text-center">
+        <div class="w-full border-2 lg:flex min-h-[765px]">
+            <!-- ----- Myaddress ----- -->
+            <section id="Myaddress" class="tabcontent w-full flex flex-col items-center justify-start">
 
-        <a href="/User/Location/AddNewLocation" class="btn btn-success">افزودن نشانی   </a>
-        <!-- <p class="text-muted mb-0">من کار خود را به عنوان یک کارآموز آغاز کرده ام و خودم را اثبات می کنم و با راهنمایی خوب به همه نقاط عطف می رسم و به مدیر پروژه می رسم. در این سفر ، من تمام رویه هایی را می شناسم که من را به یک توسعه دهنده ، رهبر تیم و یک مدیر پروژه خوب تبدیل می کند.</p> -->
+                <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
+                    <div class="w-full flex justify-between items-center">
+                        <div>
+                            <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
+                                آدرس های من
+                            </p>
+                            <p class="text-[12px] text-[#828282]">My address</p>
+                        </div>
+                    </div>
 
-    </div>
-    <div class="row">
-        <div class="col-md-12 mt-4">
-            <div class="table-responsive bg-white shadow rounded">
-                <table class="table mb-0 table-center">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="border-bottom">#</th>
-                            <th scope="col" class="border-bottom"> کدپستی </th>
-                            <th scope="col" class="border-bottom"> آدرس</th>
-                            <th scope="col" class="border-bottom"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <th scope="row">@item.LocationID</th>
-                                <td>@item.PostalCode</td>
-                                <td>@item.LocationAddress</td>
-                                <td>
-                                <a href="/User/Location/EditLocation/@item.LocationID" class="btn btn-outline-primary mt-2 me-2">ویرایش </a>
-                                <a href="/User/Location/DeleteLocation/@item.LocationID" class="btn btn-outline-danger mt-2 me-2">حذف </a>
-                                </td>
-                            </tr>
-                        }
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="w-full flex flex-col items-start justify-center gap-5">
+
+                            @foreach (var location in Model)
+                            {
+
+                                <!-- card -->
+                                <div class="w-full border-2 border-[#B7B7B7] p-5">
+                                    <div class="flex items-center justify-between gap-2 lg:gap-3">
+                                        <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
+                                            <div class="w-[21.75px] lg:w-[42px]">
+                                                <img class="w-full" src="/ArefSet/src/assets/images/landing/address.png" alt="">
+                                            </div>
+                                            <div>
+                                                <p class="text-[6px] lg:text-[12px] text-[#252525] leading-[18.6px]" style="font-family: yekanBakhtRegular">
+                                                    آدرس تحویل سفارش
+                                                </p>
+                                                <p class="text-[8px] lg:text-[16px] text-[#252525] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                                                    @location.LocationAddress
+                                                </p>
+                                                <p class="text-[6px] lg:text-[14px] text-[#252525] leading-[21.7px]" style="font-family: yekanBakhtRegular">
+                                                    نام گیرنده : @location.Username
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <a href="/User/Location/DeleteLocation/@location.LocationID" class="my-3 text-[13px] mt-6 hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-7 py-3 flex items-center text-[#7E8285] hover:text-[#fff]">
+                                            حذف آدرس
+                                        </a>
+                                    </div>
+
+                                    <div class="flex items-start justify-between gap-2 lg:gap-3 mt-5">
+                                        <div class="">
+                                            <p class="text-[14px] text-[#252525] leading-[21.7px] mb-1">
+                                                جزیات سفارش
+                                            </p>
+                                            <div class="flex justify-start items-center gap-4">
+                                                <div class="flex flex-col justify-start items-center gap-1">
+                                                    <div class="w-[1px] h-[19px] bg-[#D9D9D9]"></div>
+                                                    <img class="w-[5px] h-[5px] my-[.5px]" src="/ArefSet/src/assets/images/landing/Ellipse 506.png" alt="">
+                                                    <div class="w-[1px] h-[19px] bg-[#D9D9D9]"></div>
+                                                    <img class="w-[5px] h-[5px] my-[.5px]" src="/ArefSet/src/assets/images/landing/Ellipse 506.png" alt="">
+                                                    <div class="w-[1px] h-[19px] bg-[#D9D9D9]"></div>
+                                                    <img class="w-[5px] h-[5px] my-[.5px]" src="/ArefSet/src/assets/images/landing/Ellipse 506.png" alt="">
+                                                </div>
+                                                <div class="mt-[1.75rem]">
+                                                    <p class="text-[10px] text-[#252525] leading-[24px] mb-2">
+                                                        شهرستان : @location.CityName
+                                                    </p>
+                                                    <p class="text-[10px] text-[#252525] leading-[24px] mb-2">
+                                                        کد پستی : @location.PostalCode
+                                                    </p>
+                                                    <p class="text-[10px] text-[#252525] leading-[24px] mb-2">
+                                                        شماره تماس : @location.Mobile
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+
+                    }
+                        
+                </div>
+            </section>
+        </div>
+
+    </section>
+</main>
 
 
-                    </tbody>
-                </table>
-            </div>
-        </div><!--end col-->
-
-
-    </div><!--end row-->
-</div>
