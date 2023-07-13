@@ -34,6 +34,10 @@ namespace Domain.ViewModels.Admin.Slider
 
         public string ImageName { get; set; }
 
+        public int Priority { get; set; }
+
+        public string LinkTitle { get; set; }
+
         #endregion
     }
 }

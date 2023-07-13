@@ -56,6 +56,8 @@ namespace Application.Services
                 SecondeText = slider.SecondeText,
                 StartDate = DateTime.Now,
                 ThirdText = slider.ThirdText,
+                Priority = slider.Priority,
+                LinkTitle = slider.LinkTitle,
             };
 
             #endregion
@@ -101,6 +103,8 @@ namespace Application.Services
             slider.ThirdText = model.ThirdText;
             slider.Link = model.Link;
             slider.ColorCode = model.ColorCode;
+            slider.Priority = model.Priority;
+            slider.LinkTitle = model.LinkTitle;
 
             #region Update Slider Image
 

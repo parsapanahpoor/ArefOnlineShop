@@ -83,16 +83,31 @@
 
 
                                         <div class="form-group">
+                                            <label for="exampleInputEmail1"> کد رنگ اسلایدر </label>
+                                            <input type="text" asp-for="ColorCode" class="form-control" id="exampleInputEmail1" placeholder="کد رنگ اسلایدر  را وارد کنید">
+                                            <span asp-validation-for="ColorCode" class="text-danger"></span>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1"> الوییت نمایش اسلایدر </label>
+                                            <input type="text" asp-for="Priority" class="form-control" id="exampleInputEmail1" placeholder="الوییت نمایش اسلایدر را وارد کنید">
+                                            <span asp-validation-for="Priority" class="text-danger"></span>
+
+                                        </div>
+
+
+                                        <div class="form-group">
                                             <label for="exampleInputEmail1"> لینک اسلایدر </label>
                                             <input type="text" asp-for="Link" class="form-control" id="exampleInputEmail1" placeholder="لینک اسلایدر  را وارد کنید">
                                             <span asp-validation-for="Link" class="text-danger"></span>
 
                                         </div>
-
+                                        
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1"> کد رنگ اسلایدر </label>
-                                            <input type="text" asp-for="ColorCode" class="form-control" id="exampleInputEmail1" placeholder="کد رنگ اسلایدر  را وارد کنید">
-                                            <span asp-validation-for="ColorCode" class="text-danger"></span>
+                                            <label for="exampleInputEmail1"> عنوان لینک </label>
+                                            <input type="text" asp-for="LinkTitle" class="form-control" id="exampleInputEmail1" placeholder="عنوان لینک را وارد کنید">
+                                            <span asp-validation-for="LinkTitle" class="text-danger"></span>
 
                                         </div>
 

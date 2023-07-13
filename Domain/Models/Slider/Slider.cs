@@ -51,6 +51,10 @@ namespace Domain.Models.Slider
         [Display(Name = "حذف شده ؟")]
         public bool IsDelete { get; set; }
 
+        public int Priority { get; set; }
+
+        public string LinkTitle { get; set; }
+
         #endregion
 
         #region Relations

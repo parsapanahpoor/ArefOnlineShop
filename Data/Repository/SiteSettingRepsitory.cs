@@ -279,7 +279,7 @@ namespace Data.Repository
             model.Sliders = await _context.Slider
                                           .AsNoTracking()
                                           .Where(p => !p.IsDelete)
-                                          .OrderByDescending(p => p.CreateDate)
+                                          .OrderBy(p => p.Priority)
                                           .ToListAsync();
 
             #endregion

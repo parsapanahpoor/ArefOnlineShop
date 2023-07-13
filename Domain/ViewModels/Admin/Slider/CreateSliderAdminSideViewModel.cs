@@ -33,6 +33,10 @@ namespace Domain.ViewModels.Admin.Slider
         [Display(Name = " کد رنگ ")]
         public string ColorCode { get; set; }
 
+        public int Priority { get; set; }
+
+        public string LinkTitle { get; set; }
+
         #endregion
     }
 }
