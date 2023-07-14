@@ -197,7 +197,7 @@ namespace Application.Services
 
             List<OrderDetails> orderDetails = _orderService.GetAllOrderDetailsByOrderID(order.OrderId);
 
-            int Amount = 0;
+            int Amount = 250000;
 
             foreach (var item in orderDetails)
             {
@@ -205,7 +205,7 @@ namespace Application.Services
             }
 
             //Initial Disacount
-            Amount = (Amount * discount.DiscountPercentage) / 100;
+            Amount = (Amount  * discount.DiscountPercentage) / 100;
 
             #endregion
 

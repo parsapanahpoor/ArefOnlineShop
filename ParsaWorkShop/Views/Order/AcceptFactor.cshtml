@@ -172,6 +172,14 @@
                             @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") ریال
                         </p>
                     </div>
+                    <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 mt-2 py-3 flex justify-between items-center">
+                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            هزینه ی ارسال :    
+                        </p>
+                        <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
+                            ریال 250,000
+                        </p>
+                    </div>
                     <ul class="grid grid-cols-2 lg:grid-cols-1 gap-2">
                         <li class="flex justify-start items-center gap-2 mb-3">
                             <img src="/ArefSet/src/assets/images/landing/truck.png" alt="">
@@ -206,8 +214,12 @@
                             else
                             {
                                 <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-                                    @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0")
-                                    ریال
+                                    @{
+                                        var orderPrice = Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count);
+                                        var total = orderPrice + 250000;
+                                    }
+
+                                    @total.ToString("#,0") ریال
                                 </p>
                             }
                         }

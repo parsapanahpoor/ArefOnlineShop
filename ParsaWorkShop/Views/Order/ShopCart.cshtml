@@ -181,6 +181,15 @@
                             @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") ریال
                         </p>
                     </div>
+
+                    <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 py-3 flex justify-between items-center">
+                        <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                            هزینه ی ارسال :
+                        </p>
+                        <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
+                            250,000 ریال
+                        </p>
+                    </div>
                     <ul class="grid grid-cols-2 lg:grid-cols-1 gap-2">
                         <li class="flex justify-start items-center gap-2 mb-3">
                             <img src="/ArefSet/src/assets/images/landing/truck.png" alt="">
@@ -198,10 +207,15 @@
                             مبلغ قابل پرداخت :
                         </p>
                         <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-                            @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") ریال
+                            @{
+                                var orderPrice = Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count);
+                                var total = orderPrice + 250000;
+                            }
+                            
+                            @total.ToString("#,0") ریال
                         </p>
                     </div>
-                    <a href="/order/GetTheUserLocations/@Model.Order.Userid" class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
+                    <a href="/order/GetTheUserLocations/@Model.Order.OrderId" class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
                         رفتن به صفحه بعد
                         <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
                     </a>

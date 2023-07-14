@@ -235,22 +235,10 @@ namespace ParsaWorkShop.Controllers
 
                 var locationId = _location.AddLocation(userid, LocationAddress, postalCode, Username, Mobile, Email, CityName, StateName);
 
-                return RedirectToAction(nameof(PostSendSatus), new { oredrid = orderid, Locationid = locationId });
+                return RedirectToAction(nameof(AcceptFactor), new { oredrid = orderid, Locationid = locationId });
             }
 
             return RedirectToAction(nameof(GetTheUserLocations), new { id = orderid });
-        }
-
-        #endregion
-
-        #region Post Send Status
-
-        public async Task<IActionResult> PostSendSatus(int? oredrid, int Locationid)
-        {
-            ViewBag.Locationid = Locationid;
-            ViewBag.Orderid = oredrid;
-
-            return View();
         }
 
         #endregion
@@ -287,13 +275,13 @@ namespace ParsaWorkShop.Controllers
             var res = await _discountCodeService.AddDiscountToTheOrder(orderId, User.GetUserId(), DiscountCode);
             if (res != null)
             {
-                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                TempData[SuccessMessage] = "operation has been successfully";
                 return RedirectToAction(nameof(AcceptFactor), new { oredrid = orderId, Locationid = Locationid, discountPrice = res });
             }
 
             #endregion
 
-            TempData[ErrorMessage] = "عملیات باشکست مواجه شده است.";
+            TempData[ErrorMessage] = "operation has been faild";
             return RedirectToAction(nameof(AcceptFactor), new { oredrid = orderId, Locationid = Locationid });
         }
 
@@ -310,7 +298,7 @@ namespace ParsaWorkShop.Controllers
             Orders order = _order.GetOrderByOrderID((int)id);
             List<OrderDetails> orderDetails = _order.GetAllOrderDetailsByOrderID(order.OrderId);
 
-            int Amount = 0;
+            int Amount = 250000;
 
             foreach (var item in orderDetails)
             {
