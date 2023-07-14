@@ -1,5 +1,6 @@
 ﻿#region Using
 
+using Domain.Models.ContactUs;
 using Domain.ViewModels.Admin.UsersCommentAboutSite;
 using Domain.ViewModels.SiteSide.ContactUs;
 using System;
@@ -31,6 +32,12 @@ namespace Application.Interfaces
 
         //Delete Users Comment 
         Task<bool> DeleteUsersComment(int id);
+
+        //List Of Contact Us Requests
+        Task<List<ContactUs>> ListOfContactUsRequests();
+
+        //Get Contact Us With Id
+        Task<ContactUs> GetContactUsWithId(int id);
 
         #endregion
 

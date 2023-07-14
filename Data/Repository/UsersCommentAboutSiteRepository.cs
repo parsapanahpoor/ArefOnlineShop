@@ -85,6 +85,23 @@ namespace Data.Repository
             await _context.SaveChangesAsync();
         }
 
+        //List Of Contact Us Requests
+        public async Task<List<ContactUs>> ListOfContactUsRequests()
+        {
+            return await _context.ContactUs
+                                 .AsNoTracking()
+                                 .ToListAsync();
+        }
+
+        //Get Contact Us With Id
+        public async Task<ContactUs> GetContactUsWithId(int id)
+        {
+            return await _context.ContactUs
+                                 .AsNoTracking()
+                                 .Where(p => p.ContactUsId == id)
+                                 .FirstOrDefaultAsync();
+        }
+
         #endregion
 
         #region Site Side 

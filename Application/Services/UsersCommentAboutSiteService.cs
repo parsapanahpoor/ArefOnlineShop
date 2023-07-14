@@ -108,6 +108,18 @@ namespace Application.Services
             return true;
         }
 
+        //List Of Contact Us Requests
+        public async Task<List<ContactUs>> ListOfContactUsRequests()
+        {
+            return await _usersCommentAboutSite.ListOfContactUsRequests();
+        }
+
+        //Get Contact Us With Id
+        public async Task<ContactUs> GetContactUsWithId(int id)
+        {
+            return await _usersCommentAboutSite.GetContactUsWithId(id);
+        }
+
         #endregion
 
         #region Site Side 

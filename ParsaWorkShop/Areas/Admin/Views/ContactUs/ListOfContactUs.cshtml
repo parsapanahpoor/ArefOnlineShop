@@ -1,0 +1,223 @@
+﻿@model IEnumerable<Domain.Models.ContactUs.ContactUs>
+@using Application.Convertors
+@{
+    ViewData["Title"] = "لیست تماس با ما ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@section Styls
+    {
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.css">
+
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    @if (ViewBag.Create == true)
+    {
+        <div class="col-md-12">
+            <div class="card bg-success-gradient">
+                <div class="card-header">
+                    <h3 class="card-title"> ثبت با موفقیت </h3>
+
+                    <div class="card-tools">
+                        <button type="button" id="CreateBtn" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    ثبت بلاگ جدید   با موفقیت انجام شده است
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <script>
+            // Your delay in milliseconds
+            var delay = 5000;
+            setTimeout(function () { document.getElementById("CreateBtn").click(); }, delay);
+        </script>
+    }
+    @if (ViewBag.Edit == true)
+    {
+        <div class="col-md-12">
+            <div class="card bg-primary-gradient">
+                <div class="card-header">
+                    <h3 class="card-title">ویرایش موفقیت آمیز  </h3>
+
+                    <div class="card-tools">
+                        <button type="button" id="EditBtn" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    ویرایش بلاک  با موفقیت ثبت گردید
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <script>
+            // Your delay in milliseconds
+            var delay = 5000;
+            setTimeout(function () { document.getElementById("EditBtn").click(); }, delay);
+        </script>
+    }
+    @if (ViewBag.Delete == true)
+    {
+        <div class="col-md-12">
+            <div class="card bg-danger-gradient">
+                <div class="card-header">
+                    <h3 class="card-title">حذف موفق </h3>
+
+                    <div class="card-tools">
+                        <button type="button" id="DeleteBtn" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    حذف بلاگ  با موفقیت انجام گردید
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <script>
+            // Your delay in milliseconds
+            var delay = 5000;
+            setTimeout(function () { document.getElementById("DeleteBtn").click(); }, delay);
+        </script>
+    }
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>جداول تماس با ما </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">میدیرت تماس با ما </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+
+                <div class="card ">
+                    <div class="card-header">
+                        <h3 class="card-title">لیست تماس با ما  جستجوی پیشرفته</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 150px;" aria-label="نام کاربری: activate to sort column ascending">نام کاربری </th>
+
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 250.583px;" aria-sort="ascending" aria-label=" موبایل   : activate to sort column descending">
+                                                موبایل
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 400.6px;" aria-label=" activate to sort column ascending"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var contact in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    @contact.UserName
+                                                </td>
+
+                                                <td>@contact.PhoneNumber</td>
+
+                                                <td>
+
+                                                    <a class="btn btn-info btn-sm waves-effect" asp-action="GetContactUsWithId" asp-area="Admin" asp-controller="ContactUs" asp-route-id="@contact.ContactUsId">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        اطلاعات
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section> <!-- /.content -->
+</div>
+
+
+
+
+@section scripts{
+    <!-- ./wrapper -->
+
+    <script src="/Admin_Panel/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <!-- SlimScroll -->
+    <!-- FastClick -->
+    <script src="/Admin_Panel/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+            });
+            $('#example2').DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "autoWidth": false
+            });
+        });
+    </script>
+}
+

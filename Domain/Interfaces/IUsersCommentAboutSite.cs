@@ -35,6 +35,12 @@ namespace Domain.Interfaces
         //Add Contact Us 
         Task AddContactUs(ContactUs contactUs);
 
+        //List Of Contact Us Requests
+        Task<List<ContactUs>> ListOfContactUsRequests();
+
+        //Get Contact Us With Id
+        Task<ContactUs> GetContactUsWithId(int id);
+
         #endregion
     }
 }
