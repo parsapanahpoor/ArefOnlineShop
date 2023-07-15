@@ -1,18 +1,22 @@
-﻿using Application.Interfaces;
+﻿#region Usings
+
+using Application.Extensions;
+using Application.Interfaces;
 using Domain.Models.Blog;
 using Domain.Models.Comment;
 using Domain.ViewModels.SiteSide.Blog;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace ParsaWorkShop.Controllers
 {
     public class BlogController : Controller
     {
-
         #region Ctor
 
         private IBlogService _blog;
@@ -39,12 +43,21 @@ namespace ParsaWorkShop.Controllers
             return View(_blog.GetBlogsForShowInHomePage(Categroyid, pageId, filter, 9));
         }
 
-        public IActionResult SingleBlogsPage(int id)
-        {
-            Blog blog = _blog.GetBlogById(id);
+        #region Single Blogs Page
 
-            return View(blog);
+        public async Task<IActionResult> SingleBlogsPage(int id)
+        {
+            #region Fill Model
+
+            var model = await _blog.FillBlogSinglePageSiteSideViewModel(id);
+            if (model == null) return NotFound(); 
+
+            #endregion
+
+            return View(model);
         }
+
+        #endregion
 
         #region ProductsComments
 
@@ -71,6 +84,18 @@ namespace ParsaWorkShop.Controllers
         public async Task<IActionResult> ListOfBlogs(ListOfBlogsSiteSideViewModel model)
         {
             return View(await _blog.FillListOfBlogsSiteSideViewModel(model));
+        }
+
+        #endregion
+
+        #region Add Comment For Blogs
+
+        [HttpPost , ValidateAntiForgeryToken , Authorize]
+        public async Task<IActionResult> AddCommentForBlogs(AddCommentForBlogsSiteSideViewModel model )
+        {
+            await _comment.AddCommmentForBlog(model , User.GetUserId());
+
+            return RedirectToAction(nameof(SingleBlogsPage) , new { id = model.BlogId });
         }
 
         #endregion

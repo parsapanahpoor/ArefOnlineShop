@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Models.Comment;
+using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Blog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,23 @@ namespace Application.Services
             comment.CreateDate = DateTime.Now;
             comment.ProductTypeId = ProductTypeId;
             comment.UserId = userid;
+
+            _comment.AddComment(comment);
+        }
+
+        //Add Comment For Blog
+        public async Task AddCommmentForBlog(AddCommentForBlogsSiteSideViewModel model , int userId)
+        {
+            Comment comment = new Comment();
+
+            comment.IsDelete = false;
+            comment.IsAdminRead = false;
+            comment.CreateDate = DateTime.Now;
+            comment.ProductTypeId = 2;
+            comment.UserId = userId;
+            comment.BlogId = model.BlogId;
+            comment.ParentId = model.ParentId;
+            comment.CommentBody = model.CommentBody;
 
             _comment.AddComment(comment);
         }

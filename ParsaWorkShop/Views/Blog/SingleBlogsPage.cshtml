@@ -1,193 +1,87 @@
-﻿@model Domain.Models.Blog.Blog
+﻿@model Domain.ViewModels.SiteSide.Blog.BlogSinglePageSiteSideViewModel
 @using Application.Convertors
 @{
-    ViewData["Title"] = Model.BlogTitle;
+    ViewData["Title"] = Model.Blog.BlogTitle;
 }
 
-
-<section class="bg-half bg-light d-table w-100">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12 text-center">
-                <div class="page-next-level">
-                    <h4 class="title"> @Model.BlogTitle </h4>
-                    <div class="page-next">
-                        <nav aria-label="breadcrumb" class="d-inline-block">
-                            <ul class="breadcrumb bg-white rounded shadow mb-0">
-                                <li class="breadcrumb-item"><a href="/">فروشگاه کالا </a></li>
-                                <li class="breadcrumb-item"><a href="/Blog">اخبار و مقالات  </a></li>
-                                <li class="breadcrumb-item active" aria-current="page"> مقالات  </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div><!--end col-->
-        </div><!--end row-->
-    </div> <!--end container-->
-</section>
-
-<div class="position-relative">
-    <div class="shape overflow-hidden text-white">
-        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
-        </svg>
-    </div>
-</div>
-
-<section class="section pb-0">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-5">
-                <div class="tns-outer" id="tns1-ow">
-                    <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">2</span>  of 5</div><div id="tns1-mw" class="tns-ovh">
-                        <div class="tns-inner" id="tns1-iw">
-                            <div class="tiny-single-item  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns1" style="transform: translate3d(-20%, 0px, 0px);">
-                                <div class="tiny-slide tns-item tns-slide-active" id="tns1-item1"><img src="/Images/Blog/image/@Model.BlogImageName" class="img-fluid rounded" alt=""></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!--end col-->
-
-            <div class="col-md-7 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <div class="section-title ms-md-4">
-                    <h4 class="title">@Model.BlogTitle</h4>
-                    <h5 class="text-muted">@Model.CreateDate.ToShamsi() </h5>
-
-
-                    <h5 class="mt-4 py-2">بررسی:</h5>
-                    <p class="text-muted">
-                        @Model.ShortDescription
-                    </p>
-
-                    <h5 class="mt-4 py-2">نویسنده :</h5>
-                    <p class="text-muted">
-                        @Model.Users.UserName
-                    </p>
-                </div><!--end row-->
-
-            </div>
-        </div><!--end col-->
-    </div><!--end row-->
-    </div><!--end container-->
-
-    <div class="container mt-100 mt-60">
-        <div class="row">
-            <div class="col-12">
-                <ul class="nav nav-pills shadow flex-column flex-sm-row d-md-inline-flex mb-0 p-1 bg-white rounded position-relative overflow-hidden" id="pills-tab" role="tablist">
-                    <li class="nav-item m-1">
-                        <a class="nav-link py-2 px-5 active rounded" id="description-data" data-bs-toggle="pill" href="#description" role="tab" aria-controls="description" aria-selected="false">
-                            <div class="text-center">
-                                <h6 class="mb-0">اطلاعات تکمیلی</h6>
-                            </div>
-                        </a><!--end nav link-->
-                    </li><!--end nav item-->
-
-
-
-                    <li class="nav-item m-1">
-                        <a class="nav-link py-2 px-5 rounded" id="review-comments" data-bs-toggle="pill" href="#review" role="tab" aria-controls="review" aria-selected="false">
-                            <div class="text-center">
-                                <h6 class="mb-0">نظرات </h6>
-                            </div>
-                        </a><!--end nav link-->
-                    </li><!--end nav item-->
-                </ul>
-
-                <div class="tab-content mt-5" id="pills-tabContent">
-                    <div class="card border-0 tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-data">
-                        <p class="text-muted mb-0">
-                            @Html.Raw(Model.LongDescription)
-                        </p>
-                    </div>
-
-
-
-                    <div class="card border-0 tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-comments">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <ul class="media-list list-unstyled mb-0" id="listComment">
-                                </ul>
-                            </div><!--end col-->
-                            @if (User.Identity.IsAuthenticated)
-
-                            {<div class="col-lg-6 mt-4 mt-lg-0 pt-2 pt-lg-0" id="commentProduct">
-
-                                    <form class="ms-lg-4" asp-action="CreateCommente" asp-controller="Blog"
-                                          data-ajax="true"
-                                          data-ajax-method="post"
-                                          data-ajax-mode="replace"
-                                          data-ajax-update="#listComment"
-                                          data-ajax-success="Success"
-                                          id="contactForm" method="POST">
-
-                                        <input type="hidden" name="comment.BlogId" value="@Model.BlogId" />
-
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h5>اضافه کردن نظر:</h5>
-                                            </div>
-                                            <div class="col-md-12 mt-3">
-                                                <div class="mb-3">
-                                                    <label class="form-label">نظر شما:</label>
-                                                    <div class="form-icon position-relative">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle fea icon-sm icons"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                                                        <textarea id="Comment" placeholder="کامنت شما" rows="5" name="comment.CommentBody" class="form-control ps-5" required=""></textarea>
-                                                    </div>
-                                                </div>
-                                            </div><!--end col-->
-
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">نام  <span class="text-danger">*</span></label>
-                                                    <div class="form-icon position-relative">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user fea icon-sm icons"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                                        <div id="name" readonly type="text" placeholder="نام" class="form-control ps-5" required="">@User.Identity.Name </div>
-
-                                                    </div>
-                                                </div>
-                                            </div><!--end col-->
-
-
-
-                                            <div class="col-md-12">
-                                                <div class="send d-grid">
-                                                    <button type="submit" class="btn btn-primary">ارسال </button>
-                                                </div>
-                                            </div><!--end col-->
-                                        </div><!--end row-->
-                                    </form>
-
-                                </div><!--end col-->
-
-
-                            }
-                            @if (!User.Identity.IsAuthenticated)
-                            {
-
-                                <div class="alert alert-danger">
-                                    جهت درج نظر باید وارد سایت شوید
-                                </div>
-
-                            }
-                        </div><!--end row-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--end container-->
-
-    <section class="section mt-0 pt-0">
-
-        @await Component.InvokeAsync("LastestBlogsComponent")
-
-    </section>
-
-</section>
-
+@section Styles
+    {
+    <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+}
 
 @section Scripts
     {
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script>
+
+        <script>
+                                                                      const modal = document.querySelector(".modal");
+        const showModal = document.querySelector(".showModal");
+        const hideModal = document.querySelectorAll(".hideModal");
+        const menu = document.querySelector(".menu");
+        const showMenu = document.querySelector(".showMenu");
+        const hideMenu = document.querySelectorAll(".hideMenu");
+        const body = document.querySelector("body");
+
+        // ------------------------ modal -------------------------------
+
+        showModal.addEventListener("click", function () {
+            modal.classList.remove("hidden");
+            body.style.overflow = "hidden";
+        });
+
+        hideModal.forEach((close) => {
+            close.addEventListener("click", function () {
+                modal.classList.add("hidden");
+                body.style.overflow = "auto";
+            });
+        });
+
+        // ------------------------Side Menu Responsive-------------------------------
+
+        showMenu.addEventListener("click", function () {
+            // menu.classList.replace("-right-[70%]","right-0")
+            menu.classList.remove("opacity-0");
+            menu.classList.remove("invisible");
+            body.style.overflow = "hidden";
+        });
+        hideMenu.forEach((close) => {
+            close.addEventListener("click", function () {
+                // menu.classList.replace("right-0","-right-[70%]")
+                menu.classList.add("opacity-0");
+                menu.classList.add("invisible");
+                body.style.overflow = "auto";
+            });
+        });
+
+        function openForm(evt, formName) {
+            var i, tabFormContent, tabFormLinks;
+            tabFormContent = document.getElementsByClassName("tabFormContent");
+            for (i = 0; i < tabFormContent.length; i++) {
+                tabFormContent[i].style.display = "none";
+            }
+            tabFormLinks = document.getElementsByClassName("tabFormLinks");
+            for (i = 0; i < tabFormLinks.length; i++) {
+                tabFormLinks[i].className = tabFormLinks[i].className.replace(
+                    " activeFormItem",
+                    ""
+                );
+            }
+            document.getElementById(formName).style.display = "block";
+            evt.currentTarget.className += " activeFormItem";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultFormOpen").click();
+    </script>
+
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
     <script>
@@ -195,12 +89,299 @@
             $("#comment_Comment").val("");
         }
 
-        $(function() {
-            $("#listComment").load("/Blog/ShowComment/" + @Model.BlogId);
+        $(function () {
+            $("#listComment").load("/Blog/ShowComment/" + @Model.Blog.BlogId);
         });
 
         function pageComment(pageid) {
-            $("#listComment").load("/Blog/ShowComment/" + @Model.BlogId+"?pageId="+pageid);
+            $("#listComment").load("/Blog/ShowComment/" + @Model.Blog.BlogId+"?pageId=" + pageid);
         }
     </script>
 }
+
+<main class="mx-auto">
+    <section class="breadcrumb mx-auto lg:mb-8 lg:mt-5 my-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>
+                        خانه
+                    </a>
+                </li>
+
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">فروشگاه لیست عارف</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    </section>
+
+    <section class="mx-auto px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] lg:flex lg:flex-nowrap lg:items-start lg:justify-center flex flex-wrap items-start justify-center gap-5">
+        <div class="mainContent w-full lg:w-[69%] ">
+            <div class="w-full">
+                <p class="text-[#252525] text-[16px] leading-[24.8px] lg:text-[24px] lg:leading-[37.2px]" style="font-family: yekanBakhtRegular">
+                    @Model.Blog.ShortDescription
+                </p>
+            </div>
+
+            <div class="w-full py-4 flex justify-between items-center">
+                <div class="flex items-center justify-start gap-2">
+                    <div class="w-[28px] h-[28px] lg:w-[35px] lg:h-[35px] rounded-full">
+                        <img class="w-full h-full object-cover" src="/Images/UserAvatar/@Model.Blog.Users.UserAvatar" alt="">
+                    </div>
+                    <div class="flex flex-col items-start justify-start">
+                        <p class="text-[12px] leading-[18.6px] lg:text-[14px] text-[#252525] lg:leading-[21.7px]" style="font-family: yekanBakhtRegular">
+                            @Model.Blog.Users.UserName
+                        </p>
+                        <p class="text-[9px] lg:text-[12px] text-[#B7B7B7] leading-[18.6px]" style="font-family: yekanBakhtLight">
+                            @Model.Blog.CreateDate.ToShamsi()
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full h-[163px] lg:h-[415px] mt-1">
+                <img class="w-full h-full object-cover" src="/Images/Blog/image/@Model.Blog.BlogImageName" alt="">
+            </div>
+
+            <div class="w-full my-6">
+                <p class="text-[10px] lg:text-[14px] text-[#565656] leading-[28px] text-right" style="font-family: yekanBakhtRegular">
+                    @Html.Raw(Model.Blog.LongDescription)
+                </p>
+            </div>
+
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
+                    <div class="flex flex-col justify-start items-start">
+                        <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
+                            ارسال یک دیدگاه
+                        </p>
+                        <p class="text-[#252525] text-[9px] leading-[24.8px] lg:text-[12px] lg:leading-[18.6px]" style="font-family: yekanBakhtLight">
+                            ایمیل شما منتشر نخواهد شد، فیلد های اجباری با علامت * مشخص شده
+                            اند.
+                        </p>
+                    </div>
+
+                    <div class="w-full mt-5 lg:mt-10">
+                        <form asp-action="AddProductToTheOffer" asp-controller="Products" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+                            <input name="ParentId" type="hidden" />
+                            <input name="BlogId" type="hidden" value="@Model.Blog.BlogId"/>
+
+                                <div class="col-span-1 md:col-span-1 lg:col-span-1 h-[54px]">
+                                    <input type="text" class="w-full h-full focus:outline-none px-3 bg-white rounded text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="نام و نام خانوادگی">
+                                </div>
+                                <div class="col-span-1 md:col-span-1 lg:col-span-1 h-[54px]">
+                                    <input type="email" class="w-full h-full focus:outline-none px-3 bg-white rounded text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="پست التکرونیکی">
+                                </div>
+                                <div class="col-span-1 md:col-span-2 lg:col-span-2">
+                                    <textarea class="w-full focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" name="" placeholder="دیدگاه خود را بنویسید" id="" rows="4"></textarea>
+                                </div>
+                                <div class="w-full lg:mt-7 col-span-1 md:col-span-2 lg:col-span-2 flex flex-col justify-center items-start lg:flex lg:flex-row lg:justify-between lg:items-center">
+                                    <div class="flex justify-start items-start gap-2">
+                                        <input type="checkbox" class="accent-[#252525] w-4 h-4" name="" id="saveInfo">
+                                        <label class="w-[257px] lg:w-auto inline-block" for="saveInfo">
+                                            <strong class="text-[#606060] text-[12px] lg:text-[14px] leading-[18.6px] lg:leading-[21.7px]" style="font-family: yekanBakhtSemiBold">
+                                                ذخیره نام، ایمیل و وبسایت من در مرورگر برای زمانی که
+                                                دوباره دیدگاهی می‌نویسم.
+                                            </strong>
+                                            <br>
+                                            <small class="text-[#7B7B7B] text-[9px] lg:text-[12px] leading-[13.95px] lg:leading-[18.6px]">
+                                                شما باید وارد حساب خود شده باشید تا قادر به اضافه کردن
+                                                تصاویر در نظرات باشید.
+                                            </small>
+                                        </label>
+                                    </div>
+                                    <button class="bg-[#252525] mt-3 lg:mt-0 text-white text-[14px] w-[119px] h-[40px] lg:h-[50px]" type="submit">
+                                        ارسال دیدگاه
+                                    </button>
+                                </div>
+
+                        </form>
+                    </div>
+                </div>
+            }else
+            {
+                <div class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
+                    <div class="flex flex-col justify-start items-start">
+
+                        <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
+                            برای درج نظر باید وارد وب سایت گردید
+                        </p>
+                       
+                    </div>
+                </div>
+            }
+
+            @if (Model.Comments != null && Model.Comments.Any())
+            {
+                <div class="w-full my-6">
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="w-full pb-2  border-b-[1px] mb-7">
+
+                            <!--comment card -->
+                            <div class="w-full p-2 mb-3">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <div class="w-[30px] h-[30px] lg:w-[51px] lg:h-[51px] rounded-full">
+                                            <img class="w-full h-full object-cover" src="/Images/UserAvatar/@comment.Users.UserAvatar" alt="">
+                                        </div>
+                                        <div class="">
+                                            <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                                @comment.Users.UserName
+                                            </p>
+                                            <p class="text-[#565656] text-[10px] leading-[18.74px] lg:text-[12px] lg:leading-[22.49px]" style="font-family: yekanBakhtLight">
+                                                @comment.CreateDate.ToShamsi()
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center justify-center gap-1">
+                                        <img class="w-[10px] h-[10px] lg:w-[12px] lg:h-[12px] object-cover" src="/ArefSet/src/assets/images/landing/Group 1.png" alt="">
+                                        <p class="text-[#89939F] text-[10px] leading-[18.74px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                            پاسخ
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="lg:mr-[51px] my-2">
+                                    <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                        @comment.CommentBody
+                                    </p>
+                                </div>
+                            </div>
+
+                            @if (Model.Comments.Any(s=> s.ParentId == comment.CommentId))
+                            {
+                                foreach (var answer in Model.Comments.Where(s=> s.ParentId == comment.CommentId))
+                                {
+                                    <!--answer card -->
+                                    <div class="lg:w-[94.5%] bg-[#EDEDED] p-2 mr-[30px] lg:mr-[51px] rounded mb-3">
+                                        <div class="flex items-start justify-between">
+                                            <div class="flex items-center justify-center gap-2">
+                                                <div class="w-[30px] h-[30px] lg:w-[51px] lg:h-[51px] rounded-full">
+                                                    <img class="w-full h-full object-cover" src="/Images/UserAvatar/@answer.Users.UserAvatar" alt="">
+                                                </div>
+                                                <div class="">
+                                                    <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                                        @answer.Users.UserName
+                                                    </p>
+                                                    <p class="text-[#565656] text-[10px] leading-[18.74px] lg:text-[12px] lg:leading-[22.49px]" style="font-family: yekanBakhtLight">
+                                                        @answer.CreateDate.ToShamsi()
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="lg:mr-[51px] my-2">
+                                            <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                               @answer.CommentBody
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                      
+                        </div>
+
+                    }
+                </div>
+            }
+
+        </div>
+
+        <div class="filterMenu lg:inline-block w-full lg:w-[414px] flex flex-col justify-start items-center gap-5">
+            <form asp-action="ListOfBlogs" asp-controller="blog" asp-area="" method="get">
+                <div class="w-full h-[163px] border-2 lg:flex lg:flex-col lg:items-start lg:justify-center text-right px-5 lg:px-10 gap-4 mb-5 hidden">
+                    <button class="text-[#252525] text-[16px] leading-[18px]" style="font-family: yekanBakhtBold">
+                        جستجو کنید
+                    </button>
+                    <div class="w-[347px] h-[44px] border-[1px] flex items-center justify-start gap-2 pr-3">
+                        <img src="/ArefSet/src/assets/images/landing/search-norma.png" alt="">
+                        <input type="search" placeholder="جستجو خبر مورد نظر خود" class="h-full w-full focus:outline-none" name="BlogTitle" id="">
+                    </div>
+                </div>
+            </form>
+
+            @if (Model.BlogCategories != null && Model.BlogCategories.Any())
+            {
+                <div class="w-full h-[402px] border-2 lg:flex lg:flex-col lg:items-start lg:justify-start text-right p-5 lg:p-10 gap-4 mb-5 hidden">
+                    <p class="text-[#252525] text-[16px] leading-[18px]" style="font-family: yekanBakhtBold">
+                        دسته بندی ها
+                    </p>
+                    <ul class="w-full flex flex-col justify-between items-center h-full">
+
+                        @foreach (var category in Model.BlogCategories)
+                        {
+                            <li class="w-full leading-5">
+                                <a class="w-full flex justify-between items-center" href="#">
+                                    <span class="text-[12px] text-[#252525]">@category.CategoryTitle</span><span class="text-[12px] text-[#252525]"> > </span>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            }
+
+            @if (Model.LastestBlogs != null && Model.LastestBlogs.Any())
+            {
+                <div class="w-full h-[485px] border-2 flex flex-col items-start justify-start text-right p-5 lg:p-10 gap-4 mb-5">
+
+                    <p class="text-[#252525] text-[16px] leading-[18px] mb-2" style="font-family: yekanBakhtBold">
+                        جدید ترین مقالات
+                    </p>
+
+                    @foreach (var blogs in Model.LastestBlogs)
+                    {
+                        <!-- card -->
+                        <div class="w-full pb-3 mb-2 border-b flex items-end justify-between">
+
+                            <div class="flex items-center justify-start gap-2">
+                                <div class="w-[62px] h-[62px]">
+                                    <img class="w-full h-full object-cover" src="/Images/Blog/thumb/@blogs.BlogImageName" alt="">
+                                </div>
+                                <div class="flex flex-col items-start justify-start">
+                                    <p class="text-[9px] text-[#252525] leading-3" style="font-family: yekanBakhtLight">
+                                        @blogs.CreateDate.ToShamsi()
+                                    </p>
+                                    <a href="/Blog/SingleBlogsPage/@blogs.BlogId" class="text-[12px] lg:text-[14px] text-[#252525] leading-[27px]" style="font-family: yekanBakhtSemiBold">
+                                        @blogs.BlogTitle
+                                    </a>
+                                </div>
+                            </div>
+                            <img src="/ArefSet/src/assets/images/landing/arrow-left-blog.png" alt="">
+
+                        </div>
+                    }
+
+                </div>
+            }
+
+
+
+            <div class="w-full h-[461px] border-2 mb-5 relative lg:block hidden">
+                <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Rectangle 9214.png" alt="">
+                <div class="absolute w-full h-full top-0 left-0 ring-0 bottom-0 flex items-center justify-start p-5">
+                    <p class="text-[54px] text-[#fff] leading-[87px]" style="font-family: yekanBakhtLight">
+                        محل <br>درج بنر
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>

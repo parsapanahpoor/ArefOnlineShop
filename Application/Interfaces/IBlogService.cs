@@ -63,6 +63,9 @@ namespace Application.Interfaces
 
         Task<ListOfBlogsSiteSideViewModel> FillListOfBlogsSiteSideViewModel(ListOfBlogsSiteSideViewModel filter);
 
+        //Fill Blog Single Page Site Side View Model
+        Task<BlogSinglePageSiteSideViewModel> FillBlogSinglePageSiteSideViewModel(int blogId);
+
         #endregion
     }
 }

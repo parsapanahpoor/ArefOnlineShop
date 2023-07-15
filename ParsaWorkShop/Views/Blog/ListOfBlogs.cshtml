@@ -92,8 +92,11 @@
         </nav>
     </section>
 
-    <form asp-action="ListOfProducts" asp-controller="Products" asp-area="" id="filtre" method="get">
+    <form asp-action="ListOfBlogs" asp-controller="blog" asp-area="" id="filter-search" method="get">
         <input type="hidden" asp-for="Page" />
+        <input type="hidden" asp-for="BlogTitle" />
+        <input type="hidden" asp-for="BlogCatgeoryId" />
+
         <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1" style="display:none">اعمال فیلتر</button>
     </form>
 
@@ -107,18 +110,21 @@
                 @foreach (var blog in Model.Entities)
                 {
                     <div class="relative w-full h-[413px]">
-                        <img class="w-full h-full object-cover" src="/Images/Blog/thumb/@blog.BlogImageName" alt="">
-                        <div class="p-5 flex flex-col items-start justify-end absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-[#252525] to-transparent">
-                            <p class="text-[23px] text-white leading-9" style="font-family: yekanBakhtBold">
-                                @blog.BlogTitle
-                            </p>
-                            <p class="text-[14px] text-white leading-[25.97px]" style="font-family: yekanBakhtRegular">
-                                @blog.ShortDescription
-                            </p>
-                            <p class="text-[10px] text-white leading-[18.6px] opacity-50" style="font-family: yekanBakhtRegular">
-                                @blog.CreateDate.ToShamsi()
-                            </p>
-                        </div>
+                        <a href="/Blog/SingleBlogsPage/@blog.BlogId">
+                            <img class="w-full h-full object-cover" src="/Images/Blog/thumb/@blog.BlogImageName" alt="">
+                            <div class="p-5 flex flex-col items-start justify-end absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-[#252525] to-transparent">
+                                <p class="text-[23px] text-white leading-9" style="font-family: yekanBakhtBold">
+                                    @blog.BlogTitle
+                                </p>
+                                <p class="text-[14px] text-white leading-[25.97px]" style="font-family: yekanBakhtRegular">
+                                    @blog.ShortDescription
+                                </p>
+                                <p class="text-[10px] text-white leading-[18.6px] opacity-50" style="font-family: yekanBakhtRegular">
+                                    @blog.CreateDate.ToShamsi()
+                                </p>
+                            </div>
+                        </a>
+                     
                     </div>
                 }
 

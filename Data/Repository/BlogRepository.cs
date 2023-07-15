@@ -244,9 +244,73 @@ namespace Data.Repository
               .OrderByDescending(s => s.CreateDate)
               .AsQueryable();
 
+            //Title
+            if (!string.IsNullOrEmpty(filter.BlogTitle))
+            {
+                query = query.Where(p => p.BlogTitle.Contains(filter.BlogTitle));
+            }
+
+
+            //categoryId
+            if (filter.BlogCatgeoryId.HasValue )
+            {
+                var categoryBlogs = _context.BlogSelectedCategories
+                                .Include(p => p.Blog)
+                                .Where(p => p.BlogCategoryId == filter.BlogCatgeoryId)
+                                .Select(p => p.Blog)
+                                .Distinct()
+                                .AsQueryable();
+
+                query = from q in query
+                        join c in categoryBlogs
+                        on q.BlogId equals c.BlogId
+                        select new Blog
+                        {
+                            BlogId = q.BlogId,
+                            BlogImageName = q.BlogImageName,
+                            BlogTitle = q.BlogTitle,
+                            CreateDate = q.CreateDate,
+                            IsActive = q.IsActive,
+                            LongDescription = q.LongDescription,
+                            ShortDescription = q.ShortDescription,
+                            UserId = q.UserId,
+                            Tags = q.Tags
+                        };
+            }
+
             await filter.Paging(query);
 
             return filter;
+        }
+
+        //Fill Blog Single Page Site Side View Model
+        public async Task<BlogSinglePageSiteSideViewModel> FillBlogSinglePageSiteSideViewModel(int blogId)
+        {
+            return await _context.Blog
+                                 .AsNoTracking()
+                                 .Include(p=> p.Users)
+                                 .Where(p => !p.IsDelete && p.BlogId == blogId)
+                                 .Select(p => new BlogSinglePageSiteSideViewModel()
+                                 {
+                                     Blog = p,
+                                     BlogCategories = _context.BlogCategories
+                                                              .AsNoTracking()
+                                                              .Where(p => !p.IsDelete)
+                                                              .ToList(),
+                                     LastestBlogs = _context.Blog
+                                                            .AsNoTracking()
+                                                            .Where(p=> !p.IsDelete && p.IsActive)
+                                                            .OrderByDescending(p=> p.CreateDate)
+                                                            .Take(4)
+                                                            .ToList(),
+                                     Comments = _context.Comment
+                                                        .Include(p=> p.Users)
+                                                        .AsNoTracking()
+                                                        .Where(p=> !p.IsDelete && p.BlogId.HasValue && p.BlogId == blogId)
+                                                        .OrderByDescending(p=> p.CreateDate)
+                                                        .ToList(),
+                                 })
+                                 .FirstOrDefaultAsync();
         }
 
         #endregion

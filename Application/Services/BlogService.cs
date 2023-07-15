@@ -466,6 +466,12 @@ namespace Application.Services
             return await _blog.FillListOfBlogsSiteSideViewModel(filter);
         }
 
+        //Fill Blog Single Page Site Side View Model
+        public async Task<BlogSinglePageSiteSideViewModel> FillBlogSinglePageSiteSideViewModel(int blogId)
+        {
+            return await _blog.FillBlogSinglePageSiteSideViewModel(blogId);
+        }
+
         #endregion
     }
 }

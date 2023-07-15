@@ -11,6 +11,9 @@ namespace Domain.ViewModels.SiteSide.Blog
     {
         #region properties
 
+        public string BlogTitle { get; set; }
+
+        public int? BlogCatgeoryId { get; set; }
 
         #endregion
     }

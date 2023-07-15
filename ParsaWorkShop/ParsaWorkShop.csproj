@@ -103,6 +103,7 @@
     <None Include="wwwroot\ArefSet\src\assets\images\landing\download.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\heart.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\Layer 4.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\linkedin.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\search-icon.webp" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\star.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\userPanel.svg" />
