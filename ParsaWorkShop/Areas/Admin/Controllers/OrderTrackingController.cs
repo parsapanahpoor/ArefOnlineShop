@@ -1,27 +1,28 @@
-﻿using Application.Interfaces;
+﻿#region Usings
+
+using Application.Interfaces;
 using Application.Security;
 using Application.ViewModels;
 using Domain.Models.Order;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize]
     [PermissionChecker(1)]
 
-    public class OrderTrackingController : Controller
+    public class OrderTrackingController : AdminBaseController
     {
+        #region Ctor
+
         private IOrderService _order;
         private IUserService _userservice;
         private IFinancialTransactionService _financial;
         private IReturendProductsService _returnProducts;
-        public OrderTrackingController(IOrderService order, IUserService userService, IFinancialTransactionService financial , IReturendProductsService returnProducts)
+        public OrderTrackingController(IOrderService order, IUserService userService, IFinancialTransactionService financial, IReturendProductsService returnProducts)
         {
             _order = order;
             _userservice = userService;
@@ -29,12 +30,20 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             _returnProducts = returnProducts;
         }
 
+        #endregion
+
+        #region Index
+
         public IActionResult Index()
         {
             List<Orders> Orders = _order.GetAllOrdersForShowInAdminPanel();
 
             return View(Orders);
         }
+
+        #endregion
+
+        #region Check User Information 
 
         public IActionResult CheckUserInformation(int? id)
         {
@@ -49,17 +58,23 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(user);
         }
 
-        public IActionResult CheckOrderDetails(int? id)
+        #endregion
+
+        #region Check Order Detail
+
+        public async Task<IActionResult> CheckOrderDetails(int? id)
         {
             if (id == null)
             {
                 return View();
             }
 
-            List<OrderDetails> orderDetails = _order.GetAllOrderDetailsByOrderID((int)id);
-
-            return View(orderDetails);
+            return View(await _order.FillListOfOrderDetailsAdminSideViewModel(id.Value));
         }
+
+        #endregion
+
+        #region Accounting List
 
         public IActionResult AccountingList()
         {
@@ -71,12 +86,20 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(financials);
         }
 
+        #endregion
+
+        #region List Of Returm Products
+
         public IActionResult ListOfReturnedProducts()
         {
             List<ReturnedProducts> products = _returnProducts.GetAllReturnedProducts();
 
             return View(products);
         }
+
+        #endregion
+
+        #region Check Out Request For Returend
 
         public IActionResult CheckOutRequestForReturend(int? id)
         {
@@ -97,6 +120,10 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return View(products);
         }
 
+        #endregion
+
+        #region Decline Return Request
+
         public IActionResult DeclineReturnRequest(int? id)
         {
             if (id == null)
@@ -113,8 +140,12 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return RedirectToAction(nameof(ListOfReturnedProducts));
         }
 
+        #endregion
+
+        #region Accept Return Request
+
         public IActionResult AcceptReturnRequest(int? id)
-        { 
+        {
             if (id == null)
             {
                 return NotFound();
@@ -133,5 +164,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(ListOfReturnedProducts));
         }
+
+        #endregion
     }
 }

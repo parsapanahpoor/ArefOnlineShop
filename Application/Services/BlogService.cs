@@ -5,6 +5,7 @@ using Application.Security;
 using Domain.Interfaces;
 using Domain.Models.Blog;
 using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Blog;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -457,5 +458,14 @@ namespace Application.Services
 
             return video.VideoId;
         }
+
+        #region Site Side 
+
+        public async Task<ListOfBlogsSiteSideViewModel> FillListOfBlogsSiteSideViewModel(ListOfBlogsSiteSideViewModel filter)
+        {
+            return await _blog.FillListOfBlogsSiteSideViewModel(filter);
+        }
+
+        #endregion
     }
 }

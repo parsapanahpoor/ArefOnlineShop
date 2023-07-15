@@ -1,6 +1,9 @@
 ﻿using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Blog;
+using Domain.Models.Product;
+using Domain.ViewModels.SiteSide.Blog;
+using Domain.ViewModels.SiteSide.Product;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -132,24 +135,24 @@ namespace Data.Repository
         public IQueryable<Blog> GetBlogsByCategoriID(int? Categroyid)
         {
             return _context.BlogSelectedCategories.Where(p => p.BlogCategoryId == Categroyid).Include(p => p.Blog)
-                                       .ThenInclude(p => p.Users).Select(p => p.Blog);                                             
+                                       .ThenInclude(p => p.Users).Select(p => p.Blog);
         }
 
         public List<Blog> GetLastestBlogIndexPageUnder4()
         {
-            return _context.Blog.Include(p=>p.Users)
+            return _context.Blog.Include(p => p.Users)
                 .OrderByDescending(p => p.CreateDate).ToList();
         }
 
         public List<Blog> GetLastestBlogIndexPageUpper4()
         {
-            return _context.Blog.Include(p=>p.Users)
+            return _context.Blog.Include(p => p.Users)
                           .OrderByDescending(p => p.CreateDate).Take(4).ToList();
         }
 
         public List<Blog> GetLastestBlogs()
         {
-            return _context.Blog.Include(p=>p.Users)
+            return _context.Blog.Include(p => p.Users)
                       .OrderByDescending(p => p.CreateDate).ToList();
         }
 
@@ -230,5 +233,22 @@ namespace Data.Repository
             return _context.Video.Include(p => p.Users).Include(p => p.VideoSelectedCategory)
                                             .Where(p => p.IsActive).OrderByDescending(p => p.CreateDate);
         }
+
+        #region Site Side
+
+        public async Task<ListOfBlogsSiteSideViewModel> FillListOfBlogsSiteSideViewModel(ListOfBlogsSiteSideViewModel filter)
+        {
+            var query = _context.Blog
+              .AsNoTracking()
+              .Where(s => !s.IsDelete && s.IsActive)
+              .OrderByDescending(s => s.CreateDate)
+              .AsQueryable();
+
+            await filter.Paging(query);
+
+            return filter;
+        }
+
+        #endregion
     }
 }

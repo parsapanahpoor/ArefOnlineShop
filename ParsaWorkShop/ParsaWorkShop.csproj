@@ -35,6 +35,69 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\ArefSet\src\assets\fonts\dana-fanum-regular.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\flaming\flaming-webfont.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\animated.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\core.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\icons.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\larger.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\list.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\path.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\less\variables.less" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\icon51c1.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\icon51c1.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\IRANSansWeb_Light.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\molla0ab2.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\molla0ab2.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\molla2.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\OTF\desktop.ini" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\desktop.ini" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\YekanBakh-Black.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\YekanBakh-Bold.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\YekanBakh-ExtraBlack.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\YekanBakh-ExtraBold.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\YekanBakh-Light.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\YekanBakh-Regular.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\YekanBakh-SemiBold.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\woff2\YekanBakh-Thin.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\desktop.ini" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\OTF\desktop.ini" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\TTF\desktop.ini" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\desktop.ini" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\desktop.ini" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\desktop.ini" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\YekanBakh-Black.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\YekanBakh-Bold.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\YekanBakh-ExtraBlack.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\YekanBakh-ExtraBold.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\YekanBakh-Light.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\YekanBakh-Regular.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\YekanBakh-SemiBold.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff2\YekanBakh-Thin.woff2" />
+    <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff\desktop.ini" />
     <None Include="wwwroot\ArefSet\src\assets\images\icons\site.webmanifest" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\car.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\download.svg" />
@@ -49,6 +112,8 @@
     <None Include="wwwroot\ArefSet\src\assets\images\products\features\express-delivery.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\products\features\original-products.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\products\features\support.svg" />
+    <None Include="wwwroot\ArefSet\src\JS\cdn.jsdelivr.net_npm_swiper%409.4.1_swiper-bundle.min.js" />
+    <None Include="wwwroot\ArefSet\src\JS\landing.js" />
   </ItemGroup>
 
 </Project>

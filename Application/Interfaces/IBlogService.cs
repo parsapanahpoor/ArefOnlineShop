@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Blog;
 using Domain.Models.Users;
+using Domain.ViewModels.SiteSide.Blog;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -58,5 +59,10 @@ namespace Application.Interfaces
 
         #endregion
 
+        #region Site Side 
+
+        Task<ListOfBlogsSiteSideViewModel> FillListOfBlogsSiteSideViewModel(ListOfBlogsSiteSideViewModel filter);
+
+        #endregion
     }
 }

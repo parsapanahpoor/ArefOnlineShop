@@ -12,7 +12,7 @@ namespace Domain.ViewModels.Common
         public BasePaging()
         {
             Page = 1;
-            TakeEntity = 12;
+            TakeEntity = 2;
             HowManyShowPageAfterAndBefore = 5;
             Entities = new List<T>();
         }

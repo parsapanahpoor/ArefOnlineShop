@@ -1,4 +1,5 @@
 ﻿using Domain.Models.Blog;
+using Domain.ViewModels.SiteSide.Blog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,5 +68,10 @@ namespace Domain.Interfaces
 
         #endregion
 
+        #region Site Side 
+
+        Task<ListOfBlogsSiteSideViewModel> FillListOfBlogsSiteSideViewModel(ListOfBlogsSiteSideViewModel filter);
+
+        #endregion
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Application.Interfaces;
 using Domain.Models.Blog;
 using Domain.Models.Comment;
+using Domain.ViewModels.SiteSide.Blog;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,14 @@ namespace ParsaWorkShop.Controllers
         }
         #endregion
 
+        #region List Of Blogs  
+
+        public async Task<IActionResult> ListOfBlogs(ListOfBlogsSiteSideViewModel model)
+        {
+            return View(await _blog.FillListOfBlogsSiteSideViewModel(model));
+        }
+
+        #endregion
 
         #endregion
 
@@ -104,7 +113,5 @@ namespace ParsaWorkShop.Controllers
         #endregion
 
         #endregion
-
-
     }
 }

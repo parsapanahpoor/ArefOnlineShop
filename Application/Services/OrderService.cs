@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Models.Order;
 using Domain.Models.Users;
+using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using System;
 using System.Collections.Generic;
@@ -198,6 +199,12 @@ namespace Application.Services
         public async Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId)
         {
             return await _order.FillInvoiceSiteSideViewModel(userId);
+        }
+
+        //Fill List Of Order Details Admin Side View Model
+        public async Task<List<ListOfOrderDetailsAdminSideViewModel>> FillListOfOrderDetailsAdminSideViewModel(int id)
+        {
+            return await _order.FillListOfOrderDetailsAdminSideViewModel(id);
         }
     }
 }

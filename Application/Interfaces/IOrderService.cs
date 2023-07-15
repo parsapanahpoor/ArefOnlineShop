@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Order;
 using Domain.Models.Users;
+using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,9 @@ namespace Application.Interfaces
         OrderDetails GetOrderDetailByID(int orderdetailid);
         decimal GetPriceOfOrderDetailByOrderDetailID(int OrderdetailID);
         void ReturnedProduct(OrderDetails orderDetails);
+
+        //Fill List Of Order Details Admin Side View Model
+        Task<List<ListOfOrderDetailsAdminSideViewModel>> FillListOfOrderDetailsAdminSideViewModel(int id);
 
         #endregion
     }

@@ -182,14 +182,14 @@ input:focus-visible + label {
   background-color: #252525;
   border: 2px solid #252525;
 }
-.cardorder > label:hover>button,
-.cardorder > input:focus + label>button,
-.cardorder > input:checked + label>button {
+.cardorder > label:hover>a,
+.cardorder > input:focus + label>a,
+.cardorder > input:checked + label>a {
   border: 1px solid #fff;
   color: #fff;
 }
 .cardorder > label:hover>div>p,
-.cardorder > input:focus + label>button>div>p,
+.cardorder > input:focus + label>a>div>p,
 .cardorder > input:checked + label>div>p {
   
   color: #fff;
@@ -272,3 +272,29 @@ input:focus-visible + label {
 .activeFormItem{
   color: #D92626;
 }
+
+.activeCommentTab{
+  opacity: 1;
+}
+
+.activeOrderItem{
+  opacity: 1;
+}
+.activeOrderItem>.redUnderLine{
+  position: relative;
+}
+.activeOrderItem>.redUnderLine::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -12px;
+  width: 53px;
+  height: 2px;
+  background-color: #D92626;
+}
+
+.likeBtnToggle{
+  color: #D92626;
+}
+
+/* after:content-[''] after:absolute after:right-0 after:-bottom-3 after:w-[53px] after:h-[2px] after:bg-[#D92626] */

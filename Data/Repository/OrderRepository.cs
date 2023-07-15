@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Models.Order;
 using Domain.Models.Users;
+using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -185,5 +186,26 @@ namespace Data.Repository
                            .FirstOrDefaultAsync();
         }
 
+        //Fill List Of Order Details Admin Side View Model
+        public async Task<List<ListOfOrderDetailsAdminSideViewModel>> FillListOfOrderDetailsAdminSideViewModel(int id)
+        {
+            return await _context.OrderDetails
+                                 .AsNoTracking()
+                                 .Include(p=> p.Product)
+                                 .Where(p => p.OrderDetailID == id)
+                                 .Select(p => new ListOfOrderDetailsAdminSideViewModel()
+                                 {
+                                     OrderDetails = p,
+                                     ProductColor = _context.ProductColors
+                                                            .AsNoTracking()
+                                                            .Where(s => !s.IsDelete && s.Id == p.ColorId)
+                                                            .FirstOrDefault(),
+                                     ProductsSize = _context.ProductsSizes
+                                                            .AsNoTracking()
+                                                            .Where(s => !s.IsDelete && s.Id == p.SizeId)
+                                                            .FirstOrDefault(),
+                                 })
+                                 .ToListAsync(); 
+        }
     }
 }

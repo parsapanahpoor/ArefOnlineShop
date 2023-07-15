@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Order;
 using Domain.Models.Users;
+using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,9 @@ namespace Domain.Interfaces
 
         //Fill Invoice Site Side ViewModel
         Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId);
+
+        //Fill List Of Order Details Admin Side View Model
+        Task<List<ListOfOrderDetailsAdminSideViewModel>> FillListOfOrderDetailsAdminSideViewModel(int id);
 
         #endregion
     }

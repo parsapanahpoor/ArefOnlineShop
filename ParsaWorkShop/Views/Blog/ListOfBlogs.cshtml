@@ -1,0 +1,131 @@
+﻿@model Domain.ViewModels.SiteSide.Blog.ListOfBlogsSiteSideViewModel
+@using Application.Convertors;
+@using Domain.ViewModels.SiteSide.Product
+@using Application.StaticTools
+
+@{
+    ViewData["Title"] = "لیست مقالات";
+}
+
+@section Styles
+    {
+    <link rel="stylesheet" href="/ArefSet/src/assets/styles/productList.css" />
+}
+
+@section Scripts
+    {
+    <script>
+        var colorButton = document.getElementsByClassName("theme-button");
+        var i;
+        for (i = 0; i < colorButton.length; i++) {
+            colorButton[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+            });
+        }
+
+        //  price filter
+
+        var lowerSlider = document.querySelector("#lower");
+        var upperSlider = document.querySelector("#upper");
+
+        document.querySelector("#two").value = upperSlider.value;
+        document.querySelector("#one").value = lowerSlider.value;
+
+        var lowerVal = parseInt(lowerSlider.value);
+        var upperVal = parseInt(upperSlider.value);
+
+        upperSlider.oninput = function () {
+            lowerVal = parseInt(lowerSlider.value);
+            upperVal = parseInt(upperSlider.value);
+
+            if (upperVal < lowerVal + 4) {
+                lowerSlider.value = upperVal - 4;
+                if (lowerVal == lowerSlider.min) {
+                    upperSlider.value = 4;
+                }
+            }
+            document.querySelector("#two").value = this.value;
+        };
+
+        lowerSlider.oninput = function () {
+            lowerVal = parseInt(lowerSlider.value);
+            upperVal = parseInt(upperSlider.value);
+            if (lowerVal > upperVal - 4) {
+                upperSlider.value = lowerVal + 4;
+                if (upperVal == upperSlider.max) {
+                    lowerSlider.value = parseInt(upperSlider.max) - 4;
+                }
+            }
+            document.querySelector("#one").value = this.value;
+        };
+
+        function myFunction(e) {
+            document.getElementById("Status").value = e.target.value;
+            $("#filtre").submit();
+        }
+
+    </script>
+}
+
+<main class="mx-auto">
+    <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="/" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>
+                        خانه
+                    </a>
+                </li>
+
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">لیست مقالات</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    </section>
+
+    <form asp-action="ListOfProducts" asp-controller="Products" asp-area="" id="filtre" method="get">
+        <input type="hidden" asp-for="Page" />
+        <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1" style="display:none">اعمال فیلتر</button>
+    </form>
+
+
+    <section class="mx-auto lg:mt-7 my-7 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+
+        @if (Model.Entities != null && Model.Entities.Any())
+        {
+            <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                @foreach (var blog in Model.Entities)
+                {
+                    <div class="relative w-full h-[413px]">
+                        <img class="w-full h-full object-cover" src="/Images/Blog/thumb/@blog.BlogImageName" alt="">
+                        <div class="p-5 flex flex-col items-start justify-end absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-[#252525] to-transparent">
+                            <p class="text-[23px] text-white leading-9" style="font-family: yekanBakhtBold">
+                                @blog.BlogTitle
+                            </p>
+                            <p class="text-[14px] text-white leading-[25.97px]" style="font-family: yekanBakhtRegular">
+                                @blog.ShortDescription
+                            </p>
+                            <p class="text-[10px] text-white leading-[18.6px] opacity-50" style="font-family: yekanBakhtRegular">
+                                @blog.CreateDate.ToShamsi()
+                            </p>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <partial name="_SitePaging" model="@Model.GetCurrentPaging()" />
+        }
+
+    </section>
+</main>

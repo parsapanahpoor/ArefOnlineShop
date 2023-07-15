@@ -1,4 +1,4 @@
-﻿@model List<Domain.Models.Order.OrderDetails>
+﻿@model List<Domain.ViewModels.Admin.Order.ListOfOrderDetailsAdminSideViewModel>
 @using Application.Convertors
 
 @{
@@ -63,22 +63,30 @@
                                                 تعداد خریداری شده
                                             </th>
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" عنوان محصول   : activate to sort column descending">
+                                                رنگ انتخابی
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" عنوان محصول   : activate to sort column descending">
+                                                سایز انتخابی
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" عنوان محصول   : activate to sort column descending">
                                                 تاریخ افزودن این محصول 
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        @foreach (var item in Model)
+                                        @foreach (var order in Model)
                                         {
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">
-                                                    <img src="/Images/Product/thumb/@item.Product.ProductImageName" style="height:120px;width:180px;" class="thumbnail" />
+                                                    <img src="/Images/Product/thumb/@order.OrderDetails.Product.ProductImageName" style="height:120px;width:180px;" class="thumbnail" />
                                                 </td>
-                                                <td>@item.Product.ProductTitle</td>
-                                                <td>@item.Price.ToString("#,0") تومان </td>
-                                                <td>@item.Count</td>
-                                                <td>@item.Product.CreateDate.ToShamsi()</td>
+                                                <td>@order.OrderDetails.Product.ProductTitle</td>
+                                                <td>@order.OrderDetails.Price.ToString("#,0") ریال </td>
+                                                <td>@order.OrderDetails.Count</td>
+                                                <td>@order.ProductColor.ColorTitle</td>
+                                                <td>@order.ProductsSize.SizeTitle</td>
+                                                <td>@order.OrderDetails.Product.CreateDate.ToShamsi()</td>
 
                                             </tr>
                                         }

@@ -1,6 +1,6 @@
-npx tailwindcss -i ./src/assets/styles/input.css -o ./dist/output.css --watch
+npx tailwindcss -i ./src/assets/styles/input.css -o ./dist/output.css --watch 
 
-
+https://testato.ir/public/api/documentation/#advertisement-POSTapi-ads-list
 
 <!-- drawer init and show -->
 <div class="text-center">

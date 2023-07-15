@@ -63,10 +63,24 @@
                                         <span asp-validation-for="Email" class="text-danger"></span>
 
                                     </div>
-                                
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">تلفن </label>
+                                        <input type="text" value="@locations.Mobile" readonly class="form-control" id="exampleInputPassword1">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">شهرستان </label>
+                                        <input type="text" value="@locations.CityName"  readonly class="form-control" id="exampleInputPassword1" >
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">استان </label>
+                                        <input type="text" value="@locations.StateName" readonly class="form-control" id="exampleInputPassword1">
+
+                                    </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">کدپستی </label>
-                                        <input type="text" value="@locations.PostalCode"  readonly class="form-control" id="exampleInputPassword1" >
+                                        <input type="text" value="@locations.PostalCode" readonly class="form-control" id="exampleInputPassword1">
 
                                     </div>
                                     <div class="form-group">
