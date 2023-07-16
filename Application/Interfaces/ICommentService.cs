@@ -19,6 +19,9 @@ namespace Application.Interfaces
         //Add Comment For Blog
         Task AddCommmentForBlog(AddCommentForBlogsSiteSideViewModel model, int userId);
 
+        //Add Comment For Blog
+        Task AddCommmentForProduct(AddCommentForBlogsSiteSideViewModel model, int userId);
+
         #region AdminPanel
 
         List<Comment> GetAllBlogsComments();

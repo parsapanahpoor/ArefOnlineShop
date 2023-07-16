@@ -76,6 +76,9 @@ namespace Application.Interfaces
 
         #region Site Side 
 
+        //Get Product Name By Product Id
+        Task<string> GetProductNameByProductId(int productId);
+
         //User Panel Dashboard View Model
         Task<UserPanelDashboardViewModel> UserPanelDashboardViewModel(int userId);
 

@@ -1,4 +1,5 @@
-﻿using Domain.Models.Product;
+﻿using Domain.Models.Comment;
+using Domain.Models.Product;
 using Domain.ViewModels.Admin.Product;
 using Domain.ViewModels.SiteSide.Home;
 using Domain.ViewModels.SiteSide.Product;
@@ -113,6 +114,12 @@ namespace Domain.Interfaces
 
         //List OF User Favorite Products Ids
         Task<List<int>> ListOFUserFavoriteProductsIds(int userId);
+
+        //List Of Comments For ProductId
+        Task<List<Comment>> ListOfCommentsForProductId(int productId);
+
+        //Get Product Name By Product Id
+        Task<string> GetProductNameByProductId(int productId);
 
         #endregion
 

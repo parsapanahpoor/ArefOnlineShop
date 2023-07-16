@@ -465,6 +465,12 @@ namespace Application.Services
 
         #region Site Side 
 
+        //Get Product Name By Product Id
+        public async Task<string> GetProductNameByProductId(int productId)
+        {
+            return await _product.GetProductNameByProductId(productId);
+        }
+
         //User Panel Dashboard View Model
         public async Task<UserPanelDashboardViewModel> UserPanelDashboardViewModel(int userId)
         {
@@ -497,6 +503,12 @@ namespace Application.Services
             #region Product Categories 
 
             returnModel.ProductCategoryLinkable = await _product.FillProductCategoryLinkable(id);
+
+            #endregion
+
+            #region Comments
+
+            returnModel.Comments = await _product.ListOfCommentsForProductId(id);
 
             #endregion
 

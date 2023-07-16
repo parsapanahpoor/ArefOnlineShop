@@ -298,8 +298,8 @@ namespace ParsaWorkShop.Controllers
             Orders order = _order.GetOrderByOrderID((int)id);
             List<OrderDetails> orderDetails = _order.GetAllOrderDetailsByOrderID(order.OrderId);
 
-            //int Amount = 250000;
-            int Amount = 0;
+            int Amount = 250000;
+            //int Amount = 0;
 
             foreach (var item in orderDetails)
             {

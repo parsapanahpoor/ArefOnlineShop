@@ -98,6 +98,7 @@ namespace Application.SiteServices
 
             color.ColorTitle = model.ColorName;
             color.ColorCode = model.ColorCode;
+            color.ColorFarsiTitle = model.ColorFarsiName;
 
             #region Update Color Image
 

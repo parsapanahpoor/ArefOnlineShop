@@ -68,7 +68,8 @@ namespace Data.Repository
                                      ColorId = p.Id,
                                      ColorImageName = p.ColorImage,
                                      ColorName = p.ColorTitle,
-                                     ColorCode = p.ColorCode
+                                     ColorCode = p.ColorCode,
+                                     ColorFarsiName = p.ColorFarsiTitle
                                  })
                                  .FirstOrDefaultAsync();
         }

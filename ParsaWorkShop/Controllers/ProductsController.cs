@@ -1,6 +1,8 @@
-﻿using Application.Extensions;
+﻿using Application.Convertors;
+using Application.Extensions;
 using Application.Interfaces;
 using Domain.Models.Comment;
+using Domain.ViewModels.SiteSide.Blog;
 using Domain.ViewModels.SiteSide.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -95,6 +97,20 @@ namespace ParsaWorkShop.Controllers
             #endregion
 
             return View(await _product.FillProductDetailSiteSideViewModel((int)id));
+        }
+
+        #endregion
+
+        #region Add Comment For Blogs
+
+        [HttpPost, ValidateAntiForgeryToken, Authorize]
+        public async Task<IActionResult> AddCommentForProducts(AddCommentForBlogsSiteSideViewModel model)
+        {
+            await _comment.AddCommmentForProduct(model, User.GetUserId());
+
+            var product = await _product.GetProductNameByProductId(model.BlogId.Value);
+
+            return RedirectToAction(nameof(SinglePageProducts), new { id = model.BlogId  , ProductTitle = product.FixTextForUrl() });
         }
 
         #endregion

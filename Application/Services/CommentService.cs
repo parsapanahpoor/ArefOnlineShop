@@ -49,6 +49,23 @@ namespace Application.Services
             _comment.AddComment(comment);
         }
 
+        //Add Comment For Blog
+        public async Task AddCommmentForProduct(AddCommentForBlogsSiteSideViewModel model, int userId)
+        {
+            Comment comment = new Comment();
+
+            comment.IsDelete = false;
+            comment.IsAdminRead = false;
+            comment.CreateDate = DateTime.Now;
+            comment.ProductTypeId = 1;
+            comment.UserId = userId;
+            comment.ProductID = model.BlogId;
+            comment.ParentId = model.ParentId;
+            comment.CommentBody = model.CommentBody;
+
+            _comment.AddComment(comment);
+        }
+
         public void DeleteComment(int id)
         {
             var comment = GetCommentById(id);

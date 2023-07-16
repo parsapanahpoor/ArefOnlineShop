@@ -208,7 +208,7 @@
             @if (Model.Comments != null && Model.Comments.Any())
             {
                 <div class="w-full my-6">
-                    @foreach (var comment in Model.Comments)
+                    @foreach (var comment in Model.Comments.Where(p=> !p.ParentId.HasValue))
                     {
                         <div class="w-full pb-2  border-b-[1px] mb-7">
 

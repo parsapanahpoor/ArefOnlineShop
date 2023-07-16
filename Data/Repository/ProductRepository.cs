@@ -2,6 +2,7 @@
 
 using Data.Context;
 using Domain.Interfaces;
+using Domain.Models.Comment;
 using Domain.Models.Order;
 using Domain.Models.Product;
 using Domain.Models.Users;
@@ -15,6 +16,7 @@ using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -597,6 +599,26 @@ namespace Data.Repository
                                  .Where(p=> !p.IsDelete && p.UserId == userId)
                                  .Select(p=> p.ProductId)
                                  .ToListAsync();
+        }
+
+        //List Of Comments For ProductId
+        public async Task<List<Comment>> ListOfCommentsForProductId(int productId)
+        {
+            return await _context.Comment
+                                 .Include(p=> p.Users)
+                                 .AsNoTracking()
+                                 .Where(p =>  !p.IsDelete && p.ProductTypeId == 1 && p.ProductID == productId)
+                                 .ToListAsync();
+        }
+
+        //Get Product Name By Product Id
+        public async Task<string> GetProductNameByProductId(int productId)
+        {
+            return await _context.product
+                                 .AsNoTracking()
+                                 .Where(p=> !p.IsDelete && p.ProductID == productId)
+                                 .Select(p=> p.ProductTitle)
+                                 .FirstOrDefaultAsync();
         }
 
         #endregion
