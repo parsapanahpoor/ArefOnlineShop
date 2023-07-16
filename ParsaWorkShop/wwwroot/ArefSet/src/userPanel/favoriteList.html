@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/images/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/images/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/images/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../assets/images/icons/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="../assets/images/icons/safari-pinned-tab.svg"
+      color="#666666"
+    />
+    <link rel="shortcut icon" href="../assets/images/icons/favicon.ico" />
+
+    <!-- Plugins CSS File -->
+    <link
+      rel="stylesheet"
+      href="../assets/styles/cdn.jsdelivr.net_npm_swiper@9.4.1_swiper-bundle.min.css"
+    />
+
+    <!-- Main CSS File -->
+    <link href="../../dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+
+    <title>فروشگاه پوشاک عارف</title>
+  </head>
+  <body class="relative" dir="rtl">
+    <!-- modal -->
+    <div
+      class="z-[5000000] transition-all modal h-screen w-full fixed left-0 top-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <!-- modal -->
+      <div class="bg-white rounded shadow-lg w-[95%] lg:w-[575px] p-5 lg:p-10">
+        <!-- modal-header -->
+        <div class="flex justify-between items-center">
+          <!-- <h2>Modal Title</h2> -->
+          <a href="#" class="text-black hideModal">&cross;</a>
+        </div>
+        <!-- modal-body -->
+
+        <!-- Tab 1 -->
+        <div class="tabset mx-auto">
+          <ul class="flex items-center justify-center gap-10">
+            <li
+              class="hover:cursor-pointer text-[14px] lg:text-[24px] ml-2 tabFormLinks"
+              style="font-family: yekanBakhtRegular"
+              onclick="openForm(event, 'LogIn')"
+              id="defaultFormOpen"
+            >
+              ورود
+            </li>
+            <li
+              class="hover:cursor-pointer text-[14px] lg:text-[24px] ml-2 tabFormLinks"
+              style="font-family: yekanBakhtRegular"
+              onclick="openForm(event, 'Register')"
+            >
+              ثبت نام
+            </li>
+          </ul>
+
+          <div class="tab-panels">
+            <section id="LogIn" class="tabFormContent !py-[15px] w-full">
+              <form class="space-y-6" action="#" method="POST">
+                <div class="text-right">
+                  <label
+                    for="email"
+                    class="block text-sm font-medium leading-6 text-[#666]"
+                  >
+                    نام کاربری یا آدرس ایمیل *
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required
+                      class="block w-full border-0 py-1.5 text-gray-900 shadow-sm focus:outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#252525] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <label
+                    for="password"
+                    class="block text-sm font-medium leading-6 text-[#666]"
+                  >
+                    رمز عبور *
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autocomplete="current-password"
+                      required
+                      class="block w-full border-0 py-1.5 text-gray-900 shadow-sm focus:outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#252525] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1">
+                    <input
+                      id="remember_me"
+                      name="remember_me"
+                      type="checkbox"
+                      class="h-4 w-4 text-[#D92626] focus:ring-[#D92626] border-gray-300 rounded accent-[#D92626]"
+                    />
+                    <label
+                      for="remember_me"
+                      class="ml-2 block lg:text-[1rem] text-sm text-[#252525]"
+                    >
+                      مرا به خاطر بسپار
+                    </label>
+                  </div>
+
+                  <div class="lg:text-[1rem] text-sm">
+                    <a
+                      href="#"
+                      class="font-medium text-[#252525] hover:text-[#D92626]"
+                    >
+                      فراموشی رمز عبور؟
+                    </a>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="flex justify-center w-full bg-[#D92626] px-10 py-2 text-[1rem] font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D92626]"
+                >
+                  ورود
+                </button>
+              </form>
+              <hr class="my-4 mt-8 lg:my-8" />
+              <p class="text-[1rem] text-[#666] text-center">یا ورود با</p>
+              <div class="flex items-center justify-between gap-2 mt-4 lg:mt-8">
+                <button class="border-2 w-1/2 py-2 hover:bg-slate-100">
+                  حساب گوگل
+                </button>
+                <button class="border-2 w-1/2 py-2 hover:bg-slate-100">
+                  حساب فیسبوک
+                </button>
+              </div>
+            </section>
+
+            <section id="Register" class="tabFormContent !py-[15px] w-full">
+              <form class="space-y-6" action="#" method="POST">
+                <div class="text-right">
+                  <label
+                    for="email"
+                    class="block text-sm font-medium leading-6 text-[#666]"
+                  >
+                    نام کاربری یا آدرس ایمیل *
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required
+                      class="block w-full border-0 py-1.5 text-gray-900 shadow-sm focus:outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#252525] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <label
+                    for="password"
+                    class="block text-sm font-medium leading-6 text-[#666]"
+                  >
+                    رمز عبور *
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autocomplete="current-password"
+                      required
+                      class="block w-full border-0 py-1.5 text-gray-900 shadow-sm focus:outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#252525] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <input
+                    id="remember_me"
+                    name="remember_me"
+                    type="checkbox"
+                    class="h-4 w-4 text-[#D92626] focus:ring-[#D92626] border-gray-300 rounded accent-[#D92626]"
+                  />
+                  <label
+                    for="remember_me"
+                    class="ml-2 block lg:text-[1rem] text-sm text-[#252525]"
+                  >
+                    با قوانین و مقررات موافقم *
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  class="flex justify-center w-full bg-[#D92626] px-10 py-2 text-[1rem] font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D92626]"
+                >
+                  ثبت نام
+                </button>
+              </form>
+              <hr class="my-4 mt-8 lg:my-8" />
+              <p class="text-[1rem] text-[#666] text-center">یا عضویت با</p>
+              <div class="flex items-center justify-between gap-2 mt-4 lg:mt-8">
+                <button class="border-2 w-1/2 py-2 hover:bg-slate-100">
+                  حساب گوگل
+                </button>
+                <button class="border-2 w-1/2 py-2 hover:bg-slate-100">
+                  حساب فیسبوک
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- <div class="p-3">
+       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad dolor eos illo sunt. Voluptas corrupti animi velit dolores quia odit placeat reprehenderit a esse, quibusdam repellat cum quasi nihil tempore.
+     </div>
+     <div class=" flex items-center justify-end gap-2 w-100 border-t p-3">
+       <button class="bg-red-600 px-3 py-1 rounded text-white hideModal">Cancel</button>
+       <button class=" bg-blue-600 px-3 py-1 rounded text-white">Okey</button>
+     </div> -->
+      </div>
+    </div>
+    <!-- ----- -->
+    <header class="mx-auto">
+      <!-- <nav class="h-[96px] md:h-[96px] lg:h-[104px] w-full bg-slate-300"></nav> -->
+
+      <nav
+      class="bg-white dark:bg-gray-900 w-full border-b border-gray-200 dark:border-gray-600 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mx-auto"
+    >
+      <div class="flex flex-wrap items-center justify-between mx-auto py-4">
+        <div class="flex items-center">
+          <a href="#"
+            class="showMenu inline-block md:inline-block lg:hidden"
+            type="button"
+            data-drawer-target="drawer-navigation"
+            data-drawer-show="drawer-navigation"
+            aria-controls="drawer-navigation"
+          >
+            <svg
+              class="w-7 h-7 md:w-7 md:h-7 lg:w-8 lg:h-8"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </a>
+          <div
+            class="bg-black opacity-0 invisible bg-opacity-50 z-[5000000] transition-all menu fixed top-0 left-0 right-0 overflow-hidden flex justify-start items-start"
+          >
+            <div
+              class="z-40 w-72 h-screen p-4 overflow-y-auto transition-all bg-[#252525] dark:bg-gray-800"
+              id="drawer-navigation"
+              tabindex="-1"
+              aria-labelledby="drawer-navigation-label"
+            >
+              <h5
+                id="drawer-navigation-label"
+                class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+              >
+                Aref
+              </h5>
+              <a href="#"
+                type="button"
+                data-drawer-hide="drawer-navigation"
+                aria-controls="drawer-navigation"
+                class="text-gray-400 hideMenu bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 left-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Close menu</span>
+              </a>
+              <div class="py-4 overflow-y-auto">
+                <div class="flex md:order-2 mb-3">
+                  <div
+                    class="w-full h-[44px] border-[1px] border-gray-600 flex justify-start items-center gap-1"
+                  >
+                    <input
+                      type="search"
+                      class="h-full w-full focus:outline-none bg-transparent px-1"
+                      placeholder="جستجو کنید ..."
+                      name=""
+                      id=""
+                    />
+                    <a href="#"
+                      class="w-[54px] h-full inline-flex justify-center items-center bg-[#D92626]"
+                    >
+                      <img
+                        src="../assets/images/landing/search-normal.png"
+                        class="w-[50%]"
+                        alt=""
+                      />
+                </a>
+                  </div>
+                </div>
+
+                <ul class="space-y-2 font-medium mt-5">
+                  <li
+                    class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                  >
+                    <a
+                      href="./index.html"
+                      class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                    >
+                      <span class="flex-1 ml-3 whitespace-nowrap"
+                        >صفحه اصلی</span
+                      >
+                      <span class="inline-flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-arrow-left text-white"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                          />
+                        </svg>
+                        <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                      </span>
+                    </a>
+                  </li>
+
+                  <li
+                    class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                  >
+                    <a
+                      href="#"
+                      class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                    >
+                      <span class="flex-1 ml-3 whitespace-nowrap">
+                        مجموعه
+                      </span>
+                      <span class="inline-flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-arrow-left text-white"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                          />
+                        </svg>
+                        <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                      </span>
+                      <!-- <span class="inline-flex items-center justify-center px-2  text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
+                    </a>
+                  </li>
+
+                  <li
+                    class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                  >
+                    <a
+                      href="#"
+                      class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                    >
+                      <span class="flex-1 ml-3 whitespace-nowrap"
+                        >مردانه</span
+                      >
+                      <span class="inline-flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-arrow-left text-white"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                          />
+                        </svg>
+                        <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                      </span>
+                    </a>
+                  </li>
+
+                  <li
+                    class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                  >
+                    <a
+                      href="#"
+                      class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                    >
+                      <span class="flex-1 ml-3 whitespace-nowrap">زنانه</span>
+                      <span class="inline-flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-arrow-left text-white"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                          />
+                        </svg>
+                        <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                      </span>
+                    </a>
+                  </li>
+
+                  <li
+                    class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                  >
+                    <a
+                      href="#"
+                      class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                    >
+                      <span class="flex-1 ml-3 whitespace-nowrap">
+                        فروشگاه
+                      </span>
+                      <span class="inline-flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-arrow-left text-white"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                          />
+                        </svg>
+                        <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                      </span>
+                    </a>
+                  </li>
+
+                  <li
+                    class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                  >
+                    <a
+                      href="#"
+                      class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                    >
+                      <span class="flex-1 ml-3 whitespace-nowrap">
+                        وبلاگ
+                      </span>
+                      <span class="inline-flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-arrow-left text-white"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                          />
+                        </svg>
+                        <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                      </span>
+                    </a>
+                  </li>
+
+                  <li
+                    class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                  >
+                    <a
+                      href="#"
+                      class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                    >
+                      <span class="flex-1 ml-3 whitespace-nowrap">
+                        تماس با ما
+                      </span>
+                      <span class="inline-flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-arrow-left text-white"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                          />
+                        </svg>
+                        <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- logo -->
+          <a href="" class="flex items-center">
+            <img
+              src="../assets/images/landing/Arefset 1.png"
+              class="lg:w-[94px] md:w-[80px] w-[73px] mr-3"
+              alt="Flowbite Logo"
+            />
+          </a>
+        </div>
+
+        <!-- sm / md -->
+
+        <div class="flex md:order-2 gap-2">
+          <div
+            class="hidden md:hidden lg:w-[250px] lg:h-[44px] border-[1px] border-[#B7B7B7] lg:flex justify-start items-center"
+          >
+            <img
+              src="../assets/images/landing/search-icon.webp"
+              class="w-5 text-[#252525] mx-3"
+              alt=""
+            />
+            <input
+              type="search"
+              class="h-full w-full focus:outline-none"
+              placeholder="جستجو کنید ..."
+              name=""
+              id=""
+            />
+          </div>
+          <a href="#"
+            class="w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] inline-flex justify-center items-center"
+          >
+            <img src="../assets/images/landing/Shopping bag 1.png" alt="" />
+        </a>
+
+          <a href="#"
+            class="showModal w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] inline-flex justify-center items-center"
+          >
+            <img src="../assets/images/landing/user - 1 1.png" alt="" />
+        </a>
+        </div>
+
+        <!-- lg -->
+        <div
+          class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          id="navbar-sticky"
+        >
+          <ul class="flex items-center gap-6">
+            <li
+              class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+            >
+              <a href="">صفحه اصلی</a>
+            </li>
+            <li
+              class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+            >
+              <a href="./productsList.html">فروشگاه</a>
+            </li>
+            <li
+              class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+            >
+              <a href="">مردانه</a>
+            </li>
+            <li
+              class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+            >
+              <a href="">زنانه</a>
+            </li>
+            <li
+              class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+            >
+              <a href="">مجموعه</a>
+            </li>
+            <li
+              class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+            >
+              <a href="">وبلاگ</a>
+            </li>
+            <li
+              class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+            >
+              <a href="">تماس با ما</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </header>
+
+    <main class="mx-auto mt-7">
+      <section
+        class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5"
+      >
+        <!-- ---------------------- side bar ----------------------------------------- -->
+
+        <aside
+          id="asideCol"
+          class="sidebar w-full lg:w-[305px] border-2 lg:bg-[#252525] lg:flex lg:flex-col lg:items-start lg:sticky lg:top-0 lg:right-0"
+        >
+          <div class="w-full text-[#252525] lg:text-white py-5 gap-2">
+            <div
+              class="flex items-center justify-start gap-2 px-5 lg:mb-0 mb-5"
+            >
+              <img
+                class="w-[76px] hidden lg:inline-block"
+                src="../assets/images/landing/Arefset foo.png"
+                alt=""
+              />
+              <div class="">
+                <p class="text-[14px]">داشبورد شما</p>
+                <p class="text-[12px] text-[#828282]">Your dashboard</p>
+              </div>
+            </div>
+
+            <div
+              class="h-[1px] w-[94px] m-5 bg-[#FFFFFF] lg:block hidden"
+            ></div>
+
+            <div class="flex items-center justify-start gap-2 px-5">
+              <div
+                class="w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center"
+              >
+                <img
+                  class=""
+                  src="../assets/images/landing/userPanel.svg"
+                  alt=""
+                />
+                <!-- <img src="../assets/images/landing/user-pan.png" alt="" /> -->
+              </div>
+              <div class="">
+                <p class="text-[12px]">سلام سید محمد حسین امیری</p>
+                <p class="text-[12px] text-[#828282]">خوش امدید</p>
+              </div>
+            </div>
+
+            <div
+              class="h-[77px] bg-[#F6F6F6] flex items-center justify-start lg:hidden gap-3 px-5 my-5"
+            >
+              <img src="../assets/images/landing/info-circle.png" alt="" />
+              <p
+                class="text-[#828282] text-[12px] leading-[24px]"
+                style="font-family: yekanBakhtRegular"
+              >
+                با تایید هویت می‌توانید‌ امنیت حساب کاربری‌تان را افزایش دهید و
+                از امکان «خرید اعتباری» نیز استفاده کنید
+              </p>
+            </div>
+          </div>
+
+          <div class="w-full text-white bg-[#252525] p-5">
+            <ul class="w-full">
+              <li
+                class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center"
+                id="myActivities"
+              >
+                <div class="flex items-center">
+                  <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/Ellipse 503.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/home.png"
+                      alt=""
+                    />
+                  </div>
+                  <a href="#" class="text-[#828282] text-[12px] leading-[24px]">
+                    خلاصه فعالیت ها
+                  </a>
+                </div>
+                <img
+                  class="w-[16px] opacity-50"
+                  src="../assets/images/landing/arrow-left-panel.png"
+                  alt=""
+                />
+              </li>
+              <li
+                id="myOrders"
+                class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center"
+              >
+                <div class="flex items-center">
+                  <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/Ellipse 503.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/bag-2.png"
+                      alt=""
+                    />
+                  </div>
+                  <a href="#" class="text-[#828282] text-[12px] leading-[24px]">
+                    سفارشات
+                  </a>
+                </div>
+                <img
+                  class="w-[16px] opacity-50"
+                  src="../assets/images/landing/arrow-left-panel.png"
+                  alt=""
+                />
+              </li>
+              <li
+                id="myFavorite"
+                class="tablinks activeSideItem py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center"
+              >
+                <div class="flex items-center">
+                  <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/Ellipse 503.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/heartpanel.png"
+                      alt=""
+                    />
+                  </div>
+                  <a href="#" class="text-[#828282] text-[12px] leading-[24px]">
+                    لیست علاقه های من
+                  </a>
+                </div>
+                <img
+                  class="w-[16px] opacity-50"
+                  src="../assets/images/landing/arrow-left-panel.png"
+                  alt=""
+                />
+              </li>
+              <li
+                id="myAddresses"
+                class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center"
+              >
+                <div class="flex items-center">
+                  <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/Ellipse 503.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/directbox-notif.png"
+                      alt=""
+                    />
+                  </div>
+                  <a href="#" class="text-[#828282] text-[12px] leading-[24px]">
+                    ادرس های من
+                  </a>
+                </div>
+                <img
+                  class="w-[16px] opacity-50"
+                  src="../assets/images/landing/arrow-left-panel.png"
+                  alt=""
+                />
+              </li>
+              <li
+                id="myComments"
+                class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center"
+              >
+                <div class="flex items-center">
+                  <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/Ellipse 503.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/messages-2panel.png"
+                      alt=""
+                    />
+                  </div>
+                  <a href="#" class="text-[#828282] text-[12px] leading-[24px]">
+                    دیدگاه های شما
+                  </a>
+                </div>
+                <img
+                  class="w-[16px] opacity-50"
+                  src="../assets/images/landing/arrow-left-panel.png"
+                  alt=""
+                />
+              </li>
+              <li
+                id="myInformation"
+                class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center"
+              >
+                <div class="flex items-center">
+                  <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/Ellipse 503.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="Ellipse w-[20px] h-[20px] inline-block opacity-50 mx-1"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/profile.png"
+                      alt=""
+                    />
+                  </div>
+                  <a href="#" class="text-[#828282] text-[12px] leading-[24px]">
+                    اطلاعات حساب کاربری
+                  </a>
+                </div>
+                <img
+                  class="w-[16px] opacity-50"
+                  src="../assets/images/landing/arrow-left-panel.png"
+                  alt=""
+                />
+              </li>
+            </ul>
+
+            <a href="#"
+              class="inline-flex items-center justify-center mt-4 mb-7 mx-auto gap-2"
+            >
+              <div class="">
+                <img src="../assets/images/landing/login.png" alt="" />
+              </div>
+              <div class="">
+                <p class="text-[14px] text-[#fff]">خروج از حساب کاربری</p>
+                <p class="text-[12px] text-[#828282]">
+                  Sign out of the user account
+                </p>
+              </div>
+            </a>
+
+            <div class="flex items-center justify-center gap-2">
+              <img
+                class="w-[61.38px]"
+                src="../assets/images/landing/Arefset foo.png"
+                alt=""
+              />
+            </div>
+
+            <div class="flex items-center justify-center my-7 gap-2">
+              <p class="text-[10px] text-[#828282] leading-[22px] text-center">
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
+                در س
+              </p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ---------------------- main content ----------------------------------------- -->
+        <div class="w-full lg:flex min-h-[765px] mainContet hidden">
+          <!-- ----- FavoriteList ----- -->
+          <section
+            id="FavoriteList"
+            class="tabcontent w-full flex flex-col items-center justify-start"
+          >
+            <div class="return p-5 pt-0 w-full flex justify-start lg:hidden">
+              <a href="#" class="inline-flex items-center justify-start gap-1">
+                <img
+                  class="transform rotate-180"
+                  src="../assets/images/landing/arrow-left.png"
+                  alt=""
+                />
+                <div class="text-right">
+                  <p
+                    class="text-[14px] text-[#252525]"
+                    style="font-family: yekanBakhtBold"
+                  >
+                    لیست سفارش های من
+                  </p>
+                  <p
+                    class="text-[12px] text-[#252525]"
+                    style="font-family: yekanBakhtRegular"
+                  >
+                    My order list
+                  </p>
+                </div>
+              </a>
+            </div>
+
+            <div
+              class="lg:border-2 lg:border-[#252525] mb-7 lg:bg-transparent bg-[#F6F6F6] w-full h-[70px] px-5 flex items-center justify-between"
+            >
+              <div class="flex items-center justify-start gap-2">
+                <!-- <img
+                   src="../assets/images/landing/info-circle-red.png"
+                   alt=""
+                 /> -->
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  class="bi bi-exclamation-circle text-[#828282] lg:text-[#D92626] h-[20px] w-[20px]"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                  />
+                  <path
+                    d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"
+                  />
+                </svg>
+                <p
+                  class="lg:text-[#D92626] lg:text-[14px] text-[10px] text-[#828282] leading-[19px]"
+                >
+                  با تایید هویت می‌توانید‌ امنیت حساب کاربری‌تان را افزایش دهید
+                  و از امکان «خرید اعتباری» نیز استفاده کنید
+                </p>
+              </div>
+              <img
+                class="h-[16px] w-[16px] lg:h-[24px] lg:w-[24px]"
+                src="../assets/images/landing/arrow-left.png"
+                alt=""
+              />
+            </div>
+
+            <div
+              class="border-2 border-[#252525] w-full p-5 flex flex-col items-start justify-start gap-5"
+            >
+              <div class="w-full flex justify-between items-center">
+                <div>
+                  <p
+                    class="text-[14px]"
+                    style="font-family: yekanBakhtExtraBold"
+                  >
+                    سفارش های من
+                  </p>
+                  <p class="text-[12px] text-[#828282]">My orders</p>
+                </div>
+                <p class="text-[14px] text-[#828282]">۴۳ کالا</p>
+              </div>
+
+              <div
+                class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                <!-- card -->
+                <div
+                  class="py-3 px-1 md:p-0 lg:p-0 w-full min-h-[84px] md:w-full md:h-[385px] lg:w-full lg:h-[385px] flex flex-row justify-between items-end md:flex md:flex-col md:justify-between md:items-center lg:flex lg:flex-col lg:justify-between lg:items-center border-b-2 md:border-b-0 lg:border-b-0 gap-2 md:gap-0 lg:gap-0"
+                >
+                  <div
+                    class="w-[84px] md:w-full md:h-[277px] lg:w-full lg:h-[277px]"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/men.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="w-full">
+                    <div
+                      class="w-full md:flex md:justify-between md:items-center lg:flex lg:justify-between lg:items-center"
+                    >
+                      <div>
+                        <p
+                          class="text-[#7E8285] text-[10px] leading-[15.5px] hidden md:inline-block lg:inline-block"
+                          style="font-family: yekanBakhtRegular"
+                        >
+                          دسته بندی : کفش
+                        </p>
+                        <p
+                          class="text-[#252525] text-[12px] md:text-[16px] lg:text-[16px] leading-[24.8px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          لباس ورزشی مردانه
+                        </p>
+                        <div
+                          class="flex items-center justify-start md:hidden lg:hidden"
+                        >
+                          <img
+                            class="w-[14px] ml-2"
+                            src="../assets/images/landing/star@2x.png"
+                            alt=""
+                          />
+                          <strong class="text-[12px]"> ۴/۶ </strong>
+                        </div>
+                      </div>
+                      <div>
+                        <p
+                          class="text-[#7E8285] line-through text-[13px] leading-[20.15px] hidden md:inline-block lg:inline-block"
+                        >
+                          ۹۹۹٫۰۰۰ تومان
+                        </p>
+                        <p
+                          class="md:text-[#D92626] lg:text-[#D92626] text-[#7E8285] text-[16px] md:text-[17px] lg:text-[17px] leading-[26.35px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          ۷۹۹٫۰۰۰
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      class="w-full hidden lg:flex lg:justify-between lg:items-center md:flex md:justify-between md:items-center gap-2"
+                    >
+                      <a href="#"
+                        class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        <img src="../assets/images/landing/+.png" alt="" />
+                        حذف
+                  </a>
+                      <a href="#"
+                        class="bg-[#D92626] w-full h-[38px] text-[#fff] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        اضافه به سبد خرید
+                        <img
+                          src="../assets/images/landing/arrow-left-panel.png"
+                          alt=""
+                        />
+                </a>
+                    </div>
+                  </div>
+                  <div class="md:hidden lg:hidden">
+                    <img
+                      class="w-[20px]"
+                      src="../assets/images/landing/arrow-left.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <!-- --- -->
+                <div
+                  class="py-3 px-1 md:p-0 lg:p-0 w-full min-h-[84px] md:w-full md:h-[385px] lg:w-full lg:h-[385px] flex flex-row justify-between items-end md:flex md:flex-col md:justify-between md:items-center lg:flex lg:flex-col lg:justify-between lg:items-center border-b-2 md:border-b-0 lg:border-b-0 gap-2 md:gap-0 lg:gap-0"
+                >
+                  <div
+                    class="w-[84px] md:w-full md:h-[277px] lg:w-full lg:h-[277px]"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/men.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="w-full">
+                    <div
+                      class="w-full md:flex md:justify-between md:items-center lg:flex lg:justify-between lg:items-center"
+                    >
+                      <div>
+                        <p
+                          class="text-[#7E8285] text-[10px] leading-[15.5px] hidden md:inline-block lg:inline-block"
+                          style="font-family: yekanBakhtRegular"
+                        >
+                          دسته بندی : کفش
+                        </p>
+                        <p
+                          class="text-[#252525] text-[12px] md:text-[16px] lg:text-[16px] leading-[24.8px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          لباس ورزشی مردانه
+                        </p>
+                        <div
+                          class="flex items-center justify-start md:hidden lg:hidden"
+                        >
+                          <img
+                            class="w-[14px] ml-2"
+                            src="../assets/images/landing/star@2x.png"
+                            alt=""
+                          />
+                          <strong class="text-[12px]"> ۴/۶ </strong>
+                        </div>
+                      </div>
+                      <div>
+                        <p
+                          class="text-[#7E8285] line-through text-[13px] leading-[20.15px] hidden md:inline-block lg:inline-block"
+                        >
+                          ۹۹۹٫۰۰۰ تومان
+                        </p>
+                        <p
+                          class="md:text-[#D92626] lg:text-[#D92626] text-[#7E8285] text-[16px] md:text-[17px] lg:text-[17px] leading-[26.35px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          ۷۹۹٫۰۰۰
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      class="w-full hidden lg:flex lg:justify-between lg:items-center md:flex md:justify-between md:items-center gap-2"
+                    >
+                      <a href="#"
+                        class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        <img src="../assets/images/landing/+.png" alt="" />
+                        حذف
+                  </a>
+                      <a href="#"
+                        class="bg-[#D92626] w-full h-[38px] text-[#fff] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        اضافه به سبد خرید
+                        <img
+                          src="../assets/images/landing/arrow-left-panel.png"
+                          alt=""
+                        />
+                    </a>
+                    </div>
+                  </div>
+                  <div class="md:hidden lg:hidden">
+                    <img
+                      class="w-[20px]"
+                      src="../assets/images/landing/arrow-left.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div
+                  class="py-3 px-1 md:p-0 lg:p-0 w-full min-h-[84px] md:w-full md:h-[385px] lg:w-full lg:h-[385px] flex flex-row justify-between items-end md:flex md:flex-col md:justify-between md:items-center lg:flex lg:flex-col lg:justify-between lg:items-center border-b-2 md:border-b-0 lg:border-b-0 gap-2 md:gap-0 lg:gap-0"
+                >
+                  <div
+                    class="w-[84px] md:w-full md:h-[277px] lg:w-full lg:h-[277px]"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/men.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="w-full">
+                    <div
+                      class="w-full md:flex md:justify-between md:items-center lg:flex lg:justify-between lg:items-center"
+                    >
+                      <div>
+                        <p
+                          class="text-[#7E8285] text-[10px] leading-[15.5px] hidden md:inline-block lg:inline-block"
+                          style="font-family: yekanBakhtRegular"
+                        >
+                          دسته بندی : کفش
+                        </p>
+                        <p
+                          class="text-[#252525] text-[12px] md:text-[16px] lg:text-[16px] leading-[24.8px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          لباس ورزشی مردانه
+                        </p>
+                        <div
+                          class="flex items-center justify-start md:hidden lg:hidden"
+                        >
+                          <img
+                            class="w-[14px] ml-2"
+                            src="../assets/images/landing/star@2x.png"
+                            alt=""
+                          />
+                          <strong class="text-[12px]"> ۴/۶ </strong>
+                        </div>
+                      </div>
+                      <div>
+                        <p
+                          class="text-[#7E8285] line-through text-[13px] leading-[20.15px] hidden md:inline-block lg:inline-block"
+                        >
+                          ۹۹۹٫۰۰۰ تومان
+                        </p>
+                        <p
+                          class="md:text-[#D92626] lg:text-[#D92626] text-[#7E8285] text-[16px] md:text-[17px] lg:text-[17px] leading-[26.35px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          ۷۹۹٫۰۰۰
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      class="w-full hidden lg:flex lg:justify-between lg:items-center md:flex md:justify-between md:items-center gap-2"
+                    >
+                      <a href="#"
+                        class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        <img src="../assets/images/landing/+.png" alt="" />
+                        حذف
+                  </a>
+                      <a href="#"
+                        class="bg-[#D92626] w-full h-[38px] text-[#fff] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        اضافه به سبد خرید
+                        <img
+                          src="../assets/images/landing/arrow-left-panel.png"
+                          alt=""
+                        />
+                    </a>
+                    </div>
+                  </div>
+                  <div class="md:hidden lg:hidden">
+                    <img
+                      class="w-[20px]"
+                      src="../assets/images/landing/arrow-left.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div
+                  class="py-3 px-1 md:p-0 lg:p-0 w-full min-h-[84px] md:w-full md:h-[385px] lg:w-full lg:h-[385px] flex flex-row justify-between items-end md:flex md:flex-col md:justify-between md:items-center lg:flex lg:flex-col lg:justify-between lg:items-center border-b-2 md:border-b-0 lg:border-b-0 gap-2 md:gap-0 lg:gap-0"
+                >
+                  <div
+                    class="w-[84px] md:w-full md:h-[277px] lg:w-full lg:h-[277px]"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/men.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="w-full">
+                    <div
+                      class="w-full md:flex md:justify-between md:items-center lg:flex lg:justify-between lg:items-center"
+                    >
+                      <div>
+                        <p
+                          class="text-[#7E8285] text-[10px] leading-[15.5px] hidden md:inline-block lg:inline-block"
+                          style="font-family: yekanBakhtRegular"
+                        >
+                          دسته بندی : کفش
+                        </p>
+                        <p
+                          class="text-[#252525] text-[12px] md:text-[16px] lg:text-[16px] leading-[24.8px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          لباس ورزشی مردانه
+                        </p>
+                        <div
+                          class="flex items-center justify-start md:hidden lg:hidden"
+                        >
+                          <img
+                            class="w-[14px] ml-2"
+                            src="../assets/images/landing/star@2x.png"
+                            alt=""
+                          />
+                          <strong class="text-[12px]"> ۴/۶ </strong>
+                        </div>
+                      </div>
+                      <div>
+                        <p
+                          class="text-[#7E8285] line-through text-[13px] leading-[20.15px] hidden md:inline-block lg:inline-block"
+                        >
+                          ۹۹۹٫۰۰۰ تومان
+                        </p>
+                        <p
+                          class="md:text-[#D92626] lg:text-[#D92626] text-[#7E8285] text-[16px] md:text-[17px] lg:text-[17px] leading-[26.35px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          ۷۹۹٫۰۰۰
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      class="w-full hidden lg:flex lg:justify-between lg:items-center md:flex md:justify-between md:items-center gap-2"
+                    >
+                      <a href="#"
+                        class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        <img src="../assets/images/landing/+.png" alt="" />
+                        حذف
+                  </a>
+                      <a href="#"
+                        class="bg-[#D92626] w-full h-[38px] text-[#fff] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        اضافه به سبد خرید
+                        <img
+                          src="../assets/images/landing/arrow-left-panel.png"
+                          alt=""
+                        />
+                </a>
+                    </div>
+                  </div>
+                  <div class="md:hidden lg:hidden">
+                    <img
+                      class="w-[20px]"
+                      src="../assets/images/landing/arrow-left.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div
+                  class="py-3 px-1 md:p-0 lg:p-0 w-full min-h-[84px] md:w-full md:h-[385px] lg:w-full lg:h-[385px] flex flex-row justify-between items-end md:flex md:flex-col md:justify-between md:items-center lg:flex lg:flex-col lg:justify-between lg:items-center border-b-2 md:border-b-0 lg:border-b-0 gap-2 md:gap-0 lg:gap-0"
+                >
+                  <div
+                    class="w-[84px] md:w-full md:h-[277px] lg:w-full lg:h-[277px]"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/men.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="w-full">
+                    <div
+                      class="w-full md:flex md:justify-between md:items-center lg:flex lg:justify-between lg:items-center"
+                    >
+                      <div>
+                        <p
+                          class="text-[#7E8285] text-[10px] leading-[15.5px] hidden md:inline-block lg:inline-block"
+                          style="font-family: yekanBakhtRegular"
+                        >
+                          دسته بندی : کفش
+                        </p>
+                        <p
+                          class="text-[#252525] text-[12px] md:text-[16px] lg:text-[16px] leading-[24.8px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          لباس ورزشی مردانه
+                        </p>
+                        <div
+                          class="flex items-center justify-start md:hidden lg:hidden"
+                        >
+                          <img
+                            class="w-[14px] ml-2"
+                            src="../assets/images/landing/star@2x.png"
+                            alt=""
+                          />
+                          <strong class="text-[12px]"> ۴/۶ </strong>
+                        </div>
+                      </div>
+                      <div>
+                        <p
+                          class="text-[#7E8285] line-through text-[13px] leading-[20.15px] hidden md:inline-block lg:inline-block"
+                        >
+                          ۹۹۹٫۰۰۰ تومان
+                        </p>
+                        <p
+                          class="md:text-[#D92626] lg:text-[#D92626] text-[#7E8285] text-[16px] md:text-[17px] lg:text-[17px] leading-[26.35px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          ۷۹۹٫۰۰۰
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      class="w-full hidden lg:flex lg:justify-between lg:items-center md:flex md:justify-between md:items-center gap-2"
+                    >
+                      <a href="#"
+                        class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        <img src="../assets/images/landing/+.png" alt="" />
+                        حذف
+                  </a>
+                      <a href="#"
+                        class="bg-[#D92626] w-full h-[38px] text-[#fff] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                      >
+                        اضافه به سبد خرید
+                        <img
+                          src="../assets/images/landing/arrow-left-panel.png"
+                          alt=""
+                        />
+                </a>
+                    </div>
+                  </div>
+                  <div class="md:hidden lg:hidden">
+                    <img
+                      class="w-[20px]"
+                      src="../assets/images/landing/arrow-left.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <div
+                  class="py-3 px-1 md:p-0 lg:p-0 w-full min-h-[84px] md:w-full md:h-[385px] lg:w-full lg:h-[385px] flex flex-row justify-between items-end md:flex md:flex-col md:justify-between md:items-center lg:flex lg:flex-col lg:justify-between lg:items-center border-b-2 md:border-b-0 lg:border-b-0 gap-2 md:gap-0 lg:gap-0"
+                >
+                  <div
+                    class="w-[84px] md:w-full md:h-[277px] lg:w-full lg:h-[277px]"
+                  >
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/men.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="w-full">
+                    <div
+                      class="w-full md:flex md:justify-between md:items-center lg:flex lg:justify-between lg:items-center"
+                    >
+                      <div>
+                        <p
+                          class="text-[#7E8285] text-[10px] leading-[15.5px] hidden md:inline-block lg:inline-block"
+                          style="font-family: yekanBakhtRegular"
+                        >
+                          دسته بندی : کفش
+                        </p>
+                        <p
+                          class="text-[#252525] text-[12px] md:text-[16px] lg:text-[16px] leading-[24.8px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          لباس ورزشی مردانه
+                        </p>
+                        <div
+                          class="flex items-center justify-start md:hidden lg:hidden"
+                        >
+                          <img
+                            class="w-[14px] ml-2"
+                            src="../assets/images/landing/star@2x.png"
+                            alt=""
+                          />
+                          <strong class="text-[12px]"> ۴/۶ </strong>
+                        </div>
+                      </div>
+                      <div>
+                        <p
+                          class="text-[#7E8285] line-through text-[13px] leading-[20.15px] hidden md:inline-block lg:inline-block"
+                        >
+                          ۹۹۹٫۰۰۰ تومان
+                        </p>
+                        <p
+                          class="md:text-[#D92626] lg:text-[#D92626] text-[#7E8285] text-[16px] md:text-[17px] lg:text-[17px] leading-[26.35px]"
+                          style="font-family: yekanBakhtBold"
+                        >
+                          ۷۹۹٫۰۰۰
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      class="w-full hidden lg:flex lg:justify-between lg:items-center md:flex md:justify-between md:items-center gap-2"
+                    >
+                    <a href="#"
+                    class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                  >
+                    <img src="../assets/images/landing/+.png" alt="" />
+                    حذف
+              </a>
+                  <a href="#"
+                    class="bg-[#D92626] w-full h-[38px] text-[#fff] inline-flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                  >
+                    اضافه به سبد خرید
+                    <img
+                      src="../assets/images/landing/arrow-left-panel.png"
+                      alt=""
+                    />
+            </a>
+                    </div>
+                  </div>
+                  <div class="md:hidden lg:hidden">
+                    <img
+                      class="w-[20px]"
+                      src="../assets/images/landing/arrow-left.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                <!-- <div
+                  class="w-full h-[385px] flex flex-col justify-between items-center"
+                >
+                  <div class="w-full h-[277px]">
+                    <img
+                      class="w-full h-full object-cover"
+                      src="../assets/images/landing/men.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="w-full flex justify-between items-center">
+                    <div>
+                      <p
+                        class="text-[#7E8285] text-[10px] leading-[15.5px]"
+                        style="font-family: yekanBakhtRegular"
+                      >
+                        دسته بندی : کفش
+                      </p>
+                      <p
+                        class="text-[#252525] text-[16px] leading-[24.8px]"
+                        style="font-family: yekanBakhtBold"
+                      >
+                        لباس ورزشی مردانه
+                      </p>
+                    </div>
+                    <div>
+                      <p
+                        class="text-[#7E8285] line-through text-[13px] leading-[20.15px]"
+                      >
+                        ۹۹۹٫۰۰۰ تومان
+                      </p>
+                      <p
+                        class="text-[#D92626] text-[17px] leading-[26.35px]"
+                        style="font-family: yekanBakhtBold"
+                      >
+                        ۷۹۹٫۰۰۰
+                      </p>
+                    </div>
+                  </div>
+                  <div class="w-full flex justify-between items-center gap-2">
+                    <button
+                      class="w-[89px] h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                    >
+                      <img src="../assets/images/landing/+.png" alt="" />
+                      حذف
+                    </button>
+                    <button
+                      class="bg-[#D92626] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]"
+                    >
+                      اضافه به سبد خرید
+                      <img
+                        src="../assets/images/landing/arrow-left-panel.png"
+                        alt=""
+                      />
+                    </button>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      function resposFun(x) {
+        // var tablinks = document.getElementsByClassName("theme-button");
+        // var sideMenu=document.getElementById('asideCol')
+        // var i;
+        // for (i = 0; i < tablinks.length; i++) {
+        //   tablinks[i].addEventListener("click", function () {
+        //     sideMenu.style.display = "none";
+        //   });
+        // }
+        if (x.matches) {
+          // If media query matches
+          // document.body.style.backgroundColor = "yellow";
+        } else {
+          //  document.body.style.backgroundColor = "pink";
+        }
+      }
+
+      var x = window.matchMedia("(max-width: 700px)");
+      resposFun(x); // Call listener function at run time
+      x.addListener(resposFun); // Attach listener function on state changes
+    </script>
+
+    <script>
+      const modal = document.querySelector(".modal");
+      const showModal = document.querySelector(".showModal");
+      const hideModal = document.querySelectorAll(".hideModal");
+      const menu = document.querySelector(".menu");
+      const showMenu = document.querySelector(".showMenu");
+      const hideMenu = document.querySelectorAll(".hideMenu");
+      const body = document.querySelector("body");
+
+      // ------------------------ modal -------------------------------
+
+      showModal.addEventListener("click", function () {
+        modal.classList.remove("hidden");
+        body.style.overflow = "hidden";
+      });
+
+      hideModal.forEach((close) => {
+        close.addEventListener("click", function () {
+          modal.classList.add("hidden");
+          body.style.overflow = "auto";
+        });
+      });
+
+      // ------------------------Side Menu Responsive-------------------------------
+
+      showMenu.addEventListener("click", function () {
+        // menu.classList.replace("-right-[70%]","right-0")
+        menu.classList.remove("opacity-0");
+        menu.classList.remove("invisible");
+        body.style.overflow = "hidden";
+      });
+      hideMenu.forEach((close) => {
+        close.addEventListener("click", function () {
+          // menu.classList.replace("right-0","-right-[70%]")
+          menu.classList.add("opacity-0");
+          menu.classList.add("invisible");
+          body.style.overflow = "auto";
+        });
+      });
+
+      function openForm(evt, formName) {
+        var i, tabFormContent, tabFormLinks;
+        tabFormContent = document.getElementsByClassName("tabFormContent");
+        for (i = 0; i < tabFormContent.length; i++) {
+          tabFormContent[i].style.display = "none";
+        }
+        tabFormLinks = document.getElementsByClassName("tabFormLinks");
+        for (i = 0; i < tabFormLinks.length; i++) {
+          tabFormLinks[i].className = tabFormLinks[i].className.replace(
+            " activeFormItem",
+            ""
+          );
+        }
+        document.getElementById(formName).style.display = "block";
+        evt.currentTarget.className += " activeFormItem";
+      }
+
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultFormOpen").click();
+    </script>
+
+    <script>
+      const openFavorite = document.querySelector("#myFavorite");
+      const mainContet = document.querySelector(".mainContet");
+      const sidebar = document.querySelector(".sidebar");
+      const backBtn = document.querySelector(".return");
+
+      openFavorite.addEventListener("click", function () {
+        mainContet.classList.remove("hidden");
+        sidebar.classList.add("hidden");
+      });
+      backBtn.addEventListener("click", function () {
+        mainContet.classList.add("hidden");
+        sidebar.classList.remove("hidden");
+      });
+    </script>
+  </body>
+</html>

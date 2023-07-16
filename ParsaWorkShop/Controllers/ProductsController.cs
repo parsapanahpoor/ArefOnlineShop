@@ -60,6 +60,10 @@ namespace ParsaWorkShop.Controllers
             ViewData["MaxPrice"] = await _product.GetMaximumPricesOfProducts();
             ViewData["MinPrice"] = await _product.GetMinimumPricesOfProducts();
 
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewData["FavoriteProducts"] = await _product.ListOFUserFavoriteProductsIds(User.GetUserId());
+            }
 
             #endregion
 
@@ -74,7 +78,7 @@ namespace ParsaWorkShop.Controllers
 
         [Authorize]
         [HttpGet("SinglePageProducts/{id}/{ProductTitle}")]
-        public async Task<IActionResult> SinglePageProducts(int? id , string ProductTitle)
+        public async Task<IActionResult> SinglePageProducts(int? id, string ProductTitle)
         {
             if (id == null)
             {
@@ -85,7 +89,7 @@ namespace ParsaWorkShop.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                ViewBag.IsFavoriteProduct = await _favoriteProductsService.IsUserSelectedThisProductForHisFavoriteProducts(id.Value , User.GetUserId());
+                ViewBag.IsFavoriteProduct = await _favoriteProductsService.IsUserSelectedThisProductForHisFavoriteProducts(id.Value, User.GetUserId());
             }
 
             #endregion
@@ -104,7 +108,7 @@ namespace ParsaWorkShop.Controllers
             {
                 return NotFound();
             }
-            _comment.AddComment(comment , _user.GetUserIdByUserName(User.Identity.Name) , 1);
+            _comment.AddComment(comment, _user.GetUserIdByUserName(User.Identity.Name), 1);
 
             return View("ShowComment", _comment.GetProductComment((int)comment.ProductID));
         }
@@ -121,11 +125,11 @@ namespace ParsaWorkShop.Controllers
         [Authorize, HttpGet]
         public async Task<IActionResult> AddOrRemoveProductToTheFavorite(int productId)
         {
-            var res = await _favoriteProductsService.AddorRemoveProductFromFavorite(productId , User.GetUserId());
+            var res = await _favoriteProductsService.AddorRemoveProductFromFavorite(productId, User.GetUserId());
             if (res)
             {
                 TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
-                return RedirectToAction(nameof(SinglePageProducts) , new { id = productId, ProductTitle = await _product.GetProductTitleWithProductId(productId) });
+                return RedirectToAction(nameof(SinglePageProducts), new { id = productId, ProductTitle = await _product.GetProductTitleWithProductId(productId) });
             }
 
             TempData[ErrorMessage] = "اطلاعات وارد شده صحیح نمی باشد.";

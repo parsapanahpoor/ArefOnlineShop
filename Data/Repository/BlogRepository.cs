@@ -306,7 +306,7 @@ namespace Data.Repository
                                      Comments = _context.Comment
                                                         .Include(p=> p.Users)
                                                         .AsNoTracking()
-                                                        .Where(p=> !p.IsDelete && p.BlogId.HasValue && p.BlogId == blogId)
+                                                        .Where(p=> !p.IsDelete && p.BlogId.HasValue && p.BlogId == blogId && p.IsAdminRead)
                                                         .OrderByDescending(p=> p.CreateDate)
                                                         .ToList(),
                                  })

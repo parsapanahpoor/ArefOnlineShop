@@ -559,6 +559,12 @@ namespace Application.Services
             return await _product.GetMinimumPricesOfProducts();
         }
 
+        //List OF User Favorite Products Ids
+        public async Task<List<int>> ListOFUserFavoriteProductsIds(int userId)
+        {
+            return await _product.ListOFUserFavoriteProductsIds(userId);
+        }
+
         #endregion
 
         #region Admin Side 

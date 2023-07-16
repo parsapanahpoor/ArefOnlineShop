@@ -589,6 +589,16 @@ namespace Data.Repository
                                  .FirstOrDefaultAsync();
         }
 
+        //List OF User Favorite Products Ids
+        public async Task<List<int>> ListOFUserFavoriteProductsIds(int userId)
+        {
+            return await _context.FavoriteProducts
+                                 .AsNoTracking()
+                                 .Where(p=> !p.IsDelete && p.UserId == userId)
+                                 .Select(p=> p.ProductId)
+                                 .ToListAsync();
+        }
+
         #endregion
 
         #region Admin Side 

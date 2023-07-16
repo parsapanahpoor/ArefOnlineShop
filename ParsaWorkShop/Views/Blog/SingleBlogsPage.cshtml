@@ -21,8 +21,13 @@
             crossorigin=""></script>
     <script>
 
-        <script>
-                                                                      const modal = document.querySelector(".modal");
+        $("#SearchBlogIcon").click(function () {
+
+            $("#SearchBlogfiltre").submit();
+
+        });
+
+        const modal = document.querySelector(".modal");
         const showModal = document.querySelector(".showModal");
         const hideModal = document.querySelectorAll(".hideModal");
         const menu = document.querySelector(".menu");
@@ -80,22 +85,12 @@
 
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultFormOpen").click();
-    </script>
 
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
-    <script>
-        function Success() {
-            $("#comment_Comment").val("");
+
+        function ReplyComment(e) {
+            $("#ParentId").val(e), $("html, body").animate({ scrollTop: $("#commentArticle").offset().top }, 2e3), $("#TextArea").focus();
         }
 
-        $(function () {
-            $("#listComment").load("/Blog/ShowComment/" + @Model.Blog.BlogId);
-        });
-
-        function pageComment(pageid) {
-            $("#listComment").load("/Blog/ShowComment/" + @Model.Blog.BlogId+"?pageId=" + pageid);
-        }
     </script>
 }
 
@@ -146,6 +141,13 @@
                         </p>
                     </div>
                 </div>
+
+                <div class="flex flex-col items-end justify-start lg:flex lg:flex-row lg:items-center lg:justify-end gap-1 lg:gap-3">
+                    <p class="text-[9px] lg:text-[12px] text-[#4B4D57] leading-[18.6px] bg-gray-100 p-[2px] rounded" style="font-family: yekanBakhtRegular">
+                        @Model.Blog.Tags
+                    </p>
+
+                </div>
             </div>
 
             <div class="w-full h-[163px] lg:h-[415px] mt-1">
@@ -161,56 +163,36 @@
 
             @if (User.Identity.IsAuthenticated)
             {
-                <div class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
+                <div id="commentArticle" class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
                     <div class="flex flex-col justify-start items-start">
                         <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
                             ارسال یک دیدگاه
                         </p>
-                        <p class="text-[#252525] text-[9px] leading-[24.8px] lg:text-[12px] lg:leading-[18.6px]" style="font-family: yekanBakhtLight">
-                            ایمیل شما منتشر نخواهد شد، فیلد های اجباری با علامت * مشخص شده
-                            اند.
-                        </p>
                     </div>
 
                     <div class="w-full mt-5 lg:mt-10">
-                        <form asp-action="AddProductToTheOffer" asp-controller="Products" asp-area="Admin" method="post" enctype="multipart/form-data">
+                        <form asp-action="AddCommentForBlogs" asp-controller="Blog" asp-area="" method="post" class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
 
-                            <input name="ParentId" type="hidden" />
-                            <input name="BlogId" type="hidden" value="@Model.Blog.BlogId"/>
+                            <input name="ParentId" id="ParentId" type="hidden" value="" />
+                            <input name="BlogId" type="hidden" value="@Model.Blog.BlogId" />
 
-                                <div class="col-span-1 md:col-span-1 lg:col-span-1 h-[54px]">
-                                    <input type="text" class="w-full h-full focus:outline-none px-3 bg-white rounded text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="نام و نام خانوادگی">
-                                </div>
-                                <div class="col-span-1 md:col-span-1 lg:col-span-1 h-[54px]">
-                                    <input type="email" class="w-full h-full focus:outline-none px-3 bg-white rounded text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="پست التکرونیکی">
-                                </div>
-                                <div class="col-span-1 md:col-span-2 lg:col-span-2">
-                                    <textarea class="w-full focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" name="" placeholder="دیدگاه خود را بنویسید" id="" rows="4"></textarea>
-                                </div>
-                                <div class="w-full lg:mt-7 col-span-1 md:col-span-2 lg:col-span-2 flex flex-col justify-center items-start lg:flex lg:flex-row lg:justify-between lg:items-center">
-                                    <div class="flex justify-start items-start gap-2">
-                                        <input type="checkbox" class="accent-[#252525] w-4 h-4" name="" id="saveInfo">
-                                        <label class="w-[257px] lg:w-auto inline-block" for="saveInfo">
-                                            <strong class="text-[#606060] text-[12px] lg:text-[14px] leading-[18.6px] lg:leading-[21.7px]" style="font-family: yekanBakhtSemiBold">
-                                                ذخیره نام، ایمیل و وبسایت من در مرورگر برای زمانی که
-                                                دوباره دیدگاهی می‌نویسم.
-                                            </strong>
-                                            <br>
-                                            <small class="text-[#7B7B7B] text-[9px] lg:text-[12px] leading-[13.95px] lg:leading-[18.6px]">
-                                                شما باید وارد حساب خود شده باشید تا قادر به اضافه کردن
-                                                تصاویر در نظرات باشید.
-                                            </small>
-                                        </label>
-                                    </div>
-                                    <button class="bg-[#252525] mt-3 lg:mt-0 text-white text-[14px] w-[119px] h-[40px] lg:h-[50px]" type="submit">
-                                        ارسال دیدگاه
-                                    </button>
-                                </div>
+                            <div class="col-span-1 md:col-span-2 lg:col-span-2 h-[54px]">
+                                <input type="text" readonly value="@User.Identity.Name" class="w-full h-full focus:outline-none px-3 bg-white rounded text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="نام و نام خانوادگی">
+                            </div>
+                            <div class="col-span-1 md:col-span-2 lg:col-span-2">
+                                <textarea name="CommentBody" class="w-full focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="دیدگاه خود را بنویسید" id="TextArea" rows="4"></textarea>
+                            </div>
+                            <div class="w-full lg:mt-7 col-span-1 md:col-span-2 lg:col-span-2 flex flex-col justify-center items-start lg:flex lg:flex-row lg:justify-between lg:items-center">
 
+                                <button class="bg-[#252525] mt-3 lg:mt-0 text-white text-[14px] w-[119px] h-[40px] lg:h-[50px]" type="submit">
+                                    ارسال دیدگاه
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
-            }else
+            }
+            else
             {
                 <div class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
                     <div class="flex flex-col justify-start items-start">
@@ -218,7 +200,7 @@
                         <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
                             برای درج نظر باید وارد وب سایت گردید
                         </p>
-                       
+
                     </div>
                 </div>
             }
@@ -249,7 +231,7 @@
 
                                     <div class="flex items-center justify-center gap-1">
                                         <img class="w-[10px] h-[10px] lg:w-[12px] lg:h-[12px] object-cover" src="/ArefSet/src/assets/images/landing/Group 1.png" alt="">
-                                        <p class="text-[#89939F] text-[10px] leading-[18.74px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                        <p onclick="ReplyComment(@comment.CommentId)" class="text-[#89939F] text-[10px] leading-[18.74px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
                                             پاسخ
                                         </p>
                                     </div>
@@ -262,9 +244,9 @@
                                 </div>
                             </div>
 
-                            @if (Model.Comments.Any(s=> s.ParentId == comment.CommentId))
+                            @if (Model.Comments.Any(s => s.ParentId == comment.CommentId))
                             {
-                                foreach (var answer in Model.Comments.Where(s=> s.ParentId == comment.CommentId))
+                                foreach (var answer in Model.Comments.Where(s => s.ParentId == comment.CommentId))
                                 {
                                     <!--answer card -->
                                     <div class="lg:w-[94.5%] bg-[#EDEDED] p-2 mr-[30px] lg:mr-[51px] rounded mb-3">
@@ -287,14 +269,14 @@
 
                                         <div class="lg:mr-[51px] my-2">
                                             <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
-                                               @answer.CommentBody
+                                                @answer.CommentBody
                                             </p>
                                         </div>
                                     </div>
                                 }
                             }
 
-                      
+
                         </div>
 
                     }
@@ -304,13 +286,13 @@
         </div>
 
         <div class="filterMenu lg:inline-block w-full lg:w-[414px] flex flex-col justify-start items-center gap-5">
-            <form asp-action="ListOfBlogs" asp-controller="blog" asp-area="" method="get">
+            <form id="SearchBlogfiltre" asp-action="ListOfBlogs" asp-controller="blog" asp-area="" method="get">
                 <div class="w-full h-[163px] border-2 lg:flex lg:flex-col lg:items-start lg:justify-center text-right px-5 lg:px-10 gap-4 mb-5 hidden">
                     <button class="text-[#252525] text-[16px] leading-[18px]" style="font-family: yekanBakhtBold">
                         جستجو کنید
                     </button>
                     <div class="w-[347px] h-[44px] border-[1px] flex items-center justify-start gap-2 pr-3">
-                        <img src="/ArefSet/src/assets/images/landing/search-norma.png" alt="">
+                        <img id="SearchBlogIcon" src="/ArefSet/src/assets/images/landing/search-norma.png" alt="">
                         <input type="search" placeholder="جستجو خبر مورد نظر خود" class="h-full w-full focus:outline-none" name="BlogTitle" id="">
                     </div>
                 </div>

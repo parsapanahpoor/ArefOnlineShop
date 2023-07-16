@@ -19,6 +19,8 @@ namespace Domain.Models.Product
 
         public string ColorTitle { get; set; }
 
+        public string ColorFarsiTitle { get; set; }
+
         public string ColorImage { get; set; }
 
         public string ColorCode { get; set; }

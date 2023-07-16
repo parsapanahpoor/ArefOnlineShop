@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/images/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/images/icons/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="assets/images/icons/safari-pinned-tab.svg"
+      color="#666666"
+    />
+    <link rel="shortcut icon" href="assets/images/icons/favicon.ico" />
+
+    <!-- Plugins CSS File -->
+    <link
+      rel="stylesheet"
+      href="./assets/styles/cdn.jsdelivr.net_npm_swiper@9.4.1_swiper-bundle.min.css"
+    />
+
+    <!-- Main CSS File -->
+    <link href="../dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+
+    <!-- leaflet -->
+    <!-- <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> -->
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <title>فروشگاه پوشاک عارف</title>
+  </head>
+  <body dir="rtl">
+    <!-- modal -->
+    <div
+      class="z-[5000000] transition-all modal h-screen w-full fixed left-0 top-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <!-- modal -->
+      <div class="bg-white rounded shadow-lg w-[95%] lg:w-[575px] p-5 lg:p-10">
+        <!-- modal-header -->
+        <div class="flex justify-between items-center">
+          <!-- <h2>Modal Title</h2> -->
+          <a href="#" class="text-black hideModal">&cross;</a>
+        </div>
+        <!-- modal-body -->
+
+        <!-- Tab 1 -->
+        <div class="tabset mx-auto">
+          <ul class="flex items-center justify-center gap-10">
+            <li
+              class="hover:cursor-pointer text-[14px] lg:text-[24px] ml-2 tabFormLinks"
+              style="font-family: yekanBakhtRegular"
+              onclick="openForm(event, 'LogIn')"
+              id="defaultFormOpen"
+            >
+              ورود
+            </li>
+            <li
+              class="hover:cursor-pointer text-[14px] lg:text-[24px] ml-2 tabFormLinks"
+              style="font-family: yekanBakhtRegular"
+              onclick="openForm(event, 'Register')"
+            >
+              ثبت نام
+            </li>
+          </ul>
+         
+          <div class="tab-panels">
+            <section id="LogIn" class="tabFormContent !py-[15px] w-full">
+              <form class="space-y-6" action="#" method="POST">
+                <div class="text-right">
+                  <label
+                    for="email"
+                    class="block text-sm font-medium leading-6 text-[#666]"
+                  >
+                    نام کاربری یا آدرس ایمیل *
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required
+                      class="block w-full border-0 py-1.5 text-gray-900 shadow-sm focus:outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#252525] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <label
+                    for="password"
+                    class="block text-sm font-medium leading-6 text-[#666]"
+                  >
+                    رمز عبور *
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autocomplete="current-password"
+                      required
+                      class="block w-full border-0 py-1.5 text-gray-900 shadow-sm focus:outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#252525] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1">
+                    <input
+                      id="remember_me"
+                      name="remember_me"
+                      type="checkbox"
+                      class="h-4 w-4 text-[#D92626] focus:ring-[#D92626] border-gray-300 rounded accent-[#D92626]"
+                    />
+                    <label
+                      for="remember_me"
+                      class="ml-2 block lg:text-[1rem] text-sm text-[#252525]"
+                    >
+                      مرا به خاطر بسپار
+                    </label>
+                  </div>
+
+                  <div class="lg:text-[1rem] text-sm">
+                    <a
+                      href="#"
+                      class="font-medium text-[#252525] hover:text-[#D92626]"
+                    >
+                      فراموشی رمز عبور؟
+                    </a>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="flex justify-center w-full bg-[#D92626] px-10 py-2 text-[1rem] font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D92626]"
+                >
+                  ورود
+                </button>
+              </form>
+              <hr class="my-4 mt-8 lg:my-8" />
+              <p class="text-[1rem] text-[#666] text-center">یا ورود با</p>
+              <div class="flex items-center justify-between gap-2 mt-4 lg:mt-8">
+                <button class="border-2 w-1/2 py-2 hover:bg-slate-100">
+                  حساب گوگل
+                </button>
+                <button class="border-2 w-1/2 py-2 hover:bg-slate-100">
+                  حساب فیسبوک
+                </button>
+              </div>
+            </section>
+
+            <section id="Register" class="tabFormContent !py-[15px] w-full">
+              <form class="space-y-6" action="#" method="POST">
+                <div class="text-right">
+                  <label
+                    for="email"
+                    class="block text-sm font-medium leading-6 text-[#666]"
+                  >
+                    نام کاربری یا آدرس ایمیل *
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      required
+                      class="block w-full border-0 py-1.5 text-gray-900 shadow-sm focus:outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#252525] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <label
+                    for="password"
+                    class="block text-sm font-medium leading-6 text-[#666]"
+                  >
+                    رمز عبور *
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autocomplete="current-password"
+                      required
+                      class="block w-full border-0 py-1.5 text-gray-900 shadow-sm focus:outline-none ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-[#252525] sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1">
+                  <input
+                    id="remember_me"
+                    name="remember_me"
+                    type="checkbox"
+                    class="h-4 w-4 text-[#D92626] focus:ring-[#D92626] border-gray-300 rounded accent-[#D92626]"
+                  />
+                  <label
+                    for="remember_me"
+                    class="ml-2 block lg:text-[1rem] text-sm text-[#252525]"
+                  >
+                    با قوانین و مقررات موافقم *
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  class="flex justify-center w-full bg-[#D92626] px-10 py-2 text-[1rem] font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D92626]"
+                >
+                  ثبت نام
+                </button>
+              </form>
+              <hr class="my-4 mt-8 lg:my-8" />
+              <p class="text-[1rem] text-[#666] text-center">یا عضویت با</p>
+              <div class="flex items-center justify-between gap-2 mt-4 lg:mt-8">
+                <button class="border-2 w-1/2 py-2 hover:bg-slate-100">
+                  حساب گوگل
+                </button>
+                <button class="border-2 w-1/2 py-2 hover:bg-slate-100">
+                  حساب فیسبوک
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- <div class="p-3">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad dolor eos illo sunt. Voluptas corrupti animi velit dolores quia odit placeat reprehenderit a esse, quibusdam repellat cum quasi nihil tempore.
+      </div>
+      <div class=" flex items-center justify-end gap-2 w-100 border-t p-3">
+        <button class="bg-red-600 px-3 py-1 rounded text-white hideModal">Cancel</button>
+        <button class=" bg-blue-600 px-3 py-1 rounded text-white">Okey</button>
+      </div> -->
+      </div>
+    </div>
+    <!-- ----- -->
+    <header class="mx-auto" id="toTop">
+      <!-- <nav class="h-[96px] md:h-[96px] lg:h-[104px] w-full bg-slate-300"></nav> -->
+
+      <nav
+        class="bg-white dark:bg-gray-900 w-full border-b border-gray-200 dark:border-gray-600 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mx-auto"
+      >
+        <div class="flex flex-wrap items-center justify-between mx-auto py-4">
+          <div class="flex items-center">
+            <a href="#"
+              class="showMenu inline-block md:inline-block lg:hidden"
+              type="button"
+              data-drawer-target="drawer-navigation"
+              data-drawer-show="drawer-navigation"
+              aria-controls="drawer-navigation"
+            >
+              <svg
+                class="w-7 h-7 md:w-7 md:h-7 lg:w-8 lg:h-8"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+            <div
+              class="bg-black opacity-0 invisible bg-opacity-50 z-[5000000] transition-all menu fixed top-0 left-0 right-0 overflow-hidden flex justify-start items-start"
+            >
+              <div
+                class="z-40 w-72 h-screen p-4 overflow-y-auto transition-all bg-[#252525] dark:bg-gray-800"
+                id="drawer-navigation"
+                tabindex="-1"
+                aria-labelledby="drawer-navigation-label"
+              >
+                <h5
+                  id="drawer-navigation-label"
+                  class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+                >
+                  Aref
+                </h5>
+                <a href="#"
+                  type="button"
+                  data-drawer-hide="drawer-navigation"
+                  aria-controls="drawer-navigation"
+                  class="text-gray-400 hideMenu bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 left-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="sr-only">Close menu</span>
+                </a>
+                <div class="py-4 overflow-y-auto">
+                  <div class="flex md:order-2 mb-3">
+                    <div
+                      class="w-full h-[44px] border-[1px] border-gray-600 flex justify-start items-center gap-1"
+                    >
+                      <input
+                        type="search"
+                        class="h-full w-full focus:outline-none bg-transparent px-1"
+                        placeholder="جستجو کنید ..."
+                        name=""
+                        id=""
+                      />
+                      <a href="#"
+                        class="w-[54px] h-full inline-flex justify-center items-center bg-[#D92626]"
+                      >
+                        <img
+                          src="./assets/images/landing/search-normal.png"
+                          class="w-[50%]"
+                          alt=""
+                        />
+                      </a href="#">
+                    </div>
+                  </div>
+
+                  <ul class="space-y-2 font-medium mt-5">
+                    <li
+                      class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                    >
+                      <a
+                        href="./index.html"
+                        class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                      >
+                        <span class="flex-1 ml-3 whitespace-nowrap"
+                          >صفحه اصلی</span
+                        >
+                        <span class="inline-flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-arrow-left text-white"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                            />
+                          </svg>
+                          <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                        </span>
+                      </a>
+                    </li>
+
+                    <li
+                      class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                    >
+                      <a
+                        href="#"
+                        class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                      >
+                        <span class="flex-1 ml-3 whitespace-nowrap">
+                          مجموعه
+                        </span>
+                        <span class="inline-flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-arrow-left text-white"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                            />
+                          </svg>
+                          <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                        </span>
+                        <!-- <span class="inline-flex items-center justify-center px-2  text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
+                      </a>
+                    </li>
+
+                    <li
+                      class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                    >
+                      <a
+                        href="#"
+                        class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                      >
+                        <span class="flex-1 ml-3 whitespace-nowrap"
+                          >مردانه</span
+                        >
+                        <span class="inline-flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-arrow-left text-white"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                            />
+                          </svg>
+                          <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                        </span>
+                      </a>
+                    </li>
+
+                    <li
+                      class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                    >
+                      <a
+                        href="#"
+                        class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                      >
+                        <span class="flex-1 ml-3 whitespace-nowrap">زنانه</span>
+                        <span class="inline-flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-arrow-left text-white"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                            />
+                          </svg>
+                          <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                        </span>
+                      </a>
+                    </li>
+
+                    <li
+                      class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                    >
+                      <a
+                        href="#"
+                        class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                      >
+                        <span class="flex-1 ml-3 whitespace-nowrap">
+                          فروشگاه
+                        </span>
+                        <span class="inline-flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-arrow-left text-white"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                            />
+                          </svg>
+                          <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                        </span>
+                      </a>
+                    </li>
+
+                    <li
+                      class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                    >
+                      <a
+                        href="#"
+                        class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                      >
+                        <span class="flex-1 ml-3 whitespace-nowrap">
+                          وبلاگ
+                        </span>
+                        <span class="inline-flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-arrow-left text-white"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                            />
+                          </svg>
+                          <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                        </span>
+                      </a>
+                    </li>
+
+                    <li
+                      class="border-b-[1px] border-gray-600 border-opacity-80 py-2"
+                    >
+                      <a
+                        href="#"
+                        class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700"
+                      >
+                        <span class="flex-1 ml-3 whitespace-nowrap">
+                          تماس با ما
+                        </span>
+                        <span class="inline-flex items-center justify-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-arrow-left text-white"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                            />
+                          </svg>
+                          <!-- <img src="./assets/images/landing/arrow-left-panel.png" alt=""> -->
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- logo -->
+            <a href="" class="flex items-center">
+              <img
+                src="./assets/images/landing/Arefset 1.png"
+                class="lg:w-[94px] md:w-[80px] w-[73px] mr-3"
+                alt="Flowbite Logo"
+              />
+            </a>
+          </div>
+
+          <!-- sm / md -->
+
+          <div class="flex md:order-2 gap-2">
+            <div
+              class="hidden md:hidden lg:w-[250px] lg:h-[44px] border-[1px] border-[#B7B7B7] lg:flex justify-start items-center"
+            >
+              <img
+                src="./assets/images/landing/search-icon.webp"
+                class="w-5 text-[#252525] mx-3"
+                alt=""
+              />
+              <input
+                type="search"
+                class="h-full w-full focus:outline-none"
+                placeholder="جستجو کنید ..."
+                name=""
+                id=""
+              />
+            </div>
+            <a href="#"
+              class="w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] inline-flex justify-center items-center"
+            >
+              <img src="./assets/images/landing/Shopping bag 1.png" alt="" />
+            </a>
+
+            <a href="#"
+              class="showModal w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] inline-flex justify-center items-center"
+            >
+              <img src="./assets/images/landing/user - 1 1.png" alt="" />
+            </a>
+          </div>
+
+          <!-- lg -->
+          <div
+            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            id="navbar-sticky"
+          >
+            <ul class="flex items-center gap-6">
+              <li
+                class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+              >
+                <a href="">صفحه اصلی</a>
+              </li>
+              <li
+                class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+              >
+                <a href="./productsList.html">فروشگاه</a>
+              </li>
+              <li
+                class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+              >
+                <a href="">مردانه</a>
+              </li>
+              <li
+                class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+              >
+                <a href="">زنانه</a>
+              </li>
+              <li
+                class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+              >
+                <a href="">مجموعه</a>
+              </li>
+              <li
+                class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+              >
+                <a href="">وبلاگ</a>
+              </li>
+              <li
+                class="text-[18px] text-[#7E8285] py-2 relative before:transition-all before:duration-300 before:transform before:ease-linear before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-[0%] hover:before:w-[100%] before:h-full before:border-b-2 before:border-[#D92626]"
+              >
+                <a href="">تماس با ما</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto">
+      <section
+        class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]"
+      >
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+              <a
+                href="#"
+                class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-4 h-4 ml-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                  ></path>
+                </svg>
+                خانه
+              </a>
+            </li>
+
+            <li aria-current="page">
+              <div class="flex items-center">
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6 text-gray-400 transform rotate-180"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span
+                  class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400"
+                  >فروشگاه لیست عارف</span
+                >
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </section>
+
+      <section
+        class="mx-auto mt-0 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7"
+      >
+        <div class="flex flex-col items-center justify-start mb-5">
+          <div
+            class="mt-16 relative w-[212.34px] h-[72.24px] md:w-[300px] md:h-[90px] lg:w-[388px] lg:h-[132px] bg-no-repeat before:content-[''] before:absolute before:-left-[60px] lg:before:-left-[100px] before:top-[41%] before:w-[52px] lg:before:w-[91px] before:h-[2px] before:bg-[#D92626] after:content-[''] after:absolute after:-right-[60px] lg:after:-right-[100px] after:top-[41%] after:w-[52px] lg:after:w-[91px] after:h-[2px] after:bg-[#D92626]"
+            style="
+              background-image: url(./assets/images/landing/Arefset\ 2.png);
+              background-position: center;
+              background-size: cover;
+            "
+          >
+            <p
+              class="text-[#252525] text-[32px] mt-2 lg:mt-7 text-center"
+              style="font-family: yekanBakhtExtraBold"
+            >
+              تماس باما
+            </p>
+            <p
+              class="text-[#7E8285] font-medium text-[17px] md:text-[25px] lg:text-[30px] leading-[49.6px] text-center"
+              style="font-family: yekanBakhtRegular"
+            >
+              ارتباط خود را باما حفظ کنید
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full mt-14">
+        <div
+          class="px-3 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2"
+        >
+          <div class="col-span-2 md:col-span-2 lg:col-span-1">
+            <p
+              class="text-[22px] text-[#252525] leading-[34.1px]"
+              style="font-family: yekanBakhtSemiBold"
+            >
+              اطلاعات تماس
+            </p>
+            <p
+              class="text-[16px] text-[#7E8285] leading-[39px]"
+              style="font-family: yekanBakhtSemiBold"
+            >
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
+              ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
+              سادگی نامفهوم.
+            </p>
+            <div
+              class="mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 mt-5"
+            >
+              <ul class="mb-3">
+                <li class="mb-5 text-[16px] text-[#252525] leading-[24.8px]">
+                  تولیدی
+                </li>
+                <li
+                  class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]"
+                >
+                  <img
+                    class="w-[20px]"
+                    src="./assets/images/landing/locationn.png"
+                    alt=""
+                  />
+                  تهران، خیابان انقلاب
+                </li>
+                <li
+                  class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]"
+                >
+                  <img
+                    class="w-[20px]"
+                    src="./assets/images/landing/call-incoming-black.png"
+                    alt=""
+                  />
+                  09114119225
+                </li>
+                <li
+                  class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]"
+                >
+                  <img
+                    class="w-[20px]"
+                    src="./assets/images/landing/sms-black.png"
+                    alt=""
+                  />
+                  info@arefset.ir
+                </li>
+              </ul>
+
+              <ul class="mb-3">
+                <li class="mb-5 text-[16px] text-[#252525] leading-[24.8px]">
+                  ساعت کاری
+                </li>
+                <li
+                  class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]"
+                >
+                  <img
+                    class="w-[20px]"
+                    src="./assets/images/landing/clock.png"
+                    alt=""
+                  />
+                  شنبه تا چهارشنبه 10 صبح تا 6 عصر
+                </li>
+                <li
+                  class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]"
+                >
+                  <img
+                    class="w-[20px]"
+                    src="./assets/images/landing/calendar.png"
+                    alt=""
+                  />
+                  پنجشنبه 10 صبح تا 2 عصر
+                </li>
+              </ul>
+
+              <ul class="mb-3">
+                <li class="mb-5 text-[16px] text-[#252525] leading-[24.8px]">
+                  فروشگاه
+                </li>
+                <li
+                  class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]"
+                >
+                  <img
+                    class="w-[20px]"
+                    src="./assets/images/landing/locationn.png"
+                    alt=""
+                  />
+                  ساری، میدان خزر
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-span-2 md:col-span-2 lg:col-span-1">
+            <p
+              class="text-[22px] text-[#252525] leading-[34.1px]"
+              style="font-family: yekanBakhtSemiBold"
+            >
+              اطلاعات تماس
+            </p>
+            <p
+              class="text-[16px] text-[#7E8285] leading-[39px]"
+              style="font-family: yekanBakhtSemiBold"
+            >
+              با استفاده از فرم زیر میتوانید با ما ارتباط برقرار کنید
+            </p>
+
+            <div class="flex items-center justify-start py-12">
+              <!-- Author: FormBold Team -->
+              <!-- Learn More: https://formbold.com -->
+              <div class="mx-auto w-full">
+                <form action="" method="POST">
+                  <div class="-mx-3 flex flex-wrap">
+                    <div class="w-full px-3 sm:w-1/2">
+                      <div class="mb-5">
+                        <!-- <label
+                          for="fName"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          First Name
+                        </label> -->
+                        <input
+                          type="text"
+                          name="fName"
+                          id="fName"
+                          placeholder="نام نام خانوادگی"
+                          class="w-full border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="w-full px-3 sm:w-1/2">
+                      <div class="mb-5">
+                        <!-- <label
+                          for="lName"
+                          class="mb-3 block text-base font-medium text-[#07074D]"
+                        >
+                          Last Name
+                        </label> -->
+                        <input
+                          type="email"
+                          name="lName"
+                          id="lName"
+                          placeholder="ایمیل خود را وارد کنید"
+                          class="w-full border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="w-full px-3 sm:w-1/2">
+                      <div class="mb-5">
+                        <!-- <label
+                            for="fName"
+                            class="mb-3 block text-base font-medium text-[#07074D]"
+                          >
+                            First Name
+                          </label> -->
+                        <input
+                          type="text"
+                          name="phoneNumber"
+                          id="phoneNumber"
+                          placeholder="شماره مبایل خود را وارد کنید "
+                          class="w-full border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="w-full px-3 sm:w-1/2">
+                      <div class="mb-5">
+                        <!-- <label
+                            for="lName"
+                            class="mb-3 block text-base font-medium text-[#07074D]"
+                          >
+                            Last Name
+                          </label> -->
+                        <input
+                          type="text"
+                          name="subject"
+                          id="subject"
+                          placeholder="موضوع پیام شما"
+                          class="w-full border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-5">
+                    <!-- <label
+                      for="guest"
+                      class="mb-3 block text-base font-medium text-[#07074D]"
+                    >
+                      How many guest are you bringing?
+                    </label> -->
+                    <textarea
+                      name="guest"
+                      id="guest"
+                      rows="3"
+                      class="w-full appearance-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                      placeholder="متن پیام شما"
+                    ></textarea>
+                  </div>
+
+                  <div class="flex justify-end">
+                    <button
+                      class="hover:shadow-form border-[1px] border-[#D92626] py-3 px-8 text-center text-base font-semibold text-[#D92626] outline-none flex items-center gap-2"
+                    >
+                      ارسال پیام
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M15.0898 19.9201L8.56984 13.4001C7.79984 12.6301 7.79984 11.3701 8.56984 10.6001L15.0898 4.08008"
+                          stroke="#D92626"
+                          stroke-width="1.5"
+                          stroke-miterlimit="10"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="mx-auto mt-0 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7 border-t-2"
+      >
+        <div id="map" class="w-full h-[353px] my-14">
+          <!-- <img
+            class="w-full h-full object-cover"
+            src="./assets/images/landing/image 6.png"
+            alt=""
+          /> -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="mx-auto bg-[#252525] w-full px-7 lg:px-0">
+      <div
+        class="border-b-[1px] border-[#7E8285] max-w-[99%] lg:max-w-[86.5em] mx-auto p-1 pb-10 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:px-10"
+      >
+        <div
+          class="text-center flex flex-col justify-between my-5 items-center p-3 h-[147px]"
+        >
+          <img
+            class="w-[42px]"
+            src="./assets/images/landing/Group 21.png"
+            alt=""
+          />
+          <p
+            class="text-[20px] lg:text-[24px] text-[#fff] py-3"
+            style="font-family: yekanBakhtExtraBold"
+          >
+            تضمین کیفیت
+          </p>
+          <p
+            class="text-[14px] lg:text-[16px] text-[#EDEDED] font-semibold"
+            style="font-family: yekanBakhtSemiBold"
+          >
+            کیفیت بالا پارچه و استفاده از الیاف طبیعی نخ و پنبه
+          </p>
+        </div>
+
+        <div
+          class="text-center flex flex-col justify-between my-5 items-center p-3 h-[147px]"
+        >
+          <img
+            class="w-[42px]"
+            src="./assets/images/landing/scissor.png"
+            alt=""
+          />
+          <p
+            class="text-[20px] lg:text-[24px] text-[#fff] py-3"
+            style="font-family: yekanBakhtExtraBold"
+          >
+            طراحی خاص
+          </p>
+          <p
+            class="text-[14px] lg:text-[16px] text-[#EDEDED] font-semibold"
+            style="font-family: yekanBakhtSemiBold"
+          >
+            استفاده از طراحی های خاص و جذاب در تولید پوشاک
+          </p>
+        </div>
+
+        <div
+          class="text-center flex flex-col justify-between my-5 items-center p-3 h-[147px]"
+        >
+          <img
+            class="w-[42px]"
+            src="./assets/images/landing/color-swatch.png"
+            alt=""
+          />
+          <p
+            class="text-[20px] lg:text-[24px] text-[#fff] py-3"
+            style="font-family: yekanBakhtExtraBold"
+          >
+            تنوع رنگ
+          </p>
+          <p
+            class="text-[14px] lg:text-[16px] text-[#EDEDED] font-semibold"
+            style="font-family: yekanBakhtSemiBold"
+          >
+            تنوع بالا در رنگ بندی محصولات عارف
+          </p>
+        </div>
+
+        <div
+          class="text-center flex flex-col justify-between my-5 items-center p-3 h-[147px]"
+        >
+          <img class="w-[42px]" src="./assets/images/landing/car.svg" alt="" />
+          <p
+            class="text-[20px] lg:text-[24px] text-[#fff] py-3"
+            style="font-family: yekanBakhtExtraBold"
+          >
+            ارسال مطمئن
+          </p>
+          <p
+            class="text-[14px] lg:text-[16px] text-[#EDEDED] font-semibold"
+            style="font-family: yekanBakhtSemiBold"
+          >
+            ارسال به موقع و مطمئن اجناس خریداری شده شما
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="lg:border-b-[1px] lg:border-[#7E8285] max-w-[99%] lg:max-w-[86.5em] mx-auto p-1 pt-10 pb-7 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4"
+      >
+        <div class="flex flex-col justify-start items-start text-right">
+          <img
+            class="w-[94px] mb-5"
+            src="./assets/images/landing/Arefset foo.png"
+            alt=""
+          />
+          <p
+            class="text-[16px] font-normal text-[#FCFCFC] leading-[24.8px] mb-6 lg:mb-0"
+            style="font-family: yekanBakhtRegular"
+          >
+            جنس و بافت پارچه های مختلف، تاثیر مستقیمی بر سلامت پوست شما دارند.
+            تمامی محصولات برند AREF از الیاف طبیعی تهیه شده اند و کاملا دوستدار
+            سلامت پوست شما هستند.
+          </p>
+          <div
+            class="border-t-[1px] w-full mt-8 pt-6 py-8 border-[#7E8285] lg:flex lg:justify-start lg:items-center gap-2 text-right hidden"
+          >
+            <img
+              class="w-[20px]"
+              src="./assets/images/landing/location@2x.png"
+              alt=""
+            />
+            <p class="text-[16px] font-normal text-[#FCFCFC] leading-[22px]">
+              آدرس تولیدی : تهران - خیابان انقلاب
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 p-0 lg:pr-8">
+          <div class="flex flex-col justify-start items-start text-right">
+            <p
+              class="text-[20px] lg:text-[24px] text-[#FCFCFC] leading-[35px] mb-3"
+              style="font-family: yekanBakhtSemiBold"
+            >
+              درباره ما
+            </p>
+            <a
+              href="#"
+              class="text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              درباره عارف
+            </a>
+            <a
+              href="#"
+              class="text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              همکاری با ما
+            </a>
+            <a
+              href="#"
+              class="text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              قوانین و مقررات
+            </a>
+          </div>
+
+          <div class="flex flex-col justify-start items-start text-right">
+            <p
+              class="text-[20px] lg:text-[24px] text-[#FCFCFC] leading-[35px] mb-3"
+              style="font-family: yekanBakhtSemiBold"
+            >
+              تماس با ما
+            </p>
+            <a
+              href="#"
+              class="flex items-center justify-start gap-2 text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              <img src="./assets/images/landing/sms.png" alt="" />
+              info@arefset.ir
+            </a>
+            <a
+              href="#"
+              class="flex items-center justify-start gap-2 text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              <img src="./assets/images/landing/call-incoming.png" alt="" />
+              09114119225
+            </a>
+            <a
+              href="#"
+              class="flex items-center justify-start gap-2 text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              <img src="./assets/images/landing/whatsapp.svg" alt="" />
+              09114119225
+            </a>
+          </div>
+
+          <div
+            class="flex flex-col justify-start items-start text-right mt-3 lg:mt-0"
+          >
+            <p
+              class="text-[20px] lg:text-[24px] text-[#FCFCFC] leading-[35px] mb-3"
+              style="font-family: yekanBakhtSemiBold"
+            >
+              لینک های مفید
+            </p>
+            <a
+              href="#"
+              class="text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              صفحه اصلی
+            </a>
+            <a
+              href="#"
+              class="text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              فروشگاه
+            </a>
+            <a
+              href="#"
+              class="text-[16px] font-normal text-[#FCFCFC] leading-[22px] mb-3"
+              style="font-family: yekanBakhtRegular"
+            >
+              وبلاگ
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="w-full flex justify-center items-center gap-2 text-center lg:hidden my-4 lg:my-0"
+        >
+          <img
+            class="w-[20px]"
+            src="./assets/images/landing/location@2x.png"
+            alt=""
+          />
+          <p class="text-[16px] font-normal text-[#FCFCFC] leading-[22px]">
+            آدرس تولیدی : تهران - خیابان انقلاب
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="max-w-[99%] lg:max-w-[86.5em] mx-auto p-1 flex items-center flex-col justify-start lg:flex lg:items-center lg:flex-row lg:justify-between"
+      >
+        <p class="text-[18px] font-normal text-[#FCFCFC] leading-[28px] mb-3">
+          تمامی حقوق برای سایت بازرگانی
+          <span class="text-[#D92626]">عارف</span> محفوظ است. طراحی و توسعه این
+          سایت توسط
+          <span class="text-[#D92626]"> تیم نرم افزاری گندم </span> انجام شده
+          است.
+        </p>
+        <a
+          href="#toTop"
+          class="my-3 mt-6 hover:bg-[#ffff] border-[1px] border-[#fff] hover:border-[#fff] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-7 py-3 flex items-center text-[#fff] hover:text-[#252525]"
+        >
+          رفتن به بالا
+          <img
+            class="ms-3 transform rotate-90"
+            src="./assets/images/landing/arrow-left.png"
+            alt=""
+          />
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      // Creating map options
+      // var mapOptions = {
+      //    center: [36.55652, 53.03909],
+      //    zoom: 20
+      // }
+
+      // // var marker = L.marker([51.5, -0.09]).addTo(map);
+
+      // // Creating a map object
+      // var map = new L.map('map', mapOptions);
+
+      // // Creating a Layer object
+      // var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+      // // Adding layer to the map
+      // map.addLayer(layer);
+      // ---------------------------------------------------------------
+      var map = L.map("map").setView([36.55652, 53.03909], 17);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+      var marker = L.marker([36.55652, 53.03909]).addTo(map);
+    </script>
+
+    <script>
+      const modal = document.querySelector(".modal");
+      const showModal = document.querySelector(".showModal");
+      const hideModal = document.querySelectorAll(".hideModal");
+      const menu = document.querySelector(".menu");
+      const showMenu = document.querySelector(".showMenu");
+      const hideMenu = document.querySelectorAll(".hideMenu");
+      const body = document.querySelector("body");
+
+      // ------------------------ modal -------------------------------
+
+      showModal.addEventListener("click", function () {
+        modal.classList.remove("hidden");
+        body.style.overflow = "hidden";
+      });
+
+      hideModal.forEach((close) => {
+        close.addEventListener("click", function () {
+          modal.classList.add("hidden");
+          body.style.overflow = "auto";
+        });
+      });
+
+      // ------------------------Side Menu Responsive-------------------------------
+
+      showMenu.addEventListener("click", function () {
+        // menu.classList.replace("-right-[70%]","right-0")
+        menu.classList.remove("opacity-0");
+        menu.classList.remove("invisible");
+        body.style.overflow = "hidden";
+      });
+      hideMenu.forEach((close) => {
+        close.addEventListener("click", function () {
+          // menu.classList.replace("right-0","-right-[70%]")
+          menu.classList.add("opacity-0");
+          menu.classList.add("invisible");
+          body.style.overflow = "auto";
+        });
+      });
+
+      function openForm(evt, formName) {
+        var i, tabFormContent, tabFormLinks;
+        tabFormContent = document.getElementsByClassName("tabFormContent");
+        for (i = 0; i < tabFormContent.length; i++) {
+          tabFormContent[i].style.display = "none";
+        }
+        tabFormLinks = document.getElementsByClassName("tabFormLinks");
+        for (i = 0; i < tabFormLinks.length; i++) {
+          tabFormLinks[i].className = tabFormLinks[i].className.replace(
+            " activeFormItem",
+            ""
+          );
+        }
+        document.getElementById(formName).style.display = "block";
+        evt.currentTarget.className += " activeFormItem";
+      }
+
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultFormOpen").click();
+    </script>
+  </body>
+</html>

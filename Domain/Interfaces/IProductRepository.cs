@@ -111,6 +111,9 @@ namespace Domain.Interfaces
         //Get Minimum Prices Of Products
         Task<int> GetMinimumPricesOfProducts();
 
+        //List OF User Favorite Products Ids
+        Task<List<int>> ListOFUserFavoriteProductsIds(int userId);
+
         #endregion
 
         #region Admin Side 

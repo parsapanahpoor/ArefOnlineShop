@@ -12,15 +12,24 @@
 
     var minPrice = ViewData["MinPrice"] as int?;
     var maxPrice = ViewData["MaxPrice"] as int?;
+
+    List<int> favoriteProducts = ViewData["FavoriteProducts"] as List<int>;
 }
 
 @section Styles
     {
+
+    <!-- Main CSS File -->
+    <link href="/ArefSet/dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
     <link rel="stylesheet" href="/ArefSet/src/assets/styles/productList.css" />
 }
 
 @section Scripts
     {
+
+    <script src="/ArefSet/src/JS/landing.js"></script>
+    <script src="/ArefSet/src/JS/cdn.jsdelivr.net_npm_swiper@9.4.1_swiper-bundle.min.js"></script>
     <script>
         var colorButton = document.getElementsByClassName("theme-button");
         var i;
@@ -65,6 +74,124 @@
             }
             document.querySelector("#one").value = this.value;
         };
+    </script>
+    <script>
+        const modal = document.querySelector(".modal");
+        const showModal = document.querySelector(".showModal");
+        const hideModal = document.querySelectorAll(".hideModal");
+
+        const menu = document.querySelector(".menu");
+        const showMenu = document.querySelector(".showMenu");
+        const hideMenu = document.querySelectorAll(".hideMenu");
+
+        const filterMenu = document.querySelector(".filterMenu");
+        const mainContent = document.querySelector(".mainContent");
+        const showFilterMenu = document.querySelector(".showFilterMenu");
+        const hideFilterMenu = document.querySelector(".hideFilterMenu");
+        const footer = document.querySelector(".footer");
+        const navbar = document.querySelector(".navbar");
+        const breadcrumb = document.querySelector(".breadcrumb");
+
+        const body = document.querySelector("body");
+
+        // ------------------------ modal -------------------------------
+
+        showModal.addEventListener("click", function () {
+            modal.classList.remove("hidden");
+            body.style.overflow = "hidden";
+        });
+
+        hideModal.forEach((close) => {
+            close.addEventListener("click", function () {
+                modal.classList.add("hidden");
+                body.style.overflow = "auto";
+            });
+        });
+
+        // ------------------------Side Menu Responsive-------------------------------
+
+        showMenu.addEventListener("click", function () {
+            // menu.classList.replace("-right-[70%]","right-0")
+            menu.classList.remove("opacity-0");
+            menu.classList.remove("invisible");
+            body.style.overflow = "hidden";
+        });
+        hideMenu.forEach((close) => {
+            close.addEventListener("click", function () {
+                // menu.classList.replace("right-0","-right-[70%]")
+                menu.classList.add("opacity-0");
+                menu.classList.add("invisible");
+                body.style.overflow = "auto";
+            });
+        });
+
+        function openForm(evt, formName) {
+            var i, tabFormContent, tabFormLinks;
+            tabFormContent = document.getElementsByClassName("tabFormContent");
+            for (i = 0; i < tabFormContent.length; i++) {
+                tabFormContent[i].style.display = "none";
+            }
+            tabFormLinks = document.getElementsByClassName("tabFormLinks");
+            for (i = 0; i < tabFormLinks.length; i++) {
+                tabFormLinks[i].className = tabFormLinks[i].className.replace(
+                    " activeFormItem",
+                    ""
+                );
+            }
+            document.getElementById(formName).style.display = "block";
+            evt.currentTarget.className += " activeFormItem";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultFormOpen").click();
+
+        // ------------------------Filter Side Menu Responsive-------------------------------
+
+        showFilterMenu.addEventListener("click", function () {
+            // menu.classList.replace("-right-[70%]","right-0")
+            // menu.classList.remove("opacity-0");
+            // menu.classList.remove("invisible");
+            mainContent.classList.add("hidden");
+            filterMenu.classList.remove("hidden");
+            footer.classList.add("hidden");
+            navbar.classList.add("hidden");
+            breadcrumb.classList.add("hidden");
+
+            // showFilterMenu
+            // hideFilterMenu
+
+            // body.style.overflow = "hidden";
+        });
+
+        // function hideFilterMenu() {
+        //   alert("hided")
+        // }
+
+        hideFilterMenu.addEventListener("click", function () {
+
+            console.log("hello");
+
+            filterMenu.classList.add("hidden");
+            // alert("hided")
+            mainContent.classList.remove("hidden");
+            footer.classList.remove("hidden");
+            navbar.classList.remove("hidden");
+            breadcrumb.classList.remove("hidden");
+            // menu.classList.replace("right-0","-right-[70%]")
+            // menu.classList.add("opacity-0");
+            // menu.classList.add("invisible");
+            // body.style.overflow = "auto";
+        });
+
+        // -----------------------------Like btn------------------------------
+
+        var likeBtn = document.getElementsByClassName("likeBtn");
+        var i;
+        for (i = 0; i < likeBtn.length; i++) {
+            likeBtn[i].addEventListener("click", function () {
+                this.classList.toggle("text-red-500");
+            });
+        }
 
         function myFunction(e) {
             document.getElementById("Status").value = e.target.value;
@@ -74,7 +201,9 @@
     </script>
 }
 
-<main class="mx-auto">
+
+
+<main class="mx-auto mb-12">
     <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -98,25 +227,37 @@
             </ol>
         </nav>
     </section>
-
     <section class="mx-auto px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] flex items-start justify-center gap-8">
-        <div class="hidden lg:inline-block w-[25%]">
+        <div class="filterMenu lg:inline-block w-full lg:w-[25%] hidden">
             <div class="mx-auto flex items-center justify-between py-8 mt-5 border-b-[1px] border-[#D0D0D099]">
                 <p class="text-[#252525] text-[16px] font-semibold">فیلترها :</p>
-                <a asp-action="ListOfProducts" asp-area="" asp-controller="products" class="text-[#C5272D] text-[12px] font-normal">پاک کردن همه</a>
+                <div class="flex items-center gap-2">
+                    <img src="/ArefSet/src/assets/images/landing/+.png" alt="">
+                    <a asp-action="ListOfProducts" asp-area="" asp-controller="products" class="text-[#7E8285] lg:text-[#C5272D] text-[12px] font-normal">
+                        پاک کردن همه
+                    </a>
+                    <a href="#" onclick="hideFilterMenu()" class="hideFilterMenu mr-3 inline-flex items-center justify-center w-[48px] h-[48px] rounded-full bg-[#EDEDED] lg:hidden">
+                        <img class="w-3 h-3" src="/ArefSet/src/assets/images/landing/+.png" alt="">
+                    </a>
+                </div>
             </div>
-
-            <form asp-action="ListOfProducts" asp-controller="Products" asp-area="" id="filter-search" method="get">
+            <form asp-action="ListOfProducts" asp-controller="Products" asp-area="" id="filtre" method="get">
                 <input type="hidden" asp-for="Page" />
-                <input type="hidden" asp-for="Status"/>
-                <input type="hidden" asp-for="ProductTitle"/>
+                <input type="hidden" asp-for="Status" />
+                <input type="hidden" asp-for="ProductTitle" />
 
                 <div class="mx-auto bg-white min-h-sceen w-full relative">
+                    <!-- <div class="flex flex-col items-center  w-full">
+                      <h2 class="font-bold text-5xl mt-5 tracking-tight">FAQ</h2>
+                      <p class="text-neutral-500 text-xl mt-3">
+                        Frequenty asked questions
+                      </p>
+                    </div> -->
                     <div class="grid divide-y divide-neutral-200 text-right w-full mx-auto mt-5">
 
                         @if (categories != null && categories.Any())
                         {
-                            <div class="py-5">
+                            <div class="py-5 w-full">
                                 <details class="group">
                                     <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
                                         <span> دسته بندی</span>
@@ -153,7 +294,6 @@
                             </div>
 
                         }
-
 
                         @if (sizes != null && sizes.Any())
                         {
@@ -209,18 +349,35 @@
                                     </summary>
                                     <div class="flex items-center justify-center gap-2"></div>
                                     <div class="switcher flex items-center justify-center gap-2">
+
                                         @foreach (var color in colors)
                                         {
-                                            <input type="checkbox" name="ColorsId" value="@color.ColorId" data-theme="indigo" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-indigo-500">
+
+                                            if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
+                                            {
+                                                <input type="checkbox" name="ColorsId" class="hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
+                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-@color.ColorTitle-500
+
+                                                   @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "active" : " " )" for="indigo@(color.ColorId)">
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" name="ColorsId" class="hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
+                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-@color.ColorTitle-500" for="indigo@(color.ColorId)">
+                                                </label>
+                                            }
+
                                         }
+
                                     </div>
                                 </details>
                             </div>
+
                         }
 
-
                         <div class="py-5">
-                            <details class="group" open="">
+                            <details class="group">
                                 <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
                                     <span> قیمت</span>
                                     <span class="transition group-open:rotate-180">
@@ -229,6 +386,9 @@
                                         </svg>
                                     </span>
                                 </summary>
+                                <!-- <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                                  محدوده قیمت :
+                                </p> -->
                                 <div class="price-wrap">
                                     <span class="price-title">محدوده قیمت :</span>
                                     <div class="price-wrap-1">
@@ -243,22 +403,24 @@
                                 </div>
                                 <fieldset class="filter-price">
                                     <div class="price-field">
-                                        <input type="range" asp-for="MinPrice" min="100" max="5000" value="100" id="lower">
-                                        <input type="range" asp-for="MaxPrice" min="100" max="5000" value="5000" id="upper">
+                                        <input type="range" min="@minPrice" max="@maxPrice" value="@minPrice" id="lower">
+                                        <input type="range" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
                                     </div>
                                 </fieldset>
                             </details>
                         </div>
 
                     </div>
+
                     <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>
+
                 </div>
 
             </form>
 
         </div>
 
-        <div class="w-full lg:w-[75%]">
+        <div class="mainContent w-full lg:w-[75%]">
             <div class="mx-auto flex items-center justify-between py-6 mt-5 border-b-[1px] border-[#D0D0D099]">
                 <p class="text-[#7D7D7D] text-[14px] font-semibold hidden lg:inline-block">
                     نمایش <span class="text-[#252525]">@Model.AllEntitiesCount</span> محصول از
@@ -274,9 +436,7 @@
                 <div class="flex items-center justify-center gap-3">
                     <p class="text-[#7D7D7D] text-[14px] font-medium">مرتب سازی بر اساس :</p>
                     <select asp-for="Status" onchange="myFunction(event)" asp-items="Html.GetEnumSelectList(typeof(FilterStatus))"
-                            
-                    class="py-2 px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
-                        
+                            class="py-2 px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
                     </select>
                 </div>
             </div>
@@ -293,21 +453,31 @@
                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
                                     <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
                                         <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
-                                    </a>   
+                                    </a>
 
                                     <div class="transition-all flex flex-col items-end gap-2 absolute top-4 left-6 lg:top-6 lg:left-8 opacity-0 likeProduct">
-                                        <div class="transition-all overflow-hidden w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center hover:justify-around bg-[#252525] text-center text-[#fff] addToFavorite">
-                                            <span class="hidden opacity-0 text-xs whitespace-nowrap translate-x-4">
-                                                افزودن به لیست علاقه مندی
-                                            </span>
-                                            <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="">
-                                        </div>
+
+                                        @if (favoriteProducts != null && favoriteProducts.Any() && favoriteProducts.Contains(product.ProductID))
+                                        {
+                                            <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-fill likeBtn text-red-500" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                                                </svg>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                              <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
+                                                <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="">
+                                            </div>
+                                        }
+
                                     </div>
                                 </div>
 
                                 <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
                                     <div class="text-right">
-                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()"   class="font-bold text-[14px] lg:text-[16px]">
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="font-bold text-[14px] lg:text-[16px]">
                                             @product.ProductTitle
                                         </a>
                                     </div>

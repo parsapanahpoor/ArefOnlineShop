@@ -140,6 +140,31 @@ namespace Data.Context
             foreach (var fk in cascadeFKs)
                 fk.DeleteBehavior = DeleteBehavior.Restrict;
 
+            #region Seed Data
+
+            #region Product Type Seed Data
+
+            modelBuilder.Entity<ProductType>().HasData(new ProductType
+            {
+                ProductTypeId = 1,
+                ProductTypeTitle = "product",
+            });
+
+            modelBuilder.Entity<ProductType>().HasData(new ProductType
+            {
+                ProductTypeId = 2,
+                ProductTypeTitle = "blog",
+            });
+
+            modelBuilder.Entity<ProductType>().HasData(new ProductType
+            {
+                ProductTypeId = 3,
+                ProductTypeTitle = "Video",
+            });
+
+            #endregion
+
+            #endregion
 
             #region QueryFilter
 
