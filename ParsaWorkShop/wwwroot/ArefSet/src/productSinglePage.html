@@ -634,9 +634,10 @@
         </div>
       </nav>
     </header>
+    <!-- mx-auto px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] -->
     <main class="mx-auto">
       <section
-        class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7"
+        class="mx-auto lg:my-5 my-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]"
       >
         <nav class="flex" aria-label="Breadcrumb">
           <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -758,9 +759,13 @@
                 />
                 <strong> ۴/۶ </strong> از <strong> ۲۳۰ </strong> دیدگاه موجود
               </p>
-              <p class="text-[12px] lg:text-[14px] text-[#252525] mr-2">
-                <strong> دسته بندی :</strong> گل روز / گل ابادان
-              </p>
+              <div class="flex">
+
+                <p class="text-[12px] lg:text-[14px] text-[#252525] mr-2">
+                  <strong> دسته بندی :</strong> 
+                </p>
+                <a href="#" class="text-[12px] lg:text-[14px] text-[#252525]"> گل روز / گل ابادان </a> 
+              </div>
             </div>
             <div class="flex items-center justify-center gap-3 mt-2 lg:mt-0">
               <p
@@ -805,12 +810,12 @@
           </div>
 
           <div class="my-5">
-            <p
+            <h1
               class="text-[#252525] text-[24px]"
               style="font-family: yekanBakhtSemiBold"
             >
               لباس زنانه رنگ زرد تیره
-            </p>
+            </h1>
           </div>
 
           <p
@@ -843,65 +848,7 @@
               رنگ موجود:
             </p>
 
-            <div class="flex justify-center items-center gap-5 mt-3">
-              <!-- <div class="color flex items-center">
-                <input type="radio" name="r" id="rad1" checked class="hidden" />
-                <div
-                  class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-white border-2"
-                ></div>
-                <label for="rad1" class="mr-1 text-[#7E8285] text-[14px]"
-                  >سفید</label
-                >
-              </div>
-
-              <div class="color flex items-center">
-                <input type="radio" name="r" id="rad2" class="hidden" />
-                <div
-                  class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-black border-2"
-                ></div>
-                <label
-                  for="rad2"
-                  class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px]"
-                  >مشکی</label
-                >
-              </div>
-
-              <div class="color flex items-center">
-                <input type="radio" name="r" id="rad3" class="hidden" />
-                <div
-                  class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[#BFBFBF] border-2"
-                ></div>
-                <label
-                  for="rad3"
-                  class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px]"
-                  >طوسی</label
-                >
-              </div>
-
-              <div class="color flex items-center">
-                <input type="radio" name="r" id="rad4" class="hidden" />
-                <div
-                  class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[#2274AE] border-2"
-                ></div>
-                <label
-                  for="rad4"
-                  class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px]"
-                  >آبی</label
-                >
-              </div>
-
-              <div class="color flex items-center">
-                <input type="radio" name="r" id="rad5" class="hidden" />
-                <div
-                  class="content w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[#E87C2E] border-2"
-                ></div>
-                <label
-                  for="rad5"
-                  class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px]"
-                  >نارنجی</label
-                >
-              </div> -->
-
+            <div class="flex justify-start items-center flex-wrap gap-5 mt-3">
               <div class="color flex items-center">
                 <input type="radio" name="r" id="rad1" class="hidden" />
                 <label
@@ -967,7 +914,9 @@
               سایز موجود:
             </p>
 
-            <div class="flex justify-start flex-wrap items-center gap-5 mt-3">
+            <div
+              class="flex justify-start flex-wrap items-center gap-3 lg:gap-5 mt-3"
+            >
               <div class="size flex items-center">
                 <input
                   type="radio"
@@ -1025,7 +974,7 @@
               </div>
             </div>
           </div>
-
+          
           <div class="mb-5">
             <p
               class="text-[#252525] text-[16px]"
@@ -1075,7 +1024,9 @@
                 </svg>
               </div>
 
-              <p class="text-[16px] text-[#7E8285]">افزودن به علاقه مندی</p>
+              <p class="text-[12px] lg:text-[16px] text-[#7E8285]">
+                افزودن به علاقه مندی
+              </p>
             </div>
             <div
               class="flex items-center justify-center gap-2 lg:px-8 px-11 pl-0"
@@ -1085,7 +1036,9 @@
                 src="./assets/images/landing/book.png"
                 alt=""
               />
-              <p class="text-[16px] text-[#7E8285]">راهنمای اندازه</p>
+              <p class="text-[12px] lg:text-[16px] text-[#7E8285]">
+                راهنمای اندازه
+              </p>
             </div>
           </div>
         </div>
@@ -1094,21 +1047,21 @@
       <section
         class="mx-auto lg:mt-20 mt-8 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7"
       >
-        <div class="tabset singlePageTab max-w-[99%] lg:max-w-[86.5em] mx-auto">
+        <div class="tabset singlePageTab w-full mx-auto">
           <!-- Tab 1 -->
           <input
             type="radio"
             name="tabset"
             id="singlePagetab1"
-            aria-controls="describtion"
+            aria-controls9="describtion"
             checked
           />
           <label
             for="singlePagetab1"
-            class="text-[16px] lg:text-[24px] !pb-3 gap-1"
+            class="text-[10px] lg:text-[16px] !p-[10px] lg:!p-[15px] !pb-3 gap-1"
           >
             <img
-              class="inline-block"
+              class="inline-block w-[10px] lg:w-auto"
               src="./assets/images/landing/brush.png"
               alt=""
             />
@@ -1123,10 +1076,10 @@
           />
           <label
             for="singlePagetab2"
-            class="text-[16px] lg:text-[24px] !pb-3 gap-1"
+            class="text-[10px] lg:text-[16px] !p-[10px] lg:!p-[15px] !pb-3 gap-1"
           >
             <img
-              class="inline-block"
+              class="inline-block w-[10px] lg:w-auto"
               src="./assets/images/landing/message-text.png"
               alt=""
             />
@@ -1141,11 +1094,11 @@
           />
           <label
             for="singlePagetab3"
-            class="text-[16px] md:text-[18px] lg:text-[24px] !pb-3 gap-1"
+            class="text-[10px] lg:text-[16px] !p-[10px] lg:!p-[15px] !pb-3 gap-1"
             style="font-family: yekanBakhtRegular"
           >
             <img
-              class="inline-block"
+              class="inline-block w-[10px] lg:w-auto"
               src="./assets/images/landing/messages-2.png"
               alt=""
             />
@@ -1161,11 +1114,11 @@
           />
           <label
             for="singlePagetab4"
-            class="text-[16px] md:text-[18px] lg:text-[24px] !pb-3 gap-1"
+            class="text-[10px] lg:text-[16px] !p-[10px] lg:!p-[15px] !pb-3 gap-1"
             style="font-family: yekanBakhtRegular"
           >
             <img
-              class="inline-block"
+              class="inline-block w-[10px] lg:w-auto"
               src="./assets/images/landing/message-textt.png"
               alt=""
             />
@@ -2221,12 +2174,12 @@
         </div>
 
         <!-- <div
-          class="border-2 border-[#7E8285] w-[147px] h-[45px] text-[20px] lg:flex lg:items-center lg:justify-around lg:gap-2 hidden"
-        >
-          <a href="#" class="addCount">+</a>
-          <p class="result"></p>
-          <a href="#" class="removeCount">-</a>
-        </div> -->
+        class="border-2 border-[#7E8285] w-[147px] h-[45px] text-[20px] lg:flex lg:items-center lg:justify-around lg:gap-2 hidden"
+      >
+        <a href="#" class="addCount">+</a>
+        <p class="result"></p>
+        <a href="#" class="removeCount">-</a>
+      </div> -->
         <div
           class="border-2 w-[147px] h-[46px] mt-2 text-[20px] flex items-center justify-around gap-2"
         >
