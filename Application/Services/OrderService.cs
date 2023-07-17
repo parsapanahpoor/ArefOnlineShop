@@ -4,6 +4,7 @@ using Domain.Models.Order;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
+using Domain.ViewModels.UserPanel.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,6 +89,12 @@ namespace Application.Services
         public List<OrderDetails> GetAllOrderDetailsByOrderID(int orderid)
         {
             return _order.GetAllOrderDetailsByOrderID(orderid);
+        }
+
+        //Fill List Of User Orders Details User Side View Model
+        public async Task<List<ListOfUserOrdersDetailsUserSideViewModel>> FillListOfUserOrdersDetailsUserSideViewModel(int orderId)
+        {
+            return await _order.FillListOfUserOrdersDetailsUserSideViewModel(orderId);
         }
 
         public List<Orders> GetAllOrdersForShowInAdminPanel()

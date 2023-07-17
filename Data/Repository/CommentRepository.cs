@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Models.Blog;
 using Domain.Models.Comment;
+using Domain.Models.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -133,6 +134,16 @@ namespace Data.Repository
         {
             _context.Comment.Update(comment);
             Savechanges();
+        }
+
+        //Get List Of User Comments
+        public async Task<List<Comment>> GetListOfUserComments(int userId)
+        {
+            return await _context.Comment
+                                 .Include(p=> p.Users)
+                                 .AsNoTracking()
+                                 .Where(p=> !p.IsDelete && p.UserId == userId)
+                                 .ToListAsync();
         }
     }
 }

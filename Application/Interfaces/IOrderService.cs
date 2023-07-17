@@ -2,6 +2,7 @@
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
+using Domain.ViewModels.UserPanel.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,8 @@ namespace Application.Interfaces
         void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId , int count);
         void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price, int colorId, int sizeId, int count);
         List<OrderDetails> GetAllOrderDetailsByOrderID(int orderid);
+        //Fill List Of User Orders Details User Side View Model
+        Task<List<ListOfUserOrdersDetailsUserSideViewModel>> FillListOfUserOrdersDetailsUserSideViewModel(int orderId);
         bool CheckForProductCount(int Orderid);
         void RemoveProductFromShopCart(int orderdetailid);
         void PlusProductToTheOrderDetails(int orderdetailid);

@@ -4,6 +4,7 @@ using Domain.Models.Order;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
+using Domain.ViewModels.UserPanel.Orders;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,37 @@ namespace Data.Repository
         {
             return _context.OrderDetails.Where(p => p.OrderID == orderid)
                                         .Include(p => p.Product).ToList();            
+        }
+
+        //Fill List Of User Orders Details User Side View Model
+        public async Task<List<ListOfUserOrdersDetailsUserSideViewModel>> FillListOfUserOrdersDetailsUserSideViewModel(int orderId)
+        {
+            return await _context.OrderDetails
+                                 .Include(p=> p.Product)
+                                 .AsNoTracking()
+                                 .Where(p=> p.OrderID == orderId)
+                                 .Select(p=> new ListOfUserOrdersDetailsUserSideViewModel()
+                                 {
+                                     OrderDetails = p,
+                                     Locations = _context.Orders
+                                                         .Include(s=> s.Locations)
+                                                         .AsNoTracking()
+                                                         .Where(s => s.IsFinally && s.OrderId == orderId)
+                                                         .Select(s=> s.Locations)
+                                                         .FirstOrDefault(),
+                                     Product = p.Product,
+                                     ProductColor = _context.ProductColors
+                                                            .AsNoTracking()      
+                                                            .FirstOrDefault(s=> s.Id == p.ColorId),
+                                     ProductsSize = _context.ProductsSizes
+                                                            .AsNoTracking()
+                                                            .FirstOrDefault(s => s.Id == p.SizeId),
+                                     Order = _context.Orders
+                                                     .Include(s=> s.User)
+                                                     .AsNoTracking()
+                                                     .FirstOrDefault(s=> s.OrderId == orderId)
+                                 })
+                                 .ToListAsync();
         }
 
         public List<Orders> GetAllOrdersForShowInAdminPanel()
@@ -192,7 +224,7 @@ namespace Data.Repository
             return await _context.OrderDetails
                                  .AsNoTracking()
                                  .Include(p=> p.Product)
-                                 .Where(p => p.OrderDetailID == id)
+                                 .Where(p => p.OrderID == id)
                                  .Select(p => new ListOfOrderDetailsAdminSideViewModel()
                                  {
                                      OrderDetails = p,

@@ -173,5 +173,11 @@ namespace Application.Services
         {
             _comment.UpdateComment(comment);
         }
+
+        //Get List Of User Comments
+        public async Task<List<Comment>> GetListOfUserComments(int userId)
+        {
+            return await _comment.GetListOfUserComments(userId);
+        }
     }
 }

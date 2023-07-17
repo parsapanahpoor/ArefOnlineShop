@@ -25,6 +25,8 @@ namespace Domain.Interfaces
 
         List<Comment> GetProductCommentsForShowByID(int id);
 
+        //Get List Of User Comments
+        Task<List<Comment>> GetListOfUserComments(int userId);
 
 
         #region PanelAdmin

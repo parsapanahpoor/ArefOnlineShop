@@ -1,0 +1,117 @@
+﻿@using Application.Convertors;
+@using Application.StaticTools;
+@model List<Domain.Models.Comment.Comment>
+@{
+    ViewData["Title"] = "ریز فاکتور ";
+}
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+
+            $(document).on('click', '.btn_print', function (event) {
+                event.preventDefault();
+
+                console.log("hello");
+
+                //credit : https://ekoopmans.github.io/html2pdf.js
+
+                var element = document.getElementById('container_content');
+
+                //easy
+                html2pdf().from(element).save();
+
+            });
+        });
+    </script>
+
+}
+
+
+<main class="mx-auto mt-7 mb-7">
+    <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
+
+        <!-- Side Bar -->
+        @await Component.InvokeAsync("UserPanelSideBarViewComponents")
+
+        <div class="w-full lg:flex min-h-[765px] mainContet hidden">
+            <!-- ----- MyComments ----- -->
+            <section id="MyComments" class="tabcontent w-full flex flex-col items-center justify-start">
+                <div class="return p-5 pt-0 w-full flex justify-start lg:hidden">
+                    <a href="#" class="flex items-center justify-start gap-1">
+                        <img class="transform rotate-180" src="../assets/images/landing/arrow-left.png" alt="">
+                        <div class="text-right">
+                            <p class="text-[14px] text-[#252525]" style="font-family: yekanBakhtBold">
+                                لیست دیدگاه های شما
+                            </p>
+                            <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtRegular">
+                                My comments list
+                            </p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
+                    <div class="w-full flex justify-between items-center">
+                        <div>
+                            <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
+                                دیدگاه های شما
+                            </p>
+                            <p class="text-[12px] text-[#828282]">My orders</p>
+                        </div>
+                    </div>
+
+
+                    <div id="waiting" class="tabComment w-full flex flex-col items-start justify-center gap-5" style="display: block;">
+
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var comment in Model)
+                            {
+                                <!-- card -->
+                                <div class="w-full border-2 border-[#B7B7B7] p-5 mb-3">
+                                    <div class="flex flex-col items-start justify-center lg:flex lg:items-center lg:flex-row lg:justify-between gap-2 lg:gap-3">
+                                        <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
+                                            <div class="w-[51px] lg:w-[73px]">
+                                                <img class="w-full" src="/Images/UserAvatar/@comment.Users.UserAvatar" alt="">
+                                            </div>
+                                            <div>
+                                                <p class="text-[14px] lg:text-[16px] text-[#252525] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                                                    @comment.Users.UserName
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="flex items-start justify-between gap-2 lg:gap-3 mt-5">
+                                        <div class="">
+                                            <div class="flex gap-2">
+
+                                                <div class="inline-block pt-3">
+                                                    <p class="text-[10px] text-[#252525] leading-[24px] mb-2">
+                                                        @comment.CommentBody
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+
+
+                        <!-- --- -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </section>
+</main>
