@@ -230,6 +230,11 @@
                         <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
                     </a>
 
+                    <a asp-action="DeleteShopCart" asp-area="" asp-controller="order" asp-route-orderId="@Model.Order.OrderId" class="w-full bg-[#252525]  mt-5 mb-5  text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
+                        حذف و خرید مجدد
+                        <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
+                    </a>
+
                     <form asp-action="AddDiscountForOrder" asp-controller="order" method="post">
                         <div class="w-full lg:w-[305px] flex items-center justify-center gap-1 lg:p-0 p-6 bg-[#F6F6F6]">
 

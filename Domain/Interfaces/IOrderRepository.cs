@@ -49,6 +49,15 @@ namespace Domain.Interfaces
         //Fill List Of Order Details Admin Side View Model
         Task<List<ListOfOrderDetailsAdminSideViewModel>> FillListOfOrderDetailsAdminSideViewModel(int id);
 
+        //Delete User Order 
+        Task<bool> DeleteUserOrder(int orderId, int UserId);
+
+        //Is Order In Last Step Of Shoping
+        Task<bool> IsOrderInLastStepOfShoping(int ordeId, int userId);
+
+        //Get Order By Order Detail Id 
+        Orders GetOrderByOrderDetailId(int orderDetailId);
+
         #endregion
     }
 }

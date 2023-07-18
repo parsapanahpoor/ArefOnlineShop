@@ -207,16 +207,16 @@
   box-shadow: 0 0 0 0.5px #252525;
   transition-duration: 0.3s;
 }
-.addToFavorite:hover{
+/* .addToFavorite:hover{
     width: 200px;
 }
 .addToFavorite{
     transition: all .35s ease;
 }
 .addToFavorite:hover>span {
-    /* visibility: visible; */
+   
     display: block;
     opacity: 1;
     transform: translateX(0px);
 
-}
+} */

@@ -181,6 +181,7 @@ namespace Data.Repository
                                                             ProductImageName = p.ProductImageName,
                                                             Title = p.ProductTitle
                                                         })
+                                                        .Take(6)
                                                         .ToListAsync();
 
             lastProcuctsChild.Add(AllProducts);

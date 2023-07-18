@@ -299,7 +299,7 @@
                                 </div>
                             }
                         }
-                   
+
                     </div>
                 </div>
 
@@ -399,7 +399,7 @@
             <input type="radio" name="tabset" id="singlePagetab3" aria-controls="idea">
             <label for="singlePagetab3" class="text-[16px] md:text-[18px] lg:text-[24px] !pb-3  gap-1 " style="font-family: yekanBakhtRegular">
                 <img class="inline-block" src="/ArefSet/src/assets/images/landing/messages-2.png" alt="">
-                نظرات (@((Model.Comments != null && Model.Comments.Any()) ? Model.Comments.Count() : 0 ))
+                نظرات (@((Model.Comments != null && Model.Comments.Any()) ? Model.Comments.Count() : 0))
             </label>
 
 
@@ -485,7 +485,7 @@
                     @if (Model.Comments != null && Model.Comments.Any())
                     {
                         <div class="w-full my-6">
-                            @foreach (var comment in Model.Comments.Where(p=> !p.ParentId.HasValue))
+                            @foreach (var comment in Model.Comments.Where(p => !p.ParentId.HasValue))
                             {
                                 <div class="w-full pb-2  border-b-[1px] mb-7">
 

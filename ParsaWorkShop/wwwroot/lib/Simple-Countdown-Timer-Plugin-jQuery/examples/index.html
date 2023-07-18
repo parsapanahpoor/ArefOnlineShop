@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./../jquery.js"></script>
+<script src="./../jquery.simple.timer.js"></script>
+
+    <p><div class="timer" data-minutes-left="10"></div></p>
+
+<style>
+.jst-hours {
+  float: left;
+}
+.jst-minutes {
+  float: left;
+}
+.jst-seconds {
+  float: left;
+}
+.jst-clearDiv {
+  clear: both;
+}
+.jst-timeout {
+  color: red;
+}
+
+</style>
+
+<script>
+$(function(){
+
+    $('.timer-quick').startTimer();
+
+    $('.timer-span').startTimer({
+        elementContainer: "span"
+    });
+
+    $('.timer').startTimer({
+      onComplete: function(){
+        console.log('Complete');
+      }
+    });
+
+    $('.timer-pause').startTimer({
+      onComplete: function(){
+        console.log('Complete');
+      },
+      allowPause: true
+    });
+})
+</script>
+
+</body>
+</html>

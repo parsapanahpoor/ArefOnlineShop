@@ -44,7 +44,7 @@ namespace ParsaWorkShop.Controllers
 
             if (!string.IsNullOrEmpty(mobile))
             {
-                TempData[SuccessMessage] = "لطفا اطلاعات خواسته شده را جهت ادامه ی مراحل ثبت نام وارد نمایید.";
+                TempData[SuccessMessage] = "please input informations";
 
                 return View(new RegisterViewModel()
                 {
@@ -64,7 +64,7 @@ namespace ParsaWorkShop.Controllers
 
             if (!ModelState.IsValid)
             {
-                TempData[ErrorMessage] = "مقادیر وارد شده معتبر نمی باشد . ";
+                TempData[ErrorMessage] = "informations are not valid ";
                 return View(register);
             }
 
@@ -77,23 +77,23 @@ namespace ParsaWorkShop.Controllers
             switch (result)
             {
                 case RegisterUserResult.MobileExist:
-                    TempData[ErrorMessage] = "تلفن همراه وارد شده تکراری می باشد";
-                    TempData[InfoMessage] = "در صورتی که از قبل در سایت ثبت نام کردید از گزینه ی ورود به سایت استفاده کنید";
-                    ModelState.AddModelError("UserName", "تلفن همراه وارد شده تکراری می باشد");
+                    TempData[ErrorMessage] = "The entered mobile phone number is duplicate";
+                    TempData[InfoMessage] = "If you have already registered on the site, use the option to enter the site";
+                    ModelState.AddModelError("UserName", "The entered mobile phone number is duplicate");
                     break;
 
                 case RegisterUserResult.UsernameExist:
-                    TempData[ErrorMessage] = "نام کاربری وارد شده تکراری می باشد.";
-                    ModelState.AddModelError("Mobile", "نام کاربری وارد شده تکراری می باشد.");
+                    TempData[ErrorMessage] = "The entered username is duplicate.";
+                    ModelState.AddModelError("Mobile", "The entered username is duplicate.");
                     break;
 
                 case RegisterUserResult.SiteRoleNotAccept:
-                    TempData[ErrorMessage] = "قوانین سایت باید پذیرفته شوند ";
+                    TempData[ErrorMessage] = " Site rules must be accepted";
                     break;
 
                 case RegisterUserResult.Success:
-                    TempData[SuccessMessage] = "ثبت نام شما با موفقیت انجام شد .";
-                    TempData[InfoMessage] = $"پیامی  حاوی کد فعالسازی حساب کاربری به {register.Mobile} ارسال شد .";
+                    TempData[SuccessMessage] = "Your registration has been successfully completed.";
+                    TempData[InfoMessage] = $"sms was sent to {register.Mobile}";
 
                     return RedirectToAction("ActiveUserByMobileActivationCode", new { Mobile = register.Mobile });
             }
@@ -121,7 +121,7 @@ namespace ParsaWorkShop.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData[ErrorMessage] = "مقادیر وارد شده معتبر نمی باشد .";
+                TempData[ErrorMessage] = "\r\nThe entered values ​​are not valid.";
                 return View(login);
             }
 
@@ -130,13 +130,13 @@ namespace ParsaWorkShop.Controllers
             switch (result)
             {
                 case LoginResult.UserNotFound:
-                    TempData[ErrorMessage] = "کاربری با اطلاعات وارد شده یافت نشد .";
+                    TempData[ErrorMessage] = "User with entered information was not found.";
                     break;
                 case LoginResult.UserIsBan:
-                    TempData[WarningMessage] = "دسترسی شما به سایت محدود شده است .";
+                    TempData[WarningMessage] = "Your access to the site is limited.";
                     break;
                 case LoginResult.MobileNotActivated:
-                    TempData[WarningMessage] = "حساب کاربری شما فعال نشده است";
+                    TempData[WarningMessage] = "\r\nYour account has not been activated";
                     return RedirectToAction("ActiveUserByMobileActivationCode", new { Mobile = login.Mobile, Resend = true });
 
                 case LoginResult.Success:
@@ -278,24 +278,24 @@ namespace ParsaWorkShop.Controllers
                 switch (result)
                 {
                     case ForgotPasswordResult.VerificationSmsFaildFromParsGreen:
-                        TempData[ErrorMessage] = " کد تایید جدید برای شما ارسال نشد!";
-                        TempData[ErrorMessage] = "لطفا با پشتیبانی سایت تماس بگیرید!";
-                        ModelState.AddModelError("Mobile", "لطفا با پشتیبانی سایت تماس بگیرید");
+                        TempData[ErrorMessage] = " The new verification code was not sent to you!";
+                        TempData[ErrorMessage] = "Please contact site support!";
+                        ModelState.AddModelError("Mobile", "Please contact site support");
                         break;
                     case ForgotPasswordResult.NotFound:
-                        TempData[WarningMessage] = "کاربر مورد نظر یافت نشد";
+                        TempData[WarningMessage] = "The desired user was not found";
                         break;
                     case ForgotPasswordResult.FailSendEmail:
-                        TempData[WarningMessage] = "در ارسال ایمیل مشکلی رخ داد";
+                        TempData[WarningMessage] = "There was a problem sending the email";
                         break;
                     case ForgotPasswordResult.UserIsBlocked:
-                        TempData[ErrorMessage] = "حساب کاربری شما بسته شده است!";
+                        TempData[ErrorMessage] = "Your account has been closed!";
                         break;
                     case ForgotPasswordResult.SuccessSendEmail:
-                        TempData[WarningMessage] = "کد جدید برای شما ارسال شد";
+                        TempData[WarningMessage] = "The new code has been sent to you";
                         return RedirectToAction("ResetPassword", "Account", new { mobile = forgot.Mobile });
                     case ForgotPasswordResult.Success:
-                        TempData[SuccessMessage] = "کد تایید جدید برای شما ارسال شد";
+                        TempData[SuccessMessage] = "A new verification code has been sent to you";
                         return RedirectToAction("ResetPassword", "Account", new { mobile = forgot.Mobile });
                 }
             }
@@ -345,13 +345,13 @@ namespace ParsaWorkShop.Controllers
                 switch (res)
                 {
                     case ResetPasswordResult.NotFound:
-                        TempData[WarningMessage] = "کاربری با مشخصات وارد شده یافت نشد";
+                        TempData[WarningMessage] = "A user with the entered profile was not found";
                         return Redirect("/");
                     case ResetPasswordResult.WrongActiveCode:
-                        TempData[ErrorMessage] = "کد تایید وارد شده صحیح نمی باشد";
+                        TempData[ErrorMessage] = "The verification code entered is not correct";
                         break;
                     case ResetPasswordResult.Success:
-                        TempData[SuccessMessage] = "کلمه عبور شما با موفقیت تغییر پیدا کرد";
+                        TempData[SuccessMessage] = "Your password has been successfully changed";
                         await HttpContext.SignOutAsync();
                         return RedirectToAction("Login", "Account", new { area = "" });
                 }

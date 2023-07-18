@@ -1,30 +1,46 @@
-// var menu = document.getElementById("menu");
-// var main = document.getElementById("main");
+// import Swiper from "swiper/swiper-bundle.mjs";
+// import "swiper/swiper-bundle.css";
+ 
+ // -----------------------------Like btn------------------------------
 
-// // show the menu
-// function openMenu() {
-//     menu.classList.remove('-ml-56');
-//     menu.classList.add('ml-0');
-// }
+ var likeBtn = document.getElementsByClassName("likeBtn");
+ var i;
+ for (i = 0; i < likeBtn.length; i++) {
+   likeBtn[i].addEventListener("click", function () {
+     this.classList.toggle("text-red-500");
+   });
+ }
 
-// // make the menu "go away"
-// function closeMenu() {
-//     menu.classList.remove('ml-0');
-//     menu.classList.add('-ml-56');
-// }
+// // header slider
+//  var swiper = new Swiper(".mySwiper", {
+//     slidesPerView: 1,
+//     effect: "fade",
+//     loop: true,
+//     pagination: {
+//       el: ".swiper-pagination",
+//       clickable: true,
+//     },
+//     navigation: {
+//       nextEl: ".swiper-button-next",
+//       prevEl: ".swiper-button-prev",
+//     },
+//     autoplay: {
+//       delay: 3000,
+//     },
+// });
 
 
-    //   const swiperSlider = new Swiper(".swiper", {
-    //     loop: true,
-    //     direction: "vertical", // عمودی
-
-    //     navigation: {
-    //       nextEl: ".swiper-button-next",
-    //       prevEl: ".swiper-button-prev",
-    //     },
-
-    //     pagination: {
-    //       el: ".swiper-pagination",
-    //     },
-    //   });
-  
+// // comment slider
+// var swiper3 = new Swiper(".swiper3", {
+//     direction: "vertical",
+//     // spaceBetween: 30,
+//     // effect: "fade",
+//     loop: true,
+//     pagination: {
+//       el: ".swiper-pagination3",
+//       clickable: true,
+//     },
+//     autoplay: {
+//       delay: 3000,
+//     },
+// });

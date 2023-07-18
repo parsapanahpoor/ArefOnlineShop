@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -190,7 +191,7 @@ namespace Data.Repository
                                                                                         .Select(c => new InvoiceColorSiteSideViewModel()
                                                                                         {
                                                                                             ColorId = c.Id,
-                                                                                            ColorName = c.ColorTitle,
+                                                                                            ColorName = c.ColorFarsiTitle,
                                                                                             ColorCode = c.ColorCode
                                                                                         })
                                                                                         .FirstOrDefault(),
@@ -238,6 +239,70 @@ namespace Data.Repository
                                                             .FirstOrDefault(),
                                  })
                                  .ToListAsync(); 
+        }
+
+        //Delete User Order 
+        public async Task<bool> DeleteUserOrder(int orderId , int UserId)
+        {
+            #region Get Order With Datas
+
+            var order = await _context.Orders
+                                      .FirstOrDefaultAsync(p=> !p.IsFinally && p.Userid == UserId && p.OrderId == orderId && p.Price.HasValue); 
+
+            if(order == null) return false;
+
+            #endregion
+
+            #region Remove Order Detail And Discount  
+
+            var orderDetails = await _context.OrderDetails
+                                             .Where(p => p.OrderID == orderId)
+                                             .ToListAsync();
+
+            if (orderDetails != null && orderDetails.Any())
+            {
+                    _context.OrderDetails.RemoveRange(orderDetails);
+            }
+
+            #endregion
+
+            #region Discount 
+
+            var discount = await _context.DiscountCodeSelectedUsers
+                                         .FirstOrDefaultAsync(p => !p.IsDelete && p.UserId == UserId && p.OrderId == orderId);
+
+            if (discount != null)
+            {
+                _context.DiscountCodeSelectedUsers.Remove(discount);
+            }
+
+            //Update Order
+            order.Price = null;
+            _context.Orders.Update(order);
+
+            //Save Changes
+            await _context.SaveChangesAsync();
+
+            #endregion
+
+            return true;
+        }
+
+        //Is Order In Last Step Of Shoping
+        public async Task<bool> IsOrderInLastStepOfShoping(int ordeId, int userId)
+        {
+            return await _context.Orders
+                                 .AnyAsync(p=> !p.IsFinally && p.OrderId == ordeId && p.Userid == userId && p.Price.HasValue);
+        }
+
+        //Get Order By Order Detail Id 
+        public Orders GetOrderByOrderDetailId(int orderDetailId)
+        {
+            return _context.OrderDetails
+                           .Include(p=> p.Order)
+                           .Where(p=> p.OrderDetailID == orderDetailId)
+                           .Select(p=> p.Order)
+                           .FirstOrDefault();
         }
     }
 }

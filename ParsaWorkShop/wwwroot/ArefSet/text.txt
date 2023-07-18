@@ -104,3 +104,7 @@ function myFunction() {
 </html>
 
 
+<meta name="description" content="سایت  رسمی رستوران آلسترومریا">
+        <meta name="keyword" content="restaurant">
+        <meta name="author" content="HEDIYEH JOON">
+

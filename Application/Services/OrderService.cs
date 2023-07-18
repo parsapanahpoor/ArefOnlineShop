@@ -173,6 +173,12 @@ namespace Application.Services
             _order.UpdateOrderDetail(orderDetails);
         }
 
+        //Get Order By Order Detail Id 
+        public Orders GetOrderByOrderDetailId(int orderDetailId)
+        {
+            return _order.GetOrderByOrderDetailId(orderDetailId);
+        }
+
         public void PlusProductToTheOrderDetails(int orderdetailid)
         {
             OrderDetails orderDetails = _order.GetOrderDetailByID(orderdetailid);
@@ -212,6 +218,18 @@ namespace Application.Services
         public async Task<List<ListOfOrderDetailsAdminSideViewModel>> FillListOfOrderDetailsAdminSideViewModel(int id)
         {
             return await _order.FillListOfOrderDetailsAdminSideViewModel(id);
+        }
+
+        //Delete User Order 
+        public async Task<bool> DeleteUserOrder(int orderId, int UserId)
+        {
+            return await _order.DeleteUserOrder(orderId, UserId);
+        }
+
+        //Is Order In Last Step Of Shoping
+        public async Task<bool> IsOrderInLastStepOfShoping(int ordeId, int userId)
+        {
+            return await _order.IsOrderInLastStepOfShoping(ordeId, userId);
         }
     }
 }

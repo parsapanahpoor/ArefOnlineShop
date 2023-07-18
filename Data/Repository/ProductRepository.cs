@@ -111,7 +111,7 @@ namespace Data.Repository
 
         public List<Product> GetAllProducts()
         {
-            return _context.product.Include(p => p.Users).ToList();
+            return _context.product.Include(p => p.Users).OrderByDescending(p=> p.CreateDate).ToList();
         }
 
         public List<ProductSelectedCategory> GetAllProductSelectedCategories()

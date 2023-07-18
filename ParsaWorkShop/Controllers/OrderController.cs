@@ -25,6 +25,7 @@ using ParsaWorkShop.Web.Controllers;
 using Domain.ViewModels.SiteSide.Order;
 using Microsoft.CodeAnalysis;
 using Domain.Models.Users;
+using OfficeOpenXml.Style;
 
 #endregion
 
@@ -113,6 +114,15 @@ namespace ParsaWorkShop.Controllers
             {
                 Orders order = _order.GetOrderForShopCart(userid);
 
+                #region Check User Last Part Of Shop Cart
+
+                if (await _order.IsOrderInLastStepOfShoping(order.OrderId , User.GetUserId()))
+                {
+                    return RedirectToAction(nameof(AcceptFactor) , new { oredrid = order.OrderId , Locationid = order.LocationID });
+                }
+
+                #endregion
+
                 if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id, model.selectColor.Value, model.selectSize.Value))
                 {
                     _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id, model.selectColor.Value, model.selectSize.Value, model.Count);
@@ -143,6 +153,22 @@ namespace ParsaWorkShop.Controllers
         public async Task<IActionResult> ShopCart()
         {
             var order = await _order.FillInvoiceSiteSideViewModel(User.GetUserId());
+
+            if (order == null)
+            {
+                TempData[ErrorMessage] = "There Is not Any Product in your Shop Cart. ";
+                return RedirectToAction("Index", "Home");
+            }
+
+            #region Check User Last Part Of Shop Cart
+
+            if (await _order.IsOrderInLastStepOfShoping(order.Order.OrderId, User.GetUserId()))
+            {
+                return RedirectToAction(nameof(AcceptFactor), new { oredrid = order.Order.OrderId, Locationid = order.Order.LocationID });
+            }
+
+            #endregion
+
             if (order == null)
             {
                 TempData[ErrorMessage] = "There Is not Any Product in your Shop Cart. ";
@@ -162,12 +188,28 @@ namespace ParsaWorkShop.Controllers
 
         #region Remove Product From Shop Cart
 
-        public IActionResult RemoveProductFromShopCart(int? id)
+        public async Task<IActionResult> RemoveProductFromShopCart(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+
+            #region Get Order By Order Detail Id 
+
+            Orders order = _order.GetOrderByOrderDetailId(id.Value);
+
+            #region Check User Last Part Of Shop Cart
+
+            if (await _order.IsOrderInLastStepOfShoping(order.OrderId, User.GetUserId()))
+            {
+                return RedirectToAction(nameof(AcceptFactor), new { oredrid = order.OrderId, Locationid = order.LocationID });
+            }
+
+            #endregion
+
+            #endregion
+
             _order.RemoveProductFromShopCart((int)id);
 
             return RedirectToAction(nameof(ShopCart));
@@ -177,12 +219,29 @@ namespace ParsaWorkShop.Controllers
 
         #region Plus Product From Order Detail
 
-        public IActionResult PlusProductFromOrderDetail(int? id)
+        public async Task<IActionResult> PlusProductFromOrderDetail(int? id)
         {
             if (id == null)
             {
                 return View();
             }
+
+            #region Get Order By Order Detail Id 
+
+            Orders order = _order.GetOrderByOrderDetailId(id.Value);
+
+            #region Check User Last Part Of Shop Cart
+
+            if (await _order.IsOrderInLastStepOfShoping(order.OrderId, User.GetUserId()))
+            {
+                return RedirectToAction(nameof(AcceptFactor), new { oredrid = order.OrderId, Locationid = order.LocationID });
+            }
+
+            #endregion
+
+            #endregion
+
+
             _order.PlusProductToTheOrderDetails((int)id);
 
             return RedirectToAction(nameof(ShopCart));
@@ -192,12 +251,30 @@ namespace ParsaWorkShop.Controllers
 
         #region Minus Product From Order Detail
 
-        public IActionResult MinusProductFromOrderDetail(int? id)
+        public async Task<IActionResult> MinusProductFromOrderDetail(int? id)
         {
             if (id == null)
             {
                 return View();
+            
             }
+
+            #region Get Order By Order Detail Id 
+
+            Orders order = _order.GetOrderByOrderDetailId(id.Value);
+
+            #region Check User Last Part Of Shop Cart
+
+            if (await _order.IsOrderInLastStepOfShoping(order.OrderId, User.GetUserId()))
+            {
+                return RedirectToAction(nameof(AcceptFactor), new { oredrid = order.OrderId, Locationid = order.LocationID });
+            }
+
+            #endregion
+
+            #endregion
+
+
             _order.MinusProductToTheOrderDetails((int)id);
 
             return RedirectToAction(nameof(ShopCart));
@@ -207,12 +284,28 @@ namespace ParsaWorkShop.Controllers
 
         #region Get The User Locations
 
-        public IActionResult GetTheUserLocations(int? id)
+        public async Task<IActionResult> GetTheUserLocations(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+
+            #region Get Order By Order Id 
+
+            Orders order = _order.GetOrderByOrderID(id.Value);
+
+            #region Check User Last Part Of Shop Cart
+
+            if (await _order.IsOrderInLastStepOfShoping(order.OrderId, User.GetUserId()))
+            {
+                return RedirectToAction(nameof(AcceptFactor), new { oredrid = order.OrderId, Locationid = order.LocationID });
+            }
+
+            #endregion
+
+            #endregion
+
             int userid = _user.GetUserIdByUserName(User.Identity.Name);
 
             ViewBag.UserLocations = _location.GetAllUserLocations(userid);
@@ -226,8 +319,23 @@ namespace ParsaWorkShop.Controllers
         #region Add The User Locations
 
         [HttpPost]
-        public IActionResult AddTheUserLocations(int orderid, string LocationAddress, string PostalCode, string Username, string Mobile, string Email, string CityName, string StateName)
+        public async Task<IActionResult> AddTheUserLocations(int orderid, string LocationAddress, string PostalCode, string Username, string Mobile, string Email, string CityName, string StateName)
         {
+            #region Get Order By Order Id 
+
+            Orders order = _order.GetOrderByOrderID(orderid);
+
+            #region Check User Last Part Of Shop Cart
+
+            if (await _order.IsOrderInLastStepOfShoping(order.OrderId, User.GetUserId()))
+            {
+                return RedirectToAction(nameof(AcceptFactor), new { oredrid = order.OrderId, Locationid = order.LocationID });
+            }
+
+            #endregion
+
+            #endregion
+
             if (ModelState.IsValid)
             {
                 int userid = _user.GetUserIdByUserName(User.Identity.Name);
@@ -261,6 +369,26 @@ namespace ParsaWorkShop.Controllers
 
             return View(await _order.FillInvoiceSiteSideViewModel(User.GetUserId()));
 
+        }
+
+        #endregion
+
+        #region Delete Shop Cart 
+
+        public async Task<IActionResult> DeleteShopCart(int orderId)
+        {
+            #region Delete User Shop Cart 
+
+            var res = await _order.DeleteUserOrder(orderId , User.GetUserId());
+            if (res)
+            {
+                TempData[SuccessMessage] = "Operation Has Been Successfully";
+                return RedirectToAction("Index" , "Home");
+            }
+
+            #endregion
+
+            return NotFound();
         }
 
         #endregion

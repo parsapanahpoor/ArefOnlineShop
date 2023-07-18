@@ -105,5 +105,14 @@ namespace ParsaWorkShop.Controllers
         }
 
         #endregion
+
+        #region About Us
+
+        public async Task<IActionResult> AboutUs()
+        {
+            return View();
+        }
+
+        #endregion
     }
 }
