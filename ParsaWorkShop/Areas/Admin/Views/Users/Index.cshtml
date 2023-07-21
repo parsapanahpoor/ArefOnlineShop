@@ -147,7 +147,6 @@
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="موبایل : activate to sort column ascending">ایمیل </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="موبایل : activate to sort column ascending">ثبت نام  </th>
 
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="وضعیت: activate to sort column ascending">وضعیت</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label=" activate to sort column ascending"></th>
                                         </tr>
                                     </thead>
@@ -164,15 +163,6 @@
                                                 <td>@item.Email</td>
                                                 <td>@item.RegisterDate.ToShamsi()</td>
 
-                                                @if (item.IsActive)
-                                                {
-                                                    <td><a href="/Admin/Users/LockUser?Userid=@item.UserId&&id=1" class="btn btn-success btn-sm" style="color:white;">فعال</a></td>
-
-                                                }
-                                                @if (!item.IsActive)
-                                                {
-                                                    <td><a href="/Admin/Users/LockUser?Userid=@item.UserId&&id=2" class="btn btn-danger btn-sm" style="color:white;">غیر فعال</a></td>
-                                                }
                                                 <td>
 
                                                     <a class="btn btn-warning btn-sm waves-effect" asp-action="Edit" asp-area="Admin" asp-controller="Users" asp-route-id="@item.UserId">

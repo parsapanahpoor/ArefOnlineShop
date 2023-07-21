@@ -126,7 +126,7 @@ namespace Data.Repository
 
         public List<Product> GetAllProductsNotInOffer()
         {
-            return _context.product.Where(p => p.IsInOffer != true && p.IsInOffer == null).ToList();
+            return _context.product.Include(p=> p.Users).Where(p => p.IsInOffer != true && p.IsInOffer == null).ToList();
         }
 
         public ProductFeature GetFeatureById(int id)
