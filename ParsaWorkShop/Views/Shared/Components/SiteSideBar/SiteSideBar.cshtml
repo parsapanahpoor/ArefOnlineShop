@@ -48,27 +48,30 @@
                         <span class="sr-only">Close menu</span>
                     </a>
                     <div class="py-4 overflow-y-auto">
-                        <div class="flex md:order-2 mb-3">
-                            <div class="w-full h-[44px] border-[1px] border-gray-600 flex justify-start items-center gap-1">
-                                <input type="search"
-                                       class="h-full w-full focus:outline-none bg-transparent px-1"
-                                       placeholder="جستجو کنید ..."
-                                       name=""
-                                       id="" />
-                                <a href="#"
-                                   class="w-[54px] h-full flex justify-center items-center bg-[#D92626]">
-                                    <img src="/ArefSet/src/assets/images/landing/search-normal.png"
-                                         class="w-[50%]"
-                                         alt="search icon"
-                                         title="جستجو کنید " />
-                                </a>
+                        <form id="Searchfiltre" asp-action="ListOfProducts" asp-area="" asp-controller="Products" method="get">
+
+                            <div class="flex md:order-2 mb-3">
+                                <div class="w-full h-[44px] border-[1px] border-gray-600 flex justify-start items-center gap-1">
+                                    <input type="search" name="ProductTitle"
+                                           class="h-full w-full focus:outline-none bg-transparent px-1"
+                                           placeholder="جستجو کنید ..."
+                                           id="" />
+                                    <div id="SearchIcon"
+                                         class="w-[54px] h-full flex justify-center items-center bg-[#D92626]">
+                                        <img src="/ArefSet/src/assets/images/landing/search-normal.png"
+                                             class="w-[50%]"
+                                             alt="search icon"
+                                             title="جستجو کنید " />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+                        </form>
 
                         <ul class="space-y-2 font-medium mt-5">
                             <li class="border-b-[1px] border-gray-600 border-opacity-80 py-2">
-                                <a target="_blank"
-                                   href="./index.html"
+                                <a 
+                                   href="/"
                                    class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700">
                                     <span class="flex-1 ml-3 whitespace-nowrap">صفحه اصلی</span>
                                     <span class="inline-flex items-center justify-center">
@@ -86,93 +89,37 @@
                                 </a>
                             </li>
 
-                            <li class="border-b-[1px] border-gray-600 border-opacity-80 py-2">
-                                <a target="_blank"
-                                   href="#"
-                                   class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700">
-                                    <span class="flex-1 ml-3 whitespace-nowrap">
-                                        مجموعه
-                                    </span>
-                                    <span class="inline-flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                             width="16"
-                                             height="16"
-                                             fill="currentColor"
-                                             class="bi bi-arrow-left text-white"
-                                             viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                                        </svg>
-                                        <!-- <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt=""> -->
-                                    </span>
-                                    <!-- <span class="inline-flex items-center justify-center px-2  text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
-                                </a>
-                            </li>
-                            <li class="border-b-[1px] border-gray-600 border-opacity-80 py-2">
-                                <a target="_blank"
-                                   href="#"
-                                   class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700">
-                                    <span class="flex-1 ml-3 whitespace-nowrap">مردانه</span>
-                                    <span class="inline-flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                             width="16"
-                                             height="16"
-                                             fill="currentColor"
-                                             class="bi bi-arrow-left text-white"
-                                             viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                                        </svg>
-                                        <!-- <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt=""> -->
-                                    </span>
-                                </a>
-                            </li>
+                            @if (Model.ListOfProductCategoriesForShowInSiteSideBar != null && Model.ListOfProductCategoriesForShowInSiteSideBar.Any())
+                            {
+                                foreach (var categories in Model.ListOfProductCategoriesForShowInSiteSideBar)
+                                {
+                                    <li class="border-b-[1px] border-gray-600 border-opacity-80 py-2">
+                                        <a asp-action="ListOfProducts" asp-controller="Products" asp-route-CategoriesId="@categories.CategoryId"
+                                           class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700">
+                                            <span class="flex-1 ml-3 whitespace-nowrap">
+                                                @categories.CategoryTitle
+                                            </span>
+                                            <span class="inline-flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                     width="16"
+                                                     height="16"
+                                                     fill="currentColor"
+                                                     class="bi bi-arrow-left text-white"
+                                                     viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                                </svg>
+                                                <!-- <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt=""> -->
+                                            </span>
+                                            <!-- <span class="inline-flex items-center justify-center px-2  text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
+                                        </a>
+                                    </li>
+
+                                }
+                            }
 
                             <li class="border-b-[1px] border-gray-600 border-opacity-80 py-2">
-                                <a target="_blank"
-                                   href="#"
-                                   class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700">
-                                    <span class="flex-1 ml-3 whitespace-nowrap">زنانه</span>
-                                    <span class="inline-flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                             width="16"
-                                             height="16"
-                                             fill="currentColor"
-                                             class="bi bi-arrow-left text-white"
-                                             viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                                        </svg>
-                                        <!-- <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt=""> -->
-                                    </span>
-                                </a>
-                            </li>
-
-                            <li class="border-b-[1px] border-gray-600 border-opacity-80 py-2">
-                                <a target="_blank"
-                                   href="#"
-                                   class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700">
-                                    <span class="flex-1 ml-3 whitespace-nowrap">
-                                        فروشگاه
-                                    </span>
-                                    <span class="inline-flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                             width="16"
-                                             height="16"
-                                             fill="currentColor"
-                                             class="bi bi-arrow-left text-white"
-                                             viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                  d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                                        </svg>
-                                        <!-- <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt=""> -->
-                                    </span>
-                                </a>
-                            </li>
-
-                            <li class="border-b-[1px] border-gray-600 border-opacity-80 py-2">
-                                <a target="_blank"
-                                   href="#"
+                                <a asp-action="ListOfBlogs" asp-area="" asp-controller="Blog"
                                    class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700">
                                     <span class="flex-1 ml-3 whitespace-nowrap">
                                         وبلاگ
@@ -193,8 +140,7 @@
                             </li>
 
                             <li class="border-b-[1px] border-gray-600 border-opacity-80 py-2">
-                                <a target="_blank"
-                                   href="#"
+                                <a asp-action="ContactUs" asp-area="" asp-controller="Home"
                                    class="flex items-center text-white rounded dark:text-white dark:hover:bg-gray-700">
                                     <span class="flex-1 ml-3 whitespace-nowrap">
                                         تماس با ما
@@ -241,7 +187,7 @@
                            id="" />
                 </div>
             </form>
-           
+
             <a asp-area="" asp-action="ShopCart" asp-controller="Order" class="w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center">
                 <img src="/ArefSet/src/assets/images/landing/Shopping bag 1.png" alt="" />
             </a>
