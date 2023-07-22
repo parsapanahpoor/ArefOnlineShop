@@ -193,11 +193,30 @@
             });
         }
 
-        function myFunction(e) {
-            document.getElementById("Status").value = e.target.value;
+        //function myFunction(e) {
+        //    document.getElementById("Status").value = e.target.value;
+        //    $("#filtre").submit();
+        //}
+
+        //$("#StatusOption").on('change', function () {
+
+        //    console.log(this.value);
+
+        //    document.getElementById("Status").value = this.value;
+        //    $("#filtre").submit();
+        //});
+
+
+
+    </script>
+
+    <script type="text/javascript">
+        function changeDropDown(dropdown) {
+            var location = dropdown.options[dropdown.selectedIndex].value;
+
+            document.getElementById("Status").value = location;
             $("#filtre").submit();
         }
-
     </script>
 }
 
@@ -435,8 +454,50 @@
                 </div>
                 <div class="flex items-center justify-center gap-3">
                     <p class="text-[#7D7D7D] text-[14px] font-medium">مرتب سازی بر اساس :</p>
-                    <select asp-for="Status" onchange="myFunction(event)" asp-items="Html.GetEnumSelectList(typeof(FilterStatus))"
+                    <select onchange='changeDropDown(this)' asp-items="Html.GetEnumSelectList(typeof(FilterStatus))"
                             class="py-2 px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+
+                        @if (Model.Status == FilterStatus.All)
+                        {
+                            <option value="0" >همه</option>
+                            <option value="1">تاریخ</option>
+                            <option value="2">بیشترین قیمت</option>
+                            <option value="3">کمترین قیمت</option>
+                            <option value="4">تخفیف دارها</option>
+                        }
+                        @if (Model.Status == FilterStatus.CreateDate)
+                        {
+                            <option value="0">همه</option>
+                            <option value="1" selected="selected">تاریخ</option>
+                            <option value="2">بیشترین قیمت</option>
+                            <option value="3">کمترین قیمت</option>
+                            <option value="4">تخفیف دارها</option>
+                        }
+                        @if (Model.Status == FilterStatus.MaxPrice)
+                        {
+                            <option value="0">همه</option>
+                            <option value="1">تاریخ</option>
+                            <option value="2" selected="selected">بیشترین قیمت</option>
+                            <option value="3">کمترین قیمت</option>
+                            <option value="4">تخفیف دارها</option>
+                        }
+                        @if (Model.Status == FilterStatus.MinPrice)
+                        {
+                            <option value="0">همه</option>
+                            <option value="1">تاریخ</option>
+                            <option value="2">بیشترین قیمت</option>
+                            <option value="3" selected="selected">کمترین قیمت</option>
+                            <option value="4">تخفیف دارها</option>
+                        }
+                        @if (Model.Status == FilterStatus.Offer)
+                        {
+                            <option value="0">همه</option>
+                            <option value="1">تاریخ</option>
+                            <option value="2">بیشترین قیمت</option>
+                            <option value="3">کمترین قیمت</option>
+                            <option value="4" selected="selected">تخفیف دارها</option>
+                        }
+
                     </select>
                 </div>
             </div>
@@ -467,7 +528,7 @@
                                         }
                                         else
                                         {
-                                              <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
+                                            <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
                                                 <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="">
                                             </div>
                                         }

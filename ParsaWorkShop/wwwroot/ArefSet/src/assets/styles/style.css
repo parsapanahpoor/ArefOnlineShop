@@ -141,8 +141,8 @@ html,
 .tabset > label {
   position: relative;
   display: inline-block;
-  padding: 15px 15px 15px;
-  border: 1px solid transparent;
+/*  padding: 15px 15px 15px;
+*/  border: 1px solid transparent;
   border-bottom: 0;
   cursor: pointer;
   font-weight: 600;
