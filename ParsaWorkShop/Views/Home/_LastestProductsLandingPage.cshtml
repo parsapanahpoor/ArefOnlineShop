@@ -59,20 +59,19 @@
 
                                     </div>
                                     <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
-                                        <div class="text-right">
+                                        <div class="text-right inline-block lg:w-[283px]">
                                             <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
                                             </p>
-                                            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" >
-                                               
+                                            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px] lg:text-[18px] ">
                                                 @item.Title
                                             </a>
                                         </div>
                                         <div class="text-left">
-                                            <p class="line-through inline-block text-[#B7B7B7] font-light text-[10px] lg:text-[14px]  h-4">
+                                            <p class="line-through text-[#B7B7B7] font-light text-[10px] lg:text-[14px] inline-block h-4">
                                                 @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
 
                                             </p>
-                                            <p class="text-[#D92626] font-bold text-[15px] lg:text-[20px]">
+                                            <p class="text-[#D92626] font-bold text-[15px] lg:text-[17px]">
                                                 @item.Price.ToString("#,000") ریال
                                             </p>
                                         </div>
