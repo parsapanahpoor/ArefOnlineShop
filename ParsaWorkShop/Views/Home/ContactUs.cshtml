@@ -16,7 +16,7 @@
     <!-- Make sure you put this AFTER Leaflet's CSS -->
 }
 
-<main class="mx-auto">
+<main class="mx-auto" onload="loadedPage()">
     <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -75,15 +75,15 @@
                             تولیدی
                         </li>
                         <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
-                            <img class="w-[20px]" src="ArefSet/src/assets/images/landing/locationn.png" alt="">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/location.png" alt="location">
                             تهران، خیابان انقلاب
                         </li>
                         <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
-                            <img class="w-[20px]" src="ArefSet/src/assets/images/landing/call-incoming-black.png" alt="">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/call-incoming-black.png" alt="call">
                             09114119225
                         </li>
                         <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
-                            <img class="w-[20px]" src="ArefSet/src/assets/images/landing/sms-black.png" alt="">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/sms-black.png" alt="sms">
                             info@arefset.ir
                         </li>
                     </ul>
@@ -93,11 +93,11 @@
                             ساعت کاری
                         </li>
                         <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
-                            <img class="w-[20px]" src="ArefSet/src/assets/images/landing/clock.png" alt="">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/clock.png" alt="">
                             شنبه تا چهارشنبه 10 صبح تا 6 عصر
                         </li>
                         <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
-                            <img class="w-[20px]" src="ArefSet/src/assets/images/landing/calendar.png" alt="">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/calendar.png" alt="">
                             پنجشنبه 10 صبح تا 2 عصر
                         </li>
                     </ul>
@@ -107,7 +107,7 @@
                             فروشگاه
                         </li>
                         <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
-                            <img class="w-[20px]" src="ArefSet/src/assets/images/landing/locationn.png" alt="">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/locationn.png" alt="">
                             ساری، میدان خزر
                         </li>
                     </ul>
@@ -220,6 +220,5 @@
             // alert("Page is loaded");
             document.querySelector(".leaflet-control-attribution").remove();
         }
-
     </script>
 }

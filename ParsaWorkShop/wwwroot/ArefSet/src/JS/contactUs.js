@@ -27,4 +27,4 @@ function loadedPage() {
     // alert("Page is loaded");
     document.querySelector(".leaflet-control-attribution").remove();
 }
-// document.querySelector(".leaflet-control-attribution").remove();
+ document.querySelector(".leaflet-control-attribution").remove();
