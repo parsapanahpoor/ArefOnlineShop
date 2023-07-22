@@ -19,6 +19,8 @@
         <!-- Site Side Bar -->
         @await Component.InvokeAsync("SiteSideBar")
 
+        @await RenderSectionAsync("Slider", false)
+
     </header>
 
     @RenderBody()

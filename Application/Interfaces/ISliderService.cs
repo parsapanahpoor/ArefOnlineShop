@@ -1,5 +1,6 @@
 ﻿#region Using
 
+using Domain.Models.Slider;
 using Domain.ViewModels.Admin.Slider;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -30,6 +31,12 @@ namespace Application.Interfaces
 
         //Delete Slider 
         Task<bool> DeleteSlider(int sliderId);
+
+        #endregion
+
+        #region Site Side 
+
+        Task<List<Slider>> GetListOfSlidersForShowInLanding();
 
         #endregion
     }

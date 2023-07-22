@@ -88,5 +88,18 @@ namespace Data.Repository
         }
 
         #endregion
+
+        #region Site Side 
+
+        public async Task<List<Slider>> GetListOfSlidersForShowInLanding()
+        {
+            return await _context.Slider
+                                          .AsNoTracking()
+                                          .Where(p => !p.IsDelete)
+                                          .OrderBy(p => p.Priority)
+                                          .ToListAsync();
+        }
+
+        #endregion
     }
 }

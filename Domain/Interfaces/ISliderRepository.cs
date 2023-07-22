@@ -2,6 +2,7 @@
 
 using Domain.Models.Slider;
 using Domain.ViewModels.Admin.Slider;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,12 @@ namespace Domain.Interfaces
 
         //Update Slider Method 
         Task UpdateSliderMethod(Slider slider);
+
+        #endregion
+
+        #region Site Side 
+
+        Task<List<Slider>> GetListOfSlidersForShowInLanding();
 
         #endregion
     }

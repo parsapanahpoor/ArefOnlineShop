@@ -8,6 +8,7 @@ using Domain.Interfaces;
 using Domain.Models.Slider;
 using Domain.ViewModels.Admin.Slider;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -163,6 +164,15 @@ namespace Application.Services
             #endregion
 
             return true;
+        }
+
+        #endregion
+
+        #region Site Side 
+
+        public async Task<List<Slider>> GetListOfSlidersForShowInLanding()
+        {
+            return await _sliderRepository.GetListOfSlidersForShowInLanding();
         }
 
         #endregion
