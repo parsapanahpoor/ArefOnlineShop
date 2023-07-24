@@ -65,14 +65,16 @@ document.getElementById("defaultFormOpen").click();
 //     modal.classList.add("hidden");
 //     body.style.overflow = "auto";
 // });
-window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.classList.add("hidden");
-      body.style.overflow = "auto";
-    }
-    if (event.target == menu) {
-        menu.classList.add("opacity-0");
-        menu.classList.add("invisible");
-        body.style.overflow = "auto";
-    }
-}
+
+
+//window.onclick = function(event) {
+//    if (event.target == modal) {
+//      modal.classList.add("hidden");
+//      body.style.overflow = "auto";
+//    }
+//    if (event.target == menu) {
+//        menu.classList.add("opacity-0");
+//        menu.classList.add("invisible");
+//        body.style.overflow = "auto";
+//    }
+//}
