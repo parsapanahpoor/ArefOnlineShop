@@ -29,7 +29,7 @@
     {
 
     <script src="/ArefSet/src/JS/landing.js"></script>
-    <script src="/ArefSet/src/JS/cdn.jsdelivr.net_npm_swiper@9.4.1_swiper-bundle.min.js"></script>
+
     <script>
         var colorButton = document.getElementsByClassName("theme-button");
         var i;
@@ -76,13 +76,13 @@
         };
     </script>
     <script>
-        const modal = document.querySelector(".modal");
-        const showModal = document.querySelector(".showModal");
-        const hideModal = document.querySelectorAll(".hideModal");
+        //const modal = document.querySelector(".modal");
+        //const showModal = document.querySelector(".showModal");
+        //const hideModal = document.querySelectorAll(".hideModal");
 
-        const menu = document.querySelector(".menu");
-        const showMenu = document.querySelector(".showMenu");
-        const hideMenu = document.querySelectorAll(".hideMenu");
+        //const menu = document.querySelector(".menu");
+        //const showMenu = document.querySelector(".showMenu");
+        //const hideMenu = document.querySelectorAll(".hideMenu");
 
         const filterMenu = document.querySelector(".filterMenu");
         const mainContent = document.querySelector(".mainContent");
@@ -92,58 +92,58 @@
         const navbar = document.querySelector(".navbar");
         const breadcrumb = document.querySelector(".breadcrumb");
 
-        const body = document.querySelector("body");
+        //const body = document.querySelector("body");
 
         // ------------------------ modal -------------------------------
 
-        showModal.addEventListener("click", function () {
-            modal.classList.remove("hidden");
-            body.style.overflow = "hidden";
-        });
+        //showModal.addEventListener("click", function () {
+        //    modal.classList.remove("hidden");
+        //    body.style.overflow = "hidden";
+        //});
 
-        hideModal.forEach((close) => {
-            close.addEventListener("click", function () {
-                modal.classList.add("hidden");
-                body.style.overflow = "auto";
-            });
-        });
+        //hideModal.forEach((close) => {
+        //    close.addEventListener("click", function () {
+        //        modal.classList.add("hidden");
+        //        body.style.overflow = "auto";
+        //    });
+        //});
 
         // ------------------------Side Menu Responsive-------------------------------
 
-        showMenu.addEventListener("click", function () {
-            // menu.classList.replace("-right-[70%]","right-0")
-            menu.classList.remove("opacity-0");
-            menu.classList.remove("invisible");
-            body.style.overflow = "hidden";
-        });
-        hideMenu.forEach((close) => {
-            close.addEventListener("click", function () {
-                // menu.classList.replace("right-0","-right-[70%]")
-                menu.classList.add("opacity-0");
-                menu.classList.add("invisible");
-                body.style.overflow = "auto";
-            });
-        });
+        //showMenu.addEventListener("click", function () {
+        //    // menu.classList.replace("-right-[70%]","right-0")
+        //    menu.classList.remove("opacity-0");
+        //    menu.classList.remove("invisible");
+        //    body.style.overflow = "hidden";
+        //});
+        //hideMenu.forEach((close) => {
+        //    close.addEventListener("click", function () {
+        //        // menu.classList.replace("right-0","-right-[70%]")
+        //        menu.classList.add("opacity-0");
+        //        menu.classList.add("invisible");
+        //        body.style.overflow = "auto";
+        //    });
+        //});
 
-        function openForm(evt, formName) {
-            var i, tabFormContent, tabFormLinks;
-            tabFormContent = document.getElementsByClassName("tabFormContent");
-            for (i = 0; i < tabFormContent.length; i++) {
-                tabFormContent[i].style.display = "none";
-            }
-            tabFormLinks = document.getElementsByClassName("tabFormLinks");
-            for (i = 0; i < tabFormLinks.length; i++) {
-                tabFormLinks[i].className = tabFormLinks[i].className.replace(
-                    " activeFormItem",
-                    ""
-                );
-            }
-            document.getElementById(formName).style.display = "block";
-            evt.currentTarget.className += " activeFormItem";
-        }
+        //function openForm(evt, formName) {
+        //    var i, tabFormContent, tabFormLinks;
+        //    tabFormContent = document.getElementsByClassName("tabFormContent");
+        //    for (i = 0; i < tabFormContent.length; i++) {
+        //        tabFormContent[i].style.display = "none";
+        //    }
+        //    tabFormLinks = document.getElementsByClassName("tabFormLinks");
+        //    for (i = 0; i < tabFormLinks.length; i++) {
+        //        tabFormLinks[i].className = tabFormLinks[i].className.replace(
+        //            " activeFormItem",
+        //            ""
+        //        );
+        //    }
+        //    document.getElementById(formName).style.display = "block";
+        //    evt.currentTarget.className += " activeFormItem";
+        //}
 
-        // Get the element with id="defaultOpen" and click on it
-        document.getElementById("defaultFormOpen").click();
+        //// Get the element with id="defaultOpen" and click on it
+        //document.getElementById("defaultFormOpen").click();
 
         // ------------------------Filter Side Menu Responsive-------------------------------
 
@@ -151,6 +151,7 @@
             // menu.classList.replace("-right-[70%]","right-0")
             // menu.classList.remove("opacity-0");
             // menu.classList.remove("invisible");
+
             mainContent.classList.add("hidden");
             filterMenu.classList.remove("hidden");
             footer.classList.add("hidden");
@@ -161,6 +162,7 @@
             // hideFilterMenu
 
             // body.style.overflow = "hidden";
+            console.log("showFilterMenu")
         });
 
         // function hideFilterMenu() {
@@ -223,7 +225,7 @@
 
 
 <main class="mx-auto mb-12">
-    <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+    <section class="breadcrumb mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -430,8 +432,18 @@
                         </div>
 
                     </div>
+                    <div class="w-full sticky bottom-1">
+                        <div class="w-full py-4 bg-white text-[#252525] text-[12px] px-5 lg:hidden"
+                             style="
+                             box-shadow: 0 0 5px 1px #eee;
+                                    font-family: yekanBakhtBold;
+                                ">
+                            مشاهده ۹۹.۳۳۳۱ کالا در عارف
+                        </div>
+                        <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>
+                    </div>
 
-                    <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>
+                    @* <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>*@
 
                 </div>
 
@@ -446,7 +458,7 @@
                     <span class="text-[#252525]">@Model.Entities.Count()</span>محصول فروشگاه عارف
                 </p>
 
-                <div class="flex items-center justify-center gap-1 lg:hidden">
+                <div class="showFilterMenu hover:cursor-pointer flex items-center justify-center gap-1 lg:hidden">
                     <img src="/ArefSet/src/assets/images/landing/filter.png" alt="">
                     <p class="text-[#7D7D7D] text-[14px] font-medium lg:hidden inline-block">
                         فیلتر ها
@@ -454,12 +466,12 @@
                 </div>
                 <div class="flex items-center justify-center gap-3">
                     <p class="text-[#7D7D7D] text-[14px] font-medium">مرتب سازی بر اساس :</p>
-                    <select onchange='changeDropDown(this)'
+                    <select onchange='changeDropDown(this)' asp-items="Html.GetEnumSelectList(typeof(FilterStatus))"
                             class="py-2 px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
 
                         @if (Model.Status == FilterStatus.All)
                         {
-                            <option value="0" >همه</option>
+                            <option value="0">همه</option>
                             <option value="1">تاریخ</option>
                             <option value="2">بیشترین قیمت</option>
                             <option value="3">کمترین قیمت</option>
@@ -510,7 +522,7 @@
 
                         @foreach (var product in Model.Entities)
                         {
-                            <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
+                            <div class="transition-all transform hover:shadow-lg flex flex-col justify-between items-center">
                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
                                     <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
                                         <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
@@ -536,17 +548,20 @@
                                     </div>
                                 </div>
 
-                                <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
+                                <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
                                     <div class="text-right">
-                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="font-bold text-[14px] lg:text-[16px]">
+                                        <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                            همه محصولات
+                                        </p>
+                                        <a style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;" asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="font-bold text-[12px]  lg:text-[16px] line-clamp-2 listShopCartTitle">
                                             @product.ProductTitle
                                         </a>
                                     </div>
                                     <div class="text-left">
-                                        <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
+                                        <p class="line-through inline-block text-[#B7B7B7] font-light text-[10px] lg:text-[14px]  h-4">
                                             @((product.OldPrice.HasValue) ? $"{product.OldPrice.Value.ToString("#,000")} ریال" : " ")
                                         </p>
-                                        <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
+                                        <p class="text-[#D92626] font-bold text-[15px] ">
                                             @product.Price.ToString("#,000") ریال
                                         </p>
                                     </div>
