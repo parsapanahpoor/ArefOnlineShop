@@ -2,6 +2,11 @@
 @using Application.Convertors;
 @using Application.StaticTools
 
+
+@{
+
+    List<int> favoriteProducts = ViewData["FavoriteProducts"] as List<int>;
+}
 @if (Model != null && Model.Any())
 {
     <section class="mx-auto lg:mt-10 mt-8 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7">
@@ -24,7 +29,88 @@
 
                 @foreach (var item in Model)
                 {
-                    <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
+
+
+                    <div class="transition-all transform hover:shadow-lg flex flex-col justify-between items-center">
+                       @* <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()">
+                            <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
+                                <img class="w-full h-full object-cover"
+                                     src="@PathTools.ProductPathThumb@item.ProductImageName"
+                                     alt="product picture"
+                                     title="@item.Title" />
+
+                            </div>
+                        </a>*@
+                       
+                        @*<a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()">
+                            <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="">
+                        </a>
+
+                        <div class="transition-all flex flex-col items-end gap-2 absolute top-4 left-6 lg:top-6 lg:left-8 opacity-0 likeProduct">
+
+                            @if (favoriteProducts != null && favoriteProducts.Any() && favoriteProducts.Contains(item.ProductId))
+                            {
+                                <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-fill likeBtn text-red-500" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                                    </svg>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
+                                    <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="">
+                                </div>
+                            }
+
+                        </div>*@
+                        <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
+                            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()">
+                                <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="">
+                            </a>
+
+                            <div class="transition-all flex flex-col items-end gap-2 absolute top-4 left-6 lg:top-6 lg:left-8 opacity-0 likeProduct">
+
+                                @if (favoriteProducts != null && favoriteProducts.Any() && favoriteProducts.Contains(item.ProductId))
+                                {
+                                    <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-fill likeBtn text-red-500" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                                        </svg>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
+                                        <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="">
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
+                            <div class="text-right">
+                                <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                    همه محصولات
+                                </p>
+                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px]  lg:text-[18px] shopCardTitle">
+                                    @item.Title
+                                </a>
+                            </div>
+                            <div class="text-left">
+                                <p class="line-through inline-block text-[#B7B7B7] font-light text-[10px] lg:text-[14px]  h-4">
+                                    @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
+                                </p>
+                                <p class="text-[#D92626] font-bold text-[15px] lg:text-[18px] inline-block lg:min-w-[111px]">
+                                    @item.Price.ToString("#,000") ریال
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                  @*  <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
                         <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
 
                             <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()">
@@ -35,7 +121,7 @@
                             <div class="text-right">
                                 <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
                                 </p>
-                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[14px] lg:text-[20px]">
+                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[14px] lg:text-[20px] shopCardTitle">
                                     @item.Title
                                 </a>
                             </div>
@@ -49,7 +135,7 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 }
 
             </div>

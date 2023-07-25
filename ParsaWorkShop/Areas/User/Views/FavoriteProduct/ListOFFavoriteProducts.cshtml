@@ -14,11 +14,11 @@
         @await Component.InvokeAsync("UserPanelSideBarViewComponents")
 
         <!-- ---------------------- main content ----------------------------------------- -->
-        <div class="w-full border-2 lg:flex min-h-[765px]">
+        <div class="w-full lg:flex min-h-[765px]">
             <!-- ----- Activities ----- -->
             <section id="Activities" class="tabcontent w-full flex flex-col items-center justify-start">
 
-                <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
+                <div class="border-2 border-[#252525] w-full p-5 flex flex-col items-start justify-start gap-5">
                     <div class="w-full flex justify-between items-center">
                         <div>
                             <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
@@ -35,7 +35,7 @@
                             <!-- card -->
                             @foreach (var product in Model)
                             {
-                                <div class="w-full h-[385px] flex flex-col justify-between items-center">
+                                 <div class="w-full h-[385px] hover:shadow-md flex flex-col justify-between items-center">
                                     <div class="w-full h-[277px]">
                                         <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImage" alt="">
                                     </div>

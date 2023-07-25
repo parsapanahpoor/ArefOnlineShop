@@ -459,7 +459,7 @@
 
                         @if (Model.Status == FilterStatus.All)
                         {
-                            <option value="0" >همه</option>
+                            <option value="0">همه</option>
                             <option value="1">تاریخ</option>
                             <option value="2">بیشترین قیمت</option>
                             <option value="3">کمترین قیمت</option>
@@ -510,7 +510,7 @@
 
                         @foreach (var product in Model.Entities)
                         {
-                            <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
+                            <div class="transition-all transform hover:shadow-lg flex flex-col justify-between items-center">
                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
                                     <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
                                         <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
@@ -536,17 +536,20 @@
                                     </div>
                                 </div>
 
-                                <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
+                                <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
                                     <div class="text-right">
-                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="font-bold text-[14px] lg:text-[16px]">
+                                        <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                            همه محصولات
+                                        </p>
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="font-bold text-[12px]  lg:text-[16px] listShopCartTitle">
                                             @product.ProductTitle
                                         </a>
                                     </div>
                                     <div class="text-left">
-                                        <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
+                                        <p class="line-through inline-block text-[#B7B7B7] font-light text-[10px] lg:text-[14px]  h-4">
                                             @((product.OldPrice.HasValue) ? $"{product.OldPrice.Value.ToString("#,000")} ریال" : " ")
                                         </p>
-                                        <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
+                                        <p class="text-[#D92626] font-bold text-[15px] ">
                                             @product.Price.ToString("#,000") ریال
                                         </p>
                                     </div>

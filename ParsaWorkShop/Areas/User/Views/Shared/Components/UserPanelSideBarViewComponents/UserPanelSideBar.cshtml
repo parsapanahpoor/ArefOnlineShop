@@ -1,7 +1,7 @@
 ﻿@model Domain.Models.Users.User
 
 
-<aside id="asideCol" class="w-full lg:w-[305px] border-2 lg:bg-[#252525] lg:flex lg:flex-col lg:items-start lg:sticky lg:top-0 lg:right-0">
+<aside id="asideCol" class="sidebar w-full lg:w-[305px] lg:bg-[#252525] lg:flex lg:flex-col lg:items-start lg:sticky lg:top-0 lg:right-0">
     <div class="w-full text-[#252525] lg:text-white py-5 gap-2">
         <div class="flex items-center justify-start gap-2 px-5 lg:mb-0 mb-5">
             <img class="w-[76px] hidden lg:inline-block" src="/ArefSet/src/assets/images/landing/Arefset foo.png" alt="">
@@ -27,7 +27,7 @@
 
     <div class="w-full text-white bg-[#252525] p-5">
         <ul class="w-full">
-            <li class="tablinks activeSideItem py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center" id="defaultOpen">
+            <li id="myActivities" class="tablinks activeSideItem py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center" >
                 <a asp-action="Index" asp-area="User" asp-controller="Home" class="flex items-center">
                         <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                             <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
@@ -41,7 +41,7 @@
                     </a>
                     <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
-            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+            <li id="myOrders" class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
                 <a asp-action="Index" asp-area="User" asp-controller="Order" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
@@ -55,7 +55,7 @@
                 </a>
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
-            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+            <li id="myFavorite" class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
                 <a asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
@@ -69,7 +69,7 @@
                 </a>
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
-            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+            <li id="myAddresses" class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
                 <a asp-action="Locations" asp-area="User" asp-controller="Location" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
@@ -83,7 +83,7 @@
                 </a>
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
-            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+            <li id="myComments" class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
                 <a asp-action="ListOfUserComments" asp-area="User" asp-controller="Order" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">
@@ -97,7 +97,7 @@
                 </a>
                 <img class="w-[16px] opacity-50" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
             </li>
-            <li class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
+            <li id="myInformation" class="tablinks py-3 pl-2 rounded-md hover:cursor-pointer w-full flex justify-between items-center">
                 <a asp-action="EditUser" asp-area="User" asp-controller="Account" class="flex items-center">
                     <div class="Ellipse w-[3px] h-[3px] inline-block opacity-0">
                         <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Ellipse 503.png" alt="">

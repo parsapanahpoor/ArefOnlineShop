@@ -11,6 +11,31 @@
 
     @await RenderSectionAsync("Styles", false)
 
+    <style>
+        .shopCardTitle {
+            width: auto;
+            display: block
+        }
+
+        .listShopCartTitle{
+            width: auto;
+            display: block
+        }
+
+        @@media screen and (min-width: 768px) {
+            .shopCardTitle {
+                width: 283px;
+                display: inline-block
+            }
+
+            .listShopCartTitle {
+                width: 200px;
+                display: inline-block
+            }
+        }
+
+    </style>    
+        
 </head>
 <body dir="rtl">
 
@@ -46,6 +71,16 @@
 
             $("#Searchfiltre").submit();
 
+            });
+
+    </script>
+
+    <script>
+
+        $("#SearchIcon").click(function () {
+
+            $("#Searchfiltre").submit();
+
         });
         window.onclick = function (event) {
             if (event.target == modal) {
@@ -60,6 +95,7 @@
         }
 
     </script>
+
 
 </body>
 </html>
