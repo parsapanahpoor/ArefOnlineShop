@@ -1,0 +1,224 @@
+﻿@model Domain.ViewModels.SiteSide.ContactUs.ContactUsSiteSideViewModel
+
+@{
+    ViewData["Title"] = "خانه ";
+}
+@section Styles{
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <!-- leaflet -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+}
+
+<main class="mx-auto" onload="loadedPage()">
+    <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>
+                        خانه
+                    </a>
+                </li>
+
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">تماس با ما</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    </section>
+
+    <section class="mx-auto mt-0 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7">
+        <div class="flex flex-col items-center justify-start mb-5">
+            <div class="mt-16 relative w-[212.34px] h-[72.24px] md:w-[300px] md:h-[90px] lg:w-[388px] lg:h-[132px] bg-no-repeat before:content-[''] before:absolute before:-left-[60px] lg:before:-left-[100px] before:top-[41%] before:w-[52px] lg:before:w-[91px] before:h-[2px] before:bg-[#D92626] after:content-[''] after:absolute after:-right-[60px] lg:after:-right-[100px] after:top-[41%] after:w-[52px] lg:after:w-[91px] after:h-[2px] after:bg-[#D92626]" style="
+              background-image: url(/ArefSet/src/assets/images/landing/Arefset\ 2.png);
+              background-position: center;
+              background-size: cover;
+            ">
+                <p class="text-[#252525] text-[32px] mt-2 lg:mt-7 text-center" style="font-family: yekanBakhtExtraBold">
+                    تماس باما
+                </p>
+                <p class="text-[#7E8285] font-medium text-[17px] md:text-[25px] lg:text-[30px] leading-[49.6px] text-center" style="font-family: yekanBakhtRegular">
+                    ارتباط خود را باما حفظ کنید
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full mt-14">
+        <div class="px-3 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+            <div class="col-span-2 md:col-span-2 lg:col-span-1">
+                <p class="text-[22px] text-[#252525] leading-[34.1px]" style="font-family: yekanBakhtSemiBold">
+                    اطلاعات تماس
+                </p>
+                <p class="text-[16px] text-[#7E8285] leading-[39px]" style="font-family: yekanBakhtSemiBold">
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
+                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
+                    سادگی نامفهوم.
+                </p>
+                <div class="mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 mt-5">
+                    <ul class="mb-3">
+                        <li class="mb-5 text-[16px] text-[#252525] leading-[24.8px]">
+                            تولیدی
+                        </li>
+                        <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/location.png" alt="location">
+                            تهران، خیابان انقلاب
+                        </li>
+                        <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/call-incoming-black.png" alt="call">
+                            09114119225
+                        </li>
+                        <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/sms-black.png" alt="sms">
+                            info@arefset.ir
+                        </li>
+                    </ul>
+
+                    <ul class="mb-3">
+                        <li class="mb-5 text-[16px] text-[#252525] leading-[24.8px]">
+                            ساعت کاری
+                        </li>
+                        <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/clock.png" alt="">
+                            شنبه تا چهارشنبه 10 صبح تا 6 عصر
+                        </li>
+                        <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/calendar.png" alt="">
+                            پنجشنبه 10 صبح تا 2 عصر
+                        </li>
+                    </ul>
+
+                    <ul class="mb-3">
+                        <li class="mb-5 text-[16px] text-[#252525] leading-[24.8px]">
+                            فروشگاه
+                        </li>
+                        <li class="mb-5 flex items-center gap-2 text-[16px] text-[#7E8285] leading-[22px]">
+                            <img class="w-[20px]" src="/ArefSet/src/assets/images/landing/locationn.png" alt="">
+                            ساری، میدان خزر
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-span-2 md:col-span-2 lg:col-span-1">
+                <p class="text-[22px] text-[#252525] leading-[34.1px]" style="font-family: yekanBakhtSemiBold">
+                    اطلاعات تماس
+                </p>
+                <p class="text-[16px] text-[#7E8285] leading-[39px]" style="font-family: yekanBakhtSemiBold">
+                    با استفاده از فرم زیر میتوانید با ما ارتباط برقرار کنید
+                </p>
+
+                <div class="flex items-center justify-start py-12">
+                    <!-- Author: FormBold Team -->
+                    <!-- Learn More: https://formbold.com -->
+                    <div class="mx-auto w-full">
+                        <form asp-action="ContactUs" asp-area="" asp-controller="Home" method="POST">
+                            <div class="-mx-3 flex flex-wrap">
+                                <div class="w-full px-3 sm:w-1/2">
+                                    <div class="mb-5">
+                                        <!-- <label
+                                          for="fName"
+                                          class="mb-3 block text-base font-medium text-[#07074D]"
+                                        >
+                                          First Name
+                                        </label> -->
+                                        <input type="text" asp-for="UserName" id="fName" placeholder="نام نام خانوادگی" class="w-full border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    </div>
+                                </div>
+
+                                <div class="w-full px-3 sm:w-1/2">
+                                    <div class="mb-5">
+                                        <!-- <label
+                                          for="lName"
+                                          class="mb-3 block text-base font-medium text-[#07074D]"
+                                        >
+                                          Last Name
+                                        </label> -->
+                                        <input type="email" asp-for="Email" id="lName" placeholder="ایمیل خود را وارد کنید" class="w-full border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    </div>
+                                </div>
+
+                                <div class="w-full px-3 sm:w-1/2">
+                                    <div class="mb-5">
+                                        <!-- <label
+                                            for="fName"
+                                            class="mb-3 block text-base font-medium text-[#07074D]"
+                                          >
+                                            First Name
+                                          </label> -->
+                                        <input type="text" asp-for="PhoneNumber" id="phoneNumber" placeholder="شماره مبایل خود را وارد کنید " class="w-full border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    </div>
+                                </div>
+
+                                <div class="w-full px-3 sm:w-1/2">
+                                    <div class="mb-5">
+                                        <!-- <label
+                                            for="lName"
+                                            class="mb-3 block text-base font-medium text-[#07074D]"
+                                          >
+                                            Last Name
+                                          </label> -->
+                                        <input type="text" asp-for="ShortDescription" id="subject" placeholder="موضوع پیام شما" class="w-full border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-5">
+                                <!-- <label
+                                  for="guest"
+                                  class="mb-3 block text-base font-medium text-[#07074D]"
+                                >
+                                  How many guest are you bringing?
+                                </label> -->
+                                <textarea asp-for="LongDescription" id="guest" rows="3" class="w-full appearance-none border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" placeholder="متن پیام شما"></textarea>
+                            </div>
+
+                            <div class="flex justify-end">
+                                <button class="hover:shadow-form border-[1px] border-[#D92626] py-3 px-8 text-center text-base font-semibold text-[#D92626] outline-none flex items-center gap-2">
+                                    ارسال پیام
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.0898 19.9201L8.56984 13.4001C7.79984 12.6301 7.79984 11.3701 8.56984 10.6001L15.0898 4.08008" stroke="#D92626" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mx-auto mt-0 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7 border-t-2">
+        <div id="map" class="w-full h-[353px] my-14 leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;">
+        </div>
+    </section>
+</main>
+
+
+@section Scripts{
+    <script>
+        var map = L.map("map").setView([36.55652, 53.03909], 17);
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution:
+                '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+        var marker = L.marker([36.55652, 53.03909]).addTo(map);
+        function loadedPage() {
+            // alert("Page is loaded");
+            document.querySelector(".leaflet-control-attribution").remove();
+        }
+    </script>
+}
