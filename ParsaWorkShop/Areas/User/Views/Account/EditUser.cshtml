@@ -4,41 +4,41 @@
 }
 
 
-<main class="mx-auto mt-7 mb-7">
+<main class="mx-auto mb-7">
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
         @await Component.InvokeAsync("UserPanelSideBarViewComponents")
 
         <!-- ---------------------- main content ----------------------------------------- -->
-        <div class="w-full border-2 lg:flex min-h-[765px]">
+        <div class="w-full lg:flex min-h-[765px]">
             <!-- ----- userInfo ----- -->
-            <section id="userInfo" class="tabcontent w-full flex flex-col items-center justify-start">
+            <section id="userInfo" class="tabcontent w-full h-full flex flex-col items-center justify-start">
 
-                <div class="border-2 border-[#252525] w-full p-5 flex flex-col items-start justify-start gap-5">
+                 <div class="border-2 border-[#252525] w-full h-full p-5 flex flex-col items-start justify-start gap-5">
                     <div class="w-full flex justify-between items-center">
                         <div>
                             <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
-                                سفارش های من
+                                مشخصات من
                             </p>
-                            <p class="text-[12px] text-[#828282]">My orders</p>
+                            <p class="text-[12px] text-[#828282]">My Information</p>
                         </div>
                     </div>
 
 
 
-                    <form asp-action="EditUser" asp-controller="Account" asp-area="User" method="post" enctype="multipart/form-data">
+
+                    <form asp-action="EditUser" class="w-full" asp-controller="Account" asp-area="User" method="post" enctype="multipart/form-data">
                         <input type="hidden" asp-for="AvatarName" />
 
                         <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
 
-                            <div class="flex justify-between items-center bg-[#EDEDED] p-5">
-
+                            <div class="w-full flex justify-between items-center bg-[#EDEDED] p-5">
                                 <div class="">
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         عکس پروفایل : 
                                     </span>
-                                    <input type="file" id="UserAvatar" class="text-[12px]" asp-for="UserAvatar">
+                                    <input type="file" id="UserAvatar" class="text-[12px] bg-transparent focus:outline-none w-[60%]" asp-for="UserAvatar">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -50,7 +50,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         نام و نام خانوادگی :
                                     </span>
-                                    <input type="text" asp-for="UserName" class="text-[12px]">
+                                    <input type="text" asp-for="UserName" class="text-[12px]  bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -62,7 +62,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         شماره مبایل :
                                     </span>
-                                    <input type="text" asp-for="PhoneNumber" class="text-[12px]"> 
+                                    <input type="text" asp-for="PhoneNumber" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -70,11 +70,11 @@
                             </div>
 
                             <div class="flex justify-between items-center bg-[#EDEDED] p-5">
-                                <div class="">
+                                 <div class="">
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         ایمیل من :
                                     </span>
-                                    <input type="text" asp-for="Email" class="text-[12px]"> 
+                                    <input type="text" asp-for="Email" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -83,7 +83,7 @@
 
                         </div>
 
-                        <div class="w-full flex justify-end items-center">
+                        <div class="w-full flex justify-end items-center my-6">
                             <button class="text-[12px] hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent py-2 px-4 flex items-center justify-center text-[#7E8285] hover:text-[#fff]">
                                 ویرایش اطلاعات
                             </button>

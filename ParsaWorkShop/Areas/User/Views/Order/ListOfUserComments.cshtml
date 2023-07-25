@@ -64,16 +64,116 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
+						<p class="text-[14px] text-[#828282]">۴۳ کالا</p>												   
+                    </div>
+
+					<div class="w-full flex items-center justify-center lg:flex lg:items-center lg:justify-start gap-5 mb-5">
+                        <div 
+                             class="tabCommentLinks hover:cursor-pointer">
+                            <p class="text-[16px] text-[#252525] leading-[24.8px]"
+                               style="font-family: yekanBakhtRegular">
+                                ۲۰ دیدگاه
+                            </p>
+                            <p class="text-[12px] lg:text-[14px] text-[#252525]"
+                               style="font-family: yekanBakhtBold">
+                                ثبت شده
+                            </p>
+                        </div>
+ 
+                    </div>
+
+                    <div id="waiting"
+                         class="tabComment w-full flex flex-col items-start justify-center gap-5">
+                          @if (Model != null && Model.Any())
+                        {
+                            foreach (var comment in Model)
+                            {
+                                <!-- card -->
+                                <div class="w-full border-2 border-[#B7B7B7] p-5 mb-3">
+                                    <div class="flex flex-col items-start justify-center lg:flex lg:items-center lg:flex-row lg:justify-between gap-2 lg:gap-3">
+                                        <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
+                                            <div class="w-[51px] lg:w-[73px]">
+                                                <img class="w-full"
+                                                     src="/Images/UserAvatar/@comment.Users.UserAvatar"
+                                                     alt="" />
+                                            </div>
+                                            <div>
+
+                                                <p class="text-[10px] text-[#252525] leading-[24px]  " style="font-family: yekanBakhtBold">
+                                                        @comment.Users.UserName
+                                                    </p>
+                                               
+                                                <p class="text-[14px] lg:text-[16px] text-[#252525] leading-[24.8px]"
+                                                   style="font-family: yekanBakhtBold">
+                                                    گل مصنوعی مدل ریسه برگ طرح انگور کد PAL-3030
+                                                </p>
+                                                <p class="text-[12px] lg:text-[14px] text-[#252525] flex items-center"
+                                                   style="font-family: yekanBakhtRegular">
+                                                    <img class="w-[14px] ml-2"
+                                                         src="/ArefSet/src/assets/images/landing/star@2x.png"
+                                                         alt="" />
+                                                    <strong> ۴/۶ </strong>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="w-full lg:w-auto flex items-center justify-end lg:flex lg:items-center lg:justify-between gap-3">
+                                            <div class="w-[99px] lg:w-[140px] h-[34px] bg-[#EDEDED] flex items-center justify-center">
+                                                <span class="text-[9px] lg:text-[12px] leading-[33px]">
+                                                    وضعیت : تایید شده
+                                                </span>
+                                            </div>
+
+                                            <a href="#"
+                                               class="text-[9px] lg:text-[12px] hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent w-[99px] lg:w-[94px] h-[34px] flex items-center justify-center text-[#7E8285] hover:text-[#fff]">
+                                                حذف دیدگاه
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start justify-between gap-2 lg:gap-3 mt-5">
+                                        <div class="">
+                                            <div class="flex gap-2">
+                                                <div class="flex flex-col justify-start items-center gap-1 lg:w-8 w-24">
+                                                    <div class="w-[1px] h-[19px] bg-[#D9D9D9]"></div>
+                                                    <img class="w-[5px] h-[5px] my-[.5px]"
+                                                         src="/ArefSet/src/assets/images/landing/Ellipse 506.png"
+                                                         alt="" />
+                                                    <div class="w-[1px] h-[19px] bg-[#D9D9D9]"></div>
+                                                    <img class="w-[5px] h-[5px] my-[.5px]"
+                                                         src="/ArefSet/src/assets/images/landing/Ellipse 506.png"
+                                                         alt="" />
+                                                    <!-- <div class="w-[1px] h-[19px] bg-[#D9D9D9]"></div> -->
+                                                </div>
+
+                                                <div class="inline-block pt-3">
+                                                    <p class="text-[12px] text-[#252525] leading-[24px] mb-2"
+                                                       style="font-family: yekanBakhtBold">
+                                                        از نظر من ارزش خرید داره
+                                                    </p>
+                                                    <p class="text-[10px] text-[#252525] leading-[24px] mb-2">
+                                                        @comment.CommentBody
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- --- -->
+                            }
+                        }
+                        
                     </div>
 
 
-                    <div id="waiting" class="tabComment w-full flex flex-col items-start justify-center gap-5" style="display: block;">
+                    @*<div id="waiting" class="tabComment w-full flex flex-col items-start justify-center gap-5" style="display: block;">
 
                         @if (Model != null && Model.Any())
                         {
                             foreach (var comment in Model)
                             {
-                                <!-- card -->
+                              
                                 <div class="w-full border-2 border-[#B7B7B7] p-5 mb-3">
                                     <div class="flex flex-col items-start justify-center lg:flex lg:items-center lg:flex-row lg:justify-between gap-2 lg:gap-3">
                                         <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
@@ -105,10 +205,7 @@
                             }
                         }
 
-
-
-                        <!-- --- -->
-                    </div>
+                    </div>*@
                 </div>
             </section>
         </div>

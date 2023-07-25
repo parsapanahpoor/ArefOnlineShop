@@ -33,14 +33,14 @@
     <link href="/common/notification/notifications.css" rel="stylesheet" />
     <link href="/common/sweetalert/sweetalert.css" rel="stylesheet" />
     <link href="/common/custom/custom.css" rel="stylesheet" />
-
+    <link href="~/arefset/src/assets/styles/style.css" rel="stylesheet" />
 </head>
 
 <body>
-   
 
-    <div class="back-to-home rounded d-none d-sm-block">
-        <a href="/" class="btn btn-icon btn-primary"><i data-feather="home" class="icons"></i></a>
+
+    <div class="back-to-home d-none d-sm-block">
+        <a href="/" class="btn btn-icon rounded-0 " style="background-color:#D92626;color:#fff"><i data-feather="home" class="icons"></i></a>
     </div>
 
     <!-- شوع آن -->
@@ -55,14 +55,14 @@
                                     <div class="card-body p-0">
                                         <h4 class="card-title text-center">وارد شدن </h4>
                                         <form class="login-form mt-4" asp-action="Login" asp-controller="Account">
-                                            <input type="hidden" name="ReturnUrl" value="@ViewBag.Return"/>
+                                            <input type="hidden" name="ReturnUrl" value="@ViewBag.Return" />
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">موبایل کاربر <span class="text-danger">*</span></label>
+                                                        <label class="form-label" style="font-family: yekanBakhtRegular;">موبایل کاربر <span class="text-danger">*</span></label>
                                                         <div class="form-icon position-relative">
                                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" class="form-control ps-5" placeholder="موبایل کاربر" asp-for="Mobile" required="">
+                                                            <input style="font-family: yekanBakhtRegular;" type="text" class="form-control ps-5  rounded-0" placeholder="موبایل کاربر" asp-for="Mobile" required="">
                                                             <span style="color:red" asp-validation-for="Mobile"></span>
 
                                                         </div>
@@ -71,10 +71,10 @@
 
                                                 <div class="col-lg-12">
                                                     <div class="mb-3">
-                                                        <label class="form-label">رمز عبور  <span class="text-danger">*</span></label>
+                                                        <label class="form-label" style="font-family: yekanBakhtRegular;">رمز عبور  <span class="text-danger">*</span></label>
                                                         <div class="form-icon position-relative">
                                                             <i data-feather="key" class="fea icon-sm icons"></i>
-                                                            <input type="password" class="form-control ps-5" asp-for="Password" placeholder="رمز عبور " required="">
+                                                            <input style="font-family: yekanBakhtRegular;" type="password" class="form-control ps-5  rounded-0" asp-for="Password" placeholder="رمز عبور " required="">
                                                             <span style="color:red" asp-validation-for="Password"></span>
 
                                                         </div>
@@ -85,8 +85,8 @@
                                                     <div class="d-flex justify-content-between">
                                                         <div class="mb-3">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" asp-for="RememberMe" id="flexCheckDefault">
-                                                                <label class="form-check-label" for="flexCheckDefault">مرا به خاطر بسپار </label>
+                                                                <input style="font-family: yekanBakhtRegular;" class="form-check-input rounded-0" type="checkbox" asp-for="RememberMe" id="flexCheckDefault" style="font-family: yekanBakhtRegular; accent-color: #D92626;">
+                                                                <label class="form-check-label" for="flexCheckDefault" style="font-family: yekanBakhtRegular;">مرا به خاطر بسپار </label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -94,17 +94,17 @@
 
                                                 <div class="col-lg-12 mb-0">
                                                     <div class="d-grid">
-                                                        <button class="btn btn-primary">ورود </button>
+                                                        <button class="btn form-btn rounded-0" style="font-family: yekanBakhtRegular;background-color:#D92626;color:#fff">ورود </button>
                                                     </div>
                                                 </div><!--end col-->
 
 
                                                 <div class="col-12 text-center">
-                                                    <p class="mb-0 mt-3"><small class="text-dark me-2">حسابی ندارید؟ </small> <a href="/Register" class="text-dark fw-bold">ثبت نام کنید </a></p>
+                                                    <p class="mb-0 mt-3" style="font-family: yekanBakhtRegular;"><small class="text-dark me-2">حسابی ندارید؟ </small> <a href="/Register" class="text-dark fw-bold">ثبت نام کنید </a></p>
                                                 </div><!--end col-->
 
                                                 <div class="col-12 text-center">
-                                                    <p class="mb-0 mt-3"><small class="text-dark me-2"> </small> <a href="/ForgotPassword" class="text-dark fw-bold">فراموشی رمز عبور؟ </a></p>
+                                                    <p class="mb-0 mt-3" style="font-family: yekanBakhtRegular;"><small class="text-dark me-2"> </small> <a href="/ForgotPassword" class="text-dark fw-bold">فراموشی رمز عبور؟ </a></p>
                                                 </div><!--end col-->
 
                                             </div><!--end row-->
@@ -116,7 +116,7 @@
                     </div> <!-- end about detail -->
                 </div> <!-- end col -->
 
-                <div class="col-lg-8 offset-lg-4 padding-less img order-1" style="background-image:url('/Landrick/images/user/01.jpg')" data-jarallax='{"speed": 0.5}'></div><!-- end col -->
+                <div class="col-lg-8 offset-lg-4 padding-less img order-1" style="background-image:url('/Landrick/images/user/عکس-لاگین.jpg')" data-jarallax='{"speed": 0.5}'></div><!-- end col -->
             </div><!--end row-->
         </div><!--end container fluid-->
     </section><!--end section-->

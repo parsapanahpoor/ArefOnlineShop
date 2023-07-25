@@ -110,7 +110,13 @@ namespace ParsaWorkShop.Controllers
 
         public async Task<IActionResult> AboutUs()
         {
-            return View();
+            #region Fill Model
+
+            var model = await _siteSettingService.FillIndexPageViewModel();
+
+            #endregion
+
+            return View(model);
         }
 
         #endregion
