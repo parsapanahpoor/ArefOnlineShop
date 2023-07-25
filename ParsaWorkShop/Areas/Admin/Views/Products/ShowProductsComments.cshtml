@@ -117,7 +117,7 @@
                                         برسی
                                     </a>
 
-                                    <a class="btn btn-warning btn-pills btn-sm waves-effect" href="/Products/SinglePageProducts/@item.ProductID">
+                                                    <a class="btn btn-warning btn-pills btn-sm waves-effect" asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductID" asp-route-ProductTitle="@item.Product.ProductTitle.FixTextForUrl()">
                                         <i class="glyphicon glyphicon-edit"></i>
                                         پاسخ
                                     </a>

@@ -65,9 +65,32 @@
                             </div>
                             <input type="hidden" asp-for="ParentId" />
 
-                                <div class="form-group">
+                            <div class="form-group">
                                 <label for="exampleInputEmail1"> Div کلاس تگ  </label>
-                                <input type="text" asp-for="DivTagClass" class="form-control" id="exampleInputEmail1" placeholder="Div کلاس تگ خود را وارد کنید ">
+                                <select  asp-for="DivTagClass" class="form-control" id="exampleInputEmail1">
+
+                                    <option value="transition-all h-44 lg:h-auto col-span-2 md:col-span-2 lg:col-span-2 row-span-1 bg-slate-300 relative landingGridItem">آیتم اول</option>
+                                    <option value="transition-all relative landingGridItem col-span-2 md:col-span-2 lg:col-span-1 row-span-3 bg-slate-400">آیتم دوم</option>
+                                    <option value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-500">آیتم سوم</option>
+                                    <option value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-600">آیتم چهارم</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> نمایش در قسمت بالایی دسته بندی ها   </label>
+                                <select asp-for="ShowInPart1" class="form-control" id="exampleInputEmail1">
+                                    <option value="1">نمایش</option>
+                                    <option value="0">عدم نمایش</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> نمایش در قسمت پایینی دسته بندی ها   </label>
+                                <select asp-for="ShowInPart2" class="form-control" id="exampleInputEmail1">
+                                    <option value="1">نمایش</option>
+                                    <option value="0">عدم نمایش</option>
+                                </select>
                             </div>
 
                                 <div class="form-group">

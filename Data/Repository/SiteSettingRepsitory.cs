@@ -160,7 +160,7 @@ namespace Data.Repository
 
             var LastestCategoriesId = await _context.ProductCategories
                                                  .AsNoTracking()
-                                                 .Where(p => !p.IsDelete)
+                                                 .Where(p => !p.IsDelete&& p.ShowInPart1)
                                                  .ToListAsync();
 
             #region First Record For All Products
@@ -200,7 +200,7 @@ namespace Data.Repository
                     //Get Products Selected This Category
                     var productsId = await _context.ProductSelectedCategory
                                                    .AsNoTracking()
-                                                   .Where(p => p.ProductCategoryId == categoryId.ProductCategoryId)
+                                                   .Where(p => p.ProductCategoryId == categoryId.ProductCategoryId )
                                                    .OrderByDescending(p => p.CreateDate)
                                                    .Select(p => p.ProductID)
                                                    .Take(6)
@@ -246,7 +246,7 @@ namespace Data.Repository
 
             model.LatestCategoriesWithImages =   await _context.ProductCategories
                                                                .AsNoTracking()
-                                                               .Where(p => !p.IsDelete && !string.IsNullOrEmpty(p.ImageName))
+                                                               .Where(p => !p.IsDelete && !string.IsNullOrEmpty(p.ImageName) && p.ShowInPart2)
                                                                .OrderBy(p=> p.Priority)
                                                                .Select(p=> new LatestCategoriesWithImage()
                                                                {

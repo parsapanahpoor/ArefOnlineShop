@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Domain.Models.Product.Product>
 @using Application.Convertors
 
-@{ ViewData["Title"] = "لیست محصولات ";
-                Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; }
+@{
+    ViewData["Title"] = "لیست محصولات ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
 
 @section Styls
     {
@@ -16,85 +18,88 @@
 <div class="content-wrapper" style="min-height: 805px;">
     @if (ViewBag.Create == true)
     {
-<div class="col-md-12">
-    <div class="card bg-success-gradient">
-        <div class="card-header">
-            <h3 class="card-title"> ثبت با موفقیت </h3>
+        <div class="col-md-12">
+            <div class="card bg-success-gradient">
+                <div class="card-header">
+                    <h3 class="card-title"> ثبت با موفقیت </h3>
 
-            <div class="card-tools">
-                <button type="button" id="CreateBtn" class="btn btn-tool" data-widget="remove">
-                    <i class="fa fa-times"></i>
-                </button>
+                    <div class="card-tools">
+                        <button type="button" id="CreateBtn" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    ثبت محصول  جدید   با موفقیت انجام شده است
+                </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-tools -->
+            <!-- /.card -->
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            ثبت محصول  جدید   با موفقیت انجام شده است
-        </div>
-        <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-</div>
-                <script>
-                    // Your delay in milliseconds
-                    var delay = 5000;
-                    setTimeout(function () { document.getElementById("CreateBtn").click(); }, delay);
-                </script>}
+        <script>
+            // Your delay in milliseconds
+            var delay = 5000;
+            setTimeout(function () { document.getElementById("CreateBtn").click(); }, delay);
+        </script>
+    }
     @if (ViewBag.Edit == true)
     {
-<div class="col-md-12">
-    <div class="card bg-primary-gradient">
-        <div class="card-header">
-            <h3 class="card-title">ویرایش موفقیت آمیز  </h3>
+        <div class="col-md-12">
+            <div class="card bg-primary-gradient">
+                <div class="card-header">
+                    <h3 class="card-title">ویرایش موفقیت آمیز  </h3>
 
-            <div class="card-tools">
-                <button type="button" id="EditBtn" class="btn btn-tool" data-widget="remove">
-                    <i class="fa fa-times"></i>
-                </button>
+                    <div class="card-tools">
+                        <button type="button" id="EditBtn" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    ویرایش محصول  با موفقیت ثبت گردید
+                </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-tools -->
+            <!-- /.card -->
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            ویرایش محصول  با موفقیت ثبت گردید
-        </div>
-        <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-</div>
-                <script>
-                    // Your delay in milliseconds
-                    var delay = 5000;
-                    setTimeout(function () { document.getElementById("EditBtn").click(); }, delay);
-                </script>}
+        <script>
+            // Your delay in milliseconds
+            var delay = 5000;
+            setTimeout(function () { document.getElementById("EditBtn").click(); }, delay);
+        </script>
+    }
     @if (ViewBag.Delete == true)
     {
-<div class="col-md-12">
-    <div class="card bg-danger-gradient">
-        <div class="card-header">
-            <h3 class="card-title">حذف موفق </h3>
+        <div class="col-md-12">
+            <div class="card bg-danger-gradient">
+                <div class="card-header">
+                    <h3 class="card-title">حذف موفق </h3>
 
-            <div class="card-tools">
-                <button type="button" id="DeleteBtn" class="btn btn-tool" data-widget="remove">
-                    <i class="fa fa-times"></i>
-                </button>
+                    <div class="card-tools">
+                        <button type="button" id="DeleteBtn" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    حذف محصول  با موفقیت انجام گردید
+                </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-tools -->
+            <!-- /.card -->
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            حذف محصول  با موفقیت انجام گردید
-        </div>
-        <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-</div>
-                <script>
-                    // Your delay in milliseconds
-                    var delay = 5000;
-                    setTimeout(function () { document.getElementById("DeleteBtn").click(); }, delay);
-                </script>}
+        <script>
+            // Your delay in milliseconds
+            var delay = 5000;
+            setTimeout(function () { document.getElementById("DeleteBtn").click(); }, delay);
+        </script>
+    }
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -123,7 +128,7 @@
                         <h3 class="card-title">لیست محصول ها  جستجوی پیشرفته</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <a href="/Admin/Products/Create"  class="btn btn-block btn-primary btn-sm waves-effect">افزودن محصول جدید   </a>
+                                <a href="/Admin/Products/Create" class="btn btn-block btn-primary btn-sm waves-effect">افزودن محصول جدید   </a>
                             </div>
                         </div>
                     </div>
@@ -134,83 +139,88 @@
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
                                     <thead>
                                         <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 150px;" aria-label="تصویر: activate to sort column ascending"># </th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 150px;" aria-label="تصویر: activate to sort column ascending">تصویر </th>
 
-                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-sort="ascending" aria-label=" عنوان محصول   : activate to sort column descending">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label=" عنوان محصول   : activate to sort column descending">
                                                 عنوان محصول
                                             </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="نویسنده: activate to sort column ascending">نویسنده </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="نویسنده: activate to sort column ascending">قیمت  </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نویسنده: activate to sort column ascending">نویسنده </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نویسنده: activate to sort column ascending">قیمت  </th>
 
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="تاریخ ایجاد    : activate to sort column ascending"> تاریخ ایجاد  </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label="وضعیت: activate to sort column ascending">وضعیت</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"  aria-label=" activate to sort column ascending"></th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="تاریخ ایجاد    : activate to sort column ascending"> تاریخ ایجاد  </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="وضعیت: activate to sort column ascending">وضعیت</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label=" activate to sort column ascending"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         @foreach (var item in Model)
                                         {
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">
-                                                <img src="/Images/Product/thumb/@item.ProductImageName" style="width:200px" class="thumbnail" />
-                                            </td>
+                                            <tr role="row" class="odd">
 
-                                            <td>@item.ProductTitle</td>
-                                            <td>
+                                                <td>@item.ProductID</td>
 
-                                                <p>@item.Users.UserName</p>
+                                                <td class="sorting_1">
+                                                    <img src="/Images/Product/thumb/@item.ProductImageName" style="width:200px" class="thumbnail" />
+                                                </td>
 
+                                                <td>@item.ProductTitle</td>
+                                                <td>
 
-                                            </td>
-                                            <td>
-
-                                                <p>@item.Price.ToString("#,0") ریال </p>
+                                                    <p>@item.Users.UserName</p>
 
 
-                                            </td>
-                                            <td>@item.CreateDate.ToShamsi()</td>
-                                            @if (item.IsActive)
-                                            {
-                                        <td><a href="/Admin/Products/LockProduct?productid=@item.ProductID&&id=1" class="btn btn-success btn-sm" style="color:white;">فعال</a></td>
-}
-                                            @if (!item.IsActive)
-                                            {
-                                        <td><a href="/Admin/Products/LockProduct?productid=@item.ProductID&&id=2" class="btn btn-danger btn-sm" style="color:white;">غیر فعال</a></td>
-}
+                                                </td>
+                                                <td>
+
+                                                    <p>@item.Price.ToString("#,0") ریال </p>
+
+
+                                                </td>
+                                                <td>@item.CreateDate.ToShamsi()</td>
+                                                @if (item.IsActive)
+                                                {
+                                                    <td><a href="/Admin/Products/LockProduct?productid=@item.ProductID&&id=1" class="btn btn-success btn-sm" style="color:white;">نمایش</a></td>
+                                                }
+                                                @if (!item.IsActive)
+                                                {
+                                                    <td><a href="/Admin/Products/LockProduct?productid=@item.ProductID&&id=2" class="btn btn-danger btn-sm" style="color:white;">پنهان</a></td>
+                                                }
 
 
 
 
-                                            <td>
-                                                <a class="badge badge-success" asp-action="ProductFeaturs" asp-area="Admin" asp-controller="Products" asp-route-id="@item.ProductID">
-                                                    <i class="glyphicon glyphicon-edit"></i>
-                                                    ویژگی ها
-                                                </a>
+                                                <td>
+                                                    <a class="badge badge-success" asp-action="ProductFeaturs" asp-area="Admin" asp-controller="Products" asp-route-id="@item.ProductID">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        ویژگی ها
+                                                    </a>
 
-                                                <a class="badge badge-secondary " asp-action="Gallery" asp-area="Admin" asp-controller="Products" asp-route-id="@item.ProductID">
-                                                    <i class="glyphicon glyphicon-edit"></i>
-                                                    گالری تصاویر
-                                                </a>
+                                                    <a class="badge badge-secondary " asp-action="Gallery" asp-area="Admin" asp-controller="Products" asp-route-id="@item.ProductID">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        گالری تصاویر
+                                                    </a>
 
-                                                <a class="badge badge-warning" asp-action="Edit" asp-area="Admin" asp-controller="Products" asp-route-id="@item.ProductID">
-                                                    <i class="glyphicon glyphicon-edit"></i>
-                                                    ویرایش
-                                                </a>
+                                                    <a class="badge badge-warning" asp-action="Edit" asp-area="Admin" asp-controller="Products" asp-route-id="@item.ProductID">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        ویرایش
+                                                    </a>
 
 
-                                                <a class="badge badge-primary" href="/Admin/Products/Edit?id=@item.ProductID&&Detail=true">
-                                                    <i class="glyphicon glyphicon-edit"></i>
-                                                    اطلاعات
-                                                </a>
+                                                    <a class="badge badge-primary" href="/Admin/Products/Edit?id=@item.ProductID&&Detail=true">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        اطلاعات
+                                                    </a>
 
-                                                <a class="badge badge-danger" href="/Admin/Products/Edit?id=@item.ProductID&&Delete=true">
-                                                    <i class="glyphicon glyphicon-trash"></i>
-                                                    حذف
-                                                </a>
-                                             
-                                            </td>
-                                        </tr>}
+                                                    <a class="badge badge-danger" href="/Admin/Products/Edit?id=@item.ProductID&&Delete=true">
+                                                        <i class="glyphicon glyphicon-trash"></i>
+                                                        حذف
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                        }
                                     </tbody>
 
                                 </table>

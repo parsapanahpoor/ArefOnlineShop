@@ -123,6 +123,8 @@ namespace Application.Services
             cat.PTagClass = productCategories.PTagClass;
             cat.DivTagClass = productCategories.DivTagClass;
             cat.Priority = productCategories.Priority;
+            cat.ShowInPart1 = productCategories.ShowInPart1;
+            cat.ShowInPart2 = productCategories.ShowInPart2;
 
             #region Add Slider Image
 
@@ -435,6 +437,8 @@ namespace Application.Services
             category.DivTagClass = productCategories.DivTagClass;
             category.Priority = productCategories.Priority;
             category.PTagClass = productCategories.PTagClass;
+            category.ShowInPart1 = productCategories.ShowInPart1;
+            category.ShowInPart2 = productCategories.ShowInPart2;
 
             #region Update Image
 

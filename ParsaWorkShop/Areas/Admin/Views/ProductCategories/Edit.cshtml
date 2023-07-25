@@ -46,8 +46,8 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>    <section class="content">
-       
-            <form role="form" asp-action="Edit" asp-area="Admin" asp-controller="ProductCategories" method="post" enctype="multipart/form-data">
+
+        <form role="form" asp-action="Edit" asp-area="Admin" asp-controller="ProductCategories" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-7">
 
@@ -67,7 +67,70 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1"> Div کلاس تگ  </label>
-                                <input type="text" asp-for="DivTagClass" class="form-control" id="exampleInputEmail1" placeholder="Div کلاس تگ خود را وارد کنید ">
+                                <select asp-for="DivTagClass" class="form-control" id="exampleInputEmail1">
+
+                                    @if (Model.DivTagClass == "transition-all h-44 lg:h-auto col-span-2 md:col-span-2 lg:col-span-2 row-span-1 bg-slate-300 relative landingGridItem")
+                                    {
+                                        <option selected="selected" value="transition-all h-44 lg:h-auto col-span-2 md:col-span-2 lg:col-span-2 row-span-1 bg-slate-300 relative landingGridItem">آیتم اول</option>
+                                        <option value="transition-all relative landingGridItem col-span-2 md:col-span-2 lg:col-span-1 row-span-3 bg-slate-400">آیتم دوم</option>
+                                        <option value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-500">آیتم سوم</option>
+                                        <option value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-600">آیتم چهارم</option>
+                                    }
+                                    @if (Model.DivTagClass == "transition-all relative landingGridItem col-span-2 md:col-span-2 lg:col-span-1 row-span-3 bg-slate-400")
+                                    {
+                                        <option value="transition-all h-44 lg:h-auto col-span-2 md:col-span-2 lg:col-span-2 row-span-1 bg-slate-300 relative landingGridItem">آیتم اول</option>
+                                        <option selected="selected" value="transition-all relative landingGridItem col-span-2 md:col-span-2 lg:col-span-1 row-span-3 bg-slate-400">آیتم دوم</option>
+                                        <option value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-500">آیتم سوم</option>
+                                        <option value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-600">آیتم چهارم</option>
+                                    }
+                                    @if (Model.DivTagClass == "transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-500")
+                                    {
+                                        <option value="transition-all h-44 lg:h-auto col-span-2 md:col-span-2 lg:col-span-2 row-span-1 bg-slate-300 relative landingGridItem">آیتم اول</option>
+                                        <option value="transition-all relative landingGridItem col-span-2 md:col-span-2 lg:col-span-1 row-span-3 bg-slate-400">آیتم دوم</option>
+                                        <option selected="selected" value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-500">آیتم سوم</option>
+                                        <option value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-600">آیتم چهارم</option>
+                                    }
+                                    @if (Model.DivTagClass == "transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-600")
+                                    {
+                                        <option value="transition-all h-44 lg:h-auto col-span-2 md:col-span-2 lg:col-span-2 row-span-1 bg-slate-300 relative landingGridItem">آیتم اول</option>
+                                        <option value="transition-all relative landingGridItem col-span-2 md:col-span-2 lg:col-span-1 row-span-3 bg-slate-400">آیتم دوم</option>
+                                        <option value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-500">آیتم سوم</option>
+                                        <option selected="selected" value="transition-all h-44 lg:h-auto relative landingGridItem col-span-1 md:col-span-1 lg:col-span-1 row-span-1 lg:row-span-2 bg-slate-600">آیتم چهارم</option>
+                                    }
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> نمایش در قسمت بالایی دسته بندی ها   </label>
+                                <select asp-for="ShowInPart1" class="form-control" id="exampleInputEmail1">
+                                    @if (Model.ShowInPart1)
+                                    {
+                                        <option value="@true" selected="selected">نمایش</option>
+                                        <option value="@false">عدم نمایش</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@true">نمایش</option>
+                                        <option value="@false" selected="selected">عدم نمایش</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> نمایش در قسمت پایینی دسته بندی ها   </label>
+                                <select asp-for="ShowInPart2" class="form-control" id="exampleInputEmail1">
+                                    @if (Model.ShowInPart2)
+                                    {
+                                        <option value="@true" selected="selected">نمایش</option>
+                                        <option value="@false">عدم نمایش</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@true">نمایش</option>
+                                        <option value="@false" selected="selected">عدم نمایش</option>
+                                    }
+                                </select>
                             </div>
 
                             <div class="form-group">
@@ -117,9 +180,9 @@
 
                 </div>
             </div>
-            </form>
+        </form>
 
-        
+
     </section>
 
 </div>

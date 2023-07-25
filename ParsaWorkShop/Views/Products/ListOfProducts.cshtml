@@ -454,7 +454,7 @@
                 </div>
                 <div class="flex items-center justify-center gap-3">
                     <p class="text-[#7D7D7D] text-[14px] font-medium">مرتب سازی بر اساس :</p>
-                    <select onchange='changeDropDown(this)' asp-items="Html.GetEnumSelectList(typeof(FilterStatus))"
+                    <select onchange='changeDropDown(this)'
                             class="py-2 px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
 
                         @if (Model.Status == FilterStatus.All)

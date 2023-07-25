@@ -39,6 +39,10 @@ namespace Domain.Models.Product
 
         public string ImageName { get; set; }
 
+        public bool ShowInPart1 { get; set; }
+
+        public bool ShowInPart2 { get; set; }
+
         #region Relations
 
         public  List<ProductSelectedCategory> ProductSelectedCategory { get; set; }

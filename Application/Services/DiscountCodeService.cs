@@ -182,15 +182,6 @@ namespace Application.Services
 
             #endregion
 
-            #region Order
-
-            order.DiscountUserSelected = userSelected.Id;
-
-            //Update Order
-            await _discountCodeRepository.UpdateOrder(order);
-
-            #endregion
-
             #endregion
 
             #region Initial Order Price After Discount
@@ -206,6 +197,17 @@ namespace Application.Services
 
             //Initial Disacount
             Amount = (Amount  * discount.DiscountPercentage) / 100;
+
+            #endregion
+
+            #region Order
+
+            order.DiscountUserSelected = userSelected.Id;
+
+            order.Price = Amount;
+
+            //Update Order
+            await _discountCodeRepository.UpdateOrder(order);
 
             #endregion
 
