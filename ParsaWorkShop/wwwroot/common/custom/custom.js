@@ -19,7 +19,8 @@ $(function () {
 
 function FillPageId(id) {
     $("#Page").val(id);
-    $("#filter-search").submit();
+    console.log('Hello');
+    $("#filtre").submit();
 }
 
 //#endregion
