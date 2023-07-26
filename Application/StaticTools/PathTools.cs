@@ -8,7 +8,7 @@ namespace Application.StaticTools
 
         public static string SiteFarsiName = "فروشگاه Aref";
         public static string SiteAddress = "https://arefset.com";
-        public static string merchant = "8f5510c9-10bd-4eb6-a3e2-2795a2f36edf";
+        public static string merchant = "804912ce-546d-4021-9f26-f36bced7f525";
 
         public static readonly string SiteLogo = "/content/images/site/logo/main/";
         public static readonly string SiteLogoServer = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/content/images/site/logo/main/");

@@ -144,11 +144,11 @@ namespace ParsaWorkShop.Controllers
             var res = await _favoriteProductsService.AddorRemoveProductFromFavorite(productId, User.GetUserId());
             if (res)
             {
-                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                TempData[SuccessMessage] = "Success";
                 return RedirectToAction(nameof(SinglePageProducts), new { id = productId, ProductTitle = await _product.GetProductTitleWithProductId(productId) });
             }
 
-            TempData[ErrorMessage] = "اطلاعات وارد شده صحیح نمی باشد.";
+            TempData[ErrorMessage] = "Faild";
             return RedirectToAction(nameof(SinglePageProducts), new { id = productId, ProductTitle = await _product.GetProductTitleWithProductId(productId) });
         }
 
