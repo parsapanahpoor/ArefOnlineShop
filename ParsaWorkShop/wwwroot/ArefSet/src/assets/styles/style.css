@@ -218,9 +218,9 @@ input:focus-visible + label {
 *:after {
   box-sizing: border-box;
 }
-.productCardImg:hover > img{
+/*.productCardImg:hover > img{
     filter: grayscale(100%);
-}
+}*/
 .productCardImg:hover>.addToCart{
  bottom: 0;
  opacity: 1;

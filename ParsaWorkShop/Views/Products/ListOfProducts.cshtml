@@ -258,12 +258,23 @@
             <div class="mx-auto flex items-center justify-between py-8 mt-5 border-b-[1px] border-[#D0D0D099]">
                 <p class="text-[#252525] text-[16px] font-semibold">فیلترها :</p>
                 <div class="flex items-center gap-2">
-                    <img src="/ArefSet/src/assets/images/landing/RemoveIcon.png" alt="">
+                    @*<img src="/ArefSet/src/assets/images/landing/RemoveIcon.png" alt="">*@
+                    <div class="flex items-center hover:cursor-pointer ">
+
+                    <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7E8285" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7E8285" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                     <a asp-action="ListOfProducts" asp-area="" asp-controller="products" class="text-[#7E8285] lg:text-[#C5272D] text-[12px] font-normal">
                         پاک کردن همه
                     </a>
+                    </div>
                     <a href="#" onclick="hideFilterMenu()" class="hideFilterMenu mr-3 inline-flex items-center justify-center w-[48px] h-[48px] rounded-full bg-[#EDEDED] lg:hidden">
-                        <img class="w-3 h-3" src="/ArefSet/src/assets/images/landing/RemoveIcon.png" alt="">
+                        @*<img class="w-3 h-3" src="/ArefSet/src/assets/images/landing/RemoveIcon.png" alt="">*@
+                        <svg width="40" height="40" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.728 21.2427L21.2133 12.7574" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M21.2133 21.2426L12.728 12.7573" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -418,12 +429,12 @@
                                 <div class="price-wrap">
                                     <span class="price-title">محدوده قیمت :</span>
                                     <div class="price-wrap-1">
-                                        <input id="one">
+                                        <input class="inline-block !w-[50px]" id="one">
                                         <label for="one">ریال</label>
                                     </div>
                                     <div class="price-wrap_line">-</div>
                                     <div class="price-wrap-2">
-                                        <input id="two">
+                                        <input class="inline-block !w-[50px]" id="two">
                                         <label for="two">ریال</label>
                                     </div>
                                 </div>
@@ -464,15 +475,18 @@
                 </p>
 
                 <div class="showFilterMenu hover:cursor-pointer flex items-center justify-center gap-1 lg:hidden">
-                    <img src="/ArefSet/src/assets/images/landing/filter.png" alt="">
-                    <p class="text-[#7D7D7D] text-[14px] font-medium lg:hidden inline-block">
+                    @*<img src="/ArefSet/src/assets/images/landing/filter.png" alt="">*@
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.59993 1.40002H12.3999C13.1333 1.40002 13.7333 2.00002 13.7333 2.73336V4.20002C13.7333 4.73336 13.3999 5.40002 13.0666 5.73336L10.1999 8.26669C9.79993 8.60002 9.53327 9.26669 9.53327 9.80002V12.6667C9.53327 13.0667 9.2666 13.6 8.93327 13.8L7.99994 14.4C7.13327 14.9334 5.93327 14.3334 5.93327 13.2667V9.73336C5.93327 9.26669 5.6666 8.66669 5.39994 8.33336L2.8666 5.66669C2.53327 5.33336 2.2666 4.73336 2.2666 4.33336V2.80002C2.2666 2.00002 2.8666 1.40002 3.59993 1.40002Z" stroke="#292D32" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <p class="text-[#7D7D7D] text-[12px] lg:text-[14px] font-medium lg:hidden inline-block">
                         فیلتر ها
                     </p>
                 </div>
                 <div class="flex items-center justify-center gap-3">
-                    <p class="text-[#7D7D7D] text-[14px] font-medium">مرتب سازی بر اساس :</p>
+                    <p class="text-[#7D7D7D] text-[12px]  lg:text-[14px] font-medium">مرتب سازی بر اساس :</p>
                     <select onchange='changeDropDown(this)'
-                            class="py-2 px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                            class="py-2 px-1 lg:px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
 
                         @if (Model.Status == FilterStatus.All)
                         {
@@ -523,7 +537,7 @@
             {
                 <div class="mx-auto bg-white min-h-sceen w-full">
 
-                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 divide-y divide-neutral-200 text-right w-full mx-auto mt-5">
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3 divide-y divide-neutral-200 text-right w-full mx-auto mt-5">
 
                         @foreach (var product in Model.Entities)
                         {

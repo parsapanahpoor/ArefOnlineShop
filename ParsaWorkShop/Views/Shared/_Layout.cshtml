@@ -11,6 +11,66 @@
 
     @await RenderSectionAsync("Styles", false)
 
+    <style>
+        .shopCardHover .product-image {
+            display:block;
+           /* visibility:visible;
+            opacity:1;*/
+            transition: all .4s ease
+        }
+
+        .shopCardHover .product-image-hover {
+            display:none;
+            /*visibility:hidden;
+            opacity:0;*/
+            transition: all .4s ease
+        }
+
+        .shopCardHover:hover .product-image {
+            display: none;
+           /* visibility: hidden;
+            opacity: 0;*/
+ 
+        }
+
+        .shopCardHover:hover .product-image-hover {
+            display: block;
+           /* visibility: visible;
+            opacity: 1;*/
+        }
+
+        .shopCardTitle {
+            width: auto;
+            display: block
+        }
+
+        .listShopCartTitle {
+            width: auto;
+            display: block
+        }
+
+        @@media screen and (min-width: 768px) {
+            .shopCardTitle {
+                width: 283px;
+                display: inline-block
+            }
+
+            .listShopCartTitle {
+                width: 200px;
+                display: inline-block
+            }
+        }
+
+        .blogCard:hover{
+           /* background-color:#252525;
+            opacity:0.8*/
+            background: linear-gradient(135deg,rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3));
+            -webkit-backdrop-filter: blur(21px);
+            backdrop-filter: blur(21px);
+        }
+
+    </style>
+
 </head>
 <body dir="rtl">
 
@@ -59,6 +119,10 @@
             }
         }
 
+        function loadedPage() {
+            // alert("Page is loaded");
+            document.querySelector(".leaflet-control-attribution").remove();
+        }
     </script>
 
 </body>

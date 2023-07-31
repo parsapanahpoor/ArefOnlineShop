@@ -39,12 +39,55 @@
 
     <section class="mx-auto mt-0 lg:px-0 max-w-[100%] lg:max-w-[86.5em] mb-7">
         <div class="w-full relative mt-6 min-h-screen flex flex-col items-start justify-start lg:flex lg:flex-row lg:items-start lg:justify-between">
-            <div class="border-2 border-[#B7B7B7] p-5 w-full lg:w-[75vw] mb-4 ">
-                <ul class="w-full lg:flex hidden my-5 gap-5">
+            <div class="lg:border-2 lg:border-[#B7B7B7] p-5 w-full lg:w-[75vw] mb-4 ">
+               @* <ul class="w-full lg:flex hidden my-5 gap-5">
 
                     <li class="w-[39%] text-right
               relative after:content-[''] after:absolute after:right-0 after:-bottom-3 after:w-[53px] after:h-[2px] after:bg-[#D92626]
               ">
+                        <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtSemiBold">
+                            توضیحات
+                        </p>
+                        <p class="text-[#7E8285] text-[14px] leading-[21.7px]" style="font-family: yekanBakhtLight">
+                            Description
+                        </p>
+                    </li>
+                    <li class="w-[14%] text-center">
+                        <p class="text-[#7E8285] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtSemiBold">
+                            قیمت
+                        </p>
+                        <p class="text-[#7E8285] text-[14px] leading-[21.7px]" style="font-family: yekanBakhtLight">
+                            Price
+                        </p>
+                    </li>
+                    <li class="w-[16%] text-center">
+                        <p class="text-[#7E8285] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtSemiBold">
+                            تعداد
+                        </p>
+                        <p class="text-[#7E8285] text-[14px] leading-[21.7px]" style="font-family: yekanBakhtLight">
+                            Number
+                        </p>
+                    </li>
+                    <li class="w-[16%] text-center">
+                        <p class="text-[#7E8285] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtSemiBold">
+                            مجموع
+                        </p>
+                        <p class="text-[#7E8285] text-[14px] leading-[21.7px]" style="font-family: yekanBakhtLight">
+                            Total
+                        </p>
+                    </li>
+                </ul>*@
+
+                <ul class="w-full lg:flex hidden my-5 gap-5">
+                    <li class=" text-right">
+                        <p class="text-[#7E8285] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtSemiBold">
+                            حذف
+                        </p>
+                        <p class="text-[#7E8285] text-[14px] leading-[21.7px]" style="font-family: yekanBakhtLight">
+                            Delete
+                        </p>
+                    </li>
+                    <li class="w-[39%] text-right relative after:content-[''] after:absolute after:right-0 after:-bottom-3 after:w-[53px] after:h-[2px] after:bg-[#D92626] ">
                         <p class="text-[#252525] text-[16px] leading-[24.8px]" style="font-family: yekanBakhtSemiBold">
                             توضیحات
                         </p>
@@ -83,8 +126,10 @@
                 {
                     foreach (var item in Model.InvoiceOrderDetails)
                     {
+                        @*<div class="pb-5 lg:py-5 lg:px-4 lg:gap-6 gap-3 w-full border-b flex flex-col items-start justify-start lg:flex lg:flex-row lg:items-center lg:justify-start mb-6">*@
                         <div class="pb-5 lg:py-5 lg:px-4 lg:gap-6 gap-3 w-full border-b flex flex-col items-start justify-start lg:flex lg:flex-row lg:items-center lg:justify-start mb-6">
 
+                            <a href="/order/RemoveProductFromShopCart/@item.OrderDetailID" class="text-danger">X</a>
 
                             <div class="w-[1px] h-[51px] bg-[#9191914D]  hidden lg:inline-block"></div>
 
@@ -93,7 +138,7 @@
                                     <img src="/Images/Product/thumb/@item.Product.ProductImage" alt="" class="w-full h-full object-cover">
                                 </div>
                                 <div class="gap-5">
-                                    <p class="text-[#252525] text-[12px] lg:text-[14px] leading-[50x]" style="font-family: yekanBakhtRegular">
+                                    <p class="text-[#252525] text-[12px] lg:text-[14px] mb-5 leading-[50x]" style="font-family: yekanBakhtRegular">
                                         @item.Product.ProductTitle
                                     </p>
                                     <div class="gap-3 lg:gap-5 flex flex-col items-start justify-start lg:flex lg:flex-row lg:items-center lg:justify-start">
@@ -132,10 +177,13 @@
 
 
                                 <div class="w-[127px] h-[39px] lg:w-[136px]  lg:h-[46px] border-2 border-[#252525] flex items-center justify-around gap-2">
+                                    <a href="/order/MinusProductFromOrderDetail/@item.OrderDetailID">-</a>
 
                                     <p>@item.Count</p>
 
+                                    <a href="/order/PlusProductFromOrderDetail/@item.OrderDetailID">+</a>
                                 </div>
+
                                 <div class="w-[1px] h-[51px] bg-[#9191914D]  hidden lg:inline-block"></div>
 
                                 <div class="">
@@ -155,8 +203,8 @@
 
             </div>
             <div class="w-full lg:w-[25vw] flex flex-col-reverse justify-start items-end lg:flex lg:flex-col lg:justify-start lg:items-end lg:sticky lg:top-0 lg:gap-2">
-                <div class="w-full lg:w-[305px] lg:h-[372px] lg:bg-[#F6F6F6] bg-[#FCFCFC] lg:p-4 p-5 flex flex-col justify-between">
-                    <div class="flex justify-between items-center">
+                <div class="w-full lg:w-[305px] lg:min-h-[372px] lg:bg-[#F6F6F6] bg-[#eee] pt-5 lg:py-4 lg:px-4 flex flex-col justify-between">
+                    <div class="flex justify-between items-center lg:p-auto px-5">
                         <p class="text-[14px] text-[#252525]" style="font-family: yekanBakhtExtraBold">
                             خلاصه سبد خرید
                         </p>
@@ -164,7 +212,7 @@
                             @Model.InvoiceOrderDetails.Count() کالا
                         </p>
                     </div>
-                    <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 mt-2 py-3 flex justify-between items-center">
+                    <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] lg:my-4 mt-2 lg:px-auto px-5 py-3 flex justify-between items-center">
                         <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
                             جمع کل سبد خرید :
                         </p>
@@ -172,7 +220,7 @@
                             @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") ریال
                         </p>
                     </div>
-                    <div class="lg:border-[#E7E7E7] lg:border-t-[1px] lg:border-b-[1px] my-4 mt-2 py-3 flex justify-between items-center">
+                    <div class="lg:border-[#E7E7E7] lg:border-b-[1px] lg:px-auto px-5 mb-4 mt-2 py-3 flex justify-between items-center">
                         <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
                             هزینه ی ارسال :    
                         </p>
@@ -180,20 +228,50 @@
                             ریال 250,000
                         </p>
                     </div>
-                    <ul class="grid grid-cols-2 lg:grid-cols-1 gap-2">
+                    <ul class="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:p-auto px-5">
                         <li class="flex justify-start items-center gap-2 mb-3">
-                            <img src="/ArefSet/src/assets/images/landing/truck.png" alt="">
+                            @*<img src="/ArefSet/src/assets/images/landing/truck.png" alt="">*@
+                            <svg width="12" height="12" class="w-[14px]" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.5 7.375H1C0.795 7.375 0.625 7.205 0.625 7V3C0.625 1.69 1.69 0.625 3 0.625H7.5C7.705 0.625 7.875 0.795 7.875 1V6C7.875 6.76 7.26 7.375 6.5 7.375ZM1.375 6.625H6.5C6.845 6.625 7.125 6.345 7.125 6V1.375H3C2.105 1.375 1.375 2.105 1.375 3V6.625Z" fill="#D92626" />
+                                <path d="M9.5 10.375H9C8.795 10.375 8.625 10.205 8.625 10C8.625 9.655 8.345 9.375 8 9.375C7.655 9.375 7.375 9.655 7.375 10C7.375 10.205 7.205 10.375 7 10.375H5C4.795 10.375 4.625 10.205 4.625 10C4.625 9.655 4.345 9.375 4 9.375C3.655 9.375 3.375 9.655 3.375 10C3.375 10.205 3.205 10.375 3 10.375H2.5C1.465 10.375 0.625 9.535 0.625 8.5V7C0.625 6.795 0.795 6.625 1 6.625H6.5C6.845 6.625 7.125 6.345 7.125 6V2.5C7.125 2.295 7.295 2.125 7.5 2.125H8.42C8.915 2.125 9.37001 2.39001 9.61501 2.82001L10.47 4.315C10.535 4.43 10.535 4.575 10.47 4.69C10.405 4.805 10.28 4.875 10.145 4.875H9.5C9.43 4.875 9.375 4.93 9.375 5V6.5C9.375 6.57 9.43 6.625 9.5 6.625H11C11.205 6.625 11.375 6.795 11.375 7V8.5C11.375 9.535 10.535 10.375 9.5 10.375ZM9.325 9.625H9.5C10.12 9.625 10.625 9.12 10.625 8.5V7.375H9.5C9.02 7.375 8.625 6.98 8.625 6.5V5C8.625 4.52 9.015 4.125 9.5 4.125L8.965 3.19C8.855 2.995 8.645 2.875 8.42 2.875H7.875V6C7.875 6.76 7.26 7.375 6.5 7.375H1.375V8.5C1.375 9.12 1.88 9.625 2.5 9.625H2.675C2.84 9.05 3.37 8.625 4 8.625C4.63 8.625 5.16 9.05 5.325 9.625H6.67999C6.84499 9.05 7.37501 8.625 8.00501 8.625C8.63501 8.625 9.16 9.05 9.325 9.625Z" fill="#D92626" />
+                                <path d="M4 11.375C3.24 11.375 2.625 10.76 2.625 10C2.625 9.24 3.24 8.625 4 8.625C4.76 8.625 5.375 9.24 5.375 10C5.375 10.76 4.76 11.375 4 11.375ZM4 9.375C3.655 9.375 3.375 9.655 3.375 10C3.375 10.345 3.655 10.625 4 10.625C4.345 10.625 4.625 10.345 4.625 10C4.625 9.655 4.345 9.375 4 9.375Z" fill="#D92626" />
+                                <path d="M8 11.375C7.24 11.375 6.625 10.76 6.625 10C6.625 9.24 7.24 8.625 8 8.625C8.76 8.625 9.375 9.24 9.375 10C9.375 10.76 8.76 11.375 8 11.375ZM8 9.375C7.655 9.375 7.375 9.655 7.375 10C7.375 10.345 7.655 10.625 8 10.625C8.345 10.625 8.625 10.345 8.625 10C8.625 9.655 8.345 9.375 8 9.375Z" fill="#D92626" />
+                                <path d="M11 7.375H9.5C9.02 7.375 8.625 6.98 8.625 6.5V5C8.625 4.52 9.02 4.125 9.5 4.125H10.145C10.28 4.125 10.405 4.195 10.47 4.315L11.325 5.815C11.355 5.87 11.375 5.935 11.375 6V7C11.375 7.205 11.205 7.375 11 7.375ZM9.5 4.875C9.43 4.875 9.375 4.93 9.375 5V6.5C9.375 6.57 9.43 6.625 9.5 6.625H10.625V6.10001L9.925 4.875H9.5Z" fill="#D92626" />
+                            </svg>
+
                             <p class="text-[#828282] text-[10px]">ارسال از ۲ روز کاری</p>
                         </li>
                         <li class="flex justify-start items-center gap-2 mb-3">
-                            <img src="/ArefSet/src/assets/images/landing/shield-tick.png" alt="">
+                            @*<img src="/ArefSet/src/assets/images/landing/shield-tick.png" alt="">*@
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.58336 8.60425H7.00003C6.76086 8.60425 6.56253 8.40592 6.56253 8.16675C6.56253 7.92758 6.76086 7.72925 7.00003 7.72925H7.58336C7.98586 7.72925 8.31253 7.40258 8.31253 7.00008V1.60425H3.50003C2.8117 1.60425 2.18168 1.97757 1.84335 2.5784C1.72668 2.7884 1.45837 2.86426 1.24837 2.74759C1.03837 2.63093 0.962519 2.36258 1.07919 2.15258C1.56919 1.27758 2.4967 0.729248 3.50003 0.729248H8.75003C8.9892 0.729248 9.18753 0.927581 9.18753 1.16675V7.00008C9.18753 7.88675 8.47003 8.60425 7.58336 8.60425Z" fill="#D92626" />
+                                <path d="M11.0837 12.1042H10.5003C10.2612 12.1042 10.0628 11.9059 10.0628 11.6667C10.0628 11.2642 9.73616 10.9376 9.33366 10.9376C8.93116 10.9376 8.60449 11.2642 8.60449 11.6667C8.60449 11.9059 8.40616 12.1042 8.16699 12.1042H5.83366C5.59449 12.1042 5.39616 11.9059 5.39616 11.6667C5.39616 11.2642 5.06949 10.9376 4.66699 10.9376C4.26449 10.9376 3.93782 11.2642 3.93782 11.6667C3.93782 11.9059 3.73949 12.1042 3.50032 12.1042H2.91699C1.70949 12.1042 0.729492 11.1242 0.729492 9.91675C0.729492 9.67758 0.927825 9.47925 1.16699 9.47925C1.40616 9.47925 1.60449 9.67758 1.60449 9.91675C1.60449 10.6401 2.19366 11.2292 2.91699 11.2292H3.12114C3.31364 10.5584 3.93199 10.0626 4.66699 10.0626C5.40199 10.0626 6.02034 10.5584 6.21284 11.2292H7.79365C7.98615 10.5584 8.6045 10.0626 9.3395 10.0626C10.0745 10.0626 10.6928 10.5584 10.8853 11.2292H11.0837C11.807 11.2292 12.3962 10.6401 12.3962 9.91675V8.60425H11.0837C10.5237 8.60425 10.0628 8.14341 10.0628 7.58341V5.83341C10.0628 5.27341 10.5178 4.81258 11.0837 4.81258L10.4595 3.72175C10.3312 3.49425 10.0862 3.35425 9.82367 3.35425H9.18782V7.00008C9.18782 7.88675 8.47032 8.60425 7.58366 8.60425H7.00032C6.76116 8.60425 6.56282 8.40591 6.56282 8.16675C6.56282 7.92758 6.76116 7.72925 7.00032 7.72925H7.58366C7.98616 7.72925 8.31282 7.40258 8.31282 7.00008V2.91675C8.31282 2.67758 8.51116 2.47925 8.75032 2.47925H9.82367C10.4012 2.47925 10.932 2.78842 11.2178 3.29009L12.2153 5.03425C12.2912 5.16842 12.2912 5.33758 12.2153 5.47175C12.1395 5.60592 11.9936 5.68758 11.8361 5.68758H11.0837C11.002 5.68758 10.9378 5.75175 10.9378 5.83341V7.58341C10.9378 7.66508 11.002 7.72925 11.0837 7.72925H12.8337C13.0728 7.72925 13.2712 7.92758 13.2712 8.16675V9.91675C13.2712 11.1242 12.2912 12.1042 11.0837 12.1042Z" fill="#D92626" />
+                                <path d="M4.66667 13.2708C3.78 13.2708 3.0625 12.5533 3.0625 11.6667C3.0625 10.78 3.78 10.0625 4.66667 10.0625C5.55333 10.0625 6.27083 10.78 6.27083 11.6667C6.27083 12.5533 5.55333 13.2708 4.66667 13.2708ZM4.66667 10.9375C4.26417 10.9375 3.9375 11.2642 3.9375 11.6667C3.9375 12.0692 4.26417 12.3958 4.66667 12.3958C5.06917 12.3958 5.39583 12.0692 5.39583 11.6667C5.39583 11.2642 5.06917 10.9375 4.66667 10.9375Z" fill="#D92626" />
+                                <path d="M9.33366 13.2708C8.44699 13.2708 7.72949 12.5533 7.72949 11.6667C7.72949 10.78 8.44699 10.0625 9.33366 10.0625C10.2203 10.0625 10.9378 10.78 10.9378 11.6667C10.9378 12.5533 10.2203 13.2708 9.33366 13.2708ZM9.33366 10.9375C8.93116 10.9375 8.60449 11.2642 8.60449 11.6667C8.60449 12.0692 8.93116 12.3958 9.33366 12.3958C9.73616 12.3958 10.0628 12.0692 10.0628 11.6667C10.0628 11.2642 9.73616 10.9375 9.33366 10.9375Z" fill="#D92626" />
+                                <path d="M12.8333 8.60417H11.0833C10.5233 8.60417 10.0625 8.14333 10.0625 7.58333V5.83333C10.0625 5.27333 10.5233 4.8125 11.0833 4.8125H11.8358C11.9933 4.8125 12.1392 4.89417 12.215 5.03417L13.2125 6.78417C13.2475 6.84834 13.2708 6.92417 13.2708 7V8.16667C13.2708 8.40583 13.0725 8.60417 12.8333 8.60417ZM11.0833 5.6875C11.0017 5.6875 10.9375 5.75167 10.9375 5.83333V7.58333C10.9375 7.665 11.0017 7.72917 11.0833 7.72917H12.3958V7.11667L11.5792 5.6875H11.0833Z" fill="#D92626" />
+                                <path d="M4.66699 5.10425H1.16699C0.927826 5.10425 0.729492 4.90591 0.729492 4.66675C0.729492 4.42758 0.927826 4.22925 1.16699 4.22925H4.66699C4.90616 4.22925 5.10449 4.42758 5.10449 4.66675C5.10449 4.90591 4.90616 5.10425 4.66699 5.10425Z" fill="#D92626" />
+                                <path d="M3.50033 6.85425H1.16699C0.927826 6.85425 0.729492 6.65591 0.729492 6.41675C0.729492 6.17758 0.927826 5.97925 1.16699 5.97925H3.50033C3.73949 5.97925 3.93783 6.17758 3.93783 6.41675C3.93783 6.65591 3.73949 6.85425 3.50033 6.85425Z" fill="#D92626" />
+                                <path d="M2.33366 8.60425H1.16699C0.927826 8.60425 0.729492 8.40591 0.729492 8.16675C0.729492 7.92758 0.927826 7.72925 1.16699 7.72925H2.33366C2.57283 7.72925 2.77116 7.92758 2.77116 8.16675C2.77116 8.40591 2.57283 8.60425 2.33366 8.60425Z" fill="#D92626" />
+                            </svg>
+                            <p class="text-[#828282] text-[10px]">
+
+                                ارسال به در سراسر ایران
+
+                            </p>
+                        </li>
+                        <li class="flex justify-start items-center gap-2 mb-3">
+                            @*<img src="/ArefSet/src/assets/images/landing/shield-tick.png" alt="">*@
+                            <svg width="14" height="14" class="w-[14px]" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.00007 13.2768C6.36423 13.2768 5.73423 13.0901 5.2384 12.7226L2.73006 10.8501C2.06506 10.3543 1.5459 9.31592 1.5459 8.49342V4.15342C1.5459 3.25509 2.20507 2.29842 3.0509 1.98342L5.96173 0.892588C6.53923 0.676755 7.44923 0.676755 8.02673 0.892588L10.9376 1.98342C11.7834 2.29842 12.4426 3.25509 12.4426 4.15342V8.48759C12.4426 9.31592 11.9234 10.3484 11.2584 10.8443L8.75006 12.7168C8.2659 13.0901 7.6359 13.2768 7.00007 13.2768ZM6.2709 1.71509L3.36007 2.80592C2.86423 2.99259 2.42673 3.62259 2.42673 4.15925V8.49342C2.42673 9.04759 2.81756 9.82342 3.25506 10.1501L5.7634 12.0226C6.43423 12.5243 7.5659 12.5243 8.24256 12.0226L10.7509 10.1501C11.1942 9.81759 11.5792 9.04759 11.5792 8.49342V4.15342C11.5792 3.62259 11.1417 2.99259 10.6459 2.80009L7.73507 1.70925C7.3384 1.56925 6.66173 1.56925 6.2709 1.71509Z" fill="#D92626" />
+                                <path d="M6.21798 8.30082C6.10715 8.30082 5.99631 8.25999 5.90881 8.17249L4.96965 7.23332C4.80048 7.06415 4.80048 6.78415 4.96965 6.61499C5.13881 6.44582 5.41881 6.44582 5.58798 6.61499L6.21798 7.24499L8.41715 5.04582C8.58631 4.87665 8.86631 4.87665 9.03548 5.04582C9.20465 5.21499 9.20465 5.49499 9.03548 5.66415L6.52715 8.17249C6.43965 8.25999 6.32881 8.30082 6.21798 8.30082Z" fill="#D92626" />
+                            </svg>
                             <p class="text-[#828282] text-[10px]">
                                 گارانتی اصالت و سلامت فیزیکی کالا
                             </p>
                         </li>
                     </ul>
 
-                    <div class="border-[#E7E7E7] border-t-[1px] my-4 py-3 hidden lg:flex lg:justify-between lg:items-center">
+                    <div class="lg:border-[#E7E7E7] lg:border-t-[1px]  px-5 my-4 py-3 flex justify-between items-center">
                         <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
                             مبلغ قابل پرداخت :
                         </p>
@@ -227,24 +305,30 @@
                     </div>
                     <a href="/order/Payment/@Model.Order.OrderId" class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
                         پرداخت
-                        <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
+                        @*<img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">*@
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left ms-2" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                        </svg>
                     </a>
 
-                    <a asp-action="DeleteShopCart" asp-area="" asp-controller="order" asp-route-orderId="@Model.Order.OrderId" class="w-full bg-[#252525]  mt-5 mb-5  text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
+                    <a asp-action="DeleteShopCart" asp-area="" asp-controller="order" asp-route-orderId="@Model.Order.OrderId" class="w-full bg-[#252525]  mt-3 mb-5  text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
                         حذف و خرید مجدد
-                        <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
+                        @*<img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">*@
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left ms-2" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                        </svg>
                     </a>
 
-                    <form asp-action="AddDiscountForOrder" asp-controller="order" method="post">
-                        <div class="w-full lg:w-[305px] flex items-center justify-center gap-1 lg:p-0 p-6 bg-[#F6F6F6]">
+                    <form asp-action="AddDiscountForOrder" class="w-full" asp-controller="order" method="post">
+                        <div class="w-full  flex items-center justify-center gap-1 lg:p-0 p-5 bg-[#F6F6F6]">
 
                             <input type="hidden" value="@Model.Order.OrderId" name="orderId" />
                             <input type="hidden" value="@ViewBag.Locationid" name="Locationid" />
 
-                            <div class="border-2 border-[#B7B7B7] w-full h-[65px] flex items-center justify-center">
-                                <input name="DiscountCode" type="text" class="h-full w-full focus:outline-none pr-2 bg-transparent" placeholder="کد تخفیف را وارد کنید">
+                            <div class="border-2 border-[#B7B7B7] w-full lg:w-auto h-[55px] flex items-center justify-center">
+                                <input name="DiscountCode" type="text" class="placeholder:text-[12px] lg:placeholder:text-[15px] h-full w-full focus:outline-none pr-2 bg-transparent" placeholder="کد تخفیف را وارد کنید">
                             </div>
-                            <button class="border-2 border-[#B7B7B7] w-[83px] h-[65px] flex items-center justify-center">
+                            <button class="border-2 border-[#B7B7B7] text-[12px] px-2 h-[55px] flex items-center justify-center">
                                 اعمال
                             </button>
                         </div>
@@ -257,3 +341,15 @@
     </section>
 
 </div>
+<section class="fixed left-0 right-0 bottom-0 bg-white p-6 lg:hidden z-50 flex items-center justify-between">
+    <div>
+        <p class="text-[12px] text-[#7E8285] mb-2">مبلغ قابل پرداخت :</p>
+        <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+            ۵,۸۱۴,۴۶۰ تومان
+        </p>
+    </div>
+    <a href="#" class="bg-[#252525] text-[#fff] inline-flex items-center justify-center gap-2 py-3 px-4 text-[11px]">
+        رفتن به صفحه پرداخت
+        <img src="../assets/images/landing/arrow-left.png" alt="">
+    </a>
+</section>
