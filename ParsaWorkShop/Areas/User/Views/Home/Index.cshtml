@@ -21,14 +21,14 @@
 
 
                 <div class="border-2 border-[#252525] w-full p-5 flex flex-col items-start justify-start gap-5">
-                    <div class="w-full flex justify-between items-center">
+                    <div class="w-full flex justify-between items-center  mb-7">
                         <div>
                             <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
                                 آخرین سفارش من
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <a class="text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">لیست سفارشات من</a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">لیست سفارشات من</a>
                     </div>
                     @if (Model.LastOrder != null && Model.LastOrder.Any())
                     {
@@ -70,14 +70,14 @@
                 </div>
 
                 <div class="border-2 border-[#252525] w-full mt-7 p-5 flex flex-col items-start justify-start gap-5">
-                    <div class="w-full flex justify-between items-center">
+                    <div class="w-full flex justify-between items-center mb-7">
                         <div>
                             <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
                                 محصولات علاقه مندی من
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <a class="text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">لیست علاق مندی های من</a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">لیست علاق مندی های من</a>
                     </div>
 
                     @if (Model.LastFavoriteProduct != null && Model.LastFavoriteProduct.Any())
