@@ -3,7 +3,7 @@
 
 <!-- <nav class="h-[96px] md:h-[96px] lg:h-[104px] w-full bg-slate-300"></nav> -->
 
-<nav class="bg-white dark:bg-gray-900 w-full border-b border-gray-200 dark:border-gray-600 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mx-auto">
+<nav class="bg-white navbar dark:bg-gray-900 w-full  dark:border-gray-600 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mx-auto">
     <div class="flex flex-wrap items-center justify-between mx-auto py-4">
         <div class="flex items-center">
             <a href="#"
@@ -12,6 +12,9 @@
                data-drawer-target="drawer-navigation"
                data-drawer-show="drawer-navigation"
                aria-controls="drawer-navigation">
+
+               @* <img class="w-7 h-7 md:w-7 md:h-7 lg:w-8 lg:h-8" src="~/arefset/src/assets/images/landing/menu.png" />*@
+
                 <svg class="w-7 h-7 md:w-7 md:h-7 lg:w-8 lg:h-8"
                      aria-hidden="true"
                      fill="currentColor"
@@ -58,10 +61,14 @@
                                            id="" />
                                     <div id="SearchIcon"
                                          class="w-[54px] h-full flex justify-center items-center bg-[#D92626]">
-                                        <img src="/ArefSet/src/assets/images/landing/search-normal.png"
+                                       @* <img src="/ArefSet/src/assets/images/landing/search-normal.png"
                                              class="w-[50%]"
                                              alt="search icon"
-                                             title="جستجو کنید " />
+                                             title="جستجو کنید " />*@
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.58366 17.5C13.9559 17.5 17.5003 13.9555 17.5003 9.58329C17.5003 5.21104 13.9559 1.66663 9.58366 1.66663C5.2114 1.66663 1.66699 5.21104 1.66699 9.58329C1.66699 13.9555 5.2114 17.5 9.58366 17.5Z" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M18.3337 18.3333L16.667 16.6666" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
                                     </div>
                                 </div>
                             </div>
@@ -188,9 +195,24 @@
 
             <!-- logo -->
             <a href="@PathTools.SiteAddress" class="flex items-center">
-                <img src="/ArefSet/src/assets/images/landing/Arefset 1.png"
+               @* <img src="/ArefSet/src/assets/images/landing/Arefset 1.png"
                      class="lg:w-[94px] md:w-[80px] w-[73px] mr-3"
-                     alt="Flowbite Logo" />
+                     alt="Arefset Logo" />*@
+                <svg class="lg:w-[94px] md:w-[80px] w-[73px] mr-3" width="73" height="25" viewBox="0 0 73 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_121_488)">
+                        <path d="M0 25C0.551548 24.0097 1.09954 23.0194 1.65286 22.0326L10.3335 6.5272L13.8278 0.282945L13.9897 0C14.0307 0.07781 14.0609 0.129094 14.0858 0.176841L24.688 23.4102C24.9252 23.9372 25.1624 24.4677 25.3997 25.0018H20.6243C20.6067 24.9346 20.5853 24.8685 20.5603 24.8037C18.4573 20.1929 16.3537 15.5797 14.2495 10.9641L13.5218 9.37257C13.4453 9.49813 13.3866 9.59185 13.3332 9.68911C10.6051 14.557 7.87705 19.4272 5.14896 24.2997C5.01908 24.5314 4.90522 24.7719 4.78423 25.0071L0 25Z" fill="#252525" />
+                        <path d="M28.8652 25.0001C28.6873 24.6128 28.5325 24.222 28.3546 23.8382C26.6288 20.1328 24.9024 16.431 23.1754 12.7326C23.1523 12.6814 23.1327 12.6318 23.0971 12.5558H23.3711C24.6432 12.5558 25.9189 12.5806 27.191 12.5363C29.0556 12.4727 30.7494 10.9289 31.0465 9.09148C31.2403 8.00307 30.9939 6.88263 30.3608 5.97389C29.7278 5.06515 28.7593 4.44163 27.6661 4.23897C27.3725 4.18717 27.0746 4.16348 26.7765 4.16823C24.3864 4.16823 21.9958 4.16823 19.6046 4.16823C19.5265 4.17906 19.4471 4.16258 19.3799 4.12161C19.3127 4.08064 19.2619 4.01772 19.2363 3.94364C18.7363 2.85077 18.2186 1.76496 17.708 0.677392C17.6724 0.603119 17.6404 0.525309 17.5977 0.426278C17.6884 0.426278 17.756 0.413899 17.8236 0.413899C20.8269 0.413899 23.8284 0.413899 26.8316 0.413899C28.711 0.397009 30.5363 1.03899 31.9867 2.22705C33.4371 3.41511 34.4198 5.07322 34.7622 6.91004C35.1047 8.74685 34.7848 10.6449 33.8589 12.2705C32.9331 13.8962 31.4604 15.1456 29.6997 15.7991L29.4826 15.8857C30.8775 18.9403 32.2682 21.985 33.6548 25.0195L28.8652 25.0001Z" fill="#252525" />
+                        <path d="M54.7417 25C54.729 24.9162 54.7207 24.8318 54.7168 24.7471C54.7168 20.088 54.7168 15.4312 54.7168 10.7767C54.7168 10.7077 54.7257 10.6388 54.731 10.5557H72.9997V14.8847H59.0972V25H54.7417Z" fill="#252525" />
+                        <path d="M36.423 25.0001C36.0897 24.2597 35.7564 23.5193 35.4231 22.7789C35.1278 22.1282 34.8289 21.4792 34.5335 20.8337C34.5068 20.7789 34.4873 20.7205 34.457 20.6462H52.2489V24.7914C52.2489 24.8621 52.2489 24.9329 52.2596 25.0036L36.423 25.0001Z" fill="#252525" />
+                        <path d="M72.9646 0.413818V4.75349H72.7333C60.872 4.75349 49.0108 4.75349 37.1495 4.75349C37.0817 4.76358 37.0125 4.74764 36.956 4.70889C36.8995 4.67014 36.8599 4.61149 36.8453 4.54482C36.2869 3.0418 35.401 1.68005 34.2513 0.55706C34.2121 0.518155 34.1748 0.477481 34.1143 0.413818H72.9646Z" fill="#252525" />
+                        <path d="M52.2437 10.5433V14.8759H35.3682C35.3918 14.8297 35.4179 14.7849 35.4464 14.7415C36.3261 13.5374 36.9469 12.1661 37.2701 10.7131C37.3021 10.5734 37.3502 10.5362 37.4925 10.5362C42.3556 10.5362 47.2223 10.5362 52.0925 10.5362C52.1299 10.5345 52.1761 10.5398 52.2437 10.5433Z" fill="#252525" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_121_488">
+                            <rect width="73" height="25" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
             </a>
         </div>
 
@@ -210,7 +232,11 @@
             </form>
 
             <a asp-area="" asp-action="ShopCart" asp-controller="Order" class="w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center">
-                <img src="/ArefSet/src/assets/images/landing/Shopping bag 1.png" alt="" />
+               @* <img src="/ArefSet/src/assets/images/landing/Shopping bag 1.png" alt="" />*@
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9751 16.0441L19.9914 6.73557C19.7715 4.65631 18.0182 3.07812 15.9273 3.07812H8.06656C5.97466 3.07812 4.22037 4.65728 4.00243 6.73751L3.02458 16.047C2.75117 18.6516 4.79346 20.9197 7.41175 20.9197H16.5879C19.2082 20.9197 21.2504 18.6497 20.9751 16.0441Z" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M15.0973 7.70312C15.0973 9.41363 13.7108 10.8011 11.9993 10.8011C10.2888 10.8011 8.90234 9.41363 8.90234 7.70312" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
             </a>
 
             <!-- <div
@@ -221,7 +247,11 @@
             </div> -->
             <a asp-action="ManageUserForLogin" asp-area="" asp-controller="Account"
                class=" w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center ">
-                <img src="/ArefSet/src/assets/images/landing/user - 1 1.png" alt="" />
+                @*<img src="/ArefSet/src/assets/images/landing/user - 1 1.png" alt="" />*@
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.7041 19.6796C5.7041 17.6554 7.3012 15.135 11.9045 15.135C16.507 15.135 18.104 17.6371 18.104 19.6623" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8638 8.28059C15.8638 10.4681 14.0906 12.2412 11.9031 12.2412C9.71649 12.2412 7.94336 10.4681 7.94336 8.28059C7.94336 6.09307 9.71649 4.31995 11.9031 4.31995C14.0906 4.31995 15.8638 6.09307 15.8638 8.28059Z" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
             </a>
 
 
