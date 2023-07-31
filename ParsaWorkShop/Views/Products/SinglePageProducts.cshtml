@@ -62,52 +62,52 @@
         const listProductElm = document.querySelector(".list-product");
 
         // precentage of the zoom
-        const ZOOM = 100;
+        //const ZOOM = 100;
 
-        //Event Mouse Enter
-        imgContElm.addEventListener("mouseenter", function () {
-            imgElm.style.width = ZOOM + "%";
-        });
+        ////Event Mouse Enter
+        //imgContElm.addEventListener("mouseenter", function () {
+        //    imgElm.style.width = ZOOM + "%";
+        //});
 
-        //Event Mouse Leave
-        imgContElm.addEventListener("mouseleave", function () {
-            imgElm.style.width = "100%";
-            imgElm.style.top = "0";
-            imgElm.style.left = "0";
-        });
+        ////Event Mouse Leave
+        //imgContElm.addEventListener("mouseleave", function () {
+        //    imgElm.style.width = "100%";
+        //    imgElm.style.top = "0";
+        //    imgElm.style.left = "0";
+        //});
 
-        //Event Mouse Move:
-        imgContElm.addEventListener("mousemove", function (mouseEvent) {
-            let obj = imgContElm;
-            let obj_left = 0;
-            let obj_top = 0;
-            let xpos;
-            let ypos;
+        ////Event Mouse Move:
+        //imgContElm.addEventListener("mousemove", function (mouseEvent) {
+        //    let obj = imgContElm;
+        //    let obj_left = 0;
+        //    let obj_top = 0;
+        //    let xpos;
+        //    let ypos;
 
-            while (obj.offsetParent) {
-                obj_left += obj.offsetLeft;
-                obj_top += obj.offsetTop;
-                obj = obj.offsetParent;
-            }
-            if (mouseEvent) {
-                xpos = mouseEvent.pageX;
-                ypos = mouseEvent.pageY;
-            } else {
-                xpos = window.event.x + document.body.scrollLeft - 2;
-                ypos = window.event.y + document.body.scrollTop - 2;
-            }
-            xpos -= obj_left;
-            ypos -= obj_top;
+        //    while (obj.offsetParent) {
+        //        obj_left += obj.offsetLeft;
+        //        obj_top += obj.offsetTop;
+        //        obj = obj.offsetParent;
+        //    }
+        //    if (mouseEvent) {
+        //        xpos = mouseEvent.pageX;
+        //        ypos = mouseEvent.pageY;
+        //    } else {
+        //        xpos = window.event.x + document.body.scrollLeft - 2;
+        //        ypos = window.event.y + document.body.scrollTop - 2;
+        //    }
+        //    xpos -= obj_left;
+        //    ypos -= obj_top;
 
-            const imgWidth = imgElm.clientWidth;
-            const imgHeight = imgElm.clientHeight;
+        //    const imgWidth = imgElm.clientWidth;
+        //    const imgHeight = imgElm.clientHeight;
 
-            imgElm.style.top =
-                -(((imgHeight - this.clientHeight) * ypos) / this.clientHeight) +
-                "px";
-            imgElm.style.left =
-                -(((imgWidth - this.clientWidth) * xpos) / this.clientWidth) + "px";
-        });
+        //    imgElm.style.top =
+        //        -(((imgHeight - this.clientHeight) * ypos) / this.clientHeight) +
+        //        "px";
+        //    imgElm.style.left =
+        //        -(((imgWidth - this.clientWidth) * xpos) / this.clientWidth) + "px";
+        //});
 
         // change the current image
         Array.from(listProductElm.children).forEach((productElm, i, list) => {
@@ -122,17 +122,17 @@
 
         
 
-        function changeHeight() {
-            imgContElm.style.height = imgContElm.clientWidth + "px";
-        }
-        changeHeight();
+        //function changeHeight() {
+        //    imgContElm.style.height = imgContElm.clientWidth + "px";
+        //}
+        //changeHeight();
 
-         function changeWidth() {
-           imgContElm.style.width=imgContElm.clientHeight+'px'
-         }
-         changeWidth()
+        // function changeWidth() {
+        //   imgContElm.style.width=imgContElm.clientHeight+'px'
+        // }
+        // changeWidth()
 
-        window.addEventListener("resize", changeHeight);
+        //window.addEventListener("resize", changeHeight);
     </script>
 
     <script>
@@ -181,12 +181,12 @@
 
             @if (!string.IsNullOrEmpty(Model.ProductImageName))
             {
-                <div class="lg:w-[522px] h-[522px] relative overflow-hidden img-container" style="height: 522px;">
-                    <img class="w-full block cursor-zoom-in absolute transition-all" src="@PathTools.ProductPath@Model.ProductImageName" alt="" style="width: 100%; top: 0px; left: 0px;">
+                <div class="min-h-[380px] lg:w-[522px] lg:!h-[522px] relative overflow-hidden img-container productImgSinglePage">
+                    <img class="w-full block absolute transition-all" src="@PathTools.ProductPath@Model.ProductImageName" alt="" style="width: 100%; top: 0px; left: 0px;">
                 </div>
             }
 
-            <ul class="list-product flex justify-between h-[72.95] lg:w-[522px] lg:h-auto mt-2 gap-2">
+            <ul class="list-product flex justify-start h-[72.95] lg:w-[522px] lg:h-auto mt-2 gap-2">
 
                 @if (!string.IsNullOrEmpty(Model.ProductImageName))
                 {
@@ -377,7 +377,7 @@
                 </div>
 
                 <div class="lg:flex lg:justify-start lg:flex-row lg:items-center flex justify-center flex-col items-start my-4 lg:my-auto mt-3">
-                    <button class="text-[16px] text-white bg-[#D92626] lg:w-[224px] h-[45px] flex items-center justify-center gap-1 px-3 lg:px-auto mb-5 lg:mb-auto">
+                    <button class="text-[16px] text-white bg-[#D92626] lg:w-[224px] h-[45px] flex items-center justify-center gap-1 px-3 lg:px-auto mb-7 lg:mb-auto">
                         @*<img src="/ArefSet/src/assets/images/landing/Group 44847.png" alt="">*@
                         <svg width="24" height="24"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9751 16.0441L19.9914 6.73557C19.7715 4.65631 18.0182 3.07812 15.9273 3.07812H8.06656C5.97466 3.07812 4.22037 4.65728 4.00243 6.73751L3.02458 16.047C2.75117 18.6516 4.79346 20.9197 7.41175 20.9197H16.5879C19.2082 20.9197 21.2504 18.6497 20.9751 16.0441Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
