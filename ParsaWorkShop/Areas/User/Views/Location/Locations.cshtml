@@ -42,31 +42,31 @@
 
                                 <!-- card -->
                                 <div class="w-full border-2 border-[#B7B7B7] p-5">
-                                    <div class="flex items-center justify-between gap-2 lg:gap-3">
+                                    <div class="flex flex-col items-start justify-start  lg:flex lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-3">
                                         <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
                                             <div class="w-[21.75px] lg:w-[42px]">
                                                 <img class="w-full" src="/ArefSet/src/assets/images/landing/address.png" alt="">
                                             </div>
                                             <div>
-                                                <p class="text-[6px] lg:text-[12px] text-[#252525] leading-[18.6px]" style="font-family: yekanBakhtRegular">
+                                                <p class="text-[10px] lg:text-[12px] text-[#252525] leading-[18.6px]" style="font-family: yekanBakhtRegular">
                                                     آدرس تحویل سفارش
                                                 </p>
-                                                <p class="text-[8px] lg:text-[16px] text-[#252525] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                                                <p class="text-[11px] lg:text-[16px] text-[#252525] leading-[24.8px]" style="font-family: yekanBakhtBold">
                                                     @location.LocationAddress
                                                 </p>
-                                                <p class="text-[6px] lg:text-[14px] text-[#252525] leading-[21.7px]" style="font-family: yekanBakhtRegular">
+                                                <p class="text-[11px] lg:text-[14px] text-[#252525] leading-[21.7px]" style="font-family: yekanBakhtRegular">
                                                     نام گیرنده : @location.Username
                                                 </p>
                                             </div>
                                         </div>
-                                    <div class="flex items-center gap-2 justify-center">
-                                            <a href= href="/User/Location/DeleteLocation/@location.LocationID"
-                                               class="my-3 text-[13px] mt-6 border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-5 py-2 lg:px-7 lg:py-3 inline-flex items-center justify-end text-[#7E8285]">
+                                        <div class="flex items-center gap-2 justify-center">
+                                            <a  href="/User/Location/DeleteLocation/@location.LocationID"
+                                               class="my-3 text-[11px] mt-6 border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-5 py-2 lg:px-7 lg:py-3 inline-flex items-center justify-end text-[#7E8285]">
                                                 حذف آدرس
                                             </a>
                                            @* <a href="c:\users\asus\downloads\arefonlineshop-master\arefonlineshop-master\parsaworkshop\areas\user\views\location\addnewlocation.cshtml"></a>*@
                                             <a href="/User/Location/EditLocation/@location.LocationID"
-                                               class="my-3 text-[13px] mt-6 hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-5 py-2 lg:px-7 lg:py-3 inline-flex items-center justify-end text-[#7E8285] hover:text-[#fff]">
+                                               class="my-3 text-[11px] mt-6 hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-5 py-2 lg:px-7 lg:py-3 inline-flex items-center justify-end text-[#7E8285] hover:text-[#fff]">
                                                 ویرایش آدرس
                                             </a>
                                         </div>
