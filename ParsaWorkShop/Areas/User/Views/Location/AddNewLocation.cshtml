@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "افزودن نشانی ";
 }
 @*@model Application.ViewModels.EditProfileViewModel
@@ -29,10 +28,8 @@
                         </div>
                     </div>
 
-
-
-                    <form asp-action="EditUser" class="w-full" asp-controller="Account" asp-area="User" method="post" enctype="multipart/form-data">
-                       @* <input type="hidden" asp-for="AvatarName" />*@
+                    <form asp-action="AddNewLocation" class="w-full" asp-controller="Location" asp-area="User" method="post" enctype="multipart/form-data">
+                        @* <input type="hidden" asp-for="AvatarName" />*@
 
                         <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
 
@@ -90,20 +87,20 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         استان :
                                     </span>
-                                    <input name="State" id="State" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input name="StateName" id="State" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
                                 </p>
                             </div>
 
-                            
+
                             <div class="flex justify-between items-center bg-[#EDEDED] p-5">
                                 <div class="">
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         شهر :
                                     </span>
-                                    <input name="City" id="City" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input name="CityName" id="City" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -116,8 +113,8 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         آدرس :
                                     </span>
-                                    
-                                    <textarea rows="4" name="Address" id="Address" type="text" class="w-full bg-transparent focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]"></textarea>
+
+                                    <textarea rows="4" name="LocationAddress" id="Address" type="text" class="w-full bg-transparent focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]"></textarea>
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -129,7 +126,7 @@
                         <div class="w-full flex justify-end items-center my-6">
                             <input type="submit" id="submit" class="text-[12px] hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent py-2 px-4 flex items-center justify-center text-[#7E8285] hover:text-[#fff]" value="ذخیره آدرس ">
                             @*<button class="text-[12px] hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent py-2 px-4 flex items-center justify-center text-[#7E8285] hover:text-[#fff]">
-                                ویرایش اطلاعات
+                            ویرایش اطلاعات
                             </button>*@
                         </div>
 
@@ -145,7 +142,7 @@
 @section Scripts
     {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    
+
 }
 
 @*<div class="col-lg-8 col-12">
@@ -163,7 +160,7 @@
                             </div>
                         </div>
                     </div>
-									
+
 
                 <div class="row mt-4">
                     <div class="col-md-12">

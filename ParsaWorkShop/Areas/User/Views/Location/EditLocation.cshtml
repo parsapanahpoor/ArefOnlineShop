@@ -25,7 +25,7 @@
 
 
 
-                    <form asp-action="EditUser" class="w-full" asp-controller="Account" asp-area="User" method="post" enctype="multipart/form-data">
+                    <form asp-action="EditLocation" class="w-full" asp-controller="Location" asp-area="User" method="post" enctype="multipart/form-data">
                         @* <input type="hidden" asp-for="AvatarName" />*@
                         <input type="hidden" asp-for="LocationID" />
                         <input type="hidden" asp-for="UserID" />
@@ -38,7 +38,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         کدپستی :
                                     </span>
-                                    <input asp-for="PostalCode" name="PostalCode" id="PostalCode" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%]">
+                                    <input asp-for="PostalCode" id="PostalCode" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%]">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -50,7 +50,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         نام و نام خانوادگی :
                                     </span>
-                                    <input asp-for="Username" name="Username" id="Username" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input asp-for="Username"  id="Username" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -62,7 +62,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         شماره مبایل :
                                     </span>
-                                    <input asp-for="Mobile" name="Mobile" id="Mobile" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input asp-for="Mobile"  id="Mobile" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -74,7 +74,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         ایمیل من :
                                     </span>
-                                    <input asp-for="Email" name="Email" id="Email" type="email" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input asp-for="Email"  id="Email" type="email" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -86,7 +86,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         استان :
                                     </span>
-                                    <input asp-for="StateName" name="State" id="State" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input asp-for="StateName" id="State" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -99,7 +99,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         شهر :
                                     </span>
-                                    <input asp-for="CityName" name="City" id="City" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input asp-for="CityName"  id="City" type="text" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -113,7 +113,7 @@
                                         آدرس :
                                     </span>
 
-                                    <textarea asp-for="LocationAddress" rows="4" name="Address" id="Address" type="text" class="w-full bg-transparent focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]"></textarea>
+                                    <textarea asp-for="LocationAddress" rows="4" id="Address" type="text" class="w-full bg-transparent focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]"></textarea>
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">

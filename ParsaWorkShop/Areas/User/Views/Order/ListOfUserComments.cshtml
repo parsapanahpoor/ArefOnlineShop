@@ -42,20 +42,20 @@
         <div class="w-full lg:flex min-h-[765px] mainContet ">
             <!-- ----- MyComments ----- -->
             <section id="MyComments" class="tabcontent w-full flex flex-col items-center justify-start">
-@*                <div class="return p-5 pt-0 w-full flex justify-start lg:hidden">
-                    <a href="#" class="flex items-center justify-start gap-1">
-                        <img class="transform rotate-180" src="../assets/images/landing/arrow-left.png" alt="">
-                        <div class="text-right">
-                            <p class="text-[14px] text-[#252525]" style="font-family: yekanBakhtBold">
-                                لیست دیدگاه های شما
-                            </p>
-                            <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtRegular">
-                                My comments list
-                            </p>
-                        </div>
-                    </a>
+                @*                <div class="return p-5 pt-0 w-full flex justify-start lg:hidden">
+                <a href="#" class="flex items-center justify-start gap-1">
+                <img class="transform rotate-180" src="../assets/images/landing/arrow-left.png" alt="">
+                <div class="text-right">
+                <p class="text-[14px] text-[#252525]" style="font-family: yekanBakhtBold">
+                لیست دیدگاه های شما
+                </p>
+                <p class="text-[12px] text-[#252525]" style="font-family: yekanBakhtRegular">
+                My comments list
+                </p>
                 </div>
-*@
+                </a>
+                </div>
+                *@
                 <div class="border-2 border-[#252525] w-full  p-5 flex flex-col items-start justify-start gap-5">
                     <div class="w-full flex justify-between items-center">
                         <div>
@@ -64,12 +64,11 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-						<p class="text-[14px] text-[#828282]">1 دیدگاه </p>												   
+                        <p class="text-[14px] text-[#828282]">1 دیدگاه </p>
                     </div>
 
                     <div class="w-full flex items-start justify-start lg:flex lg:items-center lg:justify-start gap-5 mb-3 lg:mb-5">
-                        <div 
-                             class="tabCommentLinks hover:cursor-pointer text-right">
+                        <div class="tabCommentLinks hover:cursor-pointer text-right">
                             <p class="text-[16px] text-[#252525] leading-[24.8px]"
                                style="font-family: yekanBakhtRegular">
                                 ۲۰ دیدگاه
@@ -79,12 +78,12 @@
                                 ثبت شده
                             </p>
                         </div>
- 
+
                     </div>
 
                     <div id="waiting"
                          class="tabComment w-full flex flex-col items-start justify-center gap-5">
-                          @if (Model != null && Model.Any())
+                        @if (Model != null && Model.Any())
                         {
                             foreach (var comment in Model)
                             {
@@ -100,13 +99,24 @@
                                             <div>
 
                                                 <p class="text-[10px] text-[#252525] leading-[24px]  " style="font-family: yekanBakhtBold">
-                                                        @comment.Users.UserName
-                                                    </p>
-                                               
-                                                <p class="text-[11px] lg:text-[16px] text-[#252525] leading-[24.8px]"
-                                                   style="font-family: yekanBakhtBold">
-                                                    گل مصنوعی مدل ریسه برگ طرح انگور کد PAL-3030
+                                                    @comment.Users.UserName
                                                 </p>
+
+                                                @if (comment.BlogId.HasValue)
+                                                {
+                                                    <p class="text-[11px] lg:text-[16px] text-[#252525] leading-[24.8px]"
+                                                       style="font-family: yekanBakhtBold">
+                                                        @comment.Blog.BlogTitle
+                                                    </p>
+                                                }
+                                                @if (comment.ProductID.HasValue)
+                                                {
+                                                    <p class="text-[11px] lg:text-[16px] text-[#252525] leading-[24.8px]"
+                                                       style="font-family: yekanBakhtBold">
+                                                        @comment.Product.ProductTitle
+                                                    </p>
+                                                }
+
                                                 <p class="text-[12px] lg:text-[14px] text-[#252525] flex items-center"
                                                    style="font-family: yekanBakhtRegular">
                                                     <img class="w-[14px] ml-2"
@@ -163,47 +173,47 @@
                                 <!-- --- -->
                             }
                         }
-                        
+
                     </div>
 
 
                     @*<div id="waiting" class="tabComment w-full flex flex-col items-start justify-center gap-5" style="display: block;">
 
-                        @if (Model != null && Model.Any())
-                        {
-                            foreach (var comment in Model)
-                            {
-                              
-                                <div class="w-full border-2 border-[#B7B7B7] p-5 mb-3">
-                                    <div class="flex flex-col items-start justify-center lg:flex lg:items-center lg:flex-row lg:justify-between gap-2 lg:gap-3">
-                                        <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
-                                            <div class="w-[51px] lg:w-[73px]">
-                                                <img class="w-full" src="/Images/UserAvatar/@comment.Users.UserAvatar" alt="">
-                                            </div>
-                                            <div>
-                                                <p class="text-[14px] lg:text-[16px] text-[#252525] leading-[24.8px]" style="font-family: yekanBakhtBold">
-                                                    @comment.Users.UserName
-                                                </p>
-                                            </div>
-                                        </div>
+                    @if (Model != null && Model.Any())
+                    {
+                    foreach (var comment in Model)
+                    {
 
-                                    </div>
+                    <div class="w-full border-2 border-[#B7B7B7] p-5 mb-3">
+                    <div class="flex flex-col items-start justify-center lg:flex lg:items-center lg:flex-row lg:justify-between gap-2 lg:gap-3">
+                    <div class="h-full flex items-center justify-center gap-2 lg:gap-3">
+                    <div class="w-[51px] lg:w-[73px]">
+                    <img class="w-full" src="/Images/UserAvatar/@comment.Users.UserAvatar" alt="">
+                    </div>
+                    <div>
+                    <p class="text-[14px] lg:text-[16px] text-[#252525] leading-[24.8px]" style="font-family: yekanBakhtBold">
+                    @comment.Users.UserName
+                    </p>
+                    </div>
+                    </div>
 
-                                    <div class="flex items-start justify-between gap-2 lg:gap-3 mt-5">
-                                        <div class="">
-                                            <div class="flex gap-2">
+                    </div>
 
-                                                <div class="inline-block pt-3">
-                                                    <p class="text-[10px] text-[#252525] leading-[24px] mb-2">
-                                                        @comment.CommentBody
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
+                    <div class="flex items-start justify-between gap-2 lg:gap-3 mt-5">
+                    <div class="">
+                    <div class="flex gap-2">
+
+                    <div class="inline-block pt-3">
+                    <p class="text-[10px] text-[#252525] leading-[24px] mb-2">
+                    @comment.CommentBody
+                    </p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    }
+                    }
 
                     </div>*@
                 </div>
