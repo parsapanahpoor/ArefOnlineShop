@@ -265,23 +265,27 @@ input:focus-visible + label {
 .activeSideItem>div>.Ellipse{
   opacity: 1;
 }
-.activeSideItem>img{
-  opacity: 1;
-}
+    .activeSideItem > .bi-arrow-left {
+        opacity: 1;
+    }
+   /* .activeSideItem .bi-arrow-left {
+        color: #fff;
+    }*/
 
-.activeFormItem{
-  color: #D92626;
+.activeFormItem {
+    color: #D92626;
 }
 
 .activeCommentTab{
   opacity: 1;
 }
 
-.activeOrderItem{
-  opacity: 1;
+.activeOrderItem {
+    opacity: 1;
 }
-.activeOrderItem>.redUnderLine{
-  position: relative;
+
+.activeOrderItem > .redUnderLine {
+    position: relative;
 }
 .activeOrderItem>.redUnderLine::after{
   content: '';

@@ -1,8 +1,8 @@
 .filter-price {
-  width: 220px;
+  width: 300px;
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .price-title {
@@ -31,7 +31,7 @@
 /* Reset style for input range */
 
 .price-field input[type="range"] {
-  width: 188px;
+  width: 280px;
   height: 2px;
   border: 0;
   outline: 0;
@@ -51,7 +51,7 @@
 }
 
 .price-field input[type="range"]::-ms-track {
-  width: 188px;
+  width: 280px;
   height: 2px;
   border: 0;
   outline: 0;
@@ -124,7 +124,7 @@
 
 .price-field input[type="range"]::-webkit-slider-runnable-track {
   /* WebKit/Blink */
-  width: 188px;
+  width: 280px;
   height: 2px;
   cursor: pointer;
   background: #252525;
@@ -133,7 +133,7 @@
 
 .price-field input[type="range"]::-moz-range-track {
   /* Firefox */
-  width: 188px;
+  width: 280px;
   height: 2px;
   cursor: pointer;
   background: #252525;
@@ -142,7 +142,7 @@
 
 .price-field input[type="range"]::-ms-track {
   /* IE */
-  width: 188px;
+  width: 280px;
   height: 2px;
   cursor: pointer;
   background: #252525;
@@ -177,19 +177,19 @@
 
 .price-wrap #one,
 .price-wrap #two {
-  width: 60px;
-  text-align: right;
-  margin: 0;
-  padding: 0;
-  margin-right: 2px;
-  background: 0;
-  border: 0;
-  outline: 0;
-  color: #252525;
-  font-family: "Karla", "Arial", sans-serif;
-  font-size: 14px;
-  line-height: 1.2em;
-  font-weight: 400;
+    width: 60px;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    margin-right: 2px;
+    background: 0;
+    border: 0;
+    outline: 0;
+    color: #252525;
+    font-family: "Karla", "Arial", sans-serif;
+    font-size: 14px;
+    line-height: 1.2em;
+    font-weight: 400;
 }
 
 .price-wrap label {
