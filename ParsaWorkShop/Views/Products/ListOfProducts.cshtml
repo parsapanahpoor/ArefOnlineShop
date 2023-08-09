@@ -485,8 +485,12 @@
                 </div>
                 <div class="flex items-center justify-center gap-3">
                     <p class="text-[#7D7D7D] text-[12px]  lg:text-[14px] font-medium">مرتب سازی بر اساس :</p>
+                    <div class=" border px-2  rounded-md">
+
                     <select onchange='changeDropDown(this)'
-                            class="py-2 px-1 lg:px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                            @*class="py-3 px-4 pl-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"*@
+                            class="py-2  lg:px-5 block  bg-transparent  text-sm   dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    >
 
                         @if (Model.Status == FilterStatus.All)
                         {
@@ -530,6 +534,7 @@
                         }
 
                     </select>
+                    </div>
                 </div>
             </div>
 

@@ -35,9 +35,10 @@
                         </div>
                         <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
                             <div class="text-right inline-block lg:w-[283px]">
-                                <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px] block h-4">
+                                
                                 </p>
-                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px] lg:text-[18px] shopCardTitle">
+                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px]  lg:text-[16px] line-clamp-2 shopCardTitle">
                                     @item.Title
                                 </a>
                             </div>
