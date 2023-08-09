@@ -13,11 +13,20 @@
     opacity: 1;
 }
 
-.color>input:checked~.content{
-    border: 2px solid #000;    
+.color > input:checked ~ .content {
+    border: 2px solid #000;
+    background-image: url('../images/landing/download2.svg');
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: 50%;
 }
-.size>input:checked+label{
+
+.color > input:checked ~span{
+    color:#252525
+}
+.size > input:checked + label {
     background-color: #252525;
-    border: 1px solid #252525;    
+    border: 1px solid #252525;
     color: #fff;
 }
