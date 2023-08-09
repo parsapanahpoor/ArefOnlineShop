@@ -150,7 +150,7 @@
 }
 
 
-<main class="mx-auto  mb-[100px]">
+<main class="mx-auto "  style="margin-bottom: 100px;">
 
     <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7">
         <nav class="flex" aria-label="Breadcrumb">
@@ -547,10 +547,10 @@
           @*  style="height: 114.833px;"*@
             <div class="tab-panels">
                 <section id="describtion" class="tab-panel border-2 text-right text-[14px] lg:text-[16px] !text-[#494949] !leading-[26px] lg:!leading-[36px] !p-4 !px-6">
-                    <p class="text-[16px] lg:text-[22px] my-2">
+                    <span class="text-[16px] lg:text-[22px] my-2 block">
                         <strong class="" style="font-family: yekanBakhtBlack">معرفی</strong>
-                    </p>
-                    <p style="color:#494949" class="text-[14px] lg:text-[16px] !text-[#494949] !leading-[26px] lg:!leading-[36px] break-all">
+                    </span>
+                    <p class="text-[14px] lg:text-[16px] !text-[#494949] !leading-[26px] lg:!leading-[36px] break-all">
                         @Html.Raw(Model.LongDescription)
                     </p>
                     <!-- <div class=" shadow-lg w-[414px] h-[480px] col-span-1 md:col-span-1 lg:col-span-1"></div> -->
@@ -558,9 +558,47 @@
 
                 <section id="details" class="tab-panel border-2 text-right  !p-4 !px-6">
                     <p class="text-[16px] lg:text-[22px] my-2">
-                        <strong class="" style="font-family: yekanBakhtBlack">ویژگی ها </strong>
+                        <strong class="text-[18px] lg:text-[22px] leading-[34.1px]" style="font-family: yekanBakhtBlack"> مشخصات </strong><span class="text-[18px] lg:text-[22px] leading-[34.1px]">محصول</span>
                     </p>
-                    <p class="text-[14px] lg:text-[16px] text-[#494949] leading-[26px] lg:leading-[36px] break-all">
+                    <p class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] my-2"> @Model.ProductTitle</p>
+                    <div class="flex items-start lg:flex lg:items-center">
+                       @* <div class="singlePageProDesc">
+                            <span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] pt-3 block"> جنس </span>
+                            <span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] pt-3 block"> توضیحات </span>
+                            <span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] pt-3 block"> نگهداری </span>
+                        </div>
+
+                        <div>
+                            <span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px] pt-3 block"> الیاف ، نخی ، پنبه ، نخ </span>
+                            <span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px] pt-3 block"> تیشرت یقه گرد مردانه / جنس صد در صد پنبه / خنک </span>
+                            <span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px] pt-3 block">
+                                جهت دوام هرچه بیشتر چاپ جهت شست و شو به صورت
+                                پشت و رو با دمای پایین و دور پایین شسته شود
+                            </span>
+                        </div>*@
+                        <ul>
+                            <li class="flex justify-start items-start pt-3 lg:pt-4">
+                                <div class="singlePageProDesc lg:w-[120px] "><span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px]"> جنس </span></div>
+                                <div class=""><span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px]"> الیاف ، نخی ، پنبه ، نخ </span></div>
+                            </li>
+
+                            <li class="flex justify-start items-start pt-3 lg:pt-4">
+                                <div class="singlePageProDesc lg:w-[120px] "><span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px]"> توضیحات  </span></div>
+                                <div class=""><span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px]">  تیشرت یقه گرد مردانه / جنس صد در صد پنبه / خنک  </span></div>
+                            </li>
+
+                            <li class="flex justify-start items-start pt-3 lg:pt-4">
+                                <div class="singlePageProDesc lg:w-[120px] "><span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px]"> نگهداری </span></div>
+                                <div class="">
+                                    <span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px]">
+                                        جهت دوام هرچه بیشتر چاپ جهت شست و شو به صورت
+                                        پشت و رو با دمای پایین و دور پایین شسته شود
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    @*<p class="text-[14px] lg:text-[16px] text-[#494949] leading-[26px] lg:leading-[36px] break-all">
                         <table class="table">
                             <tbody>
                                 @foreach (var item in Model.ProductFeatures)
@@ -573,7 +611,7 @@
 
                             </tbody>
                         </table>
-                    </p>
+                    </p>*@
 
                     <!-- <div class=" shadow-lg w-[414px] h-[480px] col-span-1 md:col-span-1 lg:col-span-1"></div> -->
                 </section>

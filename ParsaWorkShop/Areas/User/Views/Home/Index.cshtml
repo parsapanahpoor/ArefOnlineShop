@@ -8,7 +8,7 @@
 }
 
 
-<main class="mx-auto mt-7 mb-7">
+<main class="mx-auto mt-7 " style="margin-bottom: 100px;">
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
@@ -28,7 +28,7 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">لیست سفارشات من</a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">  4 سفارش</a>
                     </div>
                     @if (Model.LastOrder != null && Model.LastOrder.Any())
                     {
@@ -127,7 +127,7 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">لیست علاق مندی های من</a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">  4 کالا  </a>
                     </div>
 
                     @if (Model.LastFavoriteProduct != null && Model.LastFavoriteProduct.Any())
