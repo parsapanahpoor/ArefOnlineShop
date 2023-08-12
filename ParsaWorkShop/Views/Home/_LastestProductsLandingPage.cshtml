@@ -55,13 +55,14 @@
 
                                         <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all">
                                             <img class="product-image  w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
-                                            <img class="product-image-hover w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" alt="" />
+                                            <img class="product-image-hover w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
                                         </a>
 
                                     </div>
                                     <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
                                         <div class="text-right inline-block lg:w-[283px]">
                                             <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                                همه ی محصولات 
                                             </p>
                                             <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px] lg:text-[18px] shopCardTitle">
                                                 @item.Title
@@ -102,7 +103,7 @@
                                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
 
                                                     <img class="product-image transition-all w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
-                                                    <img class="product-image-hover transition-all w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" alt="" />
+                                                    <img class="product-image-hover transition-all w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
                                                 </div>
                                                 <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
                                                     <div class="text-right">
