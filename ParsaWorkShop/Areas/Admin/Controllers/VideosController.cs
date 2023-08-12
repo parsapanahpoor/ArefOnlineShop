@@ -13,7 +13,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    [PermissionChecker(1)]
+    [PermissionChecker(10)]
 
     public class VideosController : Controller
     {

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
-    [PermissionChecker(1)]
+    [PermissionChecker(6)]
     public class DiscountCodeController : AdminBaseController
     {
         #region Ctor 

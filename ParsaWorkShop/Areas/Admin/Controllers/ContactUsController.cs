@@ -1,9 +1,12 @@
 ﻿using Application.Interfaces;
+using Application.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
+    [PermissionChecker(12)]
     public class ContactUsController : AdminBaseController
     {
         #region Ctor

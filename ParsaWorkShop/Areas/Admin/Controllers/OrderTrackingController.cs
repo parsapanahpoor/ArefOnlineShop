@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
-    [PermissionChecker(1)]
+    [PermissionChecker(11)]
 
     public class OrderTrackingController : AdminBaseController
     {

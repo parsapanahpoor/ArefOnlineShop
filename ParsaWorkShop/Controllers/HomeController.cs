@@ -1,7 +1,9 @@
 ﻿#region Usings
 
 using Application.Interfaces;
+using Domain.Models.Permissions;
 using Domain.ViewModels.SiteSide.ContactUs;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParsaWorkShop.Models;
@@ -36,8 +38,13 @@ namespace ParsaWorkShop.Controllers
         #region Index
 
         //[ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Client, NoStore = false)]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool? permission)
         {
+            if (permission == true)
+            {
+                ViewData[ErrorMessage] = "you dont have permission";
+            }
+
             #region Fill Model
 
             var model = await _siteSettingService.FillIndexPageViewModel();
