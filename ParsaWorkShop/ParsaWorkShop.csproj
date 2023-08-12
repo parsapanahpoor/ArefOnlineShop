@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\ArefSet\src\assets\images\landing\download2.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -98,6 +102,7 @@
     <None Include="wwwroot\ArefSet\src\assets\fonts\Yekan Bakh Family\Webfonts\fonts\woff\desktop.ini" />
     <None Include="wwwroot\ArefSet\src\assets\images\icons\site.webmanifest" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\car.svg" />
+    <None Include="wwwroot\ArefSet\src\assets\images\landing\download2.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\download.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\heart.svg" />
     <None Include="wwwroot\ArefSet\src\assets\images\landing\Layer 4.svg" />

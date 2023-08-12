@@ -12,31 +12,52 @@
     @await RenderSectionAsync("Styles", false)
 
     <style>
+        .singlePageProDesc{
+            width:90px;
+        }
+        #describtion p{
+            color: #494949;
+            font-size: 14px;
+            line-height: 26px;
+            
+        }
+
+        .blogText p{
+            color: #565656;
+            font-size: 10px;
+            line-height: 24px;
+        }
+
+        .papularBlogSingle{
+            display:inline-block;
+            width:186px;
+        }
+
         .shopCardHover .product-image {
-            display:block;
-           /* visibility:visible;
-            opacity:1;*/
-            transition: all .4s ease
+            /*display:block;*/
+            visibility:visible;
+            opacity:1;
+            /*transition: all .4s ease*/
         }
 
         .shopCardHover .product-image-hover {
-            display:none;
-            /*visibility:hidden;
-            opacity:0;*/
+            /*display:none;*/
+            visibility:hidden;
+            opacity:0;
             transition: all .4s ease
         }
 
         .shopCardHover:hover .product-image {
-            display: none;
-           /* visibility: hidden;
-            opacity: 0;*/
+            /*display: none;*/
+            visibility: hidden;
+            opacity: 0;
  
         }
 
         .shopCardHover:hover .product-image-hover {
-            display: block;
-           /* visibility: visible;
-            opacity: 1;*/
+            /*display: block;*/
+            visibility: visible;
+            opacity: 1;
         }
 
         .shopCardTitle {
@@ -53,7 +74,65 @@
             min-height:380px
         }
 
+        .imgFavoriteSmPanel{
+            width: 132px;
+        }
+
+        .detFavoriteSmPanel {
+            margin-bottom: auto;
+        }
+
+        .detFavoriteSmPanel .priceFavoriteSmPanel {
+           /* margin: 8px auto;*/
+            margin-bottom: 15px
+        }
+
+        .deleteFavoriteSmPanel {
+            width: 30px;
+            height: 30px;
+        }
+
+        .seeProdctFavoriteSmPanel{
+            height: 30px;
+        }
+
+        /*.headerSlider {
+            height: 730px
+        }
+        .headerSliderImg{
+
+        }*/
+        /*.headerSlider {
+            height: 100%
+        }
+        .headerSliderImg {
+            height:500px
+        }*/
+       /* .singlePageProDesc {
+            width: 40%;
+        }*/
         @@media screen and (min-width: 768px) {
+           /* .headerSlider{
+                height: 730px
+            }
+
+            .headerSliderImg {
+                height: 100%
+            }*/
+            #describtion p {
+                font-size: 16px;
+                line-height: 36px;
+            }
+
+            .blogText p {
+                font-size: 14px;
+                line-height: 33.6px;
+            }
+
+            .papularBlogSingle {
+                width: 246px
+            }
+
             .shopCardTitle {
                 width: 283px;
                 display: inline-block
@@ -67,12 +146,38 @@
             .productImgSinglePage {
                 height:522px;
             }
+
+            .imgFavoriteSmPanel {
+                width: 100%;
+            }
+
+            .detFavoriteSmPanel{
+                margin-bottom: 10px;
+            }
+
+            /*.singlePageProDesc {
+                width: 10%;
+            }*/
+
+            .detFavoriteSmPanel .priceFavoriteSmPanel {
+                /*margin: 0;*/
+                margin-bottom: 0
+            }
+
+            .deleteFavoriteSmPanel {
+                width: 89px;
+                height: 38px;
+            }
+
+            .seeProdctFavoriteSmPanel {
+                height: 38px;
+            }
         }
 
         .blogCard:hover{
            /* background-color:#252525;
             opacity:0.8*/
-            background: linear-gradient(135deg,rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3));
+            background: linear-gradient(136deg,rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3));
             -webkit-backdrop-filter: blur(21px);
             backdrop-filter: blur(21px);
         }
@@ -80,7 +185,7 @@
     </style>
 
 </head>
-<body dir="rtl">
+<body dir="rtl" onload="loadedPage()">
 
     <header class="mx-auto" id="toTop">
 
@@ -125,7 +230,7 @@
                 menu.classList.add("invisible");
                 body.style.overflow = "auto";
             }
-        }
+        } 
 
         function loadedPage() {
             // alert("Page is loaded");

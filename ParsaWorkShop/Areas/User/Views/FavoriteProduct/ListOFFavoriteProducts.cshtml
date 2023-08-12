@@ -5,9 +5,9 @@
 @{
     ViewData["Title"] = "لیست محصولات علاقه مندی شما";
 }
+ 
 
-
-<main class="mx-auto mt-7 mb-7">
+<main class="mx-auto mt-7 " style="margin-bottom: 100px;">
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
@@ -18,15 +18,15 @@
             <!-- ----- Activities ----- -->
             <section id="Activities" class="tabcontent w-full flex flex-col items-center justify-start">
 
-                <div class="border-2 border-[#252525] w-full p-5 flex flex-col items-start justify-start gap-5">
-                    <div class="w-full flex justify-between items-center">
+                <div class="border-2 border-[#252525] w-full  min-h-[765px] p-5 flex flex-col items-start justify-start gap-5">
+                    <div class="w-full flex justify-between items-center  mb-7">
                         <div>
                             <p class="text-[14px]" style="font-family: yekanBakhtExtraBold">
                                 محصولات علاقه مندی من
                             </p>
                             <p class="text-[12px] text-[#828282]">My Favorites</p>
                         </div>
-                        <a class="text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">لیست علاق مندی های من</a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">  ۴۳ کالا  </a>
                     </div>
 
                     @if (Model != null && Model.Any())
@@ -35,7 +35,109 @@
                             <!-- card -->
                             @foreach (var product in Model)
                             {
-                                 <div class="w-full h-[385px] hover:shadow-md flex flex-col justify-between items-center">
+
+
+                                <div class="py-3 px-1 md:p-0 lg:p-0 w-full min-h-[84px] md:w-full md:min-h-[385px] lg:w-full lg:min-h-[385px] flex flex-row justify-between items-end md:flex md:flex-col md:justify-between md:items-center lg:flex lg:flex-col lg:justify-between lg:items-center border-b-2 md:border-b-0 lg:border-b-0 gap-2 md:gap-0 lg:gap-0">
+                                    <div class="imgFavoriteSmPanel h-full md:w-full md:h-[277px] lg:w-full lg:h-[277px] lg:mb-2">
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImage" title="@product.ProductName" alt="@product.ProductName">
+                                    </div>
+                                    <div class="w-full lg:py-1">
+                                        <div class="detFavoriteSmPanel w-full md:flex md:justify-between md:items-end lg:flex lg:justify-between lg:items-end">
+                                            <div>
+                                                <p class="text-[#7E8285] text-[10px] leading-[15.5px] hidden md:inline-block lg:inline-block" style="font-family: yekanBakhtRegular">
+                                                    دسته بندی : کفش
+                                                </p>
+                                                <p class="text-[#252525] text-[14px] md:text-[16px] lg:text-[16px] leading-[24.8px]" style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;font-family: yekanBakhtBold">
+                                                    @product.ProductName
+                                                </p>
+                                                @*<div class="flex items-center justify-start md:hidden lg:hidden">
+                                                    <img class="w-[14px] ml-2" src="/ArefSet/src/assets/images/landing/star@2x.png" alt="star">
+                                                    <strong class="text-[12px]"> ۴/۶ </strong>
+                                                </div>*@
+                                            </div>
+                                            <div class="priceFavoriteSmPanel flex flex-row-reverse items-center gap-2 my-2 md:my-0 md:gap-0  lg:my-0 lg:gap-0 md:flex md:flex-col md:items-start lg:flex lg:flex-col lg:items-start text-right">
+                                                <p class="text-[#7E8285] line-through text-[12px] leading-[20.15px] inline-block md:inline-block lg:inline-block">
+                                                    @((product.OldPrice.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال" : " ")
+                                                   
+                                                </p>
+                                                <p class="md:text-[#D92626] text-[#D92626]   text-[15px] md:text-[17px] lg:text-[17px] leading-[26.35px] " style="font-family: yekanBakhtBold">
+                                                    @product.Price.ToString("#,000")ریال
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        @*<div class="w-full hidden lg:flex lg:justify-between lg:items-center md:flex md:justify-between md:items-center gap-2">*@
+                                        <div class="w-full  flex justify-end items-center md:flex md:justify-between md:items-center gap-2">
+                                            <a href="#" class="deleteFavoriteSmPanel w-[30px] h-[30px] md:w-[89px] md:h-[38px] lg:w-[89px] lg:h-[38px] bg-transparent text-[#252525] border-2 border-[#252525] inline-flex items-center justify-center  md:py-2 md:px-4 lg:py-2 lg:px-4 text-[10px]">
+                                                <svg width="40" height="40" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12.728 21.2427L21.2133 12.7574" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M21.2133 21.2426L12.728 12.7573" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                                <span class="hidden lg:inline-block md:inline-block "> حذف </span>
+                                                
+                                            </a>
+                                            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductId" asp-route-ProductTitle="@product.SeoTitle" class="seeProdctFavoriteSmPanel bg-[#D92626] w-[30px] h-[30px]  md:w-full md:h-[38px] lg:w-full lg:h-[38px] text-[#fff] inline-flex items-center justify-center gap-2   md:py-2 md:px-4 lg:py-2 lg:px-4 text-[10px] lg:text-[12px]">
+
+                                                <span class="hidden lg:inline-block md:inline-block "> مشاهده ی محصول </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left w-[16px] text-[#fff]" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                   @* <div class="md:hidden lg:hidden text-[#7E8285] ">
+                                       
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left w-[14.5px]" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                        </svg>
+                                    </div>*@
+                                </div>
+
+
+                                @*<div class="h-[385px] transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
+                                    <div class="w-full  h-[277px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
+
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductId" asp-route-ProductTitle="@product.SeoTitle" class="transition-all block w-full h-full overflow-hidden relative">
+                                            <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@product.ProductImage" title="@product.ProductName" alt="@product.ProductName" />
+                                            <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@product.ProductName" alt="@product.ProductName" />
+                                        </a>
+
+                                    </div>
+                                    <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
+                                        <div class="text-right inline-block lg:w-[283px]">
+                                            <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                               
+                                            </p>
+                                            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductId" asp-route-ProductTitle="@product.SeoTitle" class="font-bold text-[15px]  lg:text-[16px] line-clamp-2 listShopCartTitle">
+                                                @product.ProductName
+                                            </a>
+                                        </div>
+                                        <div class="text-left">
+                                            <p class="leading-[20.15px] line-through inline-block text-[#B7B7B7] font-light text-[10px] lg:text-[14px]  h-4">
+
+                                                @((product.OldPrice.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال" : " ")
+
+                                            </p>
+                                            <p class="text-[#D92626] font-bold text-[15px] " style="font-family: yekanBakhtBold">
+                                                @product.Price.ToString("#,000")ریال
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full flex justify-between items-center gap-2">
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductId" asp-route-ProductTitle="@product.SeoTitle" class="bg-[#D92626] hover:bg-[#b52020] w-full h-[38px] text-[#fff] flex items-center justify-center gap-2 py-2 px-4 text-[10px]">
+                                            مشاهده ی محصول
+                                          
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left w-[16px] text-[#fff]" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>*@
+                                 
+                                
+                                
+                                
+                                @*<div class="w-full h-[385px] hover:shadow-md flex flex-col justify-between items-center">
                                     <div class="w-full h-[277px]">
                                         <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImage" alt="">
                                     </div>
@@ -60,7 +162,7 @@
                                             <img src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
                                         </a>
                                     </div>
-                                </div>
+                                </div>*@
 
                             }
 

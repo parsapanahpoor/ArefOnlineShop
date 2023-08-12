@@ -94,7 +94,7 @@
     </script>
 }
 
-<main class="mx-auto">
+<main class="mx-auto" style="margin-bottom: 100px;">
     <section class="breadcrumb mx-auto lg:mb-8 lg:mt-5 my-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -130,7 +130,7 @@
             <div class="w-full py-4 flex justify-between items-center">
                 <div class="flex items-center justify-start gap-2">
                     <div class="w-[28px] h-[28px] lg:w-[35px] lg:h-[35px] rounded-full">
-                        <img class="w-full h-full object-cover" src="/Images/UserAvatar/@Model.Blog.Users.UserAvatar" alt="">
+                        <img class="w-full h-full object-cover rounded-full" src="/Images/UserAvatar/@Model.Blog.Users.UserAvatar" alt="">
                     </div>
                     <div class="flex flex-col items-start justify-start">
                         <p class="text-[12px] leading-[18.6px] lg:text-[14px] text-[#252525] lg:leading-[21.7px]" style="font-family: yekanBakhtRegular">
@@ -150,20 +150,45 @@
                 </div>
             </div>
 
-            <div class="w-full h-[163px] lg:h-[415px] mt-1">
+            <div class="w-full h-[163px] lg:h-[415px] mt-1 mb-2">
                 <img class="w-full h-full object-cover" src="/Images/Blog/image/@Model.Blog.BlogImageName" alt="">
             </div>
 
-            <div class="w-full my-6">
+            <div class="blogText w-full my-6">
                 <p class="text-[10px] lg:text-[14px] text-[#565656] leading-[28px] text-right" style="font-family: yekanBakhtRegular">
                     @Html.Raw(Model.Blog.LongDescription)
                 </p>
             </div>
 
 
+            <div class="w-full py-4 my-6 flex flex-col justify-center items-start lg:flex lg:flex-row lg:justify-between lg:items-center">
+                <p class="text-[10px] lg:text-[13px] text-[#565656] leading-[24px] lg:leading-[19.5px] text-right mb-3 lg:mb-5" style="font-family: yekanBakhtRegular">
+                    این پست را با دوستان خود به اشتراک بذارید
+                </p>
+
+                <div class="flex items-center justify-center gap-2 lg:gap-3">
+                    <div class="w-[15.24px] h-[15.24px] lg:w-[20px] lg:h-[20px] hover:cursor-pointer">
+                        <a href="#"><img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Pintrest4x.png" alt=""></a>
+                    </div>
+                    <div class="w-[15.24px] h-[15.24px] lg:w-[20px] lg:h-[20px] hover:cursor-pointer">
+                        <a href="#"><img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Instagram4x.png" alt=""></a>
+                    </div>
+                    <div class="w-[15.24px] h-[15.24px] lg:w-[20px] lg:h-[20px] hover:cursor-pointer">
+                        <a href="#"><img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Linkedin4x.png" alt=""></a>
+                    </div>
+                    <div class="w-[15.24px] h-[15.24px] lg:w-[20px] lg:h-[20px] hover:cursor-pointer">
+                        <a href="#"><img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Twitter4x.png" alt=""></a>
+                    </div>
+                    <div class="w-[15.24px] h-[15.24px] lg:w-[20px] lg:h-[20px] hover:cursor-pointer">
+                        <a href="#"><img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Facebook4x.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+
+
             @if (User.Identity.IsAuthenticated)
             {
-                <div id="commentArticle" class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
+                <div id="commentArticle" class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED]  flex flex-col items-start">
                     <div class="flex flex-col justify-start items-start">
                         <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
                             ارسال یک دیدگاه
@@ -177,7 +202,7 @@
                             <input name="BlogId" type="hidden" value="@Model.Blog.BlogId" />
 
                             <div class="col-span-1 md:col-span-2 lg:col-span-2 h-[54px]">
-                                <input type="text" readonly value="@User.Identity.Name" class="w-full h-full focus:outline-none px-3 bg-white rounded text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="نام و نام خانوادگی">
+                                <input type="text" readonly value="@User.Identity.Name" class="w-full h-full focus:outline-none px-3 bg-white text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="نام و نام خانوادگی">
                             </div>
                             <div class="col-span-1 md:col-span-2 lg:col-span-2">
                                 <textarea name="CommentBody" class="w-full focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="دیدگاه خود را بنویسید" id="TextArea" rows="4"></textarea>
@@ -194,7 +219,7 @@
             }
             else
             {
-                <div class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
+                <div class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] flex flex-col items-start">
                     <div class="flex flex-col justify-start items-start">
 
                         <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
@@ -249,7 +274,7 @@
                                 foreach (var answer in Model.Comments.Where(s => s.ParentId == comment.CommentId))
                                 {
                                     <!--answer card -->
-                                    <div class="lg:w-[94.5%] bg-[#EDEDED] p-2 mr-[30px] lg:mr-[51px] rounded mb-3">
+                                    <div class="lg:w-[94.5%] bg-[#EDEDED] p-2 mr-[30px] lg:mr-[51px]  mb-3">
                                         <div class="flex items-start justify-between">
                                             <div class="flex items-center justify-center gap-2">
                                                 <div class="w-[30px] h-[30px] lg:w-[51px] lg:h-[51px] rounded-full">
@@ -300,7 +325,7 @@
 
             @if (Model.BlogCategories != null && Model.BlogCategories.Any())
             {
-                <div class="w-full h-[402px] border-2 lg:flex lg:flex-col lg:items-start lg:justify-start text-right p-5 lg:p-10 gap-4 mb-5 hidden">
+                <div class="w-full h-[402px] border-2 lg:flex lg:flex-col lg:items-start lg:justify-start text-right p-4 lg:p-10 gap-4 mb-5 hidden">
                     <p class="text-[#252525] text-[16px] leading-[18px]" style="font-family: yekanBakhtBold">
                         دسته بندی ها
                     </p>
@@ -310,7 +335,12 @@
                         {
                             <li class="w-full leading-5">
                                 <a class="w-full flex justify-between items-center" href="#">
-                                    <span class="text-[12px] text-[#252525]">@category.CategoryTitle</span><span class="text-[12px] text-[#252525]"> > </span>
+                                    <span class="text-[12px] text-[#252525]">@category.CategoryTitle</span><span class="text-[12px] text-[#252525]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-arrow-left text-[#252525] w-[16px]" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                        </svg>
+
+                                    </span>
                                 </a>
                             </li>
                         }
@@ -321,7 +351,7 @@
 
             @if (Model.LastestBlogs != null && Model.LastestBlogs.Any())
             {
-                <div class="w-full h-[485px] border-2 flex flex-col items-start justify-start text-right p-5 lg:p-10 gap-4 mb-5">
+                <div class="w-full h-[485px] border-2 flex flex-col items-start justify-start text-right p-4 lg:p-10 gap-4 mb-5">
 
                     <p class="text-[#252525] text-[16px] leading-[18px] mb-2" style="font-family: yekanBakhtBold">
                         جدید ترین مقالات
@@ -333,19 +363,22 @@
                         <div class="w-full pb-3 mb-2 border-b flex items-end justify-between">
 
                             <div class="flex items-center justify-start gap-2">
-                                <div class="w-[62px] h-[62px]">
-                                    <img class="w-full h-full object-cover" src="/Images/Blog/thumb/@blogs.BlogImageName" alt="">
+                                <div style="width:62px; height:62px;" class="w-[62px] h-[62px]">
+                                    <img style="width:62px; height:62px;" class="w-full h-full object-cover" src="/Images/Blog/thumb/@blogs.BlogImageName" alt="">
                                 </div>
                                 <div class="flex flex-col items-start justify-start">
                                     <p class="text-[9px] text-[#252525] leading-3" style="font-family: yekanBakhtLight">
                                         @blogs.CreateDate.ToShamsi()
                                     </p>
-                                    <a href="/Blog/SingleBlogsPage/@blogs.BlogId" class="text-[12px] lg:text-[14px] text-[#252525] leading-[27px]" style="font-family: yekanBakhtSemiBold">
+                                    <a href="/Blog/SingleBlogsPage/@blogs.BlogId" class="text-[12px] lg:text-[14px] text-[#252525] leading-[27px] papularBlogSingle" style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;font-family: yekanBakhtSemiBold;">
                                         @blogs.BlogTitle
                                     </a>
                                 </div>
                             </div>
-                            <img src="/ArefSet/src/assets/images/landing/arrow-left-blog.png" alt="">
+                            @*<img src="/ArefSet/src/assets/images/landing/arrow-left-blog.png" alt="">*@
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-arrow-left text-[#CCCCCC] w-[16px]" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            </svg>
 
                         </div>
                     }
@@ -353,7 +386,7 @@
                 </div>
             }
 
-
+         
 
             <div class="w-full h-[461px] border-2 mb-5 relative lg:block hidden">
                 <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Rectangle 9214.png" alt="">

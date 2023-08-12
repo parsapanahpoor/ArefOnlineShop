@@ -23,6 +23,219 @@
     <link href="/ArefSet/dist/output.css" rel="stylesheet" />
     <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
     <link rel="stylesheet" href="/ArefSet/src/assets/styles/productList.css" />
+
+    <style>
+        .filter-price {
+            widkth: 300px;
+            widkth: 300px;
+            border: 0;
+            padding: 0;
+            margin: 15px auto 0 auto;
+        }
+
+        .price-title {
+            position: relative;
+            color: #252525;
+            font-size: 14px;
+            line-height: 1.2em;
+            font-weight: 400;
+        }
+
+        .price-field {
+            position: relative;
+            width: 100%;
+            height: 36px;
+            box-sizing: border-box;
+            background: rgba(248, 247, 244, 0.2);
+            padding-top: 15px;
+            padding-left: 16px;
+            border-radius: 3px;
+        }
+
+            .price-field input[type="range"] {
+                position: absolute;
+            }
+
+            /* Reset style for input range */
+
+            .price-field input[type="range"] {
+                width: 290px;
+                height: 2px;
+                border: 0;
+                outline: 0;
+                box-sizing: border-box;
+                border-radius: 5px;
+                pointer-events: none;
+                -webkit-appearance: none;
+            }
+
+                .price-field input[type="range"]::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                }
+
+                .price-field input[type="range"]:active,
+                .price-field input[type="range"]:focus {
+                    outline: 0;
+                }
+
+                .price-field input[type="range"]::-ms-track {
+                    width: 290px;
+                    height: 2px;
+                    border: 0;
+                    outline: 0;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                    pointer-events: none;
+                    background: transparent;
+                    border-color: transparent;
+                    color: transparent;
+                    border-radius: 5px;
+                }
+
+                /* Style toddler input range */
+
+                .price-field input[type="range"]::-webkit-slider-thumb {
+                    /* WebKit/Blink */
+                    position: relative;
+                    -webkit-appearance: none;
+                    margin: 0;
+                    border: 0;
+                    outline: 0;
+                    border-radius: 50%;
+                    height: 10px;
+                    width: 10px;
+                    margin-top: -4px;
+                    background-color: #252525;
+                    cursor: pointer;
+                    cursor: pointer;
+                    pointer-events: all;
+                    z-index: 100;
+                }
+
+                .price-field input[type="range"]::-moz-range-thumb {
+                    /* Firefox */
+                    position: relative;
+                    appearance: none;
+                    margin: 0;
+                    border: 0;
+                    outline: 0;
+                    border-radius: 50%;
+                    height: 10px;
+                    width: 10px;
+                    margin-top: -5px;
+                    background-color: #252525;
+                    cursor: pointer;
+                    cursor: pointer;
+                    pointer-events: all;
+                    z-index: 100;
+                }
+
+                .price-field input[type="range"]::-ms-thumb {
+                    /* IE */
+                    position: relative;
+                    appearance: none;
+                    margin: 0;
+                    border: 0;
+                    outline: 0;
+                    border-radius: 50%;
+                    height: 10px;
+                    width: 10px;
+                    margin-top: -5px;
+                    background-color: #252525;
+                    cursor: pointer;
+                    cursor: pointer;
+                    pointer-events: all;
+                    z-index: 100;
+                }
+
+                /* Style track input range */
+
+                .price-field input[type="range"]::-webkit-slider-runnable-track {
+                    /* WebKit/Blink */
+                    width: 290px;
+                    height: 2px;
+                    cursor: pointer;
+                    background: #252525;
+                    border-radius: 5px;
+                }
+
+                .price-field input[type="range"]::-moz-range-track {
+                    /* Firefox */
+                    width: 290px;
+                    height: 2px;
+                    cursor: pointer;
+                    background: #252525;
+                    border-radius: 5px;
+                }
+
+                .price-field input[type="range"]::-ms-track {
+                    /* IE */
+                    width: 290px;
+                    height: 2px;
+                    cursor: pointer;
+                    background: #252525;
+                    border-radius: 5px;
+                }
+
+        /* Style for input value block */
+
+        .price-wrap {
+            display: flex;
+            justify-content: start;
+            color: #252525;
+            font-size: 14px;
+            line-height: 1.2em;
+            font-weight: 400;
+            margin: 15px 0 7px 0;
+        }
+
+        .price-wrap-1,
+        .price-wrap-2 {
+            display: flex;
+        }
+
+        .price-title {
+            /* margin-right: 5px; */
+            backgrund: #d58e32;
+        }
+
+        .price-wrap_line {
+            margin: 0 10px;
+        }
+
+        .price-wrap #one,
+        .price-wrap #two {
+            width: 60px;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            margin-right: 2px;
+            background: 0;
+            border: 0;
+            outline: 0;
+            color: #252525;
+            font-family: "Karla", "Arial", sans-serif;
+            font-size: 14px;
+            line-height: 1.2em;
+            font-weight: 400;
+        }
+
+        .price-wrap label {
+            text-align: right;
+        }
+
+        /* Style for active state input */
+
+        .price-field input[type="range"]:hover::-webkit-slider-thumb {
+            box-shadow: 0 0 0 0.5px #252525;
+            transition-duration: 0.3s;
+        }
+
+        .price-field input[type="range"]:active::-webkit-slider-thumb {
+            box-shadow: 0 0 0 0.5px #252525;
+            transition-duration: 0.3s;
+        }
+    </style>
 }
 
 @section Scripts
@@ -229,7 +442,7 @@
 
 
 
-<main class="mx-auto mb-12">
+<main class="mx-auto" style="margin-bottom:100px">
     <section class="breadcrumb mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -261,13 +474,13 @@
                     @*<img src="/ArefSet/src/assets/images/landing/RemoveIcon.png" alt="">*@
                     <div class="flex items-center hover:cursor-pointer ">
 
-                    <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7E8285" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7E8285" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <a asp-action="ListOfProducts" asp-area="" asp-controller="products" class="text-[#7E8285] lg:text-[#C5272D] text-[12px] font-normal">
-                        پاک کردن همه
-                    </a>
+                        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#C5272D" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#C5272D" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <a asp-action="ListOfProducts" asp-area="" asp-controller="products" class="text-[#7E8285] lg:text-[#C5272D] text-[12px] font-normal">
+                            پاک کردن همه
+                        </a>
                     </div>
                     <a href="#" onclick="hideFilterMenu()" class="hideFilterMenu mr-3 inline-flex items-center justify-center w-[48px] h-[48px] rounded-full bg-[#EDEDED] lg:hidden">
                         @*<img class="w-3 h-3" src="/ArefSet/src/assets/images/landing/RemoveIcon.png" alt="">*@
@@ -278,7 +491,7 @@
                     </a>
                 </div>
             </div>
-            <form asp-action="ListOfProducts" asp-controller="Products" asp-area="" id="filtre" method="get">
+            <form asp-action="ListOfProducts" asp-controller="Products" class=" w-full" asp-area="" id="filtre" method="get">
                 <input type="hidden" asp-for="Page" />
                 <input type="hidden" asp-for="Status" />
                 <input type="hidden" asp-for="ProductTitle" />
@@ -290,7 +503,7 @@
                         Frequenty asked questions
                       </p>
                     </div> -->
-                    <div class="grid divide-y divide-neutral-200 text-right w-full mx-auto mt-5">
+                    <div class="grid divide-y divide-neutral-200 text-right w-full mx-auto mt-5  w-full">
 
                         @if (categories != null && categories.Any())
                         {
@@ -385,7 +598,7 @@
                                         </span>
                                     </summary>
                                     <div class="flex items-center justify-center gap-2"></div>
-                                    <div class="switcher flex items-center justify-center gap-2">
+                                    <div class="switcher flex items-center justify-start gap-2  mt-4">
 
                                         @foreach (var color in colors)
                                         {
@@ -393,7 +606,7 @@
                                             if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
                                             {
                                                 <input type="checkbox" name="ColorsId" class="hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
-                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-@color.ColorTitle-500
+                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-1 bg-@color.ColorTitle-500
 
                                                    @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "active" : " " )" for="indigo@(color.ColorId)">
                                                 </label>
@@ -401,7 +614,7 @@
                                             else
                                             {
                                                 <input type="checkbox" name="ColorsId" class="hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
-                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-@color.ColorTitle-500" for="indigo@(color.ColorId)">
+                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-1 bg-@color.ColorTitle-500" for="indigo@(color.ColorId)">
                                                 </label>
                                             }
 
@@ -413,8 +626,8 @@
 
                         }
 
-                        <div class="py-5">
-                            <details class="group">
+                        <div class="py-5  w-full">
+                            <details class="group  w-full">
                                 <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
                                     <span> قیمت</span>
                                     <span class="transition group-open:rotate-180">
@@ -438,8 +651,8 @@
                                         <label for="two">ریال</label>
                                     </div>
                                 </div>
-                                <fieldset class="filter-price">
-                                    <div class="price-field">
+                                <fieldset class="filter-price w-full mx-auto ">
+                                    <div class="price-field w-full  mx-auto">
                                         <input type="range" min="@minPrice" max="@maxPrice" value="@minPrice" id="lower">
                                         <input type="range" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
                                     </div>
@@ -470,8 +683,8 @@
         <div class="mainContent w-full lg:w-[75%]">
             <div class="mx-auto flex items-center justify-between py-6 mt-5 border-b-[1px] border-[#D0D0D099]">
                 <p class="text-[#7D7D7D] text-[14px] font-semibold hidden lg:inline-block">
-                    نمایش <span class="text-[#252525]">@Model.AllEntitiesCount</span> محصول از
-                    <span class="text-[#252525]">@Model.Entities.Count()</span>محصول فروشگاه عارف
+                    نمایش <span class="text-[#252525] px-1">@Model.Entities.Count()</span>محصول از
+                    <span class="text-[#252525] px-1">@Model.AllEntitiesCount</span>محصول فروشگاه عارف
                 </p>
 
                 <div class="showFilterMenu hover:cursor-pointer flex items-center justify-center gap-1 lg:hidden">
@@ -485,51 +698,55 @@
                 </div>
                 <div class="flex items-center justify-center gap-3">
                     <p class="text-[#7D7D7D] text-[12px]  lg:text-[14px] font-medium">مرتب سازی بر اساس :</p>
-                    <select onchange='changeDropDown(this)'
-                            class="py-2 px-1 lg:px-5 block border bg-transparent rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    <div class=" border px-2  rounded-md">
 
-                        @if (Model.Status == FilterStatus.All)
-                        {
-                            <option value="0">همه</option>
-                            <option value="1">تاریخ</option>
-                            <option value="2">بیشترین قیمت</option>
-                            <option value="3">کمترین قیمت</option>
-                            <option value="4">تخفیف دارها</option>
-                        }
-                        @if (Model.Status == FilterStatus.CreateDate)
-                        {
-                            <option value="0">همه</option>
-                            <option value="1" selected="selected">تاریخ</option>
-                            <option value="2">بیشترین قیمت</option>
-                            <option value="3">کمترین قیمت</option>
-                            <option value="4">تخفیف دارها</option>
-                        }
-                        @if (Model.Status == FilterStatus.MaxPrice)
-                        {
-                            <option value="0">همه</option>
-                            <option value="1">تاریخ</option>
-                            <option value="2" selected="selected">بیشترین قیمت</option>
-                            <option value="3">کمترین قیمت</option>
-                            <option value="4">تخفیف دارها</option>
-                        }
-                        @if (Model.Status == FilterStatus.MinPrice)
-                        {
-                            <option value="0">همه</option>
-                            <option value="1">تاریخ</option>
-                            <option value="2">بیشترین قیمت</option>
-                            <option value="3" selected="selected">کمترین قیمت</option>
-                            <option value="4">تخفیف دارها</option>
-                        }
-                        @if (Model.Status == FilterStatus.Offer)
-                        {
-                            <option value="0">همه</option>
-                            <option value="1">تاریخ</option>
-                            <option value="2">بیشترین قیمت</option>
-                            <option value="3">کمترین قیمت</option>
-                            <option value="4" selected="selected">تخفیف دارها</option>
-                        }
+                        <select onchange='changeDropDown(this)'
+                        @*class="py-3 px-4 pl-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"*@
+                                class="py-2  lg:px-5 block  bg-transparent  text-sm   dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
 
-                    </select>
+                            @if (Model.Status == FilterStatus.All)
+                            {
+                                <option value="0">همه</option>
+                                <option value="1">تاریخ</option>
+                                <option value="2">بیشترین قیمت</option>
+                                <option value="3">کمترین قیمت</option>
+                                <option value="4">تخفیف دارها</option>
+                            }
+                            @if (Model.Status == FilterStatus.CreateDate)
+                            {
+                                <option value="0">همه</option>
+                                <option value="1" selected="selected">تاریخ</option>
+                                <option value="2">بیشترین قیمت</option>
+                                <option value="3">کمترین قیمت</option>
+                                <option value="4">تخفیف دارها</option>
+                            }
+                            @if (Model.Status == FilterStatus.MaxPrice)
+                            {
+                                <option value="0">همه</option>
+                                <option value="1">تاریخ</option>
+                                <option value="2" selected="selected">بیشترین قیمت</option>
+                                <option value="3">کمترین قیمت</option>
+                                <option value="4">تخفیف دارها</option>
+                            }
+                            @if (Model.Status == FilterStatus.MinPrice)
+                            {
+                                <option value="0">همه</option>
+                                <option value="1">تاریخ</option>
+                                <option value="2">بیشترین قیمت</option>
+                                <option value="3" selected="selected">کمترین قیمت</option>
+                                <option value="4">تخفیف دارها</option>
+                            }
+                            @if (Model.Status == FilterStatus.Offer)
+                            {
+                                <option value="0">همه</option>
+                                <option value="1">تاریخ</option>
+                                <option value="2">بیشترین قیمت</option>
+                                <option value="3">کمترین قیمت</option>
+                                <option value="4" selected="selected">تخفیف دارها</option>
+                            }
+
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -541,12 +758,21 @@
 
                         @foreach (var product in Model.Entities)
                         {
-                            <div class="transition-all transform hover:shadow-lg flex flex-col justify-between items-center">
+                            <div class="transition-all transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
-                                    <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
-                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                                    @* <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
+                            <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                            </a>*@
+                                    <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
+                                        <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@product.ProductImageName" title="@product.ProductTitle" alt="@product.ProductTitle" />
+                                        <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@product.ProductTitle" alt="@product.ProductTitle" />
                                     </a>
+                                    <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">
 
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="focus:outline-none bg-transparent w-full h-full">
+                                            نمایش جزئیات
+                                        </a>
+                                    </div>
                                     <div class="transition-all flex flex-col items-end gap-2 absolute top-4 left-6 lg:top-6 lg:left-8 opacity-0 likeProduct">
 
                                         @if (favoriteProducts != null && favoriteProducts.Any() && favoriteProducts.Contains(product.ProductID))
@@ -560,7 +786,10 @@
                                         else
                                         {
                                             <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
-                                                <img src="/ArefSet/src/assets/images/landing/heart.svg" alt="">
+
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M10.5166 17.3416C10.2333 17.4416 9.76662 17.4416 9.48329 17.3416C7.06663 16.5166 1.66663 13.0749 1.66663 7.24158C1.66663 4.66658 3.74163 2.58325 6.29996 2.58325C7.81662 2.58325 9.15829 3.31659 9.99996 4.44992C10.8416 3.31659 12.1916 2.58325 13.7 2.58325C16.2583 2.58325 18.3333 4.66658 18.3333 7.24158C18.3333 13.0749 12.9333 16.5166 10.5166 17.3416Z" stroke="#7E8285" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
                                             </div>
                                         }
 
@@ -587,6 +816,35 @@
                                 </div>
                             </div>
 
+                            @*<div class="transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
+                    <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
+
+                    <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
+                    <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@item.ProductImageName" title="@item.Title" alt="@item.Title" />
+                    <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
+                    </a>
+
+                    </div>
+                    <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
+                    <div class="text-right inline-block lg:w-[283px]">
+                    <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                    @category.ProdudctCategoryTitle
+                    </p>
+                    <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px] lg:text-[18px] shopCardTitle">
+                    @item.Title
+                    </a>
+                    </div>
+                    <div class="text-left">
+                    <p class="line-through text-[#B7B7B7] font-light text-[10px] lg:text-[14px] inline-block h-4">
+                    @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
+
+                    </p>
+                    <p class="text-[#D92626] font-bold text-[15px] lg:text-[17px]">
+                    @item.Price.ToString("#,000") ریال
+                    </p>
+                    </div>
+                    </div>
+                    </div>*@
                         }
 
                     </div>

@@ -4,7 +4,7 @@
 }
 
 
-<main class="mx-auto mb-7">
+<main class="mx-auto " style="margin-bottom: 100px;">
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
@@ -38,7 +38,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         عکس پروفایل : 
                                     </span>
-                                    <input type="file" id="UserAvatar" class="text-[12px] bg-transparent focus:outline-none w-[60%]" asp-for="UserAvatar">
+                                    <input type="file" id="UserAvatar" class="text-[12px] bg-transparent focus:outline-none w-[55%]" asp-for="UserAvatar">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -50,7 +50,9 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         نام و نام خانوادگی :
                                     </span>
-                                    <input type="text" readonly asp-for="UserName" class="text-[12px]  bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input type="text" readonly asp-for="UserName" class="text-[12px]  bg-transparent focus:outline-none w-[50%] h-full">
+                                    @*<input type="text" readonly asp-for="PhoneNumber" class="text-[12px] bg-transparent focus:outline-none w-[50%] h-full">*@
+
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -62,7 +64,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         شماره مبایل :
                                     </span>
-                                    <input type="text" readonly asp-for="PhoneNumber" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input type="text" readonly asp-for="PhoneNumber" class="text-[12px] bg-transparent focus:outline-none w-[55%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">
@@ -74,7 +76,7 @@
                                     <span class="text-[12px] ml-1" style="font-family: yekanBakhtBold">
                                         ایمیل من :
                                     </span>
-                                    <input type="text" asp-for="Email" class="text-[12px] bg-transparent focus:outline-none w-[60%] h-full">
+                                    <input type="text" asp-for="Email" class="text-[12px] bg-transparent focus:outline-none w-[55%] h-full">
                                 </div>
                                 <p class="bg-transparent">
                                     <img src="../assets/images/landing/edit-2.png" alt="">

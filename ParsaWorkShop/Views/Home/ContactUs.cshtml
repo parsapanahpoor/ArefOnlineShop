@@ -15,8 +15,24 @@
           crossorigin="" />
     <!-- Make sure you put this AFTER Leaflet's CSS -->
 }
+@section Scripts{
+    <script>
+        var map = L.map("map").setView([36.55652, 53.03909], 17);
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution:
+                '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+        var marker = L.marker([36.55652, 53.03909]).addTo(map);
+        //function loadedPage() {
+        //    // alert("Page is loaded");
+        //    document.querySelector(".leaflet-control-attribution").remove();
+        //}
+      
+    </script>
+}
 
-<main class="mx-auto" onload="loadedPage()">
+<main class="mx-auto" style="margin-bottom: 100px;">
     <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -51,7 +67,7 @@
                 <p class="text-[#252525] text-[32px] mt-2 lg:mt-7 text-center" style="font-family: yekanBakhtExtraBold">
                     تماس باما
                 </p>
-                <p class="text-[#7E8285] font-medium text-[17px] md:text-[25px] lg:text-[30px] leading-[49.6px] text-center" style="font-family: yekanBakhtRegular">
+                <p class="text-[#7E8285] font-medium text-[17px] md:text-[20px] lg:text-[22px] leading-[49.6px] text-center" style="font-family: yekanBakhtRegular">
                     ارتباط خود را باما حفظ کنید
                 </p>
             </div>
@@ -237,24 +253,9 @@
     </section>
 
     <section class="mx-auto mt-0 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7 border-t-2">
-        <div id="map" class="w-full h-[353px] my-14 leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;">
+        <div id="map" class="w-full h-[353px] mt-14 leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;">
         </div>
     </section>
 </main>
 
 
-@section Scripts{
-    <script>
-        var map = L.map("map").setView([36.55652, 53.03909], 17);
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            maxZoom: 19,
-            attribution:
-                '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        }).addTo(map);
-        var marker = L.marker([36.55652, 53.03909]).addTo(map);
-        //function loadedPage() {
-        //    // alert("Page is loaded");
-        //    document.querySelector(".leaflet-control-attribution").remove();
-        //}
-    </script>
-}

@@ -4,14 +4,13 @@
 
 @if (Model != null && Model.Any())
 {
-    <section class="mx-auto lg:mt-10 mt-8 px-2 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7">
+    <section class="mx-auto lg:mt-10 mt-8 px-2 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-[100px]">
 
         <div class="flex flex-col items-center justify-start mb-5">
             <div class="my-10 lg:mt-32 lg:mb-28 relative w-[212.34px] h-[72.24px] md:w-[300px] md:h-[90px] lg:w-[388px] lg:h-[132px] bg-no-repeat before:content-[''] before:absolute before:-left-[60px] lg:before:-left-[100px] before:top-[41%] before:w-[52px] lg:before:w-[91px] before:h-[2px] before:bg-[#D92626] after:content-[''] after:absolute after:-right-[60px] lg:after:-right-[100px] after:top-[41%] after:w-[52px] lg:after:w-[91px] after:h-[2px] after:bg-[#D92626]" style="
             background-image: url(/ArefSet/src/assets/images/landing/Arefset\ 2.png);
             background-position: center;
-            background-size: cover;
-          ">
+            background-size: cover;">
                 <p class="text-[#252525] text-[24px] md:text-[2.5rem] lg:text-[32px] mt-5 text-center" style="font-family: yekanBakhtExtraBold">
                     جدیدترین محصولات
                 </p>
@@ -24,11 +23,50 @@
 
                 @foreach (var item in Model)
                 {
-                    <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center">
+
+                    <div class="transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
+                        <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
+
+                            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
+                                <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@item.ProductImageName" title="@item.Title" alt="@item.Title" />
+                                <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
+                            </a>
+
+                            <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">
+
+                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="focus:outline-none bg-transparent w-full h-full">
+                                    نمایش جزئیات
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
+                            <div class="text-right inline-block lg:w-[283px]">
+                                <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px] block h-4">
+                                
+                                </p>
+                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px]  lg:text-[16px] line-clamp-2 shopCardTitle">
+                                    @item.Title
+                                </a>
+                            </div>
+                            <div class="text-left">
+                                <p class="line-through text-[#B7B7B7] font-light text-[10px] lg:text-[14px] inline-block h-4">
+                                    @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
+
+                                </p>
+                                <p class="text-[#D92626] font-bold text-[15px] lg:text-[17px]">
+                                    @item.Price.ToString("#,000") ریال
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center shopCardHover">
                         <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
 
-                            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()">
-                                <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
+                          
+                            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
+                                <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@item.ProductImageName" title="@item.Title" alt="@item.Title" />
+                                <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
                             </a>
                         </div>
                         <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
@@ -49,7 +87,7 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 }
 
             </div>
