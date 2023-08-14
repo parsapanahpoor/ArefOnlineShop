@@ -59,5 +59,12 @@ namespace Domain.Interfaces
         Orders GetOrderByOrderDetailId(int orderDetailId);
 
         #endregion
+
+        #region Admin Side 
+
+        //Get List Of In Progress Orders
+        Task<List<Orders>> GetListOfInProgressOrders();
+
+        #endregion
     }
 }

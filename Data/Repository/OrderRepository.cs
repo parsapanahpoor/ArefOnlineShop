@@ -304,5 +304,17 @@ namespace Data.Repository
                            .Select(p=> p.Order)
                            .FirstOrDefault();
         }
+
+        #region Admin Side 
+
+        //Get List Of In Progress Orders
+        public async Task<List<Orders>> GetListOfInProgressOrders()
+        {
+            return await _context.Orders
+                                 .Where(p=> p.IsFinally && p.OrderState == OrderState.InProccess)
+                                 .ToListAsync(); 
+        }
+
+        #endregion
     }
 }

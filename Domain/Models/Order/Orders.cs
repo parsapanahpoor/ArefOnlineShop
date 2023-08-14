@@ -28,7 +28,7 @@ namespace Domain.Models.Order
         [ForeignKey("Locations")]
         public int? LocationID { get; set; }
 
-        public OrderState OrderState { get; set; }
+        public OrderState OrderState { get; set; } = OrderState.WaitingForPayment;
 
         #region Navigations
 
@@ -48,7 +48,9 @@ namespace Domain.Models.Order
         SentToTheCustomer,
         CancelationRequest,
         Canceled,
-        Finally
+        Finally,
+        ReturnedRequest,
+        Returned
     }
 }
 
