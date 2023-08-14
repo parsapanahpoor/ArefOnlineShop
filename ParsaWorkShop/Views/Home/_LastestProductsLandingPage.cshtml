@@ -55,7 +55,7 @@
 
                                         <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all">
                                             <img class="product-image  w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
-                                            <img class="product-image-hover w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
+                                            <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
                                         </a>
 
                                         <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">

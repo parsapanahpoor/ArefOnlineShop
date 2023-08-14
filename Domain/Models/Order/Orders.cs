@@ -28,6 +28,8 @@ namespace Domain.Models.Order
         [ForeignKey("Locations")]
         public int? LocationID { get; set; }
 
+        public OrderState OrderState { get; set; }
+
         #region Navigations
 
         public Users.User User { get; set; }
@@ -38,4 +40,16 @@ namespace Domain.Models.Order
         #endregion
 
     }
+
+    public enum OrderState
+    {
+        WaitingForPayment,
+        InProccess,
+        SentToTheCustomer,
+        CancelationRequest,
+        Canceled,
+        Finally
+    }
 }
+
+
