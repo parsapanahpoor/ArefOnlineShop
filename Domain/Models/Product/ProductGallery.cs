@@ -14,12 +14,13 @@ namespace Domain.Models.Product
         public int ProductID { get; set; }
 
         [Display(Name = "عنوان تصویر    ")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(800, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         public string Title { get; set; }
 
         [MaxLength(50)]
         public string ImageName { get; set; }
+
+        public bool ShowForSecondeMainImage { get; set; }
 
         #region Relations
 

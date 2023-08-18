@@ -127,5 +127,14 @@ namespace ParsaWorkShop.Controllers
         }
 
         #endregion
+
+        #region Test For Payment result page 
+
+        public async Task<IActionResult> Test()
+        {
+            return View();
+        }
+
+        #endregion
     }
 }

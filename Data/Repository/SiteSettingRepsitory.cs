@@ -179,7 +179,12 @@ namespace Data.Repository
                                                             Price = p.Price,
                                                             ProductId = p.ProductID,
                                                             ProductImageName = p.ProductImageName,
-                                                            Title = p.ProductTitle
+                                                            Title = p.ProductTitle,
+                                                            SecondeProductImageName = _context.ProductGallery
+                                                                                              .AsNoTracking()
+                                                                                              .Where(s=> s.ProductID == p.ProductID && s.ShowForSecondeMainImage)
+                                                                                              .Select(s=> s.ImageName)
+                                                                                              .FirstOrDefault()
                                                         })
                                                         .Take(6)
                                                         .ToListAsync();
@@ -224,7 +229,12 @@ namespace Data.Repository
                                                                  Price = p.Price,
                                                                  ProductId = p.ProductID,
                                                                  ProductImageName = p.ProductImageName,
-                                                                 Title = p.ProductTitle
+                                                                 Title = p.ProductTitle,
+                                                                 SecondeProductImageName = _context.ProductGallery
+                                                                                              .AsNoTracking()
+                                                                                              .Where(s => s.ProductID == p.ProductID && s.ShowForSecondeMainImage)
+                                                                                              .Select(s => s.ImageName)
+                                                                                              .FirstOrDefault()
                                                              })
                                                              .FirstOrDefaultAsync();
 

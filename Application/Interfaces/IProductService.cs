@@ -59,7 +59,7 @@ namespace Application.Interfaces
         ProductFeature GetFeatureById(int id);
         void DeleteProductFeature(ProductFeature feature);
         List<ProductGallery> GetGalleryById(int id);
-        void AddImageToGalleryProduct(ProductGallery productGallery, IFormFile imgUp);
+        bool AddImageToGalleryProduct(ProductGallery productGallery, IFormFile imgUp);
         ProductGallery GetProductGalleryByID(int id);
         void DeleteProductGallery(ProductGallery product);
         void DeleteAllProductGAlleries(List<ProductGallery> productGalleries);
