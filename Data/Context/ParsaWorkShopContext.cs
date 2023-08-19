@@ -111,6 +111,7 @@ namespace Data.Context
         public DbSet<ReturnedProducts> ReturnedProducts { get; set; }
         public DbSet<ReturnedProductType> ReturnedProductTypes { get; set; }
         public DbSet<FinancialTransactionType> FinancialTransactionType { get; set; }
+        public DbSet<OrderCancelationRequestDetail> OrderCancelationRequestDetail { get; set; }
 
         #endregion
 

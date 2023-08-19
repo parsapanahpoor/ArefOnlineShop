@@ -13,7 +13,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    [PermissionChecker(1)]
+    [PermissionChecker(2)]
 
     public class UsersController : Controller
     {

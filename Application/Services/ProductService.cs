@@ -66,8 +66,13 @@ namespace Application.Services
             _product.AddFeatureToProduct(feature);
         }
 
-        public void AddImageToGalleryProduct(ProductGallery productGallery, IFormFile imgUp)
+        public bool AddImageToGalleryProduct(ProductGallery productGallery, IFormFile imgUp)
         {
+            //Check That Has Product a Seconde Pic
+            var checkSecondePic = _product.CheckThatHasProductaSecondePic(productGallery.ProductID); 
+            if (checkSecondePic && productGallery.ShowForSecondeMainImage) { return false; }
+
+            productGallery.Title = (string.IsNullOrEmpty(productGallery.Title)) ? "-" : productGallery.Title;
 
             productGallery.ImageName = "no-photo.png";  //تصویر پیشفرض
             //TODO Check Image
@@ -83,6 +88,8 @@ namespace Application.Services
             }
 
             _product.AddProductGallery(productGallery);
+
+            return true;
         }
 
         public int AddProduct(Product product, IFormFile imgProductUp, User user)

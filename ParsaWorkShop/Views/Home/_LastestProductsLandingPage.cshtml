@@ -53,9 +53,12 @@
                                 <div class="transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
                                     <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
 
-                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
-                                            <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@item.ProductImageName" title="@item.Title" alt="@item.Title" />
-                                            <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
+                                        <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all">
+                                            <img class="product-image  w-full h-full object-cover" src="@PathTools.ProductPath@item.ProductImageName" alt="" />
+                                            @if (!string.IsNullOrEmpty(item.SecondeProductImageName))
+                                            {
+                                                <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath@item.SecondeProductImageName" title="@item.Title" alt="@item.Title" />
+                                            }
                                         </a>
 
                                         <div class="transition-all opacity-0 absolute -bottom-10 left-0 right-0 w-full bg-[#252525] text-center py-1 lg:py-2 text-[#fff] addToCart text-[12px] lg:text-[16px]">
@@ -68,6 +71,7 @@
                                     <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
                                         <div class="text-right inline-block lg:w-[283px]">
                                             <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                                همه ی محصولات 
                                             </p>
                                             <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px] lg:text-[18px] shopCardTitle">
                                                 @item.Title
@@ -106,8 +110,11 @@
                                             <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
 
                                                 <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
-                                                    <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@item.ProductImageName" title="@item.Title" alt="@item.Title" />
-                                                    <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
+                                                    <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPath@item.ProductImageName" title="@item.Title" alt="@item.Title" />
+                                                    @if (!string.IsNullOrEmpty(item.SecondeProductImageName))
+                                                    {
+                                                        <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath@item.SecondeProductImageName" title="@item.Title" alt="@item.Title" />
+                                                    }
                                                 </a>
 
                                             </div>
@@ -135,7 +142,7 @@
                                             <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center shopCardHover">
                                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
                                                     <img class="product-image transition-all w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
-                                                    <img class="product-image-hover transition-all w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" alt="" />
+                                                    <img class="product-image-hover transition-all w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
                                                 </div>
                                                 <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
                                                     <div class="text-right">

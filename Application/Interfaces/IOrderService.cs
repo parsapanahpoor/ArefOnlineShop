@@ -3,6 +3,7 @@ using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using Domain.ViewModels.UserPanel.Orders;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +32,16 @@ namespace Application.Interfaces
         //Fill Invoice Site Side ViewModel
         Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId);
 
+        Task<ListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel> FillListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel();
+
         #endregion
 
+        #region Admin Side 
+
+        //Get List Of In Progress Orders
+        Task<ListOfInProgressOrdersAdminSideViewModel> GetListOfInProgressOrders();
+
+        #endregion
 
         #region OrderDetails
 
@@ -61,6 +70,13 @@ namespace Application.Interfaces
 
         //Get Order By Order Detail Id 
         Orders GetOrderByOrderDetailId(int orderDetailId);
+
+        #endregion
+
+        #region Admin Side 
+
+        //Check For Send Order To The Customer
+        Task<bool> CheckForSendOrderToTheCustomer(int orderId);
 
         #endregion
     }

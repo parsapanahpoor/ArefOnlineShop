@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
-    [PermissionChecker(1)]
+    [PermissionChecker(7)]
     public class SliderController : AdminBaseController
     {
         #region Using

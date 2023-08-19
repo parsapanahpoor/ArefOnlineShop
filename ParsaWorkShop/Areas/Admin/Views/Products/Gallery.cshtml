@@ -7,6 +7,8 @@
 }
 
 
+
+
 <div class="content-wrapper" style="min-height: 805px;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -24,6 +26,36 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
+
+
+    @if (ViewBag.Delete == true)
+    {
+        <div class="col-md-12">
+            <div class="card bg-danger-gradient">
+                <div class="card-header">
+                    <h3 class="card-title">عملیات با شکست مواجه شده است. </h3>
+
+                    <div class="card-tools">
+                        <button type="button" id="DeleteBtn" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    برای این محصول تصویر دوم انتخاب شده است.
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <script>
+            // Your delay in milliseconds
+            var delay = 5000;
+            setTimeout(function () { document.getElementById("DeleteBtn").click(); }, delay);
+        </script>
+    }
 
 
     <div class="container-fluid">
@@ -71,6 +103,18 @@
 
                         </div>
 
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> آیا به عنوان تصویر دوم نمایش داده شود؟ </label>
+                                <select type="text" asp-for="ShowForSecondeMainImage" class="form-control" id="exampleInputEmail1">
+
+                                    <option selected="selected" value="@false"> خیر </option>
+                                    <option value="@true"> بله </option>
+
+                                </select>
+                            </div>
+                        </div>
+
                         <!-- /.card-body -->
 
                         <div class="card-footer">
@@ -83,7 +127,7 @@
 
             </div>
 
-           
+
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -92,29 +136,42 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                          
+
                             <div class="carousel-inner">
 
 
-                                @{ List<ProductGallery> Galleries = ViewBag.Galleries; }
+                                @{
+                                    List<ProductGallery> Galleries = ViewBag.Galleries;
+                                }
                                 @foreach (var item in Galleries)
                                 {
 
 
-                            <div class="attachment-block clearfix">
-                                <img class="attachment-img" src="/Images/Product/ProducGallery/@item.ImageName" alt="Attachment Image">
+                                    <div class="attachment-block clearfix">
+                                        <img class="attachment-img" src="/Images/Product/ProducGallery/@item.ImageName" alt="Attachment Image">
 
-                                <div class="attachment-pushed">
-                                    
-                                    <a href="/Admin/Products/DeleteGallery/@item.ProductGalleryId" class="btn btn-outline-danger mt-2 mr-5" >حذف </a>
-                                    
-                                    <!-- /.attachment-text -->
-                                </div>
-                                <!-- /.attachment-pushed -->
-                            </div>            }
+                                        @if (item.ShowForSecondeMainImage)
+                                        {
+                                            <div class="attachment-pushed">
+
+                                                <a href="#" class="btn btn-outline-success mt-2 mr-5">تصویر دوم محصول </a>
+
+                                                <!-- /.attachment-text -->
+                                            </div>
+                                        }
+
+                                        <div class="attachment-pushed">
+
+                                            <a href="/Admin/Products/DeleteGallery/@item.ProductGalleryId" class="btn btn-outline-danger mt-2 mr-5">حذف </a>
+
+                                            <!-- /.attachment-text -->
+                                        </div>
+                                        <!-- /.attachment-pushed -->
+                                    </div>
+                                }
 
                             </div>
-                          
+
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -164,7 +221,7 @@
         });
     </script>
 
- 
+
 
 }
 

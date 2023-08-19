@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
-    [PermissionChecker(1)]
+    [PermissionChecker(11)]
 
     public class OrderTrackingController : AdminBaseController
     {
@@ -34,12 +34,46 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         #region Index
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Orders> Orders = _order.GetAllOrdersForShowInAdminPanel();
-
-            return View(Orders);
+            return View(await _order.FillListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel());
         }
+
+        #endregion
+
+        #region In Progress Orders 
+
+        #region List Of InProgress Orders
+
+        [HttpGet]
+        public async Task<IActionResult> ListOfInProgressOrders()
+        {
+            return View(await _order.GetListOfInProgressOrders());
+        }
+
+        #endregion
+
+        #region Check For Send Order To The Customer
+
+        [HttpGet]
+        public async Task<IActionResult> CheckForSendOrderToTheCustomer(int orderId)
+        {
+            #region Method
+
+            var res = await _order.CheckForSendOrderToTheCustomer(orderId);
+            if (res)
+            {
+                TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                return View(RedirectToAction(nameof(ListOfInProgressOrders)));
+            }
+
+            #endregion
+
+            TempData[ErrorMessage] = "عملیات باشکست مواجه شده است.";
+            return View(RedirectToAction(nameof(ListOfInProgressOrders)));
+        }
+
+        #endregion
 
         #endregion
 

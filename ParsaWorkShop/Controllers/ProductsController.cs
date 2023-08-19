@@ -78,7 +78,6 @@ namespace ParsaWorkShop.Controllers
 
         #region Single Page Products
 
-        [Authorize]
         [HttpGet("SinglePageProducts/{id}/{ProductTitle}")]
         public async Task<IActionResult> SinglePageProducts(int? id, string ProductTitle)
         {

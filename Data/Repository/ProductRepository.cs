@@ -72,6 +72,15 @@ namespace Data.Repository
             Savechanges();
         }
 
+        //Check That Has Product a Seconde Pic
+        public bool CheckThatHasProductaSecondePic(int productId)
+        {
+            return  _context.ProductGallery
+                                 .AsNoTracking()
+                                 .Where(p => p.ProductID == productId && p.ShowForSecondeMainImage)
+                                 .Any();
+        }
+
         public void DeleteProductFeature(ProductFeature feature)
         {
             _context.ProductFeature.Remove(feature);
@@ -111,7 +120,7 @@ namespace Data.Repository
 
         public List<Product> GetAllProducts()
         {
-            return _context.product.Include(p => p.Users).OrderByDescending(p=> p.CreateDate).ToList();
+            return _context.product.Include(p => p.Users).OrderByDescending(p => p.CreateDate).ToList();
         }
 
         public List<ProductSelectedCategory> GetAllProductSelectedCategories()
@@ -126,7 +135,7 @@ namespace Data.Repository
 
         public List<Product> GetAllProductsNotInOffer()
         {
-            return _context.product.Include(p=> p.Users).Where(p => p.IsInOffer != true && p.IsInOffer == null).ToList();
+            return _context.product.Include(p => p.Users).Where(p => p.IsInOffer != true && p.IsInOffer == null).ToList();
         }
 
         public ProductFeature GetFeatureById(int id)
@@ -514,9 +523,9 @@ namespace Data.Repository
             #region Get Product Categories
 
             var productSelectedCategories = await _context.ProductSelectedCategory
-                                                          .AsNoTracking() 
-                                                          .Where(p=> p.ProductID == productId)
-                                                          .Select(p=> p.ProductCategoryId)
+                                                          .AsNoTracking()
+                                                          .Where(p => p.ProductID == productId)
+                                                          .Select(p => p.ProductCategoryId)
                                                           .ToListAsync();
 
             #endregion
@@ -554,6 +563,7 @@ namespace Data.Repository
         public async Task<List<LastestProducts>> FillNewest3Products()
         {
             return await _context.product
+                                 .Include(p=> p.ProductGalleries)
                                  .AsNoTracking()
                                  .Where(p => !p.IsDelete)
                                  .Select(p => new LastestProducts()
@@ -563,7 +573,12 @@ namespace Data.Repository
                                      Price = p.Price,
                                      ProductId = p.ProductID,
                                      ProductImageName = p.ProductImageName,
-                                     Title = p.ProductTitle
+                                     Title = p.ProductTitle,
+                                     SecondeProductImageName = _context.ProductGallery
+                                                                       .AsNoTracking()
+                                                                       .Where(s=> s.ProductID == p.ProductID)
+                                                                       .Select(s => s.ImageName)
+                                                                       .FirstOrDefault()
                                  })
                                  .Take(3)
                                  .ToListAsync();
@@ -596,8 +611,8 @@ namespace Data.Repository
         {
             return await _context.FavoriteProducts
                                  .AsNoTracking()
-                                 .Where(p=> !p.IsDelete && p.UserId == userId)
-                                 .Select(p=> p.ProductId)
+                                 .Where(p => !p.IsDelete && p.UserId == userId)
+                                 .Select(p => p.ProductId)
                                  .ToListAsync();
         }
 
@@ -605,9 +620,9 @@ namespace Data.Repository
         public async Task<List<Comment>> ListOfCommentsForProductId(int productId)
         {
             return await _context.Comment
-                                 .Include(p=> p.Users)
+                                 .Include(p => p.Users)
                                  .AsNoTracking()
-                                 .Where(p =>  !p.IsDelete && p.ProductTypeId == 1 && p.ProductID == productId)
+                                 .Where(p => !p.IsDelete && p.ProductTypeId == 1 && p.ProductID == productId)
                                  .ToListAsync();
         }
 
@@ -616,8 +631,8 @@ namespace Data.Repository
         {
             return await _context.product
                                  .AsNoTracking()
-                                 .Where(p=> !p.IsDelete && p.ProductID == productId)
-                                 .Select(p=> p.ProductTitle)
+                                 .Where(p => !p.IsDelete && p.ProductID == productId)
+                                 .Select(p => p.ProductTitle)
                                  .FirstOrDefaultAsync();
         }
 
@@ -808,7 +823,7 @@ namespace Data.Repository
                 var proIds = await _context.OrderDetails
                                                        .AsNoTracking()
                                                        .Where(p => p.OrderID == lastorder)
-                                                       .Select(p=> p.ProductID)
+                                                       .Select(p => p.ProductID)
                                                        .Take(3)
                                                        .ToListAsync();
 
@@ -821,7 +836,7 @@ namespace Data.Repository
                         var product = await _context.product
                                                     .AsNoTracking()
                                                     .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == productId);
-                        if(product != null) products.Add(product);
+                        if (product != null) products.Add(product);
                     }
 
                     model.LastOrder = products;

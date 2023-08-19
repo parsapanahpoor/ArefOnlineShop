@@ -59,6 +59,8 @@ namespace Domain.ViewModels.SiteSide.Home
 
         public string ProductImageName { get; set; }
 
+        public string SecondeProductImageName { get; set; }
+
         public decimal Price { get; set; }
 
         public decimal? OldPrice { get; set; }

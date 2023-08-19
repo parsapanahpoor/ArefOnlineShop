@@ -10,13 +10,15 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    [PermissionChecker(1)]
+    [PermissionChecker(4)]
 
     public class HomeController : Controller
     {
 
-        public IActionResult Index()
+        public IActionResult Index(bool permission = false)
         {
+            ViewBag.permission = permission;
+
             return View();
         }
     }

@@ -13,7 +13,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    [PermissionChecker(1)]
+    [PermissionChecker(9)]
 
     public class BlogsController : Controller
     {
@@ -86,7 +86,6 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         #endregion
 
-
         #region BlogComments
 
         public IActionResult ShowBlogComments(bool Delete = false)
@@ -140,7 +139,6 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         }
 
         #endregion
-
 
         #region Blog
 
@@ -265,6 +263,5 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
         #endregion
-
     }
 }
