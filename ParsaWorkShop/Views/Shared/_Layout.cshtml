@@ -182,6 +182,21 @@
             backdrop-filter: blur(21px);
         }
 
+
+        .shoppingBag .shopBox {
+            transition:all .2s ease;
+            visibility:hidden;
+            opacity:0;
+            transform:translateY(70px);
+            z-index:99999999999
+        }
+
+        .shoppingBag:hover .shopBox {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(55px)
+        }
+
     </style>
 
 </head>
