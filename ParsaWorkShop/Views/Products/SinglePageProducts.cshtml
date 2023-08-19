@@ -9,6 +9,8 @@
 
 @section Styles
     {
+    <link rel="stylesheet" href="magiczoomplus/magiczoomplus.css">
+    <link href="/ArefSet/src/js/magiczoomplus/magiczoomplus.css" rel="stylesheet" />
     <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
     <link rel="stylesheet" href="/ArefSet/src/assets/styles/productSinglePage.css" />
     <style>
@@ -37,6 +39,8 @@
 
 @section Scripts
     {
+    <script src="magiczoomplus/magiczoomplus.js"></script>
+    <script src="/ArefSet/src/js/magiczoomplus/magiczoomplus.js"></script>
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
     <script>
@@ -54,6 +58,7 @@
     </script>
 
     <script src="./JS/cdn.jsdelivr.net_npm_swiper@9.4.1_swiper-bundle.min.js"></script>
+
     <script>
         //-------------------------------------------counter
         let btnAddCounter = document.querySelector("#addCount");
@@ -170,6 +175,72 @@
 
     </script>
 
+    <script>
+        //function showPinBar() {
+        //    var element = document.getElementById("pinBar");
+        //    element.classList.toggle("flex");
+        //}
+    </script>
+
+    <script>
+        //function imageZoom(imgID, resultID) {
+        //    var img, lens, result, cx, cy;
+        //    img = document.getElementById(imgID);
+        //    result = document.getElementById(resultID);
+        //    /*create lens:*/
+        //    lens = document.createElement("DIV");
+        //    lens.setAttribute("class", "img-zoom-lens");
+        //    /*insert lens:*/
+        //    img.parentElement.insertBefore(lens, img);
+        //    /*calculate the ratio between result DIV and lens:*/
+        //    cx = result.offsetWidth / lens.offsetWidth;
+        //    cy = result.offsetHeight / lens.offsetHeight;
+        //    /*set background properties for the result DIV:*/
+        //    result.style.backgroundImage = "url('" + img.src + "')";
+        //    result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+        //    /*execute a function when someone moves the cursor over the image, or the lens:*/
+        //    lens.addEventListener("mousemove", moveLens);
+        //    img.addEventListener("mousemove", moveLens);
+        //    /*and also for touch screens:*/
+        //    lens.addEventListener("touchmove", moveLens);
+        //    img.addEventListener("touchmove", moveLens);
+        //    function moveLens(e) {
+        //        var pos, x, y;
+        //        /*prevent any other actions that may occur when moving over the image:*/
+        //        e.preventDefault();
+        //        /*get the cursor's x and y positions:*/
+        //        pos = getCursorPos(e);
+        //        /*calculate the position of the lens:*/
+        //        x = pos.x - (lens.offsetWidth / 2);
+        //        y = pos.y - (lens.offsetHeight / 2);
+        //        /*prevent the lens from being positioned outside the image:*/
+        //        if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; }
+        //        if (x < 0) { x = 0; }
+        //        if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; }
+        //        if (y < 0) { y = 0; }
+        //        /*set the position of the lens:*/
+        //        lens.style.left = x + "px";
+        //        lens.style.top = y + "px";
+        //        /*display what the lens "sees":*/
+        //        result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+        //    }
+        //    function getCursorPos(e) {
+        //        var a, x = 0, y = 0;
+        //        e = e || window.event;
+        //        /*get the x and y positions of the image:*/
+        //        a = img.getBoundingClientRect();
+        //        /*calculate the cursor's x and y coordinates, relative to the image:*/
+        //        x = e.pageX - a.left;
+        //        y = e.pageY - a.top;
+        //        /*consider any page scrolling:*/
+        //        x = x - window.pageXOffset;
+        //        y = y - window.pageYOffset;
+        //        return { x: x, y: y };
+        //    }
+        //}
+
+        //imageZoom("myimage", "myresult");
+    </script>
 }
 
 
@@ -179,7 +250,7 @@
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
-                    <a href="/" class="inline-flex items-center text-[12px] lg:text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                    <a href="/" class="inline-flex items-center text-[10px] lg:text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
                         <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                         </svg>
@@ -204,8 +275,17 @@
 
             @if (!string.IsNullOrEmpty(Model.ProductImageName))
             {
-                <div class="min-h-[380px] lg:w-[522px] lg:!h-[522px] relative overflow-hidden img-container productImgSinglePage">
+
+                <div class=" hover:cursor-zoom-in  min-h-[380px] lg:w-[522px] lg:!h-[522px] relative overflow-hidden img-container productImgSinglePage">
                     <img class="w-full block absolute transition-all" src="@PathTools.ProductPath@Model.ProductImageName" alt="@Model.ProductTitle" style="width: 100%; top: 0px; left: 0px;">
+                    @*<a href="/ArefSet/src/assets/images/products/product-5.jpg" class="MagicZoom" data-options="zoomPosition: inner"><img src="/ArefSet/src/assets/images/products/product-5.jpg"></a>*@
+                    
+                   @* <a href="@PathTools.ProductPath@Model.ProductImageName" class="MagicZoom w-full block" data-options="zoomWidth:400px; zoomHeight:400px"><img  class="w-full block  transition-all" src="@PathTools.ProductPath@Model.ProductImageName" alt="@Model.ProductTitle" style="width: 100%; top: 0px; left: 0px;"></a>*@
+                    @*<a href="@PathTools.ProductPath@Model.ProductImageName" class="MagicZoom" data-options="zoomPosition: inner"><img src="@PathTools.ProductPath@Model.ProductImageName"></a>*@
+                    @*<img src="/ArefSet/src/assets/images/products/product-5.jpg" />*@
+                    @*<div id="myresult" style="width:200px;height:200px" class="img-zoom-result bg-blue-500 absolute right-[522px] bottom-0 border-2 border-black">
+                        ijouoyo9y
+                    </div>*@
                 </div>
             }
 
@@ -405,7 +485,7 @@
                         <img src="./assets/images/landing/Group 44847.png" alt="">
                         افزودن به سبد خرید
                     </a>*@
-                    <button class="text-[14px] lg:text-[16px] text-white bg-[#D92626] px-5 h-[45px] inline-flex items-center justify-center gap-1">
+                    <button onclick="showPinBar()" class="text-[14px] lg:text-[16px] text-white bg-[#D92626] px-5 h-[45px] inline-flex items-center justify-center gap-1">
 
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9751 16.0441L19.9914 6.73557C19.7715 4.65631 18.0182 3.07812 15.9273 3.07812H8.06656C5.97466 3.07812 4.22037 4.65728 4.00243 6.73751L3.02458 16.047C2.75117 18.6516 4.79346 20.9197 7.41175 20.9197H16.5879C19.2082 20.9197 21.2504 18.6497 20.9751 16.0441Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -758,7 +838,7 @@
 
 </main>
 
-<section class="mx-auto z-[100000] lg:mt-20 mt-5 px-5 lg:px-16 max-w-[99.99999%] lg:max-w-[95em] fixed left-0 right-0 bottom-0 py-5 lg:py-9 drop-shadow-xl bg-[#EDEDED] flex justify-between items-center">
+<section id="pinBar" class="mx-auto z-[100000] lg:mt-20 mt-5 px-5 lg:px-16 w-[99.99999%] lg:w-full fixed left-0 right-0 bottom-0 py-5 lg:py-9 drop-shadow-xl bg-[#EDEDED] flex justify-between items-center">
     <div class="lg:flex lg:items-center lg:gap-2 hidden">
          @if (!string.IsNullOrEmpty(Model.ProductImageName))
             {
