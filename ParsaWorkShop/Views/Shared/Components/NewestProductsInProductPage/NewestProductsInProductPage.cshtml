@@ -28,7 +28,8 @@
                         <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
 
                             <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
-                                <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPath@item.ProductImageName" title="@item.Title" alt="@item.Title" />
+                                <img class="product-image  w-full h-full object-cover " src="@PathTools.ProductPath@item.ProductImageName" title="@item.Title" alt="@item.Title" />
+                                @*<img class="product-image  w-full  " src="/ArefSet/src/assets/images/landing/20.jpg" alt="" />*@
                                 @{
                                     if (!string.IsNullOrEmpty(item.SecondeProductImageName))
                                     {

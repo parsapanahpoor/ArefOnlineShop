@@ -12,6 +12,32 @@
     @await RenderSectionAsync("Styles", false)
 
     <style>
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #eee;
+            border-radius: 5px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #252525;
+            border-radius: 5px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+
+
+        /*shopBox*/
         .singlePageProDesc{
             width:90px;
         }
@@ -182,9 +208,7 @@
             backdrop-filter: blur(21px);
         }
 
-
         .shoppingBag .shopBox {
-            transition:all .2s ease;
             visibility:hidden;
             opacity:0;
             transform:translateY(70px);
@@ -194,7 +218,7 @@
         .shoppingBag:hover .shopBox {
             visibility: visible;
             opacity: 1;
-            transform: translateY(55px)
+            transform: translateY(5px)
         }
 
     </style>

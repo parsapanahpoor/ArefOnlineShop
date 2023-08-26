@@ -231,17 +231,118 @@
                 </div>
             </form>
 
-            <a asp-area="" asp-action="ShopCart" asp-controller="Order" class="shoppingBag relative w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center">
+            <div class="shoppingBag relative">
+
+            <a asp-area="" asp-action="ShopCart" asp-controller="Order" class=" w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center">
                @* <img src="/ArefSet/src/assets/images/landing/Shopping bag 1.png" alt="" />*@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9751 16.0441L19.9914 6.73557C19.7715 4.65631 18.0182 3.07812 15.9273 3.07812H8.06656C5.97466 3.07812 4.22037 4.65728 4.00243 6.73751L3.02458 16.047C2.75117 18.6516 4.79346 20.9197 7.41175 20.9197H16.5879C19.2082 20.9197 21.2504 18.6497 20.9751 16.0441Z" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M15.0973 7.70312C15.0973 9.41363 13.7108 10.8011 11.9993 10.8011C10.2888 10.8011 8.90234 9.41363 8.90234 7.70312" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
 
-                <div class="shopBox absolute left-0  w-[200px] py-5 bg-red-300">
-                    غعلهغعلغعل
-                </div>
             </a>
+
+            @* ------------------------------- shop box ------------------------------------ *@
+
+                <div style="width:300px;gap: 11px;box-shadow: 5px 10px 16px rgba(51, 51, 51, 0.05), -5px 10px 16px rgba(51, 51, 51, 0.05);" class="shopBox absolute left-0  w-[300px]  bg-white p-5 ">
+                    
+                    <div style="width:100%;padding:15px 0;" class="w-full flex justify-between items-center border-b-[1px] border-[#ebebeb] py-[15px] gap-4">
+                        <div class="text-right" style="width: 171px;text-align:start">
+
+                            <h4 class="text-[13px] text-[#666] text-left mb-[0.4rem] text-start" style="text-align: start;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">
+                              <a href="#">
+
+                                کتونی ورزشی مخصوص دویدن رنگ بژ 
+                              </a>
+                            </h4>
+                            <span class="text-[13px] text-[#999] text-left">
+                                <span class="cart-product-qty"> 1 x </span>
+                                84,000 تومان
+                            </span>
+                        </div>
+                        <figure style="width:60px;height:60px;display:inline-block" class="inline-block w-[60px] h-[60px]">
+                            <img alt="product img" style="width:100%;height:100%;" class="w-[60px] h-[60px] object-cover" src="/ArefSet/src/assets/images/landing/men.png">
+                        </figure>
+                        <button class="w-[2.4rem] h-[2.4rem] inline-flex items-center justify-center text-[#ccc] hover:text-[#252525]">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M18.8499 9.14001L18.1999 19.21C18.0899 20.78 17.9999 22 15.2099 22H8.7899C5.9999 22 5.9099 20.78 5.7999 19.21L5.1499 9.14001" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M10.3301 16.5H13.6601" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M9.5 12.5H14.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+
+                        </button>
+                    </div>
+
+                    <div style="width:100%;padding:15px 0;" class="w-full flex justify-between items-center border-b-[1px] border-[#ebebeb]  py-[15px] gap-4">
+                        <div class="text-right" style="width: 171px;text-align:start">
+
+                            <h4 class="text-[13px] text-[#666] text-left mb-[0.4rem] text-start" style="text-align: start;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">
+                                <a href="#">
+
+                                dtrdtrdtrdtrddrtd تی شرت آستین کوتاه مردانه زگماک مدل Love Iran
+                                </a>
+                            </h4>
+                            <span class="text-[13px] text-[#999] text-left">
+                                <span class="cart-product-qty"> 1 x </span>
+                                84,000 تومان
+                            </span>
+                        </div>
+                        <figure style="width:60px;height:60px;display:inline-block" class="inline-block w-[60px] h-[60px]">
+                            <img alt="product img" style="width:100%;height:100%;" class="w-[60px] h-[60px] object-cover" src="/ArefSet/src/assets/images/landing/men.png">
+                        </figure>
+                        <button class="w-[2.4rem] h-[2.4rem] inline-flex items-center justify-center text-[#ccc] hover:text-[#252525]"> 
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M18.8499 9.14001L18.1999 19.21C18.0899 20.78 17.9999 22 15.2099 22H8.7899C5.9999 22 5.9099 20.78 5.7999 19.21L5.1499 9.14001" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M10.3301 16.5H13.6601" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M9.5 12.5H14.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+
+                        </button>
+                    </div>
+               
+                    <div style="width:100%;padding:15px 0;" class="w-full flex justify-between items-center  py-[15px]">
+                        <span class="text-[.8rem] text-[#666] ">مجموع</span>
+                        <span class="text-[.9rem] text-[#666] ">160,000 تومان</span>
+                    </div>
+                    <div style="width:100%;padding:15px 0;" class="w-full flex justify-between items-center gap-3 py-[15px]">
+                        <button style="font-family:yekanBakhtLight;height:41.1px;" class="w-full bg-[#252525] text-[#fff] text-[12px] px-3 py-2"> مشاهده سبد خرید </button>
+                        <button style="font-family:yekanBakhtLight;height:41.1px;" class="w-full hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-3 py-2 flex items-center justify-center text-[#7E8285] hover:text-[#fff] text-[12px]">
+                            پرداخت
+                            @* <img class="ms-2"
+                            src="/ArefSet/src/assets/images/landing/arrow-left.png"
+                            alt="" />*@
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left ms-2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                    
+                    @* <div class="w-full mb-5 border-b-2 flex items-center">
+                    <div>
+                    <h4 class="text-[1.3rem] text-[#666] text-left mb-[0.4rem] ">
+                    <a href="#"> کتونی ورزشی مخصوص دویدن رنگ بژ </a>
+                    </h4>
+                    <span class="text-[1.3rem] text-[#999] text-left">
+                    <span class="cart-product-qty">1 x </span>
+                    84,000 تومان
+                    </span>
+                    </div>
+                     <figure style="width:60px;height:60px;" class="inline-block w-[60px] h-[60px]">
+                        <img alt="product img" class="w-[60px] h-[60px] object-cover" src="/ArefSet/src/assets/images/landing/men.png" >
+                    </figure>
+                    <a href="#" class="w-[2.4rem] h-[2.4rem] inline-flex items-center justify-center text-[#ccc]">
+                    X
+                    </a>
+
+
+                    </div>
+                </div>*@
+            </div>
 
             <!-- <div
               class="w-[48px] h-[48px] md:w-[48px] md:h-[48px] lg:w-[44px] lg:h-[44px] border-[1px] border-[#B7B7B7] flex justify-center items-center"
