@@ -33,13 +33,13 @@
 }
 
 
-<main class="mx-auto mt-7  " style="margin-bottom: 100px;">
+<main class="mx-auto mt-7 " style="margin-bottom: 100px;">
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
         @await Component.InvokeAsync("UserPanelSideBarViewComponents")
 
-        <div class="w-full lg:flex min-h-[765px] mainContet ">
+        <div class="w-full lg:flex min-h-[765px] mainContet  overflow-y-scroll ">
             <!-- ----- MyComments ----- -->
             <section id="MyComments" class="tabcontent w-full flex flex-col items-center justify-start">
                 @*                <div class="return p-5 pt-0 w-full flex justify-start lg:hidden">
