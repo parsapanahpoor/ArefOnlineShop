@@ -277,7 +277,10 @@
             {
 
                 <div class=" hover:cursor-zoom-in  min-h-[380px] lg:w-[522px] lg:!h-[522px] relative overflow-hidden img-container productImgSinglePage">
-                    <img class="w-full block absolute transition-all" src="@PathTools.ProductPath@Model.ProductImageName" alt="@Model.ProductTitle" style="width: 100%; top: 0px; left: 0px;">
+                    <img class="w-full block  transition-all" src="@PathTools.ProductPath@Model.ProductImageName" alt="@Model.ProductTitle" style="width: 100%; ">
+                    @*<img class="w-full block  transition-all" src="/ArefSet/src/assets/images/landing/20.jpg" alt="" style="width: 100%; ">*@
+                    
+                    
                     @*<a href="/ArefSet/src/assets/images/products/product-5.jpg" class="MagicZoom" data-options="zoomPosition: inner"><img src="/ArefSet/src/assets/images/products/product-5.jpg"></a>*@
                     
                    @* <a href="@PathTools.ProductPath@Model.ProductImageName" class="MagicZoom w-full block" data-options="zoomWidth:400px; zoomHeight:400px"><img  class="w-full block  transition-all" src="@PathTools.ProductPath@Model.ProductImageName" alt="@Model.ProductTitle" style="width: 100%; top: 0px; left: 0px;"></a>*@
@@ -289,12 +292,13 @@
                 </div>
             }
 
-            <ul  class="list-product flex justify-start lg:!h-[97.8667px] lg:w-[522px] lg:h-auto mt-2 gap-2">
+            <ul style="" class="list-product flex justify-start lg:!h-[97.8667px] lg:w-[522px] h-auto mt-2 gap-2">
 
                 @if (!string.IsNullOrEmpty(Model.ProductImageName))
                 {
                     <li class="w-[22%] h-full cursor-pointer overflow-hidden transition-all active">
                         <img class="w-full" src="@PathTools.ProductPath@Model.ProductImageName" alt="">
+                       
                     </li>
                 }
 
@@ -438,7 +442,7 @@
                             {
                                 <div onclick="ChangeColor(@color.Id)" class="color flex items-center">
                                     <input type="radio" checked="" id="rad@(color.Id)" class="hidden" value="@color.Id">
-                                    <label for="rad@(color.Id)" class="content inline-block w-[24px] h-[24px] lg:w-[32px] lg:h-[32px] bg-[@color.ColorCode] border-2"></label>
+                                    <label for="rad@(color.Id)" class="content inline-block w-[24px] h-[24px] lg:w-[32px] lg:h-[32px]  border-2" style="background-color:@color.ColorCode"></label>
                                     <span class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px] ms-3">@color.ColorFarsiTitle</span>
                                 </div>
                             }
