@@ -198,12 +198,16 @@ input:focus-visible + label {
 .tabset > input:checked + label {
     color: #D92626;
 }
-
-.tabset.singlePageTab > label:hover,
-.tabset.singlePageTab > input:focus + label,
-.tabset.singlePageTab > input:checked + label {
-    border-bottom: 2px solid #D92626;
+.tabset.singlePageTab > label{
+    opacity:0.5
 }
+
+    .tabset.singlePageTab > label:hover,
+    .tabset.singlePageTab > input:focus + label,
+    .tabset.singlePageTab > input:checked + label {
+        border-bottom: 2px solid #D92626;
+        opacity:1
+    }
 
 .cardorder > label:hover,
 .cardorder > input:focus + label,
