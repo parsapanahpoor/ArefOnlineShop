@@ -34,6 +34,29 @@
         .color > input:checked ~span{
            color:#252525
         }
+
+        .tabset.singlePageTab > label {
+            opacity: 0.5
+        }
+
+            .tabset.singlePageTab > label:hover,
+            .tabset.singlePageTab > input:focus + label,
+            .tabset.singlePageTab > input:checked + label {
+                border-bottom: 2px solid #D92626;
+                opacity: 1
+            }
+
+
+
+
+        .list-product > li {
+            opacity: .7;
+        }
+
+            .list-product > li.active {
+                border: 1px solid #252525;
+                opacity: 1;
+            }
     </style>
 }
 
@@ -164,7 +187,7 @@
     </script>
 
     <script>
-
+        
         function ChangeColor(e) {
             document.getElementById("selectColor").value = e;
         }
@@ -241,6 +264,26 @@
 
         //imageZoom("myimage", "myresult");
     </script>
+
+    <script>
+        // When the user scrolls down 20px from the top of the document, slide down the navbar
+
+
+        //const pinBar = document.querySelector(".pinBar");
+        //if (window.screen.width > 500px) {
+        //    pinBar.setAttribute("id", "pinBar");
+        //}
+
+        //window.onscroll = function () { scrollFunction() };
+        //function scrollFunction() {
+        //    if (document.body.scrollTop > 660 || document.documentElement.scrollTop > 660) {
+        //        document.getElementById("pinBar").style.bottom = "0";
+        //    } else {
+        //        document.getElementById("pinBar").style.bottom = "-200px";
+        //    }
+        //}
+        //pinBar
+    </script>
 }
 
 
@@ -248,11 +291,15 @@
 
     <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7">
         <nav class="flex" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <ol style="" class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
-                    <a href="/" class="inline-flex items-center text-[10px] lg:text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
-                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <a href="/" class="inline-flex items-center text-[13px] lg:text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                        @*<svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>*@
+                        <svg width="20" class="w-4 h-4 ml-2 text-[#A8A8A8] hover:text-[#252525]" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 15V12.5" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M8.39172 2.35004L2.61672 6.97504C1.96672 7.4917 1.55006 8.58337 1.69172 9.40004L2.80006 16.0334C3.00006 17.2167 4.13339 18.175 5.33339 18.175H14.6667C15.8584 18.175 17.0001 17.2084 17.2001 16.0334L18.3084 9.40004C18.4417 8.58337 18.0251 7.4917 17.3834 6.97504L11.6084 2.35837C10.7167 1.6417 9.27506 1.6417 8.39172 2.35004Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                         خانه
                     </a>
@@ -263,7 +310,7 @@
                         <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="mr-1 text-[12px] lg:text-sm font-medium text-[#252525] md:mr-2 dark:text-gray-400">@Model.ProductTitle</span>
+                        <span class="mr-1 text-[13px] lg:text-sm font-medium text-[#252525] md:mr-2 dark:text-gray-400">@Model.ProductTitle</span>
                     </div>
                 </li>
             </ol>
@@ -271,7 +318,7 @@
     </section>
 
     <section class="mx-auto gap-4 px-5 lg:px-0 max-w-[99%] lg:!h-[629px] lg:max-w-[86.5em] flex flex-wrap">
-        <div class="lg:h-full">
+        <div class="lg:h-full w-full lg:w-auto">
 
             @if (!string.IsNullOrEmpty(Model.ProductImageName))
             {
@@ -292,7 +339,7 @@
                 </div>
             }
 
-            <ul style="" class="list-product flex justify-start lg:!h-[97.8667px] lg:w-[522px] h-auto mt-2 gap-2">
+            <ul style="" class="list-product w-full flex justify-start lg:!h-[97.8667px] lg:w-[522px] h-auto mt-2 gap-2">
 
                 @if (!string.IsNullOrEmpty(Model.ProductImageName))
                 {
@@ -326,7 +373,7 @@
                             foreach (var category in Model.ProductCategoryLinkable)
                             {
                             <p>
-                                <a asp-action="ListOfProducts" asp-controller="Products" asp-route-CategoriesId="@category.CategoryId">
+                                <a class="text-[12px] lg:text-[14px]" asp-action="ListOfProducts" asp-controller="Products" asp-route-CategoriesId="@category.CategoryId">
 
                                         @category.CategoryTitle
 
@@ -351,9 +398,9 @@
                         <strong>اشتراک گذاری:</strong>
                     </p>
                     <div class="">
-                        <ul class="flex items-center justify-center gap-2">
+                        <ul class="flex items-center justify-center gap-3 ">
                             <li>
-                                <a class="w-6 inline-block text-[#252525] hover:text-[#D92626]" href="#">
+                                <a class="w-4 lg:w-6 inline-block text-[#252525] hover:text-[#D92626]" href="#">
                                   @*  <img src="/ArefSet/src/assets/images/landing/icons8-twitter-32.png"
                                          alt="" />*@
                                     <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -362,7 +409,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="w-6 inline-block text-[#252525] hover:text-[#D92626]" href="#">
+                                <a class="w-4 lg:w-6 inline-block text-[#252525] hover:text-[#D92626]" href="#">
                                    @* <img src="/ArefSet/src/assets/images/landing/__TEMP__SVG__ (2).png"
                                          alt="" />*@
                                     <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -371,7 +418,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="w-6 inline-block text-[#252525] hover:text-[#D92626]" href="#">
+                                <a class="w-4 lg:w-6 inline-block text-[#252525] hover:text-[#D92626]" href="#">
                                    @* <img src="/ArefSet/src/assets/images/landing/icons8-instagram-32.png"
                                          alt="" />*@
                                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -382,7 +429,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="w-6 inline-block text-[#252525] hover:text-[#D92626]" href="#">
+                                <a class="w-4 lg:w-6 inline-block text-[#252525] hover:text-[#D92626]" href="#">
                                    @* <img src="/ArefSet/src/assets/images/landing/icons8-whatsapp-32.png"
                                          alt="" />*@
                                     <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -557,7 +604,7 @@
     <section class="mx-auto lg:mt-20 mt-8 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7">
         <div class="tabset singlePageTab max-w-[99%] lg:max-w-[86.5em] mx-auto">
             <!-- Tab 1 -->
-            <input type="radio" name="tabset" id="singlePagetab1" aria-controls="describtion" checked="">
+            <input type="radio" name="tabset" id="singlePagetab1" aria-controls="describtion" checked>
             <label for="singlePagetab1" class="text-[13px] lg:text-[20px] !pb-3 px-2 lg:px-7 gap-1 ">
                 @*<img class="inline-block" src="/ArefSet/src/assets/images/landing/brush.png" alt="">*@
                 <svg width="20" height="20" class="inline-block" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -572,9 +619,9 @@
             <label for="singlePagetab2" class="text-[13px] lg:text-[20px] !pb-3 px-2 lg:px-7 gap-1 ">
                 @*<img class="inline-block" src="/ArefSet/src/assets/images/landing/message-text.png" alt="">*@
                 <svg width="20" height="20" class="inline-block" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.3333 18.9584H2.49996C1.69996 18.9584 1.04163 18.3001 1.04163 17.5001V6.66675C1.04163 2.98341 2.98329 1.04175 6.66663 1.04175H13.3333C17.0166 1.04175 18.9583 2.98341 18.9583 6.66675V13.3334C18.9583 17.0167 17.0166 18.9584 13.3333 18.9584ZM6.66663 2.29175C3.68329 2.29175 2.29163 3.68341 2.29163 6.66675V17.5001C2.29163 17.6167 2.38329 17.7084 2.49996 17.7084H13.3333C16.3166 17.7084 17.7083 16.3167 17.7083 13.3334V6.66675C17.7083 3.68341 16.3166 2.29175 13.3333 2.29175H6.66663Z" fill="#7E8285" />
-                    <path d="M14.1667 8.54175H5.83337C5.49171 8.54175 5.20837 8.25841 5.20837 7.91675C5.20837 7.57508 5.49171 7.29175 5.83337 7.29175H14.1667C14.5084 7.29175 14.7917 7.57508 14.7917 7.91675C14.7917 8.25841 14.5084 8.54175 14.1667 8.54175Z" fill="#7E8285" />
-                    <path d="M11.6667 12.7083H5.83337C5.49171 12.7083 5.20837 12.4249 5.20837 12.0833C5.20837 11.7416 5.49171 11.4583 5.83337 11.4583H11.6667C12.0084 11.4583 12.2917 11.7416 12.2917 12.0833C12.2917 12.4249 12.0084 12.7083 11.6667 12.7083Z" fill="#7E8285" />
+                    <path d="M13.3333 18.9584H2.49996C1.69996 18.9584 1.04163 18.3001 1.04163 17.5001V6.66675C1.04163 2.98341 2.98329 1.04175 6.66663 1.04175H13.3333C17.0166 1.04175 18.9583 2.98341 18.9583 6.66675V13.3334C18.9583 17.0167 17.0166 18.9584 13.3333 18.9584ZM6.66663 2.29175C3.68329 2.29175 2.29163 3.68341 2.29163 6.66675V17.5001C2.29163 17.6167 2.38329 17.7084 2.49996 17.7084H13.3333C16.3166 17.7084 17.7083 16.3167 17.7083 13.3334V6.66675C17.7083 3.68341 16.3166 2.29175 13.3333 2.29175H6.66663Z" fill="#252525" />
+                    <path d="M14.1667 8.54175H5.83337C5.49171 8.54175 5.20837 8.25841 5.20837 7.91675C5.20837 7.57508 5.49171 7.29175 5.83337 7.29175H14.1667C14.5084 7.29175 14.7917 7.57508 14.7917 7.91675C14.7917 8.25841 14.5084 8.54175 14.1667 8.54175Z" fill="#252525" />
+                    <path d="M11.6667 12.7083H5.83337C5.49171 12.7083 5.20837 12.4249 5.20837 12.0833C5.20837 11.7416 5.49171 11.4583 5.83337 11.4583H11.6667C12.0084 11.4583 12.2917 11.7416 12.2917 12.0833C12.2917 12.4249 12.0084 12.7083 11.6667 12.7083Z" fill="#252525" />
                 </svg>
                 مشخصات
             </label>
@@ -583,8 +630,8 @@
             <label for="singlePagetab3" class="text-[13px] md:text-[18px] lg:text-[20px] !pb-3 px-2 lg:px-7 gap-1 " style="font-family: yekanBakhtRegular">
                @* <img class="inline-block" src="/ArefSet/src/assets/images/landing/messages-2.png" alt="">*@
                 <svg width="20" height="20" class="inline-block" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14.8917 18.225C14.6334 18.225 14.3751 18.1584 14.1417 18.0167L10.8001 16.0334C10.4501 16.025 10.1001 16.0001 9.76673 15.9501C9.54173 15.9167 9.35006 15.7667 9.26673 15.55C9.18339 15.3334 9.22506 15.1 9.37506 14.925C9.92506 14.2834 10.2084 13.5167 10.2084 12.7C10.2084 10.6834 8.4334 9.04169 6.25006 9.04169C5.4334 9.04169 4.65006 9.26672 3.99172 9.70005C3.80839 9.81672 3.58339 9.83338 3.38339 9.74171C3.19173 9.65004 3.05007 9.46669 3.02507 9.25002C3.00007 9.01669 2.9834 8.78337 2.9834 8.54171C2.9834 4.40837 6.56673 1.05005 10.9667 1.05005C15.3667 1.05005 18.9501 4.40837 18.9501 8.54171C18.9501 10.8084 17.9001 12.8917 16.0501 14.3167L16.3334 16.5834C16.4001 17.1501 16.1501 17.6834 15.6751 17.9917C15.4417 18.1417 15.1667 18.225 14.8917 18.225ZM10.9584 14.775C11.0751 14.7667 11.1917 14.8001 11.2917 14.8667L14.7834 16.9417C14.8751 17.0001 14.9501 16.9751 15.0001 16.9417C15.0417 16.9167 15.1084 16.8501 15.0917 16.7334L14.7667 14.1C14.7417 13.8667 14.8417 13.6417 15.0251 13.5084C16.7251 12.3167 17.7001 10.5 17.7001 8.52502C17.7001 5.08336 14.6834 2.28337 10.9667 2.28337C7.39173 2.28337 4.45839 4.8834 4.24173 8.15006C4.86673 7.9084 5.54173 7.77505 6.24173 7.77505C9.11673 7.77505 11.4501 9.97502 11.4501 12.6833C11.4584 13.4167 11.2834 14.125 10.9584 14.775Z" fill="#7E8285" />
-                    <path d="M3.81648 18.9584C3.59981 18.9584 3.39147 18.9001 3.19981 18.7751C2.82481 18.5334 2.62481 18.1168 2.67481 17.6751L2.84148 16.3917C1.71648 15.4751 1.0498 14.1167 1.0498 12.6917C1.0498 11.0667 1.89981 9.55009 3.32481 8.64175C4.18315 8.08342 5.1998 7.78345 6.25814 7.78345C9.13314 7.78345 11.4665 9.98341 11.4665 12.6917C11.4665 13.7917 11.0665 14.8751 10.3331 15.7334C9.39147 16.8751 7.98314 17.5417 6.43314 17.5917L4.39981 18.8001C4.21647 18.9084 4.01648 18.9584 3.81648 18.9584ZM6.24981 9.03345C5.43314 9.03345 4.6498 9.25843 3.99147 9.69176C2.9248 10.3751 2.29148 11.4917 2.29148 12.6917C2.29148 13.8501 2.85815 14.9084 3.85815 15.5918C4.04981 15.7251 4.14981 15.9501 4.12481 16.1834L3.94147 17.6084L5.93314 16.4251C6.03314 16.3668 6.14148 16.3334 6.24981 16.3334C7.47481 16.3334 8.63315 15.8084 9.36648 14.9168C9.91648 14.2668 10.2081 13.5001 10.2081 12.6834C10.2081 10.6751 8.43314 9.03345 6.24981 9.03345Z" fill="#7E8285" />
+                    <path d="M14.8917 18.225C14.6334 18.225 14.3751 18.1584 14.1417 18.0167L10.8001 16.0334C10.4501 16.025 10.1001 16.0001 9.76673 15.9501C9.54173 15.9167 9.35006 15.7667 9.26673 15.55C9.18339 15.3334 9.22506 15.1 9.37506 14.925C9.92506 14.2834 10.2084 13.5167 10.2084 12.7C10.2084 10.6834 8.4334 9.04169 6.25006 9.04169C5.4334 9.04169 4.65006 9.26672 3.99172 9.70005C3.80839 9.81672 3.58339 9.83338 3.38339 9.74171C3.19173 9.65004 3.05007 9.46669 3.02507 9.25002C3.00007 9.01669 2.9834 8.78337 2.9834 8.54171C2.9834 4.40837 6.56673 1.05005 10.9667 1.05005C15.3667 1.05005 18.9501 4.40837 18.9501 8.54171C18.9501 10.8084 17.9001 12.8917 16.0501 14.3167L16.3334 16.5834C16.4001 17.1501 16.1501 17.6834 15.6751 17.9917C15.4417 18.1417 15.1667 18.225 14.8917 18.225ZM10.9584 14.775C11.0751 14.7667 11.1917 14.8001 11.2917 14.8667L14.7834 16.9417C14.8751 17.0001 14.9501 16.9751 15.0001 16.9417C15.0417 16.9167 15.1084 16.8501 15.0917 16.7334L14.7667 14.1C14.7417 13.8667 14.8417 13.6417 15.0251 13.5084C16.7251 12.3167 17.7001 10.5 17.7001 8.52502C17.7001 5.08336 14.6834 2.28337 10.9667 2.28337C7.39173 2.28337 4.45839 4.8834 4.24173 8.15006C4.86673 7.9084 5.54173 7.77505 6.24173 7.77505C9.11673 7.77505 11.4501 9.97502 11.4501 12.6833C11.4584 13.4167 11.2834 14.125 10.9584 14.775Z" fill="#252525" />
+                    <path d="M3.81648 18.9584C3.59981 18.9584 3.39147 18.9001 3.19981 18.7751C2.82481 18.5334 2.62481 18.1168 2.67481 17.6751L2.84148 16.3917C1.71648 15.4751 1.0498 14.1167 1.0498 12.6917C1.0498 11.0667 1.89981 9.55009 3.32481 8.64175C4.18315 8.08342 5.1998 7.78345 6.25814 7.78345C9.13314 7.78345 11.4665 9.98341 11.4665 12.6917C11.4665 13.7917 11.0665 14.8751 10.3331 15.7334C9.39147 16.8751 7.98314 17.5417 6.43314 17.5917L4.39981 18.8001C4.21647 18.9084 4.01648 18.9584 3.81648 18.9584ZM6.24981 9.03345C5.43314 9.03345 4.6498 9.25843 3.99147 9.69176C2.9248 10.3751 2.29148 11.4917 2.29148 12.6917C2.29148 13.8501 2.85815 14.9084 3.85815 15.5918C4.04981 15.7251 4.14981 15.9501 4.12481 16.1834L3.94147 17.6084L5.93314 16.4251C6.03314 16.3668 6.14148 16.3334 6.24981 16.3334C7.47481 16.3334 8.63315 15.8084 9.36648 14.9168C9.91648 14.2668 10.2081 13.5001 10.2081 12.6834C10.2081 10.6751 8.43314 9.03345 6.24981 9.03345Z" fill="#252525" />
                 </svg>
 
                 نظرات (@((Model.Comments != null && Model.Comments.Any()) ? Model.Comments.Count() : 0))
@@ -654,58 +701,9 @@
 
 
                         </div>
-                       @* <div class="singlePageProDesc">
-                            <span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] pt-3 block"> جنس </span>
-                            <span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] pt-3 block"> توضیحات </span>
-                            <span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] pt-3 block"> نگهداری </span>
-                        </div>
-
-                        <div>
-                            <span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px] pt-3 block"> الیاف ، نخی ، پنبه ، نخ </span>
-                            <span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px] pt-3 block"> تیشرت یقه گرد مردانه / جنس صد در صد پنبه / خنک </span>
-                            <span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px] pt-3 block">
-                                جهت دوام هرچه بیشتر چاپ جهت شست و شو به صورت
-                                پشت و رو با دمای پایین و دور پایین شسته شود
-                            </span>
-                        </div>*@
-                       @* <ul>
-                            <li class="flex justify-start items-start pt-3 lg:pt-4">
-                                <div class="singlePageProDesc lg:w-[120px] "><span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px]"> جنس </span></div>
-                                <div class=""><span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px]"> الیاف ، نخی ، پنبه ، نخ </span></div>
-                            </li>
-
-                            <li class="flex justify-start items-start pt-3 lg:pt-4">
-                                <div class="singlePageProDesc lg:w-[120px] "><span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px]"> توضیحات  </span></div>
-                                <div class=""><span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px]">  تیشرت یقه گرد مردانه / جنس صد در صد پنبه / خنک  </span></div>
-                            </li>
-
-                            <li class="flex justify-start items-start pt-3 lg:pt-4">
-                                <div class="singlePageProDesc lg:w-[120px] "><span class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px]"> نگهداری </span></div>
-                                <div class="">
-                                    <span class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px]">
-                                        جهت دوام هرچه بیشتر چاپ جهت شست و شو به صورت
-                                        پشت و رو با دمای پایین و دور پایین شسته شود
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>*@
+                    
                     </div>
-                    @*<p class="text-[14px] lg:text-[16px] text-[#494949] leading-[26px] lg:leading-[36px] break-all">
-                        <table class="table">
-                            <tbody>
-                                @foreach (var item in Model.ProductFeatures)
-                                {
-                                    <tr>
-                                        <td>@item.FeatureTitle </td>
-                                        <td class="text-muted">@item.FeatureValue</td>
-                                    </tr>
-                                }
 
-                            </tbody>
-                        </table>
-                    </p>*@
-
-                    <!-- <div class=" shadow-lg w-[414px] h-[480px] col-span-1 md:col-span-1 lg:col-span-1"></div> -->
                 </section>
 
                 <section id="idea" class="tab-panel border-2 text-right  !p-4 !px-6">
@@ -842,7 +840,7 @@
 
 </main>
 
-<section id="pinBar" class="mx-auto z-[100000] lg:mt-20 mt-5 px-5 lg:px-16 w-[99.99999%] lg:w-full fixed left-0 right-0 bottom-0 py-5 lg:py-9 drop-shadow-xl bg-[#EDEDED] flex justify-between items-center">
+<section id="pinBar" class=" transition-all  mx-auto z-[100000] lg:mt-20 mt-5 px-5 lg:px-16 w-[99.99999%] lg:w-full fixed left-0 bottom-0 right-0 lg:fixed lg:-bottom-[200px] lg:left-0 lg:right-0 py-5 lg:py-9 drop-shadow-xl bg-[#EDEDED] flex justify-between items-center">
     <div class="lg:flex lg:items-center lg:gap-2 hidden">
          @if (!string.IsNullOrEmpty(Model.ProductImageName))
             {
@@ -861,13 +859,13 @@
         <div class="lg:flex lg:items-center lg:gap-2">
             @if (Model.OldPrice.HasValue)
             {
-             <p class="line-through text-[#7E8285] text-[16px]">
+                <p class="line-through text-[#7E8285] text-[14px] lg:text-[16px]">
                     ریال @Model.OldPrice.Value.ToString("#,000")
                
-            </p>
+                </p>
             }
-            <p class="text-[#7E8285] text-[16px]">
-                <strong class="text-[#D92626] text-[24px]" style="font-family: yekanBakhtBold">
+            <p class="text-[#7E8285] text-[14px] lg:text-[16px]">
+                <strong class="text-[#D92626] text-[22px] lg:text-[24px]" style="font-family: yekanBakhtBold">
                     @Model.Price.ToString("#,000")
                 </strong>
                 ریال
@@ -881,15 +879,15 @@
           <p class="result"></p>
           <a href="#" class="removeCount">-</a>
         </div> -->
-        <div class="hidden border-2-[#888] w-[147px] h-[46px] mt-2 text-[20px] lg:flex lg:items-center lg:justify-around gap-2">
+        @*<div class="hidden border-2-[#888] w-[147px] h-[46px] mt-2 text-[20px] lg:flex lg:items-center lg:justify-around gap-2">
             <button class="addCount">+</button>
             <input class="w-6 bg-[#EDEDED] text-center focus:outline-none resultCounter" type="text" name="" id="result">
             <button class="removeCount">-</button>
-        </div>
+        </div>*@
 
-        <button class="text-[12px] lg:text-[16px] text-white bg-[#D92626] px-5 h-[45px] inline-flex items-center justify-center gap-1">
+        <button class="text-[12px] lg:text-[16px] text-white bg-[#D92626] px-2 h-[44px] inline-flex items-center justify-center gap-1">
 
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9751 16.0441L19.9914 6.73557C19.7715 4.65631 18.0182 3.07812 15.9273 3.07812H8.06656C5.97466 3.07812 4.22037 4.65728 4.00243 6.73751L3.02458 16.047C2.75117 18.6516 4.79346 20.9197 7.41175 20.9197H16.5879C19.2082 20.9197 21.2504 18.6497 20.9751 16.0441Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M15.0973 7.70312C15.0973 9.41363 13.7108 10.8011 11.9993 10.8011C10.2888 10.8011 8.90234 9.41363 8.90234 7.70312" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>

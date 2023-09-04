@@ -3,7 +3,7 @@
 
 <!-- <nav class="h-[96px] md:h-[96px] lg:h-[104px] w-full bg-slate-300"></nav> -->
 
-<nav class="bg-white navbar dark:bg-gray-900 w-full  dark:border-gray-600 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mx-auto">
+<nav  class="bg-white navbar dark:bg-gray-900 w-full  dark:border-gray-600 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mx-auto">
     <div class="flex flex-wrap items-center justify-between mx-auto py-4">
         <div class="flex items-center">
             <a href="#"
@@ -194,11 +194,11 @@
 
 
             <!-- logo -->
-            <a href="@PathTools.SiteAddress" class="flex items-center">
+            <a href="@PathTools.SiteAddress" class="inline-flex items-center lg:w-[98px] md:w-[80px] w-[73px]">
                @* <img src="/ArefSet/src/assets/images/landing/Arefset 1.png"
                      class="lg:w-[94px] md:w-[80px] w-[73px] mr-3"
                      alt="Arefset Logo" />*@
-                <svg class="lg:w-[94px] md:w-[80px] w-[73px] mr-3" width="73" height="25" viewBox="0 0 73 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-full h-full mr-3" width="73" height="25" viewBox="0 0 73 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_121_488)">
                         <path d="M0 25C0.551548 24.0097 1.09954 23.0194 1.65286 22.0326L10.3335 6.5272L13.8278 0.282945L13.9897 0C14.0307 0.07781 14.0609 0.129094 14.0858 0.176841L24.688 23.4102C24.9252 23.9372 25.1624 24.4677 25.3997 25.0018H20.6243C20.6067 24.9346 20.5853 24.8685 20.5603 24.8037C18.4573 20.1929 16.3537 15.5797 14.2495 10.9641L13.5218 9.37257C13.4453 9.49813 13.3866 9.59185 13.3332 9.68911C10.6051 14.557 7.87705 19.4272 5.14896 24.2997C5.01908 24.5314 4.90522 24.7719 4.78423 25.0071L0 25Z" fill="#252525" />
                         <path d="M28.8652 25.0001C28.6873 24.6128 28.5325 24.222 28.3546 23.8382C26.6288 20.1328 24.9024 16.431 23.1754 12.7326C23.1523 12.6814 23.1327 12.6318 23.0971 12.5558H23.3711C24.6432 12.5558 25.9189 12.5806 27.191 12.5363C29.0556 12.4727 30.7494 10.9289 31.0465 9.09148C31.2403 8.00307 30.9939 6.88263 30.3608 5.97389C29.7278 5.06515 28.7593 4.44163 27.6661 4.23897C27.3725 4.18717 27.0746 4.16348 26.7765 4.16823C24.3864 4.16823 21.9958 4.16823 19.6046 4.16823C19.5265 4.17906 19.4471 4.16258 19.3799 4.12161C19.3127 4.08064 19.2619 4.01772 19.2363 3.94364C18.7363 2.85077 18.2186 1.76496 17.708 0.677392C17.6724 0.603119 17.6404 0.525309 17.5977 0.426278C17.6884 0.426278 17.756 0.413899 17.8236 0.413899C20.8269 0.413899 23.8284 0.413899 26.8316 0.413899C28.711 0.397009 30.5363 1.03899 31.9867 2.22705C33.4371 3.41511 34.4198 5.07322 34.7622 6.91004C35.1047 8.74685 34.7848 10.6449 33.8589 12.2705C32.9331 13.8962 31.4604 15.1456 29.6997 15.7991L29.4826 15.8857C30.8775 18.9403 32.2682 21.985 33.6548 25.0195L28.8652 25.0001Z" fill="#252525" />
@@ -221,9 +221,13 @@
         <div class="flex md:order-2 gap-2">
             <form id="Searchfiltre1" asp-action="ListOfProducts" asp-area="" asp-controller="Products" method="get">
                 <div class="hidden md:hidden lg:w-[250px] lg:h-[44px] border-[1px] border-[#B7B7B7] lg:flex justify-start items-center">
-                    <img id="SearchIcon1" src="/ArefSet/src/assets/images/landing/search-icon.webp"
+                    @*<img id="SearchIcon1" src="/ArefSet/src/assets/images/landing/search-icon.webp"
                          class="w-5 text-[#252525] mx-3"
-                         alt="" />
+                         alt="" />*@
+                    <svg width="20" height="20" viewBox="0 0 20 20" class="w-6 text-[#252525] mx-3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.58366 17.5C13.9559 17.5 17.5003 13.9555 17.5003 9.58329C17.5003 5.21104 13.9559 1.66663 9.58366 1.66663C5.2114 1.66663 1.66699 5.21104 1.66699 9.58329C1.66699 13.9555 5.2114 17.5 9.58366 17.5Z" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M18.3337 18.3333L16.667 16.6666" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                     <input name="ProductTitle" type="text"
                            class="h-full w-full focus:outline-none"
                            placeholder="جستجو کنید ..."

@@ -450,9 +450,13 @@
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
-                    <a href="/" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
-                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                    <a href="/" class="inline-flex items-center text-[13px] lg:text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                        @*<svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>*@
+                        <svg width="20" class="w-4 h-4 ml-2 text-[#A8A8A8] hover:text-[#252525]" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 15V12.5" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M8.39172 2.35004L2.61672 6.97504C1.96672 7.4917 1.55006 8.58337 1.69172 9.40004L2.80006 16.0334C3.00006 17.2167 4.13339 18.175 5.33339 18.175H14.6667C15.8584 18.175 17.0001 17.2084 17.2001 16.0334L18.3084 9.40004C18.4417 8.58337 18.0251 7.4917 17.3834 6.97504L11.6084 2.35837C10.7167 1.6417 9.27506 1.6417 8.39172 2.35004Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                         خانه
                     </a>
@@ -463,7 +467,7 @@
                         <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">لیست نحصولات</span>
+                        <span class="mr-1 text-sm font-medium text-[#252525] md:mr-2 dark:text-gray-400">لیست نحصولات</span>
                     </div>
                 </li>
             </ol>
@@ -601,7 +605,7 @@
                                         </span>
                                     </summary>
                                     <div class="flex items-center justify-center gap-2"></div>
-                                    <div class="switcher flex items-center justify-start gap-2  mt-4">
+                                    <div class="switcher flex items-center justify-start flex-wrap gap-2  mt-4">
 
                                         @foreach (var color in colors)
                                         {
@@ -609,7 +613,7 @@
                                             if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
                                             {
                                                 <input type="checkbox" name="ColorsId" class="hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
-                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-1 bg-@color.ColorTitle-500
+                                                <label style="background-color:@color.ColorTitle-500" data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-1
 
                                                    @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "active" : " " )" for="indigo@(color.ColorId)">
                                                 </label>
@@ -617,7 +621,7 @@
                                             else
                                             {
                                                 <input type="checkbox" name="ColorsId" class="hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
-                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-1 bg-@color.ColorTitle-500" for="indigo@(color.ColorId)">
+                                                <label style="background-color:@color.ColorTitle-500" data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-1 " for="indigo@(color.ColorId)">
                                                 </label>
                                             }
 
@@ -660,6 +664,7 @@
                                         <input type="range" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
                                     </div>
                                 </fieldset>
+                               
                             </details>
                         </div>
 
@@ -684,7 +689,9 @@
         </div>
 
         <div class="mainContent w-full lg:w-[75%]">
-            <div class="mx-auto flex items-center justify-between py-6 mt-5 border-b-[1px] border-[#D0D0D099]">
+            <div class="border-b-[1px] pb-1 border-[#D0D0D099]">
+
+            <div class="mx-auto flex items-center justify-between pt-6 mt-5 ">
                 <p class="text-[#7D7D7D] text-[14px] font-semibold hidden lg:inline-block">
                     نمایش <span class="text-[#252525] px-1">@Model.Entities.Count()</span>محصول از
                     <span class="text-[#252525] px-1">@Model.AllEntitiesCount</span>محصول فروشگاه عارف
@@ -701,7 +708,7 @@
                 </div>
                 <div class="flex items-center justify-center gap-3">
                     <p class="text-[#7D7D7D] text-[12px]  lg:text-[14px] font-medium">مرتب سازی بر اساس :</p>
-                    <div class=" border px-2  rounded-md">
+                    <div class=" border px-2">
 
                         <select onchange='changeDropDown(this)'
                         @*class="py-3 px-4 pl-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"*@
@@ -753,19 +760,90 @@
                 </div>
             </div>
 
+            <div class=" pb-6 my-1">
+                <ul class="flex items-center justify-start flex-wrap gap-3 mt-2 lg:mt-0">
+                    <li class="flex items-center justify-start">
+                        <button>
+
+                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                             <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                        <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">مردانه </h6>
+                    </li>
+
+                    <li class="flex items-center justify-start ">
+                        <button>
+
+                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1"> زنانه </h6>
+                    </li>
+
+                    <li class="flex items-center justify-start ">
+                        <button>
+
+                         <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                             <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                         </svg>
+                        </button>
+                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">xlarg  </h6>
+                    </li>
+
+                        <li class="flex items-center justify-start ">
+                        <button>
+
+                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1"> XXL  </h6>
+                    </li>
+
+                        <li class="flex items-center justify-start ">
+                            <button>
+
+                                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1"> medium</h6>
+                        </li>
+
+                        <li class="flex items-center justify-start ">
+                            <button>
+
+                                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1"> کالکشن  </h6>
+                        </li>
+                </ul>
+            </div>
+            </div>
+
             @if (Model.Entities != null && Model.Entities.Any())
             {
                 <div class="mx-auto bg-white min-h-sceen w-full">
 
-                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3 divide-y divide-neutral-200 text-right w-full mx-auto mt-5">
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4 text-right w-full mx-auto mt-5">
 
                         @foreach (var product in Model.Entities)
                         {
                             <div class="transition-all transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
                                     @* <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
-                            <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
-                            </a>*@
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                                    </a>*@
                                     <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
                                         <img class="product-image  w-full h-full object-cover " src="@PathTools.ProductPath@product.ProductImageName" title="@product.ProductTitle" alt="@product.ProductTitle" />
                                         @*<img class="product-image  w-full  " src="/ArefSet/src/assets/images/landing/20.jpg" alt="" />*@
@@ -817,7 +895,7 @@
                                         <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
                                             همه محصولات
                                         </p>
-                                        <a style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;" asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="font-bold text-[12px]  lg:text-[16px] line-clamp-2 listShopCartTitle">
+                                        <a style="font-family:yekanBakhtBold; overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;" asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="text-[#252525]  text-[12px]  lg:text-[16px] line-clamp-2 listShopCartTitle">
                                             @product.ProductTitle
                                         </a>
                                     </div>
