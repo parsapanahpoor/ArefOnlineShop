@@ -22,14 +22,16 @@ namespace ParsaWorkShop.Controllers
         private IProductService _product;
         private ICommentService _comment;
         private readonly IFavoriteProductsService _favoriteProductsService;
+        private readonly IOrderService _orderService;
 
         public ProductsController(IUserService user, IProductService product, ICommentService comment
-                                    , IFavoriteProductsService favoriteProductsService)
+                                    , IFavoriteProductsService favoriteProductsService, IOrderService orderService)
         {
             _user = user;
             _product = product;
             _comment = comment;
             _favoriteProductsService = favoriteProductsService;
+            _orderService = orderService;
         }
 
         #endregion
@@ -95,6 +97,15 @@ namespace ParsaWorkShop.Controllers
 
             #endregion
 
+            #region Check That Is Exist Any Shop Cart With This Product 
+
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.productOrderDetail = await _orderService.CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(User.GetUserId(), id.Value);
+            }
+
+            #endregion
+
             return View(await _product.FillProductDetailSiteSideViewModel((int)id));
         }
 
@@ -109,7 +120,7 @@ namespace ParsaWorkShop.Controllers
 
             var product = await _product.GetProductNameByProductId(model.BlogId.Value);
 
-            return RedirectToAction(nameof(SinglePageProducts), new { id = model.BlogId  , ProductTitle = product.FixTextForUrl() });
+            return RedirectToAction(nameof(SinglePageProducts), new { id = model.BlogId, ProductTitle = product.FixTextForUrl() });
         }
 
         #endregion

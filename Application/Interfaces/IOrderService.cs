@@ -34,6 +34,9 @@ namespace Application.Interfaces
 
         Task<ListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel> FillListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel();
 
+        //Check That Is Exist Any Current Order Detail By This Product Id And User Id
+        Task<bool> CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(int userId, int productId);
+
         #endregion
 
         #region Admin Side 

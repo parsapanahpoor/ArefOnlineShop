@@ -249,6 +249,13 @@ namespace Application.Services
             return await _order.FillInvoiceSiteSideViewModel(userId);
         }
 
+
+        //Check That Is Exist Any Current Order Detail By This Product Id And User Id
+        public async Task<bool> CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(int userId, int productId)
+        {
+            return await _order.CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId( userId,  productId);
+        }
+
         //Fill List Of Order Details Admin Side View Model
         public async Task<List<ListOfOrderDetailsAdminSideViewModel>> FillListOfOrderDetailsAdminSideViewModel(int id)
         {
