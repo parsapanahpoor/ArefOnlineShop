@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
-    [PermissionChecker(1)]
+    [PermissionChecker(8)]
     public class UsersCommentAboutSiteController : AdminBaseController
     {
         #region Ctor 

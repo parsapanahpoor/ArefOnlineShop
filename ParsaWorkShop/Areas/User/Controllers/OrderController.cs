@@ -1,4 +1,6 @@
-﻿using Application.Extensions;
+﻿#region Using
+
+using Application.Extensions;
 using Application.Interfaces;
 using Domain.Models.Order;
 using Domain.Models.Product;
@@ -8,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+#endregion
 
 namespace ParsaWorkShop.Areas.User.Controllers
 {
@@ -42,6 +46,7 @@ namespace ParsaWorkShop.Areas.User.Controllers
             List<Orders> orders = _order.GetOrdersByUsersId(userid);
             return View(orders);
         }
+
         public async Task<IActionResult> OrderDetails(int? id)
         {
             if (id == null)

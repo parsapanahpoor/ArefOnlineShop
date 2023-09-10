@@ -7,7 +7,9 @@ using Domain.ViewModels.SiteSide.Order;
 using Domain.ViewModels.UserPanel.Orders;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -170,6 +172,21 @@ namespace Data.Repository
             SaveChanges();
         }
 
+        //Check That Is Exist Any Current Order Detail By This Product Id And User Id
+        public async Task<bool> CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(int userId , int productId)
+        {
+            var order = await _context.Orders
+                           .Where(p => p.Userid == userId && p.CreateDate.Year == DateTime.Now.Year
+                                                   && p.CreateDate.Month == DateTime.Now.Month && p.CreateDate.Day == DateTime.Now.Day
+                                                   && p.IsFinally == false)
+                           .FirstOrDefaultAsync();
+
+            if (order == null) return false;
+
+            return await _context.OrderDetails.AnyAsync(p => p.OrderID == order.OrderId
+                                                        && p.ProductID == productId);
+        }
+
         //Fill Invoice Site Side ViewModel
         public async Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId)
         {
@@ -304,5 +321,17 @@ namespace Data.Repository
                            .Select(p=> p.Order)
                            .FirstOrDefault();
         }
+
+        #region Admin Side 
+
+        //Get List Of In Progress Orders
+        public async Task<List<Orders>> GetListOfInProgressOrders()
+        {
+            return await _context.Orders
+                                 .Where(p=> p.IsFinally && p.OrderState == OrderState.InProccess)
+                                 .ToListAsync(); 
+        }
+
+        #endregion
     }
 }

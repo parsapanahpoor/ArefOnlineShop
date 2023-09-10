@@ -61,6 +61,9 @@ namespace Domain.Interfaces
         ProductGallery GetProductGalleryByID(int id);
         void DeleteProductGallery(ProductGallery product);
 
+        //Check That Has Product a Seconde Pic
+        bool CheckThatHasProductaSecondePic(int productId);
+
         #endregion
 
         #region Offer

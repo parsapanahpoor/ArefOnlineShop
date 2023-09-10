@@ -1,0 +1,156 @@
+﻿@model Domain.ViewModels.Admin.Order.ListOfInProgressOrdersAdminSideViewModel
+
+@using Application.Convertors
+@{
+    ViewData["Title"] = "پیگیری سفارشات ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@section Styls
+    {
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.css">
+
+}
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>پیگیری سفارشات </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active"> پیگیری سفارشات</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card ">
+                    <div class="card-header">
+                        <div class="card-tools">
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width:10px;" aria-label="عکس  : activate to sort column ascending">خریدار   </th>
+
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام کاربری  : activate to sort column descending">     نام مشتری</th>
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="موبایل : activate to sort column ascending">موبایل مشتری  </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="موبایل : activate to sort column ascending">   تعداد انواع اقلام   </th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="موبایل : activate to sort column ascending"> تاریخ  </th>
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label=" activate to sort column ascending">امکانات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model.Orders)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">
+                                                    <img class="direct-chat-img" style="width:50px;height:50px;" src="/Images/UserAvatar/@item.User.UserAvatar" alt="message user image">
+                                                </td>
+                                                <td>@item.User.UserName</td>
+                                                <td>@item.User.PhoneNumber</td>
+                                                <td>@item.OrderDetails.Count()</td>
+
+                                                <td>@item.CreateDate.ToShamsi()</td>
+
+                                                <td>
+
+                                                    <a class="btn btn-outline-primary btn-sm waves-effect" asp-action="CheckUserInformation" asp-area="Admin" asp-controller="OrderTracking" asp-route-id="@item.OrderId">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        برسی اطلاعات کاربر
+                                                    </a>
+                                                    <a class="btn btn-outline-warning btn-sm waves-effect" asp-action="CheckOrderDetails" asp-area="Admin" asp-controller="OrderTracking" asp-route-id="@item.OrderId">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        برسی  سبد خرید
+                                                    </a>
+                                                    <a class="btn btn-outline-success btn-sm waves-effect" asp-action="CheckForSendOrderToTheCustomer" asp-area="Admin" asp-controller="OrderTracking" asp-route-id="@item.OrderId">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        برسی  سبد خرید
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section> <!-- /.content -->
+</div>
+
+
+
+
+@section scripts{
+    <!-- ./wrapper -->
+
+    <script src="/Admin_Panel/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <!-- SlimScroll -->
+    <!-- FastClick -->
+    <script src="/Admin_Panel/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <!-- AdminLTE for demo purposes -->
+    <!-- page script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+            });
+            $('#example2').DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    }
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "autoWidth": false
+            });
+        });</script>
+}

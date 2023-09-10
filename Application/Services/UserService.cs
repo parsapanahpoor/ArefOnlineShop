@@ -449,7 +449,7 @@ namespace Application.Services
 
             #region Send Verification Code SMS
 
-            var result = $"https://api.kavenegar.com/v1/6A427559367558527A76485753667A5779587337736735753945747946474F347A346A65356E7A567A51413D/verify/lookup.json?receptor={User.PhoneNumber}&token={User.MobileActivationCode}&template=Register";
+            var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={User.PhoneNumber}&token={User.MobileActivationCode}&template=Register";
             var results = client.GetStringAsync(result);
 
             #endregion
@@ -489,7 +489,7 @@ namespace Application.Services
 
             #region Send Verification Code SMS
 
-            var result = $"https://api.kavenegar.com/v1/6A427559367558527A76485753667A5779587337736735753945747946474F347A346A65356E7A567A51413D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
+            var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
             var results = client.GetStringAsync(result);
 
             //var message = Messages.SendActivationRegisterSms(user.MobileActivationCode);
@@ -586,7 +586,7 @@ namespace Application.Services
 
             #region Send Verification Code SMS
 
-            var result = $"https://api.kavenegar.com/v1/6A427559367558527A76485753667A5779587337736735753945747946474F347A346A65356E7A567A51413D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
+            var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={user.PhoneNumber}&token={user.MobileActivationCode}&template=Register";
             var results = client.GetStringAsync(result);
 
             #endregion

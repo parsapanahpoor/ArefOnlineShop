@@ -1,45 +1,53 @@
 @font-face {
-  font-family: iransans;
-  src: url("../fonts/IRANSansWeb_Light.woff2") format("woff2");
-  src: url("../fonts/IRANSansWeb_Light.woff") format("woff");
+    font-family: iransans;
+    src: url("../fonts/IRANSansWeb_Light.woff2") format("woff2");
+    src: url("../fonts/IRANSansWeb_Light.woff") format("woff");
 }
 
 @font-face {
-  font-family: "dana";
-  src: url("../fonts/dana-fanum-regular.woff2") format("woff2");
-  src: url("../fonts/dana-fanum-regular.woff") format("woff");
+    font-family: "dana";
+    src: url("../fonts/dana-fanum-regular.woff2") format("woff2");
+    src: url("../fonts/dana-fanum-regular.woff") format("woff");
 }
+
 @font-face {
-  font-family: yekanBakhtBlack;
-  src: url("../fonts/woff2/YekanBakh-Black.woff2") format("woff2");
+    font-family: yekanBakhtBlack;
+    src: url("../fonts/woff2/YekanBakh-Black.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: yekanBakhtBold;
-  src: url("../fonts/woff2/YekanBakh-Bold.woff2") format("woff2");
+    font-family: yekanBakhtBold;
+    src: url("../fonts/woff2/YekanBakh-Bold.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: yekanBakhtExtraBlack;
-  src: url("../fonts/woff2/YekanBakh-ExtraBlack.woff2") format("woff2");
+    font-family: yekanBakhtExtraBlack;
+    src: url("../fonts/woff2/YekanBakh-ExtraBlack.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: yekanBakhtExtraBold;
-  src: url("../fonts/woff2/YekanBakh-ExtraBold.woff2") format("woff2");
+    font-family: yekanBakhtExtraBold;
+    src: url("../fonts/woff2/YekanBakh-ExtraBold.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: yekanBakhtLight;
-  src: url("../fonts/woff2/YekanBakh-Light.woff2") format("woff2");
+    font-family: yekanBakhtLight;
+    src: url("../fonts/woff2/YekanBakh-Light.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: yekanBakhtRegular;
-  src: url("../fonts/woff2/YekanBakh-Regular.woff2") format("woff2");
+    font-family: yekanBakhtRegular;
+    src: url("../fonts/woff2/YekanBakh-Regular.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: yekanBakhtSemiBold;
-  src: url("../fonts/woff2/YekanBakh-SemiBold.woff2") format("woff2");
+    font-family: yekanBakhtSemiBold;
+    src: url("../fonts/woff2/YekanBakh-SemiBold.woff2") format("woff2");
 }
+
 @font-face {
-  font-family: yekanBakhtThin;
-  src: url("../fonts/woff2/YekanBakh-Thin.woff2") format("woff2");
+    font-family: yekanBakhtThin;
+    src: url("../fonts/woff2/YekanBakh-Thin.woff2") format("woff2");
 }
 /* @font-face {
   font-family: "yekanBakht";
@@ -56,15 +64,35 @@
 body,
 html,
 * {
-  font-family:
-  yekanBakhtRegular,
-  yekanBakhtLight,
-  yekanBakhtExtraBold,
-  yekanBakhtSemiBold,
-  yekanBakhtThin, "iransans", "dana";
-  scroll-behavior: smooth;
-  /* font-family: "yekanBakht"; */
+    font-family: yekanBakhtRegular, yekanBakhtLight, yekanBakhtExtraBold, yekanBakhtSemiBold, yekanBakhtThin, "iransans", "dana";
+    scroll-behavior: smooth;
+    /* font-family: "yekanBakht"; */
 }
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #252525;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}
+
 
 /* .swiper {
     width: 100%;
@@ -93,9 +121,9 @@ html,
   } */
 
 .swiper-slide {
-  /* margin: 0 !important ; */
-  /* border-left: 1px solid #000; */
-  width: 100% !important;
+    /* margin: 0 !important ; */
+    /* border-left: 1px solid #000; */
+    width: 100% !important;
 }
 /* .swiper-pagination.lgSize {
  
@@ -104,14 +132,15 @@ html,
   transform: rotate(-90deg);
 } */
 .swiper-pagination.smMdSize {
-  transform: translate(-50%, -50%);
-  left: 50%;
-  /* top: 50%; */
+    transform: translate(-50%, -50%);
+    left: 50%;
+    /* top: 50%; */
 }
+
 .slideOne {
-  background-image: url(./assets/images/landing/handsome-man-gray-checkered-suit-black-white\ 1.png);
-  background-size: bottom left;
-  background-repeat: no-repeat;
+    background-image: url(./assets/images/landing/handsome-man-gray-checkered-suit-black-white\ 1.png);
+    background-size: bottom left;
+    background-repeat: no-repeat;
 }
 
 
@@ -121,13 +150,13 @@ html,
 /* tab */
 
 .tabset > input[type="radio"] {
-  display: none;
-  position: absolute;
-  /* left: -200vw; */
+    display: none;
+    position: absolute;
+    /* left: -200vw; */
 }
 
 .tabset .tab-panel {
-  display: none;
+    display: none;
 }
 
 .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
@@ -136,17 +165,17 @@ html,
 .tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
 .tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
 .tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
-  display: block;
+    display: block;
 }
+
 .tabset > label {
-  position: relative;
-  display: inline-block;
-/*  padding: 15px 15px 15px;
-*/  border: 1px solid transparent;
-  border-bottom: 0;
-  cursor: pointer;
-  font-weight: 600;
-  
+    position: relative;
+    display: inline-block;
+    /*  padding: 15px 15px 15px;
+*/ border: 1px solid transparent;
+    border-bottom: 0;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 /* .tabset > label::after {
@@ -160,40 +189,46 @@ html,
 } */
 
 input:focus-visible + label {
-  outline: 2px solid rgba(0,102,204,1);
-  border-radius: 3px;
+    outline: 2px solid rgba(0,102,204,1);
+    border-radius: 3px;
 }
 
 .tabset > label:hover,
 .tabset > input:focus + label,
 .tabset > input:checked + label {
-  color: #D92626;
+    color: #D92626;
 }
-.tabset.singlePageTab > label:hover,
-.tabset.singlePageTab > input:focus + label,
-.tabset.singlePageTab > input:checked + label {
-  border-bottom: 2px solid #D92626; 
+.tabset.singlePageTab > label{
+    opacity:0.5
 }
+
+    .tabset.singlePageTab > label:hover,
+    .tabset.singlePageTab > input:focus + label,
+    .tabset.singlePageTab > input:checked + label {
+        border-bottom: 2px solid #D92626;
+        opacity:1
+    }
 
 .cardorder > label:hover,
 .cardorder > input:focus + label,
 .cardorder > input:checked + label {
-  color: #D92626;
-  background-color: #252525;
-  border: 2px solid #252525;
+    color: #D92626;
+    background-color: #252525;
+    border: 2px solid #252525;
 }
-.cardorder > label:hover>a,
-.cardorder > input:focus + label>a,
-.cardorder > input:checked + label>a {
-  border: 1px solid #fff;
-  color: #fff;
-}
-.cardorder > label:hover>div>p,
-.cardorder > input:focus + label>a>div>p,
-.cardorder > input:checked + label>div>p {
-  
-  color: #fff;
-}
+
+    .cardorder > label:hover > a,
+    .cardorder > input:focus + label > a,
+    .cardorder > input:checked + label > a {
+        border: 1px solid #fff;
+        color: #fff;
+    }
+
+        .cardorder > label:hover > div > p,
+        .cardorder > input:focus + label > a > div > p,
+        .cardorder > input:checked + label > div > p {
+            color: #fff;
+        }
 /* .tabset > label:hover::after,
 .tabset > input:focus + label::after,
 .tabset > input:checked + label::after {
@@ -207,94 +242,116 @@ input:focus-visible + label {
 } */
 
 .tab-panel {
-  padding: 30px 0;
-  /* border-top: 1px solid #ccc; */
+    padding: 30px 0;
+    /* border-top: 1px solid #ccc; */
 }
+
 .tabset {
-  /* max-width: 86.5em; */
-  text-align: center;
+    /* max-width: 86.5em; */
+    text-align: center;
 }
+
 *:before,
 *:after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-.productCardImg:hover > img{
+/*.productCardImg:hover > img{
     filter: grayscale(100%);
+}*/
+.productCardImg:hover > .addToCart {
+    bottom: 0;
+    opacity: 1;
 }
-.productCardImg:hover>.addToCart{
- bottom: 0;
- opacity: 1;
-}
-.productCardImg:hover>.likeProduct{
-  left: 24px;
-  opacity: 1;
+
+.productCardImg:hover > .likeProduct {
+    left: 24px;
+    opacity: 1;
 }
 
 
-.landingGridItem:hover>div{
-  opacity: 0.85;
+.landingGridItem:hover > div {
+    opacity: 0.85;
 }
 
 
 .swiper.swiperVertical {
-  width: 100% !important;
-  margin: auto;
-  height: 500px !important;
+    width: 100% !important;
+    margin: auto;
+    height: 500px !important;
 }
 
-.swiper.swiperVertical>img {
-  width: 100%;
-  height: 100%;
-}
+    .swiper.swiperVertical > img {
+        width: 100%;
+        height: 100%;
+    }
 
-.active{
-  background-image: url(../images/landing/download.svg);
+.active {
+    background-image: url(../images/landing/download.svg);
     background-size: 10px;
     content: "";
     background-repeat: no-repeat;
     background-size: 14px;
     background-position: 50%;
 }
-.activeSideItem{
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.activeSideItem>div>p{
-  color: #fff;
-}
-.activeSideItem>div>.Ellipse{
-  opacity: 1;
-}
-.activeSideItem>img{
-  opacity: 1;
+
+.activeSideItem {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.activeFormItem{
-  color: #D92626;
+    .activeSideItem > div > p {
+        color: #fff;
+    }
+
+    .activeSideItem > div > .Ellipse {
+        opacity: 1;
+    }
+
+    .activeSideItem > .bi-arrow-left {
+        opacity: 1;
+    }
+/* .activeSideItem .bi-arrow-left {
+        color: #fff;
+    }*/
+
+.activeFormItem {
+    color: #D92626;
 }
 
-.activeCommentTab{
-  opacity: 1;
+.activeCommentTab {
+    opacity: 1;
 }
 
-.activeOrderItem{
-  opacity: 1;
-}
-.activeOrderItem>.redUnderLine{
-  position: relative;
-}
-.activeOrderItem>.redUnderLine::after{
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: -12px;
-  width: 53px;
-  height: 2px;
-  background-color: #D92626;
+.activeOrderItem {
+    opacity: 1;
 }
 
-.likeBtnToggle{
-  color: #D92626;
+    .activeOrderItem > .redUnderLine {
+        position: relative;
+    }
+
+        .activeOrderItem > .redUnderLine::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: -12px;
+            width: 53px;
+            height: 2px;
+            background-color: #D92626;
+        }
+
+.likeBtnToggle {
+    color: #D92626;
 }
+
+
+/*.activeColors {
+    background-image: url(../images/landing/download.svg);
+    background-size: 10px;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 14px;
+    background-position: 50%;
+}*/
 
 /* after:content-[''] after:absolute after:right-0 after:-bottom-3 after:w-[53px] after:h-[2px] after:bg-[#D92626] */

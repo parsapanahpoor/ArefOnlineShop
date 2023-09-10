@@ -33,21 +33,25 @@
 }
 
 
-<main class="mx-auto mt-7 mb-7">
+<main class="mx-auto mt-7 " style="margin-bottom: 100px;">
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
         @await Component.InvokeAsync("UserPanelSideBarViewComponents")
 
-        <div class="w-full lg:flex min-h-[765px] mainContet hidden">
+        <div class="w-full lg:flex min-h-[765px]  ">
             <!-- ----- Orders ----- -->
             <div class="w-full h-full">
                 <section id="Orders" class="tabcontent w-full flex flex-col items-center justify-start">
                     <div id="reorder" class="tabOrder border-2 border-[#252525] w-full min-h-[600px] p-3 lg:p-5 flex flex-col items-center justify-start gap-5">
                         <div class="w-full flex items-center justify-between gap-5">
                             <div class="return pt-0 w-full flex justify-start">
-                                <a href="./orders.html" class="flex items-center justify-start gap-2">
-                                    <img class="transform rotate-180 w-[20px] lg:w-[24px]" src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
+
+                                <a href="/User/Order/Index" class="flex items-center justify-start gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left transform rotate-180 w-[20px] lg:w-[24px]" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+                                    </svg>
+                                    @*<img class="transform rotate-180 w-[20px] lg:w-[24px]" src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">*@
                                     <div class="text-right">
                                         <div class="text-[14px]  text-[#252525]" style="font-family: yekanBakhtBold">
                                             جزئیات سفارش
@@ -121,8 +125,10 @@
                                                         <span class="inline-block">
                                                             مشاهده 
                                                         </span>
-
-                                                        <img class="w-[16px]" src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left w-[16px]" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+                                                        </svg>
+                                                        @*<img class="w-[16px]" src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="">*@
                                                     </a>
                                                 </div>
                                             </div>
@@ -221,6 +227,42 @@
                     </div>
                 </section>
             </div>
+        
+
+        
         </div>
     </section>
 </main>
+<section class="pinBar mx-auto px-5 lg:px-16 max-w-[100%] lg:max-w-[95em] fixed left-0 right-0 bottom-0 py-5 lg:py-8 drop-shadow-xl bg-[#EDEDED] lg:flex lg:justify-between text-right gap-3">
+    <div class="text-right">
+        <p class="text-[12px] lg:text-[16px] text-[#252525] mb-2"
+           style="font-family: yekanBakhtSemiBold">
+            با استفاده از سامانه رهگیری پست می‌توانید از وضعیت مرسوله باخبر شوید.
+        </p>
+
+        <div class="flex items-center justify-start gap-2">
+            <p class="text-[12px] lg:text-[14px] text-[#7E8285]"
+               style="font-family: yekanBakhtRegular">
+                کد پیگیری :
+            </p>
+
+            <p class="text-[12px] lg:text-[14px] text-[#7E8285]"
+               style="font-family: yekanBakhtRegular">
+                191480206801702490778111
+            </p>
+            <img class="hover:cursor-pointer"
+                 src="../assets/images/landing/3square.png"
+                 alt="" />
+        </div>
+    </div>
+
+    <div class="flex items-center justify-between lg:flex lg:items-center lg:justify-center lg:gap-5 gap-8">
+        <a href="#"
+           class="text-[10px] lg:text-[14px] text-white bg-[#D92626] px-5 py-2 lg:px-0 lg:py-0 lg:w-[224px] lg:h-[45px] inline-flex items-center justify-center gap-2 ">
+            ورود به سامانه رهگیری
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-left transform " viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+            </svg>
+        </a>
+    </div>
+</section>

@@ -1,53 +1,64 @@
 ﻿@{
     ViewData["Title"] = "نتیجه ی  پرداخت ";
 }
+ 
+@section Styles
+    {
+    <link href="/ArefSet/dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
+}
 
-<section class="bg-half bg-light d-table w-100">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12 text-center">
-                <div class="page-next-level">
-                    <h4 class="title">   نتیجه ی  پرداخت  </h4>
-                    <div class="page-next">
-                        <nav aria-label="breadcrumb" class="d-inline-block">
-                            <ul class="breadcrumb bg-white rounded shadow mb-0">
-                                <li class="breadcrumb-item"><a href="/">فروشگاه کالا </a></li>
-                            </ul>
-                        </nav>
+
+
+<div class="mx-auto">
+
+    <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>
+                        خانه
+                    </a>
+                </li>
+
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">نتیجه ی درگاه پرداخت</span>
                     </div>
-                </div>
-            </div><!--end col-->
-        </div><!--end row-->
-    </div> <!--end container-->
-</section>
+                </li>
+            </ol>
+        </nav>
+    </section>
 
-<div class="position-relative">
-    <div class="shape overflow-hidden text-white">
-        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
-        </svg>
-    </div>
-</div>
 
-<section class="section">
 
     @if (ViewBag.IsSuccess == true)
     {
-        <div class="p-4">
-            <div class="alert alert-success mb-0" role="alert">
-                <h4 class="alert-heading">پرداخت با موفقیت انجام شد </h4>
+        <div role="alert" style="margin: 50px;">
+            <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
+                پرداخت با موفقیت انجام شد
+            </div>
+            <div class="border border-t-0 border-green-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
                 <p>  کد پیگیری : @ViewBag.refId</p>
             </div>
         </div>
     }
     else
     {
-        <div class="p-4">
-            <div class="alert alert-danger mb-0" role="alert">
-                <h4 class="alert-heading">پرداخت ناموفق </h4>
-                <p>  متاسفانه پرداخت ناموفق بوده است </p>
+        <div role="alert" style="margin: 50px;">
+            <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                پرداخت ناموفق
+            </div>
+            <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                <p>متاسفانه پرداخت ناموفق بوده است</p>
             </div>
         </div>
     }
-</section>
 
+</div>

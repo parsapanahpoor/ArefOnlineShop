@@ -141,6 +141,8 @@ namespace Data.Repository
         {
             return await _context.Comment
                                  .Include(p=> p.Users)
+                                 .Include(p=> p.Product)
+                                 .Include(p=> p.Blog)
                                  .AsNoTracking()
                                  .Where(p=> !p.IsDelete && p.UserId == userId)
                                  .ToListAsync();

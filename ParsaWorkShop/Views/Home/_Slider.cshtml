@@ -5,8 +5,8 @@
 @if (Model != null && Model.Any())
 {
 
-    <div class="w-full bg-[#eee] h-[730px] relative">
-        <div class="swiper mySwiper w-full lg:h-full swiper-fade swiper-initialized swiper-horizontal swiper-rtl swiper-watch-progress swiper-backface-hidden" dir="rtl">
+    <div style="max-width:2536px" class=" max-w-[1536px]  mx-auto bg-[#eee] h-[730px] relative">
+        <div style="margin: 0 auto;" class="swiper mySwiper w-full lg:h-full swiper-fade swiper-initialized swiper-horizontal swiper-rtl swiper-watch-progress swiper-backface-hidden" dir="rtl">
             <div class="swiper-wrapper w-full mb-10 lg:mb-0" id="swiper-wrapper-0ee14e4b1628f10bd" aria-live="off" style="transition-duration: 0ms;">
 
                 @foreach (var slider in Model)
@@ -26,15 +26,17 @@
                             </p>
                             <a href="@slider.Link" class="my-3 mt-6 hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-7 py-3 inline-flex items-center text-[#7E8285] hover:text-[#fff] w-[236px]">
                                 @slider.LinkTitle
-                                <img class="ms-2"
+                                @*<img class="ms-2"
                                      src="/ArefSet/src/assets/images/landing/arrow-left.png"
-                                     alt="" />
+                                     alt="" />*@
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left ms-2" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                </svg>
                             </a>
                         </div>
-                        <div class="col-span-2 md:col-span-1 lg:col-span-1 h-[500px] lg:h-full text bg-no-repeat bg-bottom lg:bg-right-bottom bg-100% lg:bg-auto" style="
-                  background-image: url(@PathTools.SliderPath@slider.SliderImageName);
-                  background-size:90%;
-                "></div>
+                        <div class="headerBackgroundSize col-span-2 md:col-span-1 lg:col-span-1 h-[500px] lg:h-full text bg-no-repeat bg-bottom lg:bg-right-bottom lg:bg-auto" style="
+                  background-image: url(/ArefSet/src/assets/images/landing/اسلایدر-عارف---8.png);
+                  "></div>
                     </div>
 
                 }

@@ -28,7 +28,7 @@ namespace Application.Security
 
                 if (!_permissionService.CheckPermission(_permissionId, userName))
                 {
-                    context.Result = new RedirectResult("/Login?permission=true");
+                    context.Result = new RedirectResult("/admin/home/index?permission=true");
                 }
             }
             else

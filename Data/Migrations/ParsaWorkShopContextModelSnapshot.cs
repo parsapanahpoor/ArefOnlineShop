@@ -445,6 +445,33 @@ namespace Data.Migrations
                     b.ToTable("FinancialTransactionType");
                 });
 
+            modelBuilder.Entity("Domain.Models.Order.OrderCancelationRequestDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeclineDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("OrderCancelationRequestState")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderCancelationRequestDetail");
+                });
+
             modelBuilder.Entity("Domain.Models.Order.OrderDetails", b =>
                 {
                     b.Property<int>("OrderDetailID")
@@ -499,6 +526,9 @@ namespace Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int?>("LocationID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderState")
                         .HasColumnType("int");
 
                     b.Property<int?>("Price")
@@ -788,8 +818,10 @@ namespace Data.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("ShowForSecondeMainImage")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasMaxLength(800)
                         .HasColumnType("nvarchar(800)");
 

@@ -15,15 +15,21 @@ namespace Application.Services
 {
     public class OrderService : IOrderService
     {
+        #region Ctor
+
         private IOrderRepository _order;
         public OrderService(IOrderRepository order)
         {
             _order = order;
         }
 
-        public void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId , int count)
+        #endregion
+
+        #region Side Side 
+
+ public void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId, int count)
         {
-            OrderDetails orderDetails = _order.AddOneMoreProductToTheShopCart(orderid, productid , colorId , sizeId);
+            OrderDetails orderDetails = _order.AddOneMoreProductToTheShopCart(orderid, productid, colorId, sizeId);
             orderDetails.Count = orderDetails.Count + count;
 
             _order.UpdateOrderDetail(orderDetails);
@@ -47,7 +53,7 @@ namespace Application.Services
             return order.OrderId;
         }
 
-        public void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price, int colorId, int sizeId , int count)
+        public void AddProductToOrderDetail(int OrderID, int ProductID, decimal Price, int colorId, int sizeId, int count)
         {
             #region Fill Order Detail
 
@@ -102,6 +108,34 @@ namespace Application.Services
             return _order.GetAllOrdersForShowInAdminPanel();
         }
 
+        public async Task<ListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel> FillListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel()
+        {
+            ListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel model = new ListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel();
+
+            #region Fill Model 
+
+            //List Of Orders
+            model.Orders = GetAllOrdersForShowInAdminPanel();
+
+            model.CountOfFinishedOrders = model.Orders.Count(p=> p.OrderState == OrderState.Finally);
+            model.CountOfCancelationRequests = model.Orders.Count(p=> p.OrderState == OrderState.CancelationRequest);
+            model.CountOfInProcessOrders = model.Orders.Count(p=> p.OrderState == OrderState.InProccess);
+
+            #endregion
+
+            return model;
+        }
+
+        //Get List Of In Progress Orders
+        public async Task<ListOfInProgressOrdersAdminSideViewModel> GetListOfInProgressOrders()
+        {
+            ListOfInProgressOrdersAdminSideViewModel model = new ListOfInProgressOrdersAdminSideViewModel();
+
+            model.Orders = await _order.GetListOfInProgressOrders();
+
+            return model;
+        }
+
         public Orders GetOrderByOrderID(int orderid)
         {
             return _order.GetOrderByOrderID(orderid);
@@ -150,7 +184,7 @@ namespace Application.Services
 
         public bool IsExistOrderDetailFromUserFromToday(int orderid, int productid, int colorId, int sizeId)
         {
-            return _order.IsExistOrderDetailFromUserFromToday(orderid, productid , colorId , sizeId);
+            return _order.IsExistOrderDetailFromUserFromToday(orderid, productid, colorId, sizeId);
         }
 
         public bool IsExistOrderFromUserFromToday(int userid)
@@ -161,6 +195,7 @@ namespace Application.Services
         public void IsfinallyForOredr(Orders orders)
         {
             orders.IsFinally = true;
+            orders.OrderState = OrderState.InProccess;
 
             _order.UpdateOrder(orders);
         }
@@ -214,6 +249,13 @@ namespace Application.Services
             return await _order.FillInvoiceSiteSideViewModel(userId);
         }
 
+
+        //Check That Is Exist Any Current Order Detail By This Product Id And User Id
+        public async Task<bool> CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(int userId, int productId)
+        {
+            return await _order.CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId( userId,  productId);
+        }
+
         //Fill List Of Order Details Admin Side View Model
         public async Task<List<ListOfOrderDetailsAdminSideViewModel>> FillListOfOrderDetailsAdminSideViewModel(int id)
         {
@@ -231,5 +273,29 @@ namespace Application.Services
         {
             return await _order.IsOrderInLastStepOfShoping(ordeId, userId);
         }
+
+        #endregion
+
+        #region Admin Side 
+
+        //Check For Send Order To The Customer
+        public async Task<bool> CheckForSendOrderToTheCustomer(int orderId)
+        {
+            //Get Order By Id 
+            var order = _order.GetOrderByOrderID(orderId);
+            if (order == null || order.OrderState != OrderState.InProccess) return false;
+
+            #region Update Order State 
+
+            order.OrderState = OrderState.SentToTheCustomer;
+
+            _order.UpdateOrder(order);
+
+            #endregion
+
+            return true;
+        }
+
+        #endregion
     }
 }

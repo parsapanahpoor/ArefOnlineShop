@@ -8,16 +8,25 @@
 .list-product>li{
     opacity: .7;
 }
-.list-product>li.active{
-    border: 3px solid #000;
-    opacity: 1;
+    .list-product > li.active {
+        border: 1px solid #252525;
+        opacity: 1;
+    }
+
+.color > input:checked ~ .content {
+    border: 2px solid #000;
+    background-image: url('../images/landing/download2.svg');
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: 50%;
 }
 
-.color>input:checked~.content{
-    border: 2px solid #000;    
+.color > input:checked ~span{
+    color:#252525
 }
-.size>input:checked+label{
+.size > input:checked + label {
     background-color: #252525;
-    border: 1px solid #252525;    
+    border: 1px solid #252525;
     color: #fff;
 }

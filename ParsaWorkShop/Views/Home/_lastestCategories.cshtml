@@ -15,11 +15,14 @@
                     <div class="absolute top-0 left-0 right-0 bottom-0 transition-all bg-[#252525] opacity-0 flex flex-col justify-center items-center">
                         <p class="@cat.P">@cat.CategoryTitle</p>
                         <a asp-action="ListOfProducts" asp-controller="Products" asp-route-CategoriesId="@cat.CategoryId" class="my-3 mt-6 text-[12px] lg:text-[18px] hover:bg-[#ffff] border-[1px] border-[#fff] hover:border-[#fff] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-4 py-2 lg:px-7 lg:py-3 flex items-center text-[#fff] hover:text-[#252525]">
-                            <img class="me-1 lg:me-3 w-4 lg:w-auto"
+                            @*<img class="me-1 lg:me-3 w-4 lg:w-auto"
                                  src="/ArefSet/src/assets/images/landing/arrow-left.png"
-                                 alt="" />
+                                 alt="" />*@
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left me-1 lg:me-3 w-4 lg:w-auto" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                            </svg>
                             رفتن به فروشگاه
-                        </a>
+                        </a> 
                     </div>
                 </div>
             }

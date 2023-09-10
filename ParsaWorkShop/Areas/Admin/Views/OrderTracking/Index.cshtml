@@ -1,4 +1,4 @@
-﻿@model List<Domain.Models.Order.Orders>
+﻿@model Domain.ViewModels.Admin.Order.ListOfOrdersInOrderTrackingIndexPageAdminPanelViewModel
 @using Application.Convertors
 @{
     ViewData["Title"] = "پیگیری سفارشات ";
@@ -40,6 +40,56 @@
         <div class="row">
             <div class="col-12">
 
+                <div class="row">
+
+                    <!-- ./col -->
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>@Model.CountOfInProcessOrders</h3>
+
+                                <p>تعداد سفارشات درحال بررسی</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a asp-action="ListOfInProgressOrders" asp-area="Admin" asp-controller="OrderTracking" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- ./col -->
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>@Model.CountOfCancelationRequests</h3>
+
+                                <p>تعداد درخواست های لغو سفارش</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- ./col -->
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>@Model.CountOfFinishedOrders</h3>
+
+                                <p>تعداد سفارشات پایان یافته</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">اطلاعات بیشتر <i class="fa fa-arrow-circle-left"></i></a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card ">
                     <div class="card-header">
@@ -69,7 +119,7 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Orders)
                                         {
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">

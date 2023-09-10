@@ -23,6 +23,35 @@
     </div>
     <!-- /.content-header -->
     <!-- Main content -->
+    @if (ViewBag.permission == true)
+    {
+        <div class="col-md-12">
+            <div class="card bg-danger-gradient">
+                <div class="card-header">
+                    <h3 class="card-title">عدم دسترسی </h3>
+
+                    <div class="card-tools">
+                        <button type="button" id="DeleteBtn" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    شما دسترسی ورود به بخش مورد نظر را ندارید 
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <script>
+            // Your delay in milliseconds
+            var delay = 5000;
+            setTimeout(function () { document.getElementById("DeleteBtn").click(); }, delay);
+        </script>
+    }
+
 
 
     <div class="row">

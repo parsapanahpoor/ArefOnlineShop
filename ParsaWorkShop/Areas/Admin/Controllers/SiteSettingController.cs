@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
-    [PermissionChecker(1)]
+    [PermissionChecker(13)]
     public class SiteSettingController : AdminBaseController
     {
         #region Ctor

@@ -13,7 +13,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    [PermissionChecker(1)]
+    [PermissionChecker(5)]
 
     public class ProductsController : Controller
     {
@@ -159,7 +159,7 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
                 _product.EditProductSelectedCategory(SelectedCategory, productid);
 
                 //Update Selected Colors And Selected Sizes
-                await _product.UpdateProductSelectedColorsAndSizes(productid , selectedColor , selectedSize);
+                await _product.UpdateProductSelectedColorsAndSizes(productid, selectedColor, selectedSize);
 
                 return Redirect("/Admin/Products/Index?Edit=true");
             }
@@ -259,20 +259,29 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
 
         #region Gallery
 
-        public ActionResult Gallery(int id)
+        public ActionResult Gallery(int id, bool Delete = false)
         {
+            ViewBag.Delete = Delete;
+
+
             ViewBag.Galleries = _product.GetGalleryById(id);
             return View(new ProductGallery()
             {
                 ProductID = id
             });
         }
+
         [HttpPost]
         public ActionResult Gallery(ProductGallery galleries, IFormFile imgUp)
         {
             if (ModelState.IsValid)
             {
-                _product.AddImageToGalleryProduct(galleries, imgUp);
+                var res = _product.AddImageToGalleryProduct(galleries, imgUp);
+
+                if (!res)
+                {
+                    return RedirectToAction(nameof(Gallery) , new { Delete = true });
+                }
             }
 
             return RedirectToAction("Gallery", new { id = galleries.ProductID });
