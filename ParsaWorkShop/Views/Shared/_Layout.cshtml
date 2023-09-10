@@ -12,6 +12,34 @@
     @await RenderSectionAsync("Styles", false)
 
     <style>
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #eee;
+            border-radius: 5px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #252525;
+            border-radius: 5px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+
+        .headerBackgroundSize {
+            background-size: 120%
+        }
+        /*shopBox*/
         .singlePageProDesc{
             width:90px;
         }
@@ -96,6 +124,16 @@
             height: 30px;
         }
 
+        .ProductTitleShopCart{
+            width: 165px
+        }
+
+        .ProductPriceShopCart{
+            width: auto
+        }
+
+       
+
         /*.headerSlider {
             height: 730px
         }
@@ -111,6 +149,20 @@
        /* .singlePageProDesc {
             width: 40%;
         }*/
+        @@media screen and (min-width: 400px) {
+            .headerBackgroundSize {
+                background-size: 80%
+            }
+
+            .ProductTitleShopCart {
+                width: 291px;
+            }
+
+            .ProductPriceShopCart {
+                width: 110px;
+            }
+        }
+
         @@media screen and (min-width: 768px) {
            /* .headerSlider{
                 height: 730px
@@ -119,6 +171,10 @@
             .headerSliderImg {
                 height: 100%
             }*/
+            .headerBackgroundSize {
+                background-size: 90%
+            }
+
             #describtion p {
                 font-size: 16px;
                 line-height: 36px;
@@ -139,7 +195,7 @@
             }
 
             .listShopCartTitle {
-                width: 200px;
+                width: 195px;
                 display: inline-block
             }
 
@@ -172,8 +228,33 @@
             .seeProdctFavoriteSmPanel {
                 height: 38px;
             }
+
+            .ProductTitleShopCart {
+                width: 291px;
+            }
+
+            .ProductPriceShopCart {
+                width: 110px;
+            }
         }
 
+        @@media screen and (min-width: 1537px) {
+            .headerBackgroundSize {
+                background-size: 80%
+            }
+        }
+
+        @@media screen and (min-width: 1900px) {
+            .headerBackgroundSize {
+                background-size: 70%
+            }
+        }
+
+        @@media screen and (min-width: 2200px) {
+            .headerBackgroundSize {
+                background-size: 60%
+            }
+        }
         .blogCard:hover{
            /* background-color:#252525;
             opacity:0.8*/
@@ -182,9 +263,7 @@
             backdrop-filter: blur(21px);
         }
 
-
         .shoppingBag .shopBox {
-            transition:all .2s ease;
             visibility:hidden;
             opacity:0;
             transform:translateY(70px);
@@ -194,7 +273,7 @@
         .shoppingBag:hover .shopBox {
             visibility: visible;
             opacity: 1;
-            transform: translateY(55px)
+            transform: translateY(5px)
         }
 
     </style>

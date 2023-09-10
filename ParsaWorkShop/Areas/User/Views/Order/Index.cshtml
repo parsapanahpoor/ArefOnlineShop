@@ -155,7 +155,7 @@
                 </div>
 
                 <div id="reorder"
-                     class="tabOrder border-l-2 border-r-2 border-b-2 border-[#252525] w-full min-h-[600px] p-5 flex flex-col items-start justify-center gap-5">
+                     class="tabOrder border-l-2 border-r-2 border-b-2 border-[#252525] w-full min-h-[600px] p-5 flex flex-col items-start justify-center gap-5 ">
 
                     @*<div class="w-full border-2 border-[#B7B7B7] mb-3">
                     <div class="w-full p-5 pb-4 flex items-center justify-between">
@@ -225,7 +225,7 @@
                         foreach (var order in Model.Where(p => p.IsFinally))
 
                         {
-                            <div class="w-full border-2 border-[#B7B7B7]">
+                            <div class="w-full border-2 border-[#B7B7B7] mb-5">
 
                                 <div class="w-full p-2 lg:p-5 pb-4 flex items-center justify-between">
                                     <div class="flex items-center justify-start gap-2">
@@ -381,134 +381,12 @@
 
                 <div id="delivered"
                      class="tabOrder border-l-2 border-r-2 border-b-2 border-[#252525] w-full min-h-[600px] p-5 flex flex-col items-start justify-center gap-5">
-                    <div class="w-full border-2 border-[#B7B7B7] mb-3">
-                        <div class="w-full p-5 pb-4 flex items-center justify-between">
-                            <div class="flex items-center justify-start gap-2">
-                                <img class="w-[24px] h-[24px]"
-                                     src="/ArefSet/src/assets/images/landing/box-tick.png"
-                                     alt="" />
-                                <p class="text-[#252525] text-[14px] leading-[19px]"
-                                   style="font-family: yekanBakhtSemiBold">
-                                    تحویل شده
-                                </p>
-                            </div>
-                            <img class="hidden lg:inline-block"
-                                 src="/ArefSet/src/assets/images/landing/arrow-left.png"
-                                 alt="" />
-                        </div>
-
-                        <div class="w-full px-5 flex items-center justify-start">
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                ۴ خرداد ۱۴۰۲
-                            </p>
-                            <img src="/ArefSet/src/assets/images/landing/Ellipse 506.png"
-                                 class="w-[4px] h-[4px] mx-4 lg:mx-5"
-                                 alt="" />
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                کد سفارش <strong class="text-[#252525]">۳۳۳۹۸۱۸۱۰</strong>
-                            </p>
-                            <img src="/ArefSet/src/assets/images/landing/Ellipse 506.png"
-                                 class="w-[4px] h-[4px] mx-4 lg:mx-5"
-                                 alt="" />
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                مبلغ <strong class="text-[#252525]">۲۲۳,۱۲۱,۰۰۰</strong>
-                            </p>
-                        </div>
-
-                        <div class="w-full p-5 pb-1 lg:pb-4 flex items-center justify-start gap-3 lg:gap-5">
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                        </div>
-                        <div class="w-full px-5 pb-5 pt-1 lg:p-5 flex justify-end items-center">
-                            <a href="./factorPage.html"
-                               class="lg:bg-[#252525] lg:text-[#fff] lg:inline-flex lg:items-center lg:justify-center gap-2 lg:py-3 lg:px-6 text-[13px]">
-                                <span class="hidden lg:inline-block">
-                                    مشاهده و دانلود فاکتور
-                                </span>
-
-                                <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="" />
-                            </a>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div id="canceled"
                      class="tabOrder border-l-2 border-r-2 border-b-2 border-[#252525] w-full min-h-[600px] p-5 flex flex-col items-start justify-center gap-5">
-                    <div class="w-full border-2 border-[#B7B7B7] mb-3">
-                        <div class="w-full p-5 pb-4 flex items-center justify-between">
-                            <div class="flex items-center justify-start gap-2">
-                                <img class="w-[24px] h-[24px]"
-                                     src="/ArefSet/src/assets/images/landing/box-remove.png"
-                                     alt="" />
-                                <p class="text-[#252525] text-[14px] leading-[19px]"
-                                   style="font-family: yekanBakhtSemiBold">
-                                    لغو شده
-                                </p>
-                            </div>
-                            <img class="hidden lg:inline-block"
-                                 src="/ArefSet/src/assets/images/landing/arrow-left.png"
-                                 alt="" />
-                        </div>
-
-                        <div class="w-full px-5 flex items-center justify-start">
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                ۴ خرداد ۱۴۰۲
-                            </p>
-                            <img src="/ArefSet/src/assets/images/landing/Ellipse 506.png"
-                                 class="w-[4px] h-[4px] mx-4 lg:mx-5"
-                                 alt="" />
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                کد سفارش <strong class="text-[#252525]">۳۳۳۹۸۱۸۱۰</strong>
-                            </p>
-                            <img src="/ArefSet/src/assets/images/landing/Ellipse 506.png"
-                                 class="w-[4px] h-[4px] mx-4 lg:mx-5"
-                                 alt="" />
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                مبلغ <strong class="text-[#252525]">۲۲۳,۱۲۱,۰۰۰</strong>
-                            </p>
-                        </div>
-
-                        <div class="w-full p-5 pb-1 lg:pb-4 flex items-center justify-start gap-3 lg:gap-5">
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                        </div>
-                        <div class="w-full px-5 pb-5 pt-1 lg:p-5 flex justify-end items-center">
-                            <a href="./factorPage.html"
-                               class="lg:bg-[#252525] lg:text-[#fff] lg:inline-flex lg:items-center lg:justify-center gap-2 lg:py-3 lg:px-6 text-[13px]">
-                                <span class="hidden lg:inline-block">
-                                    مشاهده و دانلود فاکتور
-                                </span>
-
-                                <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="" />
-                            </a>
-                        </div>
-                    </div>
+                    
                     <!-- if empty -->
                     <div class="w-full text-center flex flex-col justify-center items-center">
                         <div class="w-[224px]">
@@ -527,69 +405,7 @@
 
                 <div id="reasowned"
                      class="tabOrder border-l-2 border-r-2 border-b-2 border-[#252525] w-full min-h-[600px] p-5 flex flex-col items-start justify-center gap-5">
-                    <div class="w-full border-2 border-[#B7B7B7] mb-3">
-                        <div class="w-full p-5 pb-4 flex items-center justify-between">
-                            <div class="flex items-center justify-start gap-2">
-                                <img class="w-[24px] h-[24px]"
-                                     src="/ArefSet/src/assets/images/landing/convert-3d-cube.png"
-                                     alt="" />
-                                <p class="text-[#252525] text-[14px] leading-[19px]"
-                                   style="font-family: yekanBakhtSemiBold">
-                                    مرجوع شده
-                                </p>
-                            </div>
-                            <img class="hidden lg:inline-block"
-                                 src="/ArefSet/src/assets/images/landing/arrow-left.png"
-                                 alt="" />
-                        </div>
-
-                        <div class="w-full px-5 flex items-center justify-start">
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                ۴ خرداد ۱۴۰۲
-                            </p>
-                            <img src="/ArefSet/src/assets/images/landing/Ellipse 506.png"
-                                 class="w-[4px] h-[4px] mx-4 lg:mx-5"
-                                 alt="" />
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                کد سفارش <strong class="text-[#252525]">۳۳۳۹۸۱۸۱۰</strong>
-                            </p>
-                            <img src="/ArefSet/src/assets/images/landing/Ellipse 506.png"
-                                 class="w-[4px] h-[4px] mx-4 lg:mx-5"
-                                 alt="" />
-                            <p class="text-[9px] lg:text-[12px] text-[#7E8285]">
-                                مبلغ <strong class="text-[#252525]">۲۲۳,۱۲۱,۰۰۰</strong>
-                            </p>
-                        </div>
-
-                        <div class="w-full p-5 pb-1 lg:pb-4 flex items-center justify-start gap-3 lg:gap-5">
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                            <div class="w-[1px] h-[14.61px] lg:w-[1px] lg:h-[29px] bg-[#252525]"></div>
-                            <img src="/ArefSet/src/assets/images/landing/men.png"
-                                 class="w-[24px] h-[24px] lg:w-[47px] lg:h-[47px]"
-                                 alt="" />
-                        </div>
-                        <div class="w-full px-5 pb-5 pt-1 lg:p-5 flex justify-end items-center">
-                            <a href="./factorPage.html"
-                               class="lg:bg-[#252525] lg:text-[#fff] lg:inline-flex lg:items-center lg:justify-center gap-2 lg:py-3 lg:px-6 text-[13px]">
-                                <span class="hidden lg:inline-block">
-                                    مشاهده و دانلود فاکتور
-                                </span>
-
-                                <img src="/ArefSet/src/assets/images/landing/arrow-left.png" alt="" />
-                            </a>
-                        </div>
-                    </div>
-
+                    
                     <!-- if empty -->
                     <div class="w-full text-center flex flex-col justify-center items-center">
                         <div class="w-[224px]">

@@ -36,8 +36,8 @@
         </nav>
     </section>
 
-    <section class="mx-auto mt-0 lg:px-0 max-w-[100%] lg:max-w-[86.5em] lg:mb-7">
-        <div class="w-full relative mt-6 min-h-screen flex flex-col items-start justify-start lg:flex lg:flex-row lg:items-start lg:justify-between">
+    <section class="mx-auto mt-0 lg:px-0 max-w-[100%] lg:max-w-[86.5em] lg:mb-7" style="margin-bottom:100px">
+        <div class="w-full relative mt-6 lg:min-h-screen flex flex-col items-start justify-start lg:flex lg:flex-row lg:items-start lg:justify-between">
             <div class="lg:border-2 lg:border-[#B7B7B7] p-5 w-full lg:w-[75vw] mb-4 ">
                 <ul class="w-full lg:flex hidden my-5 gap-5">
                     <li class=" text-right">
@@ -98,7 +98,7 @@
                                     <img src="/Images/Product/thumb/@item.Product.ProductImage" alt="" class="w-full h-full object-cover">
                                 </div>
                                 <div class="gap-5">
-                                    <p class="text-[#252525] text-[12px]  mb-5 lg:text-[14px] leading-[50x]" style="font-family: yekanBakhtRegular">
+                                    <p class="ProductTitleShopCart text-[#252525] text-[12px]  mb-5 lg:text-[14px] leading-[50x] lg:w-[291px]" style="font-family: yekanBakhtRegular;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;">
                                         @item.Product.ProductTitle
                                     </p>
                                     <div class="gap-3 lg:gap-5 flex flex-col items-start justify-start lg:flex lg:flex-row lg:items-center lg:justify-start">
@@ -128,7 +128,7 @@
                             <div class="flex items-center justify-center gap-6">
                                 <div class=" hidden lg:inline-block">
 
-                                    <p class="text-[#252525] text-[16px] leading-[18.6px]" style="font-family: yekanBakhtSemiBold">
+                                    <p class="ProductPriceShopCart text-[#252525] text-[16px] leading-[18.6px]" style="font-family: yekanBakhtSemiBold">
                                         @item.Product.Price.ToString("#,0") ریال
                                     </p>
                                 </div>
