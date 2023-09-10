@@ -31,6 +31,10 @@ namespace Domain.Interfaces
 
         #region OrderDetails
 
+
+        //Check That Is Exist Any Current Order Detail By This Product Id And User Id
+        Task<bool> CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(int userId, int productId);
+
         bool IsExistOrderDetailFromUserFromToday(int orderid, int productid, int colorId, int sizeId);
         OrderDetails AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId);
         void UpdateOrderDetail(OrderDetails orderDetails);

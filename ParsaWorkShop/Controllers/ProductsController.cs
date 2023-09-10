@@ -22,14 +22,16 @@ namespace ParsaWorkShop.Controllers
         private IProductService _product;
         private ICommentService _comment;
         private readonly IFavoriteProductsService _favoriteProductsService;
+        private readonly IOrderService _orderService;
 
         public ProductsController(IUserService user, IProductService product, ICommentService comment
-                                    , IFavoriteProductsService favoriteProductsService)
+                                    , IFavoriteProductsService favoriteProductsService , IOrderService orderService)
         {
             _user = user;
             _product = product;
             _comment = comment;
             _favoriteProductsService = favoriteProductsService;
+            _orderService = orderService;
         }
 
         #endregion
@@ -92,6 +94,12 @@ namespace ParsaWorkShop.Controllers
             {
                 ViewBag.IsFavoriteProduct = await _favoriteProductsService.IsUserSelectedThisProductForHisFavoriteProducts(id.Value, User.GetUserId());
             }
+
+            #endregion
+
+            #region Check That Is Exist Any Shop Cart With This Product 
+
+            ViewBag.productOrderDetail = await _orderService.CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(User.GetUserId() , id.Value);
 
             #endregion
 
