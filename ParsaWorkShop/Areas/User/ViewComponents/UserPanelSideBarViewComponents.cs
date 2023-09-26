@@ -18,8 +18,9 @@ namespace ParsaWorkShop.Areas.User.ViewComponents
 
         #endregion
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(string urlName)
         {
+            ViewBag.UrlName = urlName;
             return View("UserPanelSideBar" , await _userService.GetUserByIdAsync(User.GetUserId()));
         }
     }
