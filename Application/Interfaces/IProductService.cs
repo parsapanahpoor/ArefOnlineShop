@@ -89,7 +89,7 @@ namespace Application.Interfaces
         Task<ProductDetailSiteSideViewModel> FillProductDetailSiteSideViewModel(int id);
 
         //Get List Of Product Categries For Show In Site Bar
-        Task<SiteSideBarViewModel> FillSiteSideBar();
+        Task<SiteSideBarViewModel> FillSiteSideBar(int? userId);
 
         //List Of Products
         Task<ListOfProductsViewModel> FilterProducts(ListOfProductsViewModel model);

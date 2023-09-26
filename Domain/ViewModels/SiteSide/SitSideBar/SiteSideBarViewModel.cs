@@ -1,4 +1,5 @@
 ﻿using Domain.Models.Common;
+using Domain.ViewModels.SiteSide.Order;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Domain.ViewModels.SiteSide.SitSideBar
         #region properties
 
         public List<ListOfProductCategoriesForShowInSiteSideBar> ListOfProductCategoriesForShowInSiteSideBar { get; set; }
+
+        public InvoiceSiteSideViewModel? Invoices { get; set; }
 
         #endregion
     }

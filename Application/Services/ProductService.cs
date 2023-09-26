@@ -37,10 +37,12 @@ namespace Application.Services
         #region Ctor
 
         private IProductRepository _product;
+        private readonly IOrderRepository _orderRepository;
 
-        public ProductService(IProductRepository product)
+        public ProductService(IProductRepository product, IOrderRepository orderRepository)
         {
             _product = product;
+            _orderRepository = orderRepository;
         }
 
         #endregion
@@ -69,7 +71,7 @@ namespace Application.Services
         public bool AddImageToGalleryProduct(ProductGallery productGallery, IFormFile imgUp)
         {
             //Check That Has Product a Seconde Pic
-            var checkSecondePic = _product.CheckThatHasProductaSecondePic(productGallery.ProductID); 
+            var checkSecondePic = _product.CheckThatHasProductaSecondePic(productGallery.ProductID);
             if (checkSecondePic && productGallery.ShowForSecondeMainImage) { return false; }
 
             productGallery.Title = (string.IsNullOrEmpty(productGallery.Title)) ? "-" : productGallery.Title;
@@ -527,13 +529,22 @@ namespace Application.Services
         }
 
         //Get List Of Product Categries For Show In Site Bar
-        public async Task<SiteSideBarViewModel> FillSiteSideBar()
+        public async Task<SiteSideBarViewModel> FillSiteSideBar(int? userId)
         {
             SiteSideBarViewModel model = new SiteSideBarViewModel();
 
             #region List Of Product Category
 
             model.ListOfProductCategoriesForShowInSiteSideBar = await _product.ListOfProductCategoriesForShowSiteSideBar();
+
+            #endregion
+
+            #region List Of Invoice Details 
+
+            if (userId.HasValue)
+            {
+                model.Invoices = await _orderRepository.FillInvoiceSiteSideViewModel(userId.Value);
+            }
 
             #endregion
 
@@ -673,7 +684,7 @@ namespace Application.Services
 
             #region Add New Records
 
-            await AddColorAndSizeForThisProduct(productId , colorsId , sizesId);
+            await AddColorAndSizeForThisProduct(productId, colorsId, sizesId);
 
             #endregion
 
