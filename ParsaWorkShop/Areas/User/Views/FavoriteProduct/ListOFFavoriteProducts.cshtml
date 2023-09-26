@@ -11,7 +11,7 @@
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
-        @await Component.InvokeAsync("UserPanelSideBarViewComponents")
+        @await Component.InvokeAsync("UserPanelSideBarViewComponents" , "Favorite")
 
         <!-- ---------------------- main content ----------------------------------------- -->
         <div class="w-full lg:flex min-h-[765px]">
@@ -26,7 +26,7 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My Favorites</p>
                         </div>
-                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">  ۴۳ کالا  </a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">  @Model.Count() کالا  </a>
                     </div>
 
                     @if (Model != null && Model.Any())
