@@ -565,9 +565,9 @@ namespace Application.Services
         }
 
         //Fill Newest 3 Products 
-        public async Task<List<LastestProducts>> FillNewest3Products()
+        public async Task<List<LastestProducts>> FillNewest3Products(int? userId)
         {
-            return await _product.FillNewest3Products();
+            return await _product.FillNewest3Products(userId);
         }
 
         //Get Maximum Prices Of Products
