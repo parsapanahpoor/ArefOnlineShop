@@ -60,7 +60,7 @@ namespace ParsaWorkShop.Controllers
 
         #region Add To Shop Cart
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> AddToShopCart(IncomingProductInBasketSiteSideViewModel model)
         {
             #region Model State Validation

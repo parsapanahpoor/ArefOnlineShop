@@ -57,7 +57,7 @@ namespace Domain.Interfaces
         #region Site Side 
 
         //Fill Index Page View Model
-        Task<IndexPageViewModel> FillIndexPageViewModel();
+        Task<IndexPageViewModel> FillIndexPageViewModel(int? userId);
 
         #endregion
     }

@@ -247,9 +247,9 @@ namespace Application.SiteServices
         #region Site Side 
 
         //Fill Index Page View Model
-        public async Task<IndexPageViewModel> FillIndexPageViewModel()
+        public async Task<IndexPageViewModel> FillIndexPageViewModel(int? userId)
         {
-            return await _siteSettingRepsitory.FillIndexPageViewModel();
+            return await _siteSettingRepsitory.FillIndexPageViewModel(userId);
         }
 
         #endregion

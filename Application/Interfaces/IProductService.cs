@@ -104,7 +104,7 @@ namespace Application.Interfaces
         Task<List<ListOfSizesForShowInListOfProducts>> ListOfSizesForShowInListOfProducts();
 
         //Fill Newest 3 Products 
-        Task<List<LastestProducts>> FillNewest3Products();
+        Task<List<LastestProducts>> FillNewest3Products(int? userId);
 
         //Get Maximum Prices Of Products
         Task<int> GetMaximumPricesOfProducts();

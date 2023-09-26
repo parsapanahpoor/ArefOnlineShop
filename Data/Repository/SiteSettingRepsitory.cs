@@ -150,7 +150,7 @@ namespace Data.Repository
         #region Site Side 
 
         //Fill Index Page View Model
-        public async Task<IndexPageViewModel> FillIndexPageViewModel()
+        public async Task<IndexPageViewModel> FillIndexPageViewModel(int? userId)
         {
             IndexPageViewModel model = new IndexPageViewModel();
 
@@ -184,7 +184,11 @@ namespace Data.Repository
                                                                                               .AsNoTracking()
                                                                                               .Where(s=> s.ProductID == p.ProductID && s.ShowForSecondeMainImage)
                                                                                               .Select(s=> s.ImageName)
-                                                                                              .FirstOrDefault()
+                                                                                              .FirstOrDefault(),
+                                                            IsInFavorite = !userId.HasValue ?
+                                                                                false 
+                                                                                : 
+                                                                                _context.FavoriteProducts.Any(s=> !s.IsDelete && s.UserId == userId.Value && s.ProductId == p.ProductID) 
                                                         })
                                                         .Take(6)
                                                         .ToListAsync();
@@ -234,7 +238,11 @@ namespace Data.Repository
                                                                                               .AsNoTracking()
                                                                                               .Where(s => s.ProductID == p.ProductID && s.ShowForSecondeMainImage)
                                                                                               .Select(s => s.ImageName)
-                                                                                              .FirstOrDefault()
+                                                                                              .FirstOrDefault(),
+                                                                 IsInFavorite = !userId.HasValue ?
+                                                                                false
+                                                                                :
+                                                                                _context.FavoriteProducts.Any(s => !s.IsDelete && s.UserId == userId.Value && s.ProductId == p.ProductID)
                                                              })
                                                              .FirstOrDefaultAsync();
 
