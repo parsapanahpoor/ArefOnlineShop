@@ -441,11 +441,26 @@
             $("#filtre").submit();
         }
 
+        function DeleteCategory(id) {
+            $("#deletedCategory").val(id);
+            $("#filtre").submit();
+        }
+
+        function DeleteColor(id) {
+            $("#deletedColor").val(id);
+            $("#filtre").submit();
+        }
+
+        function DeleteSize(id) {
+            $("#deletedSize").val(id);
+            $("#filtre").submit();
+        }
+
         $(document).ready(function () {
             $('.category').on('change', function () {
                 $('#filtre').submit();
             });
-              $('.sizes').on('change', function () {
+            $('.sizes').on('change', function () {
                 $('#filtre').submit();
             });
             $('.colors').on('change', function () {
@@ -515,6 +530,10 @@
                 <input type="hidden" asp-for="Page" />
                 <input type="hidden" asp-for="Status" />
                 <input type="hidden" asp-for="ProductTitle" />
+
+                <input type="hidden" name="deletedCategory" id="deletedCategory" />
+                <input type="hidden" name="deletedColor" id="deletedColor" />
+                <input type="hidden" name="deletedSize" id="deletedSize" />
 
                 <div class="mx-auto bg-white min-h-sceen w-full relative">
                     <!-- <div class="flex flex-col items-center  w-full">
@@ -784,13 +803,13 @@
                                 {
                                     @if (Model.CategoriesId != null && Model.CategoriesId.Any() && Model.CategoriesId.Contains(category.CategoryId))
                                     {
-                                        <button>
+                                        <p onclick="DeleteCategory(@category.CategoryId)" style="cursor:pointer">
 
                                             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
                                                 <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
-                                        </button>
+                                        </p>
                                         <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">@category.CategoryTitle </h6>
                                     }
                                 }
@@ -804,13 +823,13 @@
                                 {
                                     @if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
                                     {
-                                        <button>
+                                        <p onclick="DeleteColor(@color.ColorId)" style="cursor:pointer">
 
                                             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
                                                 <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
-                                        </button>
+                                        </p>
                                         <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">@color.ColorTitle</h6>
                                     }
                                 }
@@ -824,13 +843,13 @@
                                 {
                                     @if (Model.SizesId != null && Model.SizesId.Any() && Model.SizesId.Contains(size.SizesId))
                                     {
-                                        <button>
+                                        <p onclick="DeleteSize(@size.SizesId)" style="cursor:pointer">
 
                                             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
                                                 <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
                                             </svg>
-                                        </button>
+                                        </p>
                                         <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">@size.SizesTitle</h6>
                                     }
                                 }
