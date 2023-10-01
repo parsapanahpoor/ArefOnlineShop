@@ -283,6 +283,7 @@ namespace Data.Repository
                                      ProductGallery = _context.ProductGallery
                                                               .AsNoTracking()
                                                               .Where(s => s.ProductID == p.ProductID)
+                                                              .Take(5)
                                                               .ToList(),
                                  })
                                  .FirstOrDefaultAsync();
@@ -840,6 +841,7 @@ namespace Data.Repository
                     {
                         var product = await _context.product
                                                     .AsNoTracking()
+                                                    .Include(p=> p.ProductGalleries)
                                                     .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == productId);
                         if (product != null) products.Add(product);
                     }
@@ -868,6 +870,7 @@ namespace Data.Repository
                 {
                     Product product = await _context.product
                                                    .AsNoTracking()
+                                                   .Include(p=>p.ProductGalleries)
                                                    .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == prodsId);
 
                     if (product != null) favoirteProducts.Add(product);

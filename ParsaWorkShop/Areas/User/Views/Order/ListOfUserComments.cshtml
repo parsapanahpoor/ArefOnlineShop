@@ -64,7 +64,7 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <p class="text-[14px] text-[#828282]">1 دیدگاه </p>
+                        <p class="text-[14px] text-[#828282]">@(Model != null && Model.Any() ? Model.Count() : 0) دیدگاه </p>
                     </div>
 
                    @* <div class="w-full flex items-start justify-start lg:flex lg:items-center lg:justify-start gap-5 mb-3 lg:mb-5">

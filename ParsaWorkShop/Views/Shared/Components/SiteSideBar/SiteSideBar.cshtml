@@ -223,7 +223,7 @@
                     @*<img id="SearchIcon1" src="/ArefSet/src/assets/images/landing/search-icon.webp"
                     class="w-5 text-[#252525] mx-3"
                     alt="" />*@
-                    <svg width="20" height="20" viewBox="0 0 20 20" class="w-6 text-[#252525] mx-3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="zarebin" width="20" height="20" viewBox="0 0 20 20" class="w-6 text-[#252525] mx-3" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.58366 17.5C13.9559 17.5 17.5003 13.9555 17.5003 9.58329C17.5003 5.21104 13.9559 1.66663 9.58366 1.66663C5.2114 1.66663 1.66699 5.21104 1.66699 9.58329C1.66699 13.9555 5.2114 17.5 9.58366 17.5Z" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M18.3337 18.3333L16.667 16.6666" stroke="#252525" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -247,11 +247,13 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    if (Model.Invoices.Order != null && Model.Invoices.InvoiceOrderDetails != null && Model.Invoices.InvoiceOrderDetails.Any())
+                    if (Model.Invoices != null)
                     {
-                        @* ------------------------------- shop box ------------------------------------ *@
+                        if (Model.Invoices.Order != null && Model.Invoices.InvoiceOrderDetails != null && Model.Invoices.InvoiceOrderDetails.Any())
+                        {
+                            @* ------------------------------- shop box ------------------------------------ *@
 
-                        <div style="width:300px;gap: 11px;box-shadow: 5px 10px 16px rgba(51, 51, 51, 0.05), -5px 10px 16px rgba(51, 51, 51, 0.05);" class="shopBox absolute left-0  w-[300px]  bg-white p-5 hidden lg:inline-block">
+                            <div style="width:300px;gap: 11px;box-shadow: 5px 10px 16px rgba(51, 51, 51, 0.05), -5px 10px 16px rgba(51, 51, 51, 0.05);" class="shopBox absolute left-0  w-[300px]  bg-white p-5 hidden lg:inline-block">
 
                                 @foreach (var item in Model.Invoices.InvoiceOrderDetails)
                                 {
@@ -276,27 +278,28 @@
 
                                 }
 
-                            <div style="width:100%;padding:15px 0;" class="w-full flex justify-between items-center  py-[15px]">
-                                <span class="text-[.8rem] text-[#666] ">مجموع</span>
-                                @{
-                                    var orderPrice = Model.Invoices.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count);
-                                }
+                                <div style="width:100%;padding:15px 0;" class="w-full flex justify-between items-center  py-[15px]">
+                                    <span class="text-[.8rem] text-[#666] ">مجموع</span>
+                                    @{
+                                        var orderPrice = Model.Invoices.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count);
+                                    }
 
 
-                                <span class="text-[.9rem] text-[#666] ">@orderPrice.ToString("#,0") ریال</span>
+                                    <span class="text-[.9rem] text-[#666] ">@orderPrice.ToString("#,0") ریال</span>
+                                </div>
+                                <div style="width:100%;padding:15px 0;" class="w-full flex justify-between items-center gap-3 py-[15px]">
+                                    <a asp-action="ShopCart" asp-area="" asp-controller="Order" style="font-family:yekanBakhtLight;height:41.1px;" class="w-full bg-[#252525] text-[#fff] text-[12px] px-3 py-2"> مشاهده سبد خرید </a>
+                                    <a asp-action="ShopCart" asp-area="" asp-controller="Order" style="font-family:yekanBakhtLight;height:41.1px;" class="w-full hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-3 py-2 flex items-center justify-center text-[#7E8285] hover:text-[#fff] text-[12px]">
+                                        پرداخت
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left ms-2" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                                        </svg>
+                                    </a>
+                                </div>
+
                             </div>
-                            <div style="width:100%;padding:15px 0;" class="w-full flex justify-between items-center gap-3 py-[15px]">
-                                <a asp-action="ShopCart" asp-area="" asp-controller="Order" style="font-family:yekanBakhtLight;height:41.1px;" class="w-full bg-[#252525] text-[#fff] text-[12px] px-3 py-2"> مشاهده سبد خرید </a>
-                                <a asp-action="ShopCart" asp-area="" asp-controller="Order" style="font-family:yekanBakhtLight;height:41.1px;" class="w-full hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-3 py-2 flex items-center justify-center text-[#7E8285] hover:text-[#fff] text-[12px]">
-                                    پرداخت
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left ms-2" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                        </div>
+                        }
                     }
                     else
 

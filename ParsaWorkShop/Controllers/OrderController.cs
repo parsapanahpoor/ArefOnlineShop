@@ -570,10 +570,7 @@ namespace ParsaWorkShop.Controllers
                     }
                     else if (errors != "[]")
                     {
-                        string errorscode = jo["errors"]["code"].ToString();
-
-                        return BadRequest($"error code {errorscode}");
-
+                        return View();
                     }
                 }
             }
