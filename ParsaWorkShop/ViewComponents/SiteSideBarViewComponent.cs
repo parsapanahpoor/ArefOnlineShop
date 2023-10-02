@@ -25,7 +25,9 @@ namespace ParsaWorkShop.ViewComponents
         {
             #region Categories
 
-            var model = await _productService.FillSiteSideBar(User.Identity.IsAuthenticated ? User.GetUserId() : null);
+            int? userId = User.Identity.IsAuthenticated ? User.GetUserId() : null;
+
+            var model = await _productService.FillSiteSideBar(userId);
 
             #endregion
 
