@@ -9,7 +9,7 @@
               background-image: url(/ArefSet/src/assets/images/landing/Arefset\ 2.png);
               background-position: center;
               background-size: cover;
-            ">
+            "> 
             <p class="text-[#252525] sm:text-[24px] md:text-[2.5rem] lg:text-[40px] mt-5 text-center"
                style="font-family: yekanBakhtExtraBold">
                 جدیدترین های ما
@@ -55,8 +55,8 @@
 
                                         <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all">
                                             @* <img class="product-image  w-full h-full object-cover" src="@PathTools.ProductPath@item.ProductImageName" alt="@item.Title" />*@
-                                            <img class="product-image w-full " src="@PathTools.ProductPath@item.ProductImageName" alt="@item.Title" />
-                                            @*<img class="product-image  w-full " src="/ArefSet/src/assets/images/landing/20.jpg" alt="@item.Title" />*@
+                                            @*<img class="product-image w-full " src="@PathTools.ProductPath@item.ProductImageName" alt="@item.Title" />*@
+                                            <img class="product-image  w-full " src="/ArefSet/src/assets/images/landing/20.jpg" alt="@item.Title" />
                                             @if (!string.IsNullOrEmpty(item.SecondeProductImageName))
                                             {
                                                 <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath@item.SecondeProductImageName" title="@item.Title" alt="@item.Title" />
@@ -113,8 +113,8 @@
 
                                                 <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
                                                    @* <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPath@item.ProductImageName" title="@item.Title" alt="@item.Title" />*@
-                                                    @*<img class="product-image  w-full  " src="/ArefSet/src/assets/images/landing/20.jpg" alt="@item.Title" />*@
-                                                    <img class="product-image  w-full  " src="@PathTools.ProductPath@item.ProductImageName" alt="@item.Title" />
+                                                    <img class="product-image  w-full  " src="/ArefSet/src/assets/images/landing/20.jpg" alt="@item.Title" />
+                                                    @*<img class="product-image  w-full  " src="@PathTools.ProductPath@item.ProductImageName" alt="@item.Title" />*@
                                                     @if (!string.IsNullOrEmpty(item.SecondeProductImageName))
                                                     {
                                                         <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath@item.SecondeProductImageName" title="@item.Title" alt="@item.Title" />

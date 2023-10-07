@@ -56,7 +56,7 @@ function openForm(evt, formName) {
 }
 
 // Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultFormOpen").click();
+document.getElementById("defaultFormOpen").click()
 
 
 // body.addEventListener("click", function () {
