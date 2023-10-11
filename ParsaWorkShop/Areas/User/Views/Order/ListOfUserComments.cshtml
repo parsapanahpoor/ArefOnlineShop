@@ -109,7 +109,7 @@
                                                         @comment.Blog.BlogTitle
                                                     </p>
                                                 }
-                                                @if (comment.ProductID.HasValue)
+                                                @if (comment.ProductID.HasValue && comment.Product != null)
                                                 {
                                                     <p class="text-[11px] lg:text-[16px] text-[#252525] leading-[24.8px]"
                                                        style="font-family: yekanBakhtBold">

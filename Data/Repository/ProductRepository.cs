@@ -283,7 +283,7 @@ namespace Data.Repository
                                      ProductGallery = _context.ProductGallery
                                                               .AsNoTracking()
                                                               .Where(s => s.ProductID == p.ProductID)
-                                                              .Take(5)
+                                                              .Take(4)
                                                               .ToList(),
                                  })
                                  .FirstOrDefaultAsync();

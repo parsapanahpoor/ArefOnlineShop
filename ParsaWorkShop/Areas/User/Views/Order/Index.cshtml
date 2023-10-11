@@ -284,7 +284,7 @@
 
                                             <div class="h-full flex flex-col items-start justify-between">
                                                 <p class="text-[#252525] text-[14px] md:text-[16px] lg:text-[16px] leading-[24.8px]" style="overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;font-family: yekanBakhtBold">
-                                                    تیشرت مردانه طرح GTAV رنگ مشکی
+                                                    کد سفارش <strong class="text-[#252525] px-1">@order.OrderId</strong>
                                                 </p>
                                                 <div class="flex items-center justify-start ">
                                                     <img class="w-[14px] ml-2" src="/ArefSet/src/assets/images/landing/star@2x.png" alt="star">
@@ -293,7 +293,7 @@
                                                 <div class="flex gap-1 items-center">
 
                                                     <p class="text-[#7E8285] text-[15px] md:text-[17px] lg:text-[17px] leading-[26.35px] " style="font-family: yekanBakhtBold">
-                                                        25000000
+                                                         @((order.Price.HasValue) ? order.Price.Value.ToString("#,000") + "ریال" : "نهایی نشده")
                                                     </p>
                                                     <small class="text-[#7E8285]"> ریال </small>
 
