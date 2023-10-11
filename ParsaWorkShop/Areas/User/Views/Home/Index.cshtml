@@ -12,7 +12,7 @@
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
-        @await Component.InvokeAsync("UserPanelSideBarViewComponents")
+        @await Component.InvokeAsync("UserPanelSideBarViewComponents" , "Index")
 
         <!-- ---------------------- main content ----------------------------------------- -->
         <div class="w-full lg:flex min-h-[765px]">
@@ -28,7 +28,7 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">  4 سفارش</a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">  @(Model.LastOrder != null && Model.LastOrder.Any() ? Model.LastOrder.Count() : 0) سفارش</a>
                     </div>
                     @if (Model.LastOrder != null && Model.LastOrder.Any())
                     {
@@ -43,7 +43,15 @@
 
                                         <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
                                             <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@product.ProductImageName" title="@product.ProductTitle" alt="@product.ProductTitle" />
-                                            <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@product.ProductTitle" alt="@product.ProductTitle" />
+                                            @{
+
+                                                var secondeImage = product.ProductGalleries.FirstOrDefault(p => p.ShowForSecondeMainImage).ImageName;
+                                            }
+                                            @if (!string.IsNullOrEmpty(secondeImage))
+                                            {
+                                                <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath/@secondeImage" title="@product.ProductTitle" alt="@product.ProductTitle" />
+
+                                            }
                                         </a>
                                         
                                     </div>
@@ -127,7 +135,7 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">  4 کالا  </a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">  @(Model.LastFavoriteProduct != null && Model.LastFavoriteProduct.Any() ? Model.LastFavoriteProduct.Count() : 0) کالا  </a>
                     </div>
 
                     @if (Model.LastFavoriteProduct != null && Model.LastFavoriteProduct.Any())
@@ -142,7 +150,15 @@
 
                                         <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
                                             <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@product.ProductImageName" title="@product.ProductTitle" alt="@product.ProductTitle" />
-                                            <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@product.ProductTitle" alt="@product.ProductTitle" />
+                                            @{
+
+                                                var secondeImage = product.ProductGalleries.FirstOrDefault(p => p.ShowForSecondeMainImage).ImageName;
+                                            }
+                                            @if (!string.IsNullOrEmpty(secondeImage))
+                                            {
+                                                <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath/@secondeImage" title="@product.ProductTitle" alt="@product.ProductTitle" />
+
+                                            }
                                         </a>
                                         
                                     </div>

@@ -440,6 +440,34 @@
             $("#Page").val(id);
             $("#filtre").submit();
         }
+
+        function DeleteCategory(id) {
+            $("#deletedCategory").val(id);
+            $("#filtre").submit();
+        }
+
+        function DeleteColor(id) {
+            $("#deletedColor").val(id);
+            $("#filtre").submit();
+        }
+
+        function DeleteSize(id) {
+            $("#deletedSize").val(id);
+            $("#filtre").submit();
+        }
+
+        $(document).ready(function () {
+            $('.category').on('change', function () {
+                $('#filtre').submit();
+            });
+            $('.sizes').on('change', function () {
+                $('#filtre').submit();
+            });
+            $('.colors').on('change', function () {
+                $('#filtre').submit();
+            });
+        });
+
     </script>
 }
 
@@ -503,6 +531,10 @@
                 <input type="hidden" asp-for="Status" />
                 <input type="hidden" asp-for="ProductTitle" />
 
+                <input type="hidden" name="deletedCategory" id="deletedCategory" />
+                <input type="hidden" name="deletedColor" id="deletedColor" />
+                <input type="hidden" name="deletedSize" id="deletedSize" />
+
                 <div class="mx-auto bg-white min-h-sceen w-full relative">
                     <!-- <div class="flex flex-col items-center  w-full">
                       <h2 class="font-bold text-5xl mt-5 tracking-tight">FAQ</h2>
@@ -532,11 +564,11 @@
 
                                                 @if (Model.CategoriesId != null && Model.CategoriesId.Any() && Model.CategoriesId.Contains(category.CategoryId))
                                                 {
-                                                    <input id="@category.CategoryId" type="checkbox" checked="checked" name="CategoriesId" value="@category.CategoryId" class="w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <input id="@category.CategoryId" type="checkbox" checked="checked" name="CategoriesId" value="@category.CategoryId" class="category w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                 }
                                                 else
                                                 {
-                                                    <input id="@category.CategoryId" type="checkbox" name="CategoriesId" value="@category.CategoryId" class="w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <input id="@category.CategoryId" type="checkbox" name="CategoriesId" value="@category.CategoryId" class="category w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                 }
 
                                                 <label for="@category.CategoryId" class="ml-2 text-sm font-medium text-[#9B9B9B] dark:text-gray-300 mr-2 text-[20px]">
@@ -572,11 +604,11 @@
 
                                                 @if (Model.SizesId != null && Model.SizesId.Any() && Model.SizesId.Contains(size.SizesId))
                                                 {
-                                                    <input id="@size.SizesId" type="checkbox" checked="checked" name="SizesId" value="@size.SizesId" class="w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <input id="@size.SizesId" type="checkbox" checked="checked" name="SizesId" value="@size.SizesId" class="sizes w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                 }
                                                 else
                                                 {
-                                                    <input id="@size.SizesId" type="checkbox" name="SizesId" value="@size.SizesId" class="w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <input id="@size.SizesId" type="checkbox" name="SizesId" value="@size.SizesId" class="sizes w-4 h-4 accent-[#252525] text-[#252525] bg-gray-100 border-gray-300 rounded focus:ring-[#252525] dark:focus:ring-[#252525] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                 }
 
                                                 <label for="@size.SizesId" class="ml-2 text-sm font-medium text-[#9B9B9B] dark:text-gray-300 mr-2 text-[20px]">
@@ -605,23 +637,24 @@
                                         </span>
                                     </summary>
                                     <div class="flex items-center justify-center gap-2"></div>
-                                    <div class="switcher flex items-center justify-start flex-wrap gap-2  mt-4">
+                                    <div class="switcher flex items-center justify-center gap-2">
 
                                         @foreach (var color in colors)
                                         {
 
                                             if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
                                             {
-                                                <input type="checkbox" name="ColorsId" class="hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
-                                                <label style="background-color:@color.ColorTitle-500" data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-1
+                                                <input type="checkbox" name="ColorsId" class="colors hidden" id="indigo@(color.ColorId)" value="@color.ColorId"
+                                                @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "checked='checked'" : " ")>
+                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-@color.ColorTitle-500
 
                                                    @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "active" : " " )" for="indigo@(color.ColorId)">
                                                 </label>
                                             }
                                             else
                                             {
-                                                <input type="checkbox" name="ColorsId" class="hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
-                                                <label style="background-color:@color.ColorTitle-500" data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-1 " for="indigo@(color.ColorId)">
+                                                <input type="checkbox" name="ColorsId" class="colors hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
+                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-@color.ColorTitle-500" for="indigo@(color.ColorId)">
                                                 </label>
                                             }
 
@@ -664,7 +697,7 @@
                                         <input type="range" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
                                     </div>
                                 </fieldset>
-                               
+
                             </details>
                         </div>
 
@@ -691,144 +724,140 @@
         <div class="mainContent w-full lg:w-[75%]">
             <div class="border-b-[1px] pb-1 border-[#D0D0D099]">
 
-            <div class="mx-auto flex items-center justify-between pt-6 mt-5 ">
-                <p class="text-[#7D7D7D] text-[14px] font-semibold hidden lg:inline-block">
-                    نمایش <span class="text-[#252525] px-1">@Model.Entities.Count()</span>محصول از
-                    <span class="text-[#252525] px-1">@Model.AllEntitiesCount</span>محصول فروشگاه عارف
-                </p>
-
-                <div class="showFilterMenu hover:cursor-pointer flex items-center justify-center gap-1 lg:hidden">
-                    @*<img src="/ArefSet/src/assets/images/landing/filter.png" alt="">*@
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.59993 1.40002H12.3999C13.1333 1.40002 13.7333 2.00002 13.7333 2.73336V4.20002C13.7333 4.73336 13.3999 5.40002 13.0666 5.73336L10.1999 8.26669C9.79993 8.60002 9.53327 9.26669 9.53327 9.80002V12.6667C9.53327 13.0667 9.2666 13.6 8.93327 13.8L7.99994 14.4C7.13327 14.9334 5.93327 14.3334 5.93327 13.2667V9.73336C5.93327 9.26669 5.6666 8.66669 5.39994 8.33336L2.8666 5.66669C2.53327 5.33336 2.2666 4.73336 2.2666 4.33336V2.80002C2.2666 2.00002 2.8666 1.40002 3.59993 1.40002Z" stroke="#292D32" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <p class="text-[#7D7D7D] text-[12px] lg:text-[14px] font-medium lg:hidden inline-block">
-                        فیلتر ها
+                <div class="mx-auto flex items-center justify-between pt-6 mt-5 ">
+                    <p class="text-[#7D7D7D] text-[14px] font-semibold hidden lg:inline-block">
+                        نمایش <span class="text-[#252525] px-1">@Model.Entities.Count()</span>محصول از
+                        <span class="text-[#252525] px-1">@Model.AllEntitiesCount</span>محصول فروشگاه عارف
                     </p>
-                </div>
-                <div class="flex items-center justify-center gap-3">
-                    <p class="text-[#7D7D7D] text-[12px]  lg:text-[14px] font-medium">مرتب سازی بر اساس :</p>
-                    <div class=" border px-2">
 
-                        <select onchange='changeDropDown(this)'
-                        @*class="py-3 px-4 pl-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"*@
-                                class="py-2  lg:px-5 block  bg-transparent  text-sm   dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
+                    <div class="showFilterMenu hover:cursor-pointer flex items-center justify-center gap-1 lg:hidden">
+                        @*<img src="/ArefSet/src/assets/images/landing/filter.png" alt="">*@
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.59993 1.40002H12.3999C13.1333 1.40002 13.7333 2.00002 13.7333 2.73336V4.20002C13.7333 4.73336 13.3999 5.40002 13.0666 5.73336L10.1999 8.26669C9.79993 8.60002 9.53327 9.26669 9.53327 9.80002V12.6667C9.53327 13.0667 9.2666 13.6 8.93327 13.8L7.99994 14.4C7.13327 14.9334 5.93327 14.3334 5.93327 13.2667V9.73336C5.93327 9.26669 5.6666 8.66669 5.39994 8.33336L2.8666 5.66669C2.53327 5.33336 2.2666 4.73336 2.2666 4.33336V2.80002C2.2666 2.00002 2.8666 1.40002 3.59993 1.40002Z" stroke="#292D32" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="text-[#7D7D7D] text-[12px] lg:text-[14px] font-medium lg:hidden inline-block">
+                            فیلتر ها
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                        <p class="text-[#7D7D7D] text-[12px]  lg:text-[14px] font-medium">مرتب سازی بر اساس :</p>
+                        <div class=" border px-2">
 
-                            @if (Model.Status == FilterStatus.All)
-                            {
-                                <option value="0">همه</option>
-                                <option value="1">تاریخ</option>
-                                <option value="2">بیشترین قیمت</option>
-                                <option value="3">کمترین قیمت</option>
-                                <option value="4">تخفیف دارها</option>
-                            }
-                            @if (Model.Status == FilterStatus.CreateDate)
-                            {
-                                <option value="0">همه</option>
-                                <option value="1" selected="selected">تاریخ</option>
-                                <option value="2">بیشترین قیمت</option>
-                                <option value="3">کمترین قیمت</option>
-                                <option value="4">تخفیف دارها</option>
-                            }
-                            @if (Model.Status == FilterStatus.MaxPrice)
-                            {
-                                <option value="0">همه</option>
-                                <option value="1">تاریخ</option>
-                                <option value="2" selected="selected">بیشترین قیمت</option>
-                                <option value="3">کمترین قیمت</option>
-                                <option value="4">تخفیف دارها</option>
-                            }
-                            @if (Model.Status == FilterStatus.MinPrice)
-                            {
-                                <option value="0">همه</option>
-                                <option value="1">تاریخ</option>
-                                <option value="2">بیشترین قیمت</option>
-                                <option value="3" selected="selected">کمترین قیمت</option>
-                                <option value="4">تخفیف دارها</option>
-                            }
-                            @if (Model.Status == FilterStatus.Offer)
-                            {
-                                <option value="0">همه</option>
-                                <option value="1">تاریخ</option>
-                                <option value="2">بیشترین قیمت</option>
-                                <option value="3">کمترین قیمت</option>
-                                <option value="4" selected="selected">تخفیف دارها</option>
-                            }
+                            <select onchange='changeDropDown(this)'
+                            @*class="py-3 px-4 pl-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"*@
+                                    class="py-2  lg:px-5 block  bg-transparent  text-sm   dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
 
-                        </select>
+                                @if (Model.Status == FilterStatus.All)
+                                {
+                                    <option value="0">همه</option>
+                                    <option value="1">تاریخ</option>
+                                    <option value="2">بیشترین قیمت</option>
+                                    <option value="3">کمترین قیمت</option>
+                                    <option value="4">تخفیف دارها</option>
+                                }
+                                @if (Model.Status == FilterStatus.CreateDate)
+                                {
+                                    <option value="0">همه</option>
+                                    <option value="1" selected="selected">تاریخ</option>
+                                    <option value="2">بیشترین قیمت</option>
+                                    <option value="3">کمترین قیمت</option>
+                                    <option value="4">تخفیف دارها</option>
+                                }
+                                @if (Model.Status == FilterStatus.MaxPrice)
+                                {
+                                    <option value="0">همه</option>
+                                    <option value="1">تاریخ</option>
+                                    <option value="2" selected="selected">بیشترین قیمت</option>
+                                    <option value="3">کمترین قیمت</option>
+                                    <option value="4">تخفیف دارها</option>
+                                }
+                                @if (Model.Status == FilterStatus.MinPrice)
+                                {
+                                    <option value="0">همه</option>
+                                    <option value="1">تاریخ</option>
+                                    <option value="2">بیشترین قیمت</option>
+                                    <option value="3" selected="selected">کمترین قیمت</option>
+                                    <option value="4">تخفیف دارها</option>
+                                }
+                                @if (Model.Status == FilterStatus.Offer)
+                                {
+                                    <option value="0">همه</option>
+                                    <option value="1">تاریخ</option>
+                                    <option value="2">بیشترین قیمت</option>
+                                    <option value="3">کمترین قیمت</option>
+                                    <option value="4" selected="selected">تخفیف دارها</option>
+                                }
+
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class=" pb-6 my-1">
-                <ul class="flex items-center justify-start flex-wrap gap-3 mt-2 lg:mt-0">
-                    <li class="flex items-center justify-start">
-                        <button>
+                <div class=" pb-6 my-1">
+                    <ul class="flex items-center justify-start flex-wrap gap-3 mt-2 lg:mt-0">
 
-                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </button>
-                        <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">مردانه </h6>
-                    </li>
+                        @if (categories != null && categories.Any())
+                        {
+                            <li class="flex items-center justify-start">
+                                @foreach (var category in categories)
+                                {
+                                    @if (Model.CategoriesId != null && Model.CategoriesId.Any() && Model.CategoriesId.Contains(category.CategoryId))
+                                    {
+                                        <p onclick="DeleteCategory(@category.CategoryId)" style="cursor:pointer">
 
-                    <li class="flex items-center justify-start ">
-                        <button>
+                                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </p>
+                                        <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">@category.CategoryTitle </h6>
+                                    }
+                                }
+                            </li>
+                        }
 
-                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </button>
-                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1"> زنانه </h6>
-                    </li>
+                        @if (colors != null && colors.Any())
+                        {
+                            <li class="flex items-center justify-start">
+                                @foreach (var color in colors)
+                                {
+                                    @if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
+                                    {
+                                        <p onclick="DeleteColor(@color.ColorId)" style="cursor:pointer">
 
-                    <li class="flex items-center justify-start ">
-                        <button>
+                                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </p>
+                                        <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">@color.ColorTitle</h6>
+                                    }
+                                }
+                            </li>
+                        }
 
-                         <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                             <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                         </svg>
-                        </button>
-                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">xlarg  </h6>
-                    </li>
+                        @if (sizes != null && sizes.Any())
+                        {
+                            <li class="flex items-center justify-start">
+                                @foreach (var size in sizes)
+                                {
+                                    @if (Model.SizesId != null && Model.SizesId.Any() && Model.SizesId.Contains(size.SizesId))
+                                    {
+                                        <p onclick="DeleteSize(@size.SizesId)" style="cursor:pointer">
 
-                        <li class="flex items-center justify-start ">
-                        <button>
+                                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </p>
+                                        <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1">@size.SizesTitle</h6>
+                                    }
+                                }
+                            </li>
+                        }
 
-                            <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </button>
-                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1"> XXL  </h6>
-                    </li>
-
-                        <li class="flex items-center justify-start ">
-                            <button>
-
-                                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </button>
-                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1"> medium</h6>
-                        </li>
-
-                        <li class="flex items-center justify-start ">
-                            <button>
-
-                                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.48523 14.1421L14.1421 8.48524" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M14.1421 14.1422L8.48523 8.48535" stroke="#7D7D7D" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </button>
-                            <h6 class="text-[12px] lg:text-[14px] text-[#252525] ps-1"> کالکشن  </h6>
-                        </li>
-                </ul>
-            </div>
+                    </ul>
+                </div>
             </div>
 
             @if (Model.Entities != null && Model.Entities.Any())
@@ -842,21 +871,21 @@
                             <div class="transition-all transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
                                     @* <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
-                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
-                                    </a>*@
+                            <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                            </a>*@
                                     <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
                                         <img class="product-image  w-full h-full object-cover " src="@PathTools.ProductPath@product.ProductImageName" title="@product.ProductTitle" alt="@product.ProductTitle" />
                                         @*<img class="product-image  w-full  " src="/ArefSet/src/assets/images/landing/20.jpg" alt="" />*@
                                         @{
 
                                             var secondeImage = await _context.ProductGallery
-                                                                     .AsNoTracking()
-                                                                     .Where(p => p.ProductID == product.ProductID)
-                                                                     .Select(p => p.ImageName)
-                                                                     .FirstOrDefaultAsync();
+                                            .AsNoTracking()
+                                            .Where(p => p.ProductID == product.ProductID)
+                                            .Select(p => p.ImageName)
+                                            .FirstOrDefaultAsync();
                                         }
                                         @if (!string.IsNullOrEmpty(secondeImage))
-                                                    {
+                                        {
                                             <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath/@secondeImage" title="@product.ProductTitle" alt="@product.ProductTitle" />
 
                                         }
@@ -880,7 +909,6 @@
                                         else
                                         {
                                             <div class="transition-all w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] flex items-center justify-center bg-[#252525] text-center text-[#fff]">
-
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M10.5166 17.3416C10.2333 17.4416 9.76662 17.4416 9.48329 17.3416C7.06663 16.5166 1.66663 13.0749 1.66663 7.24158C1.66663 4.66658 3.74163 2.58325 6.29996 2.58325C7.81662 2.58325 9.15829 3.31659 9.99996 4.44992C10.8416 3.31659 12.1916 2.58325 13.7 2.58325C16.2583 2.58325 18.3333 4.66658 18.3333 7.24158C18.3333 13.0749 12.9333 16.5166 10.5166 17.3416Z" stroke="#7E8285" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg>

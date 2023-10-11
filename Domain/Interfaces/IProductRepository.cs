@@ -107,7 +107,7 @@ namespace Domain.Interfaces
         Task<List<ProductCategoryLinkable>> FillProductCategoryLinkable(int productId);
 
         //Fill Newest 3 Products 
-        Task<List<LastestProducts>> FillNewest3Products();
+        Task<List<LastestProducts>> FillNewest3Products(int? userId);
 
         //Get Maximum Prices Of Products
         Task<int> GetMaximumPricesOfProducts();

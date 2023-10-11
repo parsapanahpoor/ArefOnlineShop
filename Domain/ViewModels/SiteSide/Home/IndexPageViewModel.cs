@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,8 @@ namespace Domain.ViewModels.SiteSide.Home
         public decimal Price { get; set; }
 
         public decimal? OldPrice { get; set; }
+
+        public bool IsInFavorite { get; set; }
 
         #endregion
     }

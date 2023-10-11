@@ -483,7 +483,7 @@
 
             </div>
 
-            <form asp-action="AddToShopCart" asp-controller="Order" asp-area="" method="post" enctype="multipart/form-data">
+            <form asp-action="AddToShopCart" asp-controller="Order" asp-area="" method="get" >
                 <input type="hidden" name="id" value="@Model.ProdcutId" />
                 <input type="hidden" name="Count" id="resultHidden" />
                 <input type="hidden" name="selectColor" id="selectColor" />
