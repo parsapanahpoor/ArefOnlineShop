@@ -186,7 +186,7 @@ namespace Data.Repository
                                                                                               .Select(s=> s.ImageName)
                                                                                               .FirstOrDefault()
                                                         })
-                                                        .Take(6)
+                                                        .Take(8)
                                                         .ToListAsync();
 
             lastProcuctsChild.Add(AllProducts);
@@ -208,7 +208,7 @@ namespace Data.Repository
                                                    .Where(p => p.ProductCategoryId == categoryId.ProductCategoryId )
                                                    .OrderByDescending(p => p.CreateDate)
                                                    .Select(p => p.ProductID)
-                                                   .Take(6)
+                                                   .Take(8)
                                                    .ToListAsync();
 
                     if (productsId != null && productsId.Any())

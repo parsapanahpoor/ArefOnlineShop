@@ -461,7 +461,7 @@
             </div>
 
             <p class="text-[#7E8285] font-normal text-[14px] leading-7" style="font-family: yekanBakhtSemiBold">
-                @Model.ShortDescription
+                @Html.Raw(Model.LongDescription)
             </p>
 
             <div class="inline-block my-5">
@@ -519,7 +519,7 @@
 
                         @if (Model.ProductsSizes != null && Model.ProductsSizes.Any())
                         {
-                            foreach (var size in Model.ProductsSizes)
+                            foreach (var size in Model.ProductsSizes.OrderBy(p=> p.Priority))
                             {
                                 <div style="cursor:pointer" class="size flex items-center">
                                     <input type="radio" name="selectSize" value="@size.Id" id="size@(size.Id)" checked="" class="hidden">
@@ -614,18 +614,7 @@
 
     <section class="mx-auto lg:mt-20 mt-8 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em] mb-7">
         <div class="tabset singlePageTab max-w-[99%] lg:max-w-[86.5em] mx-auto">
-            <!-- Tab 1 -->
-            <input type="radio" name="tabset" id="singlePagetab1" aria-controls="describtion" checked>
-            <label for="singlePagetab1" class="text-[13px] lg:text-[20px] !pb-3 px-2 lg:px-7 gap-1 ">
-                @*<img class="inline-block" src="/ArefSet/src/assets/images/landing/brush.png" alt="">*@
-                <svg width="20" height="20" class="inline-block" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.69171 15.3084C8.56671 15.3084 8.45005 15.2751 8.34171 15.2001C8.16671 15.0834 8.06671 14.8918 8.06671 14.6834C8.06671 14.5584 8.05838 14.4251 8.04171 14.2918C7.96671 13.7001 7.70005 13.1834 7.25005 12.7334C6.80005 12.2834 6.24171 12.0001 5.64171 11.9251C5.54171 11.9168 5.40005 11.9084 5.26671 11.9168C5.05005 11.9334 4.85005 11.8418 4.72505 11.6668C4.60005 11.5001 4.56671 11.2751 4.63338 11.0751C4.75838 10.7334 4.94171 10.4251 5.15838 10.1751L6.44171 8.55843C8.65005 5.8001 13.125 2.48343 16.4 1.16676C17.0917 0.900098 17.8334 1.05843 18.3417 1.55843C18.8667 2.08343 19.025 2.83343 18.75 3.51676C17.4334 6.8001 14.125 11.2668 11.3667 13.4751L9.72505 14.7918C9.41671 15.0168 9.16671 15.1584 8.91671 15.2584C8.85005 15.2918 8.76671 15.3084 8.69171 15.3084ZM6.28338 10.7834C6.98338 10.9668 7.60838 11.3334 8.13338 11.8584C8.65838 12.3751 9.00838 12.9751 9.18338 13.6418L10.5917 12.5084C13.2084 10.4168 16.35 6.1751 17.5917 3.05843C17.7167 2.7501 17.5417 2.53343 17.4584 2.45843C17.4 2.4001 17.1834 2.21676 16.85 2.34176C13.75 3.59176 9.50838 6.73343 7.40838 9.3501L6.28338 10.7834Z" fill="#252525" />
-                    <path d="M3.39997 18.9583C2.77497 18.9583 2.17497 18.7083 1.72497 18.2583C1.2083 17.7416 0.958303 17.025 1.04164 16.2916L1.26664 14.2416C1.4833 12.2083 3.14997 10.7 5.21664 10.6583C5.37497 10.65 5.5833 10.6583 5.77497 10.675C6.6833 10.7916 7.49164 11.2 8.14164 11.85C8.7833 12.4916 9.16664 13.2583 9.2833 14.1166C9.3083 14.3 9.32497 14.5 9.32497 14.675C9.32497 15.775 8.89997 16.8 8.1333 17.575C7.49164 18.2083 6.66664 18.6 5.7333 18.7166L3.67497 18.9416C3.5833 18.95 3.49164 18.9583 3.39997 18.9583ZM5.37497 11.9166C5.34164 11.9166 5.29997 11.9166 5.26664 11.9166C4.0083 11.9416 2.67497 12.8 2.5083 14.3833L2.2833 16.4333C2.24164 16.7833 2.36664 17.125 2.6083 17.375C2.84997 17.6166 3.19164 17.7416 3.5333 17.7L5.5833 17.475C6.22497 17.3916 6.79997 17.125 7.2333 16.6916C7.76664 16.1583 8.06664 15.4416 8.06664 14.675C8.06664 14.55 8.0583 14.4166 8.04164 14.2833C7.96664 13.6916 7.69997 13.175 7.24997 12.725C6.79997 12.275 6.24164 11.9916 5.64164 11.9166C5.57497 11.9166 5.47497 11.9166 5.37497 11.9166Z" fill="#252525" />
-                    <path d="M11.8667 12.6834C11.525 12.6834 11.2417 12.4 11.2417 12.0584C11.2417 10.225 9.75005 8.7417 7.92505 8.7417C7.58338 8.7417 7.30005 8.45837 7.30005 8.1167C7.30005 7.77503 7.57505 7.4917 7.91672 7.4917C10.4334 7.4917 12.4834 9.5417 12.4834 12.0584C12.4917 12.4084 12.2084 12.6834 11.8667 12.6834Z" fill="#252525" />
-                </svg>
-                توضیحات
-            </label>
-
+         
             @if (Model.ProductFeatures != null && Model.ProductFeatures.Any())
             {
                 <!-- Tab 2 -->
@@ -655,16 +644,7 @@
 
             @*  style="height: 114.833px;"*@
             <div class="tab-panels">
-                <section id="describtion" class="tab-panel border-2 text-right text-[14px] lg:text-[16px] !text-[#494949] !leading-[26px] lg:!leading-[36px] !p-4 !px-6">
-
-                    <p class="text-[16px] lg:text-[22px] my-2">
-                        <strong class="text-[18px] lg:text-[22px] leading-[34.1px]" style="font-family: yekanBakhtBlack"> معرفی </strong><span class="text-[18px] lg:text-[22px] leading-[34.1px]">محصول</span>
-                    </p>
-                    <p class="text-[14px] lg:text-[16px] !text-[#494949] !leading-[26px] lg:!leading-[36px] break-all">
-                        @Html.Raw(Model.LongDescription)
-                    </p>
-                    <!-- <div class=" shadow-lg w-[414px] h-[480px] col-span-1 md:col-span-1 lg:col-span-1"></div> -->
-                </section>
+          
 
 
                 @if (Model.ProductFeatures != null && Model.ProductFeatures.Any())

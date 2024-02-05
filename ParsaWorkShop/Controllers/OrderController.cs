@@ -572,8 +572,7 @@ namespace ParsaWorkShop.Controllers
                     {
                         string errorscode = jo["errors"]["code"].ToString();
 
-                        return BadRequest($"error code {errorscode}");
-
+                        return RedirectToAction("PaymentResult", "Payment", new { IsSuccess = false, refId = 123 });
                     }
                 }
             }
