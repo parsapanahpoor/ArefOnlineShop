@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -25,12 +26,17 @@ namespace ParsaWorkShop.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ISiteSettingService _siteSettingService;
         private readonly IUsersCommentAboutSiteService _usersCommentAboutSiteService;
+        private readonly IAboutUsService _aboutUsService;
 
-        public HomeController(ILogger<HomeController> logger , ISiteSettingService siteSettingService, IUsersCommentAboutSiteService usersCommentAboutSiteService)
+        public HomeController(ILogger<HomeController> logger , 
+                              ISiteSettingService siteSettingService, 
+                              IUsersCommentAboutSiteService usersCommentAboutSiteService , 
+                              IAboutUsService aboutUsService)
         {
             _logger = logger;
             _siteSettingService = siteSettingService;
             _usersCommentAboutSiteService = usersCommentAboutSiteService;
+            _aboutUsService = aboutUsService;
         }
 
         #endregion
@@ -115,11 +121,13 @@ namespace ParsaWorkShop.Controllers
 
         #region About Us
 
-        public async Task<IActionResult> AboutUs()
+        public async Task<IActionResult> AboutUs(CancellationToken cancellation = default)
         {
             #region Fill Model
 
             var model = await _siteSettingService.FillIndexPageViewModel();
+
+            ViewData["AboutUs"] = await _aboutUsService.GetAboutUs(cancellation);
 
             #endregion
 
