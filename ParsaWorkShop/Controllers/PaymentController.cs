@@ -27,11 +27,15 @@ namespace DoctorFAM.Web.Controllers
 
         private readonly IUserService _userService;
         private readonly IWalletService _walletService;
+        private readonly IOrderService _orderService;
 
-        public PaymentController(IUserService userService, IWalletService walletService)
+        public PaymentController(IUserService userService,
+                                 IWalletService walletService ,
+                                 IOrderService orderService)
         {
             _userService = userService;
             _walletService = walletService;
+            _orderService = orderService;
         }
 
         #endregion
@@ -108,6 +112,15 @@ namespace DoctorFAM.Web.Controllers
         {
             ViewBag.IsSuccess = IsSuccess;
             ViewBag.refId = refId;
+
+            #region Send SMS For Submited Order
+
+            if (IsSuccess && !string.IsNullOrEmpty(refId))
+            {
+            await _orderService.SendSMSForSubmitedOrder(refId);
+            }
+
+            #endregion
 
             return View();
         }

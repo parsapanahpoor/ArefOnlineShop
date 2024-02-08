@@ -3,15 +3,18 @@
 using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Product;
+using Domain.Models.SiteSetting;
 using Domain.ViewModels.Admin.SiteSetting;
 using Domain.ViewModels.SiteSide.Home;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -140,6 +143,38 @@ namespace Data.Repository
         public async Task UpdateSize(ProductsSize size)
         {
             _context.ProductsSizes.Update(size);
+            await _context.SaveChangesAsync();
+        }
+
+        #endregion
+
+        #region Site Setting
+
+        public async Task<string> GetAdminMobilePhone()
+        {
+            return await _context.SiteSetting
+                                 .AsNoTracking()
+                                 .Select(p=> p.AdminMobile)
+                                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<SiteSetting?> GetSiteSetting(CancellationToken cancellationToken)
+        {
+            return await _context.SiteSetting.FirstOrDefaultAsync(p=> !p.IsDelete);
+        }
+
+        public async Task AddSiteSetting(SiteSetting siteSetting , CancellationToken cancellationToken)
+        {
+            await _context.SiteSetting.AddAsync(siteSetting);
+        }
+
+        public void UpdateSiteSetting(SiteSetting siteSetting)
+        {
+            _context.SiteSetting.Update(siteSetting);
+        }
+
+        public async Task SaveChangesAsync(CancellationToken cancellation)
+        {
             await _context.SaveChangesAsync();
         }
 

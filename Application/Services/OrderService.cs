@@ -1,13 +1,16 @@
-﻿using Application.Interfaces;
+﻿using Application.Convertors;
+using Application.Interfaces;
 using Domain.Interfaces;
 using Domain.Models.Order;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using Domain.ViewModels.UserPanel.Orders;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Numeric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,16 +21,37 @@ namespace Application.Services
         #region Ctor
 
         private IOrderRepository _order;
-        public OrderService(IOrderRepository order)
+        private readonly ISiteSettingRepsitory _siteSettingRepsitory;
+        private static readonly HttpClient client = new HttpClient();
+
+        public OrderService(IOrderRepository order , 
+                            ISiteSettingRepsitory siteSettingRepsitory)
         {
             _order = order;
+            _siteSettingRepsitory = siteSettingRepsitory;
         }
 
         #endregion
 
         #region Side Side 
 
- public void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId, int count)
+        public async Task SendSMSForSubmitedOrder(string? orderId)
+        {
+            var dateTime = DateTime.Now.ToShamsi();
+
+            var AdminMobilePhone = await _siteSettingRepsitory.GetAdminMobilePhone();
+            if (!string.IsNullOrEmpty(AdminMobilePhone))
+            {
+               #region Send Verification Code SMS
+
+                     var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={AdminMobilePhone}&token={orderId}&token2={dateTime}&template=BuyAlert";
+                     var results = client.GetStringAsync(result);
+
+              #endregion
+            }
+        }
+
+        public void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId, int count)
         {
             OrderDetails orderDetails = _order.AddOneMoreProductToTheShopCart(orderid, productid, colorId, sizeId);
             orderDetails.Count = orderDetails.Count + count;
