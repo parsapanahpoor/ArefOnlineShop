@@ -12,10 +12,13 @@
                 @foreach (var slider in Model)
                 {
                     <div class="swiper-slide !h-full lg:!h-full  bg-white bg-no-repeat flex flex-col justify-start items-center lg:justify-center lg:items-start " style="background-image: url(&quot;/ArefSet/src/assets/images/landing/Rectangle 9224.png&quot;); background-size: cover; width: 1690px; opacity: 1; transform: translate3d(1690px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="2 / 5" data-swiper-slide-index="1">
-                        <img class="!h-full lg:!h-full"
-                             src="@PathTools.SliderPath@slider.SliderImageName"
-                             alt="" />
+                        <a href="@slider.Link">
+                            <img class="!h-full lg:!h-full"
+                                 src="@PathTools.SliderPath@slider.SliderImageName"
+                                 alt="" />
+                        </a>
                     </div>
+
                 }
 
             </div>
