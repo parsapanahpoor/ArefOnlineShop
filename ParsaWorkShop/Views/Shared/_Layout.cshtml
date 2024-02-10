@@ -11,7 +11,7 @@
 
     @await RenderSectionAsync("Styles", false)
 
-    <style>
+    <style> 
 
         /* width */
         ::-webkit-scrollbar {
@@ -75,6 +75,9 @@
             transition: all .4s ease
         }
 
+        .product-image{
+            object-fit:contain
+        }
         .shopCardHover:hover .product-image {
             /*display: none;*/
             visibility: hidden;
@@ -140,17 +143,20 @@
 
                 }*/
         /*.headerSlider {
-                    height: 100%
-                }
-                .headerSliderImg {
-                    height:500px
-                }*/
-        /* .singlePageProDesc {
-                    width: 40%;
-                }*/
-        @@media screen and (min-width: 400px) {
+            height: 100%
+        }
+        .headerSliderImg {
+            height:500px
+        }*/
+       /* .singlePageProDesc {
+            width: 40%;
+        }*/
+        @@media screen and (min-width: 415px) {
+            .product-image {
+                object-fit: cover
+            }
             .headerBackgroundSize {
-                background-size: 80%
+                background-size: 100%
             }
 
             .ProductTitleShopCart {
@@ -188,10 +194,10 @@
                 width: 246px
             }
 
-            .shopCardTitle {
+            /*.shopCardTitle {
                 width: 283px;
                 display: inline-block
-            }
+            }*/
 
             .listShopCartTitle {
                 width: 195px;

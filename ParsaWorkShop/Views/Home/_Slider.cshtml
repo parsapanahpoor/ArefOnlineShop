@@ -5,38 +5,18 @@
 @if (Model != null && Model.Any())
 {
 
-    <div style="max-width:2536px" class=" max-w-[1536px]  mx-auto bg-[#eee] h-[730px] relative">
-        <div style="margin: 0 auto;" class="swiper mySwiper w-full lg:h-full swiper-fade swiper-initialized swiper-horizontal swiper-rtl swiper-watch-progress swiper-backface-hidden" dir="rtl">
-            <div class="swiper-wrapper w-full mb-10 lg:mb-0" id="swiper-wrapper-0ee14e4b1628f10bd" aria-live="off" style="transition-duration: 0ms;">
+    <div style="max-width:2536px" class=" max-w-[1536px]  mx-auto bg-[#eee] !h-[50vh] lg:!h-screen relative">
+        <div style="margin: 0 auto;" class="swiper mySwiper w-full !h-full lg:!h-full swiper-fade swiper-initialized swiper-horizontal swiper-rtl swiper-watch-progress swiper-backface-hidden" dir="rtl">
+            <div class="swiper-wrapper w-full !h-full lg:!h-full " id="swiper-wrapper-0ee14e4b1628f10bd" aria-live="off" style="transition-duration: 0ms;">
 
                 @foreach (var slider in Model)
                 {
-                    <div class="swiper-slide grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 bg-white bg-no-repeat" style="background-image: url(&quot;/ArefSet/src/assets/images/landing/Rectangle 9224.png&quot;); background-size: cover; width: 1690px; opacity: 1; transform: translate3d(1690px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="2 / 5" data-swiper-slide-index="1">
-                        <div class="col-span-2 md:col-span-1 lg:col-span-1 mt-9 lg:mt-0 lg:h-full px-6 lg:px-16 text lg:flex lg:flex-col lg:justify-center lg:items-start">
-                            <p class="text-[#7E8285] text-[20px] font-semibold leading-8 lg:text-[32px] text-right lg:font-semibold lg:leading-[49.6px]"
-                               style="font-family: yekanBakhtSemiBold">
-                                @slider.FirstText
-                            </p>
-                            <h1 class="text-[#D92626] font-black text-right text-[40px] leading-16 lg:text-[78px] lg:leading-[120.9px] tracking-spaceTwo"
-                                style="font-family: yekanBakhtBlack">
-                                @slider.SecondeText
-                            </h1>
-                            <p class="text-[#252525] text-[30px] font-semibold leading-[46.5px] lg:text-[49px] text-right lg:font-semibold lg:leading-[75.95px]" style="font-family: yekanBakhtSemiBold">
-                                @slider.ThirdText
-                            </p>
-                            <a href="@slider.Link" class="my-3 mt-6 hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-7 py-3 inline-flex items-center text-[#7E8285] hover:text-[#fff] w-[236px]">
-                                @slider.LinkTitle
-                                @*<img class="ms-2"
-                                     src="/ArefSet/src/assets/images/landing/arrow-left.png"
-                                     alt="" />*@
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left ms-2" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="headerBackgroundSize col-span-2 md:col-span-1 lg:col-span-1 h-[500px] lg:h-full text bg-no-repeat bg-bottom lg:bg-right-bottom lg:bg-auto" style="
-                  background-image: url(@PathTools.SliderPath@slider.SliderImageName);
-                  "></div>
+                    <div class="swiper-slide !h-full lg:!h-full  bg-white bg-no-repeat flex flex-col justify-start items-center lg:justify-center lg:items-start " style="background-image: url(&quot;/ArefSet/src/assets/images/landing/Rectangle 9224.png&quot;); background-size: cover; width: 1690px; opacity: 1; transform: translate3d(1690px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="2 / 5" data-swiper-slide-index="1">
+                        <a href="@slider.Link">
+                            <img class="!h-full lg:!h-full"
+                                 src="@PathTools.SliderPath@slider.SliderImageName"
+                                 alt="" />
+                        </a>
                     </div>
 
                 }
@@ -52,3 +32,37 @@
 
 }
 
+
+
+@*<img class="ms-2"
+                                     src="/ArefSet/src/assets/images/landing/arrow-left.png"
+                                     alt="" />*@
+@*  <div class="headerBackgroundSize col-span-2 md:col-span-1 lg:col-span-1 h-[500px] lg:h-full text bg-no-repeat bg-bottom lg:bg-right-bottom lg:bg-auto" style="
+                  background-image: url(/ArefSet/src/assets/images/landing/عکس-3-هدر.png);
+                  "></div>*@
+@*<div class="swiper-slide grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 bg-white bg-no-repeat" style="background-image: url(&quot;/ArefSet/src/assets/images/landing/Rectangle 9224.png&quot;); background-size: cover; width: 1690px; opacity: 1; transform: translate3d(1690px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="2 / 5" data-swiper-slide-index="1">
+    <div class="col-span-2 md:col-span-1 lg:col-span-1 mt-9 lg:mt-0 lg:h-full px-6 lg:px-16 text lg:flex lg:flex-col lg:justify-center lg:items-start">
+        <p class="text-[#7E8285] text-[20px] font-semibold leading-8 lg:text-[32px] text-right lg:font-semibold lg:leading-[49.6px]"
+           style="font-family: yekanBakhtSemiBold">
+            @slider.FirstText
+        </p>
+        <h1 class="text-[#D92626] font-black text-right text-[40px] leading-16 lg:text-[78px] lg:leading-[120.9px] tracking-spaceTwo"
+            style="font-family: yekanBakhtBlack">
+            @slider.SecondeText
+        </h1>
+        <p class="text-[#252525] text-[30px] font-semibold leading-[46.5px] lg:text-[49px] text-right lg:font-semibold lg:leading-[75.95px]" style="font-family: yekanBakhtSemiBold">
+            @slider.ThirdText
+        </p>
+        <a href="@slider.Link" class="my-3 mt-6 hover:bg-[#252525] border-[1px] border-[#7E8285] hover:border-[#252525] transition-all duration-300 transform ease-linear focus:outline-none bg-transparent px-7 py-3 inline-flex items-center text-[#7E8285] hover:text-[#fff] w-[236px]">
+            @slider.LinkTitle
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left ms-2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+        </a>
+    </div>
+    <div class="headerBackgroundSize col-span-2 md:col-span-1 lg:col-span-1 h-[500px] lg:h-full text bg-no-repeat bg-bottom lg:bg-right-bottom lg:bg-auto" style="
+                  background-image: url(@PathTools.SliderPath@slider.SliderImageName);
+                  "></div>
+
+</div>*@

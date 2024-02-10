@@ -6,6 +6,7 @@ using Application.StaticTools;
 using Data.Repository;
 using Domain.Interfaces;
 using Domain.Models.Product;
+using Domain.Models.SiteSetting;
 using Domain.Models.Slider;
 using Domain.ViewModels.Admin.SiteSetting;
 using Domain.ViewModels.Admin.Slider;
@@ -238,6 +239,48 @@ namespace Application.SiteServices
             await _siteSettingRepsitory.UpdateSize(size);
 
             return true;
+        }
+
+        #endregion
+
+        #region Site Setting
+
+        public async Task<SiteSetting?> GetSiteSetting(CancellationToken cancellationToken)
+        {
+            return await _siteSettingRepsitory.GetSiteSetting(cancellationToken);
+        }
+
+        public async Task<bool> AddOrEditSiteSetting(SiteSetting newSiteSetting , CancellationToken cancellationToken)
+        {
+            #region Get Site Setting 
+
+            var oldSiteSetting = await GetSiteSetting(cancellationToken);
+
+            #endregion
+
+            #region Add Or Edit Site Setting
+
+            if (oldSiteSetting != null)
+            {
+                oldSiteSetting.AdminMobile = newSiteSetting.AdminMobile;
+
+                _siteSettingRepsitory.UpdateSiteSetting(oldSiteSetting);
+                await _siteSettingRepsitory.SaveChangesAsync(cancellationToken);
+            }
+            else
+            {
+                SiteSetting siteSetting = new SiteSetting()
+                {
+                    AdminMobile = newSiteSetting.AdminMobile,
+                };
+
+                await _siteSettingRepsitory.AddSiteSetting(siteSetting , cancellationToken);
+                await _siteSettingRepsitory.SaveChangesAsync(cancellationToken);
+            }
+
+            return true;
+
+            #endregion
         }
 
         #endregion

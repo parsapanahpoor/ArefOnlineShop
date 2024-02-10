@@ -17,6 +17,8 @@ namespace Domain.Models.Product
 
         public string SizeTitle { get; set; }
 
+        public int Priority { get; set; }
+
         #endregion
 
         #region Relations

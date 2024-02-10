@@ -28,8 +28,8 @@
                         <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
 
                             <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
-                                <img class="product-image  w-full h-full object-cover " src="@PathTools.ProductPath@item.ProductImageName" title="@item.Title" alt="@item.Title" />
-                                @*<img class="product-image  w-full  " src="/ArefSet/src/assets/images/landing/20.jpg" alt="" />*@
+                                <img class="product-image  w-full object-contain  lg:object-cover " src="@PathTools.ProductPath@item.ProductImageName" title="@item.Title" alt="@item.Title" />
+                               @* <img class="product-image  w-full object-contain  lg:object-cover " src="/ArefSet/src/assets/images/landing/20.jpg" alt="" />*@
                                 @{
                                     if (!string.IsNullOrEmpty(item.SecondeProductImageName))
                                     {
@@ -86,34 +86,7 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center shopCardHover">
-            <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
-
-
-            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
-            <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@item.ProductImageName" title="@item.Title" alt="@item.Title" />
-            <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
-            </a>
-            </div>
-            <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
-            <div class="text-right">
-            <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
-            </p>
-            <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[14px] lg:text-[20px]">
-            @item.Title
-            </a>
-            </div>
-            <div class="text-left">
-            <p class="line-through  inline-block h-4 text-[#B7B7B7] font-light text-[11px] lg:text-[14px]">
-            @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
-
-            </p>
-            <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
-            @item.Price.ToString("#,000") ریال
-            </p>
-            </div>
-            </div>
-            </div>*@
+  
                 }
 
             </div>

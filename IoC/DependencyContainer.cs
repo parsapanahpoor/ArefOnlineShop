@@ -36,6 +36,7 @@ namespace IoC
             service.AddScoped<IDiscountCodeService, DiscountCodeService>();
             service.AddScoped<IFavoriteProductsService, FavoriteProductsService>();
             service.AddScoped<ISiteSettingService, SiteSettingService>();
+            service.AddScoped<IAboutUsService, AboutUsService>();
 
             #endregion
 
@@ -57,6 +58,7 @@ namespace IoC
             service.AddScoped<IDiscountCodeRepository, DiscountCodeRepository>();
             service.AddScoped<IFavoriteProductRepository, FavoriteProductRepository>();
             service.AddScoped<ISiteSettingRepsitory, SiteSettingRepsitory>();
+            service.AddScoped<IAboutUsRepository, AboutUsRepository>();
 
             #endregion
         }

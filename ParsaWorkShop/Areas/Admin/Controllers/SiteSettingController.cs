@@ -4,10 +4,12 @@ using AngleSharp.Css.Values;
 using Application.Interfaces;
 using Application.Security;
 using Application.Services;
+using Domain.Models.SiteSetting;
 using Domain.ViewModels.Admin.SiteSetting;
 using Domain.ViewModels.Admin.Slider;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -251,6 +253,33 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         }
 
         #endregion
+
+        #endregion
+
+        #region Site Setting
+
+        [HttpGet]
+        public async Task<IActionResult> SiteSetting(CancellationToken cancellation = default)
+        {
+            return View(await _siteSettingService.GetSiteSetting(cancellation));
+        }
+
+        [HttpPost , ValidateAntiForgeryToken]
+        public async Task<IActionResult> SiteSetting(SiteSetting siteSetting , CancellationToken cancellation = default)
+        {
+            if (ModelState.IsValid)
+            {
+                var res = await _siteSettingService.AddOrEditSiteSetting(siteSetting , cancellation);
+                if (res)
+                {
+                    TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
+                    return RedirectToAction("Index" , "Home" , new { area = "Admin" });
+                }
+            }
+
+            TempData[ErrorMessage] = "اطلاعات وارد شده صحیح نمی باشد.";
+            return View(await _siteSettingService.GetSiteSetting(cancellation));
+        }
 
         #endregion
     }

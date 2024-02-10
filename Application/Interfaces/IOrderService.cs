@@ -14,8 +14,9 @@ namespace Application.Interfaces
 {
     public interface IOrderService
     {
-
         #region Order
+
+        Task SendSMSForSubmitedOrder(string? orderId);
 
         bool IsExistOrderFromUserFromToday(int userid);
         Orders GetOrderForShopCart(int userid);

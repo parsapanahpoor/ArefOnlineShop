@@ -3,15 +3,18 @@
 using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Product;
+using Domain.Models.SiteSetting;
 using Domain.ViewModels.Admin.SiteSetting;
 using Domain.ViewModels.SiteSide.Home;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -145,6 +148,38 @@ namespace Data.Repository
 
         #endregion
 
+        #region Site Setting
+
+        public async Task<string> GetAdminMobilePhone()
+        {
+            return await _context.SiteSetting
+                                 .AsNoTracking()
+                                 .Select(p=> p.AdminMobile)
+                                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<SiteSetting?> GetSiteSetting(CancellationToken cancellationToken)
+        {
+            return await _context.SiteSetting.FirstOrDefaultAsync(p=> !p.IsDelete);
+        }
+
+        public async Task AddSiteSetting(SiteSetting siteSetting , CancellationToken cancellationToken)
+        {
+            await _context.SiteSetting.AddAsync(siteSetting);
+        }
+
+        public void UpdateSiteSetting(SiteSetting siteSetting)
+        {
+            _context.SiteSetting.Update(siteSetting);
+        }
+
+        public async Task SaveChangesAsync(CancellationToken cancellation)
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        #endregion
+
         #endregion
 
         #region Site Side 
@@ -190,7 +225,7 @@ namespace Data.Repository
                                                                                 : 
                                                                                 _context.FavoriteProducts.Any(s=> !s.IsDelete && s.UserId == userId.Value && s.ProductId == p.ProductID) 
                                                         })
-                                                        .Take(6)
+                                                        .Take(8)
                                                         .ToListAsync();
 
             lastProcuctsChild.Add(AllProducts);
@@ -212,7 +247,7 @@ namespace Data.Repository
                                                    .Where(p => p.ProductCategoryId == categoryId.ProductCategoryId )
                                                    .OrderByDescending(p => p.CreateDate)
                                                    .Select(p => p.ProductID)
-                                                   .Take(6)
+                                                   .Take(8)
                                                    .ToListAsync();
 
                     if (productsId != null && productsId.Any())
