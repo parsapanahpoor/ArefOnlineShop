@@ -499,9 +499,10 @@
                             foreach (var color in Model.ProductColors)
                             {
                                 <div onclick="ChangeColor(@color.Id)" class="color flex items-center">
-                                    <input type="radio" checked="" id="rad@(color.Id)" class="hidden" value="@color.Id">
-                                    <label for="rad@(color.Id)" class="content inline-block w-[24px] h-[24px] lg:w-[32px] lg:h-[32px]  border-2" style="background-color:@color.ColorCode"></label>
+                                    <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 " value="@color.Id" style="background-color: @color.ColorCode">
+
                                     <span class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px] ms-3">@color.ColorFarsiTitle</span>
+
                                 </div>
                             }
                         }
