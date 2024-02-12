@@ -21,7 +21,7 @@
 }
 
 @section Styles
-    {
+{
 
     <!-- Main CSS File -->
     <link href="/ArefSet/dist/output.css" rel="stylesheet" />
@@ -242,7 +242,7 @@
 }
 
 @section Scripts
-    {
+{
 
     <script src="/ArefSet/src/JS/landing.js"></script>
 
@@ -624,100 +624,96 @@
 
                         }
 
-                        @if (colors != null && colors.Any())
-                        {
-                            <div class="py-5">
-                                <details class="group">
-                                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
-                                        <span> رنگ</span>
-                                        <span class="transition group-open:rotate-180">
-                                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                                <path d="M6 9l6 6 6-6"></path>
-                                            </svg>
-                                        </span>
-                                    </summary>
-                                    <div class="flex items-center justify-center gap-2"></div>
-                                    <div class="switcher flex items-center justify-center gap-2">
+                @if (colors != null && colors.Any())
+                {
+                    <div class="py-5">
+                        <details class="group">
+                            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                                <span> رنگ</span>
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                        <path d="M6 9l6 6 6-6"></path>
+                                    </svg>
+                                </span>
+                            </summary>
+                            <div class="flex items-center justify-center gap-2"></div>
+                            <div class="switcher flex items-center justify-start gap-2 flex-wrap">
 
-                                        @foreach (var color in colors)
-                                        {
+                                @foreach (var color in colors)
+                                {
 
-                                            if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
-                                            {
-                                                <input type="checkbox" name="ColorsId" class="colors hidden" id="indigo@(color.ColorId)" value="@color.ColorId"
+                                    if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
+                                    {
+
+                                                <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 active" value="@color.ColorId" style="background-color: @color.ColorTitle"
                                                 @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "checked='checked'" : " ")>
-                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-@color.ColorTitle-500
 
-                                                   @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "active" : " " )" for="indigo@(color.ColorId)">
-                                                </label>
-                                            }
-                                            else
-                                            {
-                                                <input type="checkbox" name="ColorsId" class="colors hidden" id="indigo@(color.ColorId)" value="@color.ColorId">
-                                                <label data-theme="@color.ColorTitle" class="theme-button focus:outline-0 w-[20px] h-[20px] rounded-full bg-@color.ColorTitle-500" for="indigo@(color.ColorId)">
-                                                </label>
-                                            }
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 " value="@color.ColorId" style="background-color: @color.ColorTitle">
+                                    }
 
-                                        }
+                                }
 
-                                    </div>
-                                </details>
                             </div>
-
-                        }
-
-                        <div class="py-5  w-full">
-                            <details class="group  w-full">
-                                <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
-                                    <span> قیمت</span>
-                                    <span class="transition group-open:rotate-180">
-                                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                            <path d="M6 9l6 6 6-6"></path>
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <!-- <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
-                                  محدوده قیمت :
-                                </p> -->
-                                <div class="price-wrap">
-                                    <span class="price-title">محدوده قیمت :</span>
-                                    <div class="price-wrap-1">
-                                        <input class="inline-block !w-[50px]" id="one">
-                                        <label for="one">ریال</label>
-                                    </div>
-                                    <div class="price-wrap_line">-</div>
-                                    <div class="price-wrap-2">
-                                        <input class="inline-block !w-[50px]" id="two">
-                                        <label for="two">ریال</label>
-                                    </div>
-                                </div>
-                                <fieldset class="filter-price w-full mx-auto ">
-                                    <div class="price-field w-full  mx-auto">
-                                        <input type="range" min="@minPrice" max="@maxPrice" value="@minPrice" id="lower">
-                                        <input type="range" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
-                                    </div>
-                                </fieldset>
-
-                            </details>
-                        </div>
-
+                        </details>
                     </div>
-                    <div class="w-full sticky bottom-1">
-                        <div class="w-full py-4 bg-white text-[#252525] text-[12px] px-5 lg:hidden"
-                             style="
+
+                }
+
+                <div class="py-5  w-full">
+                    <details class="group  w-full">
+                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                            <span> قیمت</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                    <path d="M6 9l6 6 6-6"></path>
+                                </svg>
+                            </span>
+                        </summary>
+                        <!-- <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                          محدوده قیمت :
+                        </p> -->
+                        <div class="price-wrap">
+                            <span class="price-title">محدوده قیمت :</span>
+                            <div class="price-wrap-1">
+                                <input class="inline-block !w-[50px]" id="one">
+                                <label for="one">ریال</label>
+                            </div>
+                            <div class="price-wrap_line">-</div>
+                            <div class="price-wrap-2">
+                                <input class="inline-block !w-[50px]" id="two">
+                                <label for="two">ریال</label>
+                            </div>
+                        </div>
+                        <fieldset class="filter-price w-full mx-auto ">
+                            <div class="price-field w-full  mx-auto">
+                                <input type="range" min="@minPrice" max="@maxPrice" value="@minPrice" id="lower">
+                                <input type="range" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
+                            </div>
+                        </fieldset>
+
+                    </details>
+                </div>
+
+        </div>
+        <div class="w-full sticky bottom-1">
+            <div class="w-full py-4 bg-white text-[#252525] text-[12px] px-5 lg:hidden"
+                 style="
                              box-shadow: 0 0 5px 1px #eee;
                                     font-family: yekanBakhtBold;
                                 ">
-                            مشاهده ۹۹.۳۳۳۱ کالا در عارف
-                        </div>
-                        <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>
-                    </div>
+                مشاهده ۹۹.۳۳۳۱ کالا در عارف
+            </div>
+            <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>
+        </div>
 
-                    @* <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>*@
+        @* <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>*@
 
-                </div>
+        </div>
 
-            </form>
+        </form>
 
         </div>
 

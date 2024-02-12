@@ -498,7 +498,7 @@ namespace Data.Repository
                                  .Select(p => new ListOfColorsForShowInListOfProducts()
                                  {
                                      ColorId = p.Id,
-                                     ColorTitle = p.ColorTitle
+                                     ColorTitle = p.ColorCode
                                  })
                                  .ToListAsync();
         }
