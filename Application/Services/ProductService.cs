@@ -37,10 +37,13 @@ namespace Application.Services
         #region Ctor
 
         private IProductRepository _product;
+        private readonly ISizeHelperRepository _sizeHelperRepository;
 
-        public ProductService(IProductRepository product)
+        public ProductService(IProductRepository product ,
+                              ISizeHelperRepository sizeHelperRepository)
         {
             _product = product;
+            _sizeHelperRepository = sizeHelperRepository;
         }
 
         #endregion
@@ -520,6 +523,12 @@ namespace Application.Services
             #region Comments
 
             returnModel.Comments = await _product.ListOfCommentsForProductId(id);
+
+            #endregion
+
+            #region Size Helpers
+
+            returnModel.SizeHelpers = await _sizeHelperRepository.GetProductSizeHelper_ByProductId(id);
 
             #endregion
 

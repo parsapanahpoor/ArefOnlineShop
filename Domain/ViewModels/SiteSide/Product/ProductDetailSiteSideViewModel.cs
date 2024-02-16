@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Comment;
 using Domain.Models.Product;
+using Domain.Models.SizeHelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -50,6 +51,8 @@ namespace Domain.ViewModels.SiteSide.Product
         public List<ProductCategoryLinkable> ProductCategoryLinkable { get; set; }
 
         public List<Comment> Comments { get; set; }
+
+        public List<SizeHelper> SizeHelpers { get; set; }
 
         #endregion
     }

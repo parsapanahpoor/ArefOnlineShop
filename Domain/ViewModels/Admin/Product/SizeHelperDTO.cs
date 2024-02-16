@@ -1,8 +1,6 @@
-﻿using Domain.Models.Common;
-
-namespace Domain.Models.SizeHelper
+﻿namespace Domain.ViewModels.Admin.Product
 {
-    public sealed class SizeHelper : BaseEntity
+    public record SizeHelperDTO
     {
         #region properties
 
@@ -21,5 +19,3 @@ namespace Domain.Models.SizeHelper
         #endregion
     }
 }
-
-

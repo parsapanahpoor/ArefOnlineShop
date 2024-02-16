@@ -37,6 +37,7 @@ namespace IoC
             service.AddScoped<IFavoriteProductsService, FavoriteProductsService>();
             service.AddScoped<ISiteSettingService, SiteSettingService>();
             service.AddScoped<IAboutUsService, AboutUsService>();
+            service.AddScoped<ISizeHelperService , SizeHelperService>();
 
             #endregion
 
@@ -59,6 +60,7 @@ namespace IoC
             service.AddScoped<IFavoriteProductRepository, FavoriteProductRepository>();
             service.AddScoped<ISiteSettingRepsitory, SiteSettingRepsitory>();
             service.AddScoped<IAboutUsRepository, AboutUsRepository>();
+            service.AddScoped<ISizeHelperRepository, SizeHelperRepository>();
 
             #endregion
         }

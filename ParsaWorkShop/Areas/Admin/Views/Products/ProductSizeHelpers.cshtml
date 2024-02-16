@@ -1,0 +1,158 @@
+﻿@model Domain.ViewModels.Admin.Product.SizeHelperDTO
+@using Domain.Models.Product
+@using Domain.Models.SizeHelper
+
+@{ ViewData["Title"] = "مدیریت راهنمایی سایز ها ";
+                Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml"; }
+
+
+<div class="content-wrapper" style="min-height: 805px;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">مدیریت راهنمایی سایز ها  </h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="/Admin">خانه</a></li>
+                        <li class="breadcrumb-item active">مدیریت راهنمایی سایز ها  </li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+
+    <div class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary ">
+                    <div class="card-header">
+                        <h3 class="card-title"> سایزهای جدید </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="ProductSizeHelpers" asp-area="Admin" asp-controller="Products" method="post">
+                        <input asp-for="ProductId" type="hidden" value="@ViewBag.productId" />
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> عنوان سایز </label>
+                                <input type="text" asp-for="SizeTitle" class="form-control" id="exampleInputEmail1" placeholder="عنوان سایز را وارد کنید">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> قد لباس </label>
+                                <input type="number" asp-for="GhadeLebas" class="form-control" id="exampleInputEmail1" placeholder="قد لباس را وارد کنید">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> سایز دور سینه </label>
+                                <input type="number" asp-for="SizeDorSine" class="form-control" id="exampleInputEmail1" placeholder="سایز دور سینه را وارد کنید">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> سرشانه </label>
+                                <input type="number" asp-for="SarShane" class="form-control" id="exampleInputEmail1" placeholder="سرشانه را وارد کنید">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> قد آستین </label>
+                                <input type="number" asp-for="GhadeAstin" class="form-control" id="exampleInputEmail1" placeholder="قد آستین را وارد کنید">
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">ارسال</button>
+                            <a asp-action="Index" asp-controller="Products" asp-area="Admin" class="btn btn-primary">بازگشت  </a>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">جدول سایزهای این محصول  </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            @{
+                                var list = ViewBag.sizeHelper  ;
+                                <tbody>
+                                    <tr>
+                                        <th>عنوان سایز </th>
+                                        <th>قد لباس </th>
+                                        <th>دور سینه </th>
+                                        <th>سرشانه </th>
+                                        <th>قد آستین </th>
+                                        <th style="width: 50px"> امکانات </th>
+                                    </tr>
+
+                                    @foreach (var item in list)
+                                    {
+                        <tr id="feature_@(item.ProductId)">
+                            <td>@item.SizeTitle</td>
+                            <td>
+                                @item.GhadeLebas
+                            </td>
+                            <td>
+                                @item.SizeDorSine
+                            </td>
+                                            <td>
+                                                @item.SarShane
+                                            </td>
+                                            <td>
+                                                @item.GhadeAstin
+                                            </td>
+                            <td>
+                                <a style="color:white" class="btn btn-sm btn-danger" onclick="DeleteFeature(@item.ProductId)">
+                                    حذف
+                                </a>
+                            </td>
+                        </tr>}
+
+
+                                </tbody> }
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+@section Scripts{
+    <script>
+        function DeleteFeature(id) {
+            if (confirm('آیا از حذف مطمئن هستید ؟')) {
+                $.get("/Admin/Products/DeleteSizeHelper/" + id,
+                    function () {
+                        $("#feature_" + id).hide('slow');
+                    });
+            }
+        }
+    </script>
+}

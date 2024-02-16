@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
 using Application.Security;
 using Domain.Models.Product;
+using Domain.Models.SizeHelper;
+using Domain.ViewModels.Admin.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,15 +20,21 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
     public class ProductsController : Controller
     {
         #region Ctor
+
         private IProductService _product;
         private IUserService _user;
         private ICommentService _comment;
+        private readonly ISizeHelperService _sizeHelperService;
 
-        public ProductsController(IProductService product, IUserService user, ICommentService comment)
+        public ProductsController(IProductService product, 
+                                  IUserService user,
+                                  ICommentService comment, 
+                                  ISizeHelperService sizeHelperService)
         {
             _product = product;
             _user = user;
             _comment = comment;
+            _sizeHelperService = sizeHelperService;
         }
         #endregion
 
@@ -253,6 +261,43 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         {
             var feature = _product.GetFeatureById(id);
             _product.DeleteProductFeature(feature);
+        }
+
+        #endregion
+
+        #region Product Size Helper
+
+        public async Task<IActionResult> ProductSizeHelpers(int id)
+        {
+            ViewBag.sizeHelper =await  _sizeHelperService.GetProductSizeHelper_ByProductId(id);
+            ViewBag.productId = id;
+
+            return View();
+        }
+
+        [HttpPost , ValidateAntiForgeryToken]
+        public async Task<IActionResult> ProductSizeHelpers(SizeHelperDTO dTO)
+        {
+            if (ModelState.IsValid)
+            {
+                await _sizeHelperService.Add_SizeHelper_ToProduct_Async(new SizeHelper()
+                {
+                    GhadeAstin = dTO.GhadeAstin,
+                    GhadeLebas = dTO.GhadeLebas,
+                    ProductId = dTO.ProductId,
+                    SarShane = dTO.SarShane,
+                    SizeDorSine = dTO.SizeDorSine,
+                    SizeTitle = dTO.SizeTitle
+                });
+            }
+
+            return RedirectToAction("ProductSizeHelpers", new { id = dTO.ProductId });
+        }
+
+        public async Task DeleteSizeHelper(int id)
+        {
+            var sizeHelper = await _sizeHelperService.Get_ProductSizeHelper_ByProductId(id);
+            await  _sizeHelperService.Delete_ProductSizeHelper(sizeHelper);
         }
 
         #endregion
