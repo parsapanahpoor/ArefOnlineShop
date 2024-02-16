@@ -689,8 +689,23 @@
                         </div>
                         <fieldset class="filter-price w-full mx-auto ">
                             <div class="price-field w-full  mx-auto">
-                                <input type="range" min="@minPrice" max="@maxPrice" value="@minPrice" id="lower">
-                                <input type="range" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
+                                @if (Model.MinPrice.HasValue && Model.MinPrice != 0)
+                                        {
+                                            <input type="range" name="MinPrice" min="@minPrice" max="@maxPrice" value="@Model.MinPrice" id="lower">
+                                        }
+                                        else
+                                        {
+                                            <input type="range" name="MinPrice" min="@minPrice" max="@maxPrice" value="@minPrice" id="lower">
+                                        }
+
+                                        @if (Model.MaxPrice.HasValue && Model.MaxPrice != 0)
+                                        {
+                                            <input type="range" name="MaxPrice" min="@minPrice" max="@maxPrice" value="@Model.MaxPrice" id="upper">
+                                        }
+                                        else
+                                        {
+                                            <input type="range" name="MaxPrice" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
+                                        }
                             </div>
                         </fieldset>
 

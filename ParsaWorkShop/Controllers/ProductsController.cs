@@ -106,7 +106,9 @@ namespace ParsaWorkShop.Controllers
 
             #endregion
 
-            return View(await _product.FillProductDetailSiteSideViewModel((int)id));
+            var model = await _product.FillProductDetailSiteSideViewModel((int)id);
+
+            return View(model);
         }
 
         #endregion
