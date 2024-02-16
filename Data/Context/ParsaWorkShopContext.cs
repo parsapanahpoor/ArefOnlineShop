@@ -10,6 +10,7 @@ using Domain.Models.Order;
 using Domain.Models.Permissions;
 using Domain.Models.Product;
 using Domain.Models.SiteSetting;
+using Domain.Models.SizeHelper;
 using Domain.Models.Slider;
 using Domain.Models.UserCommentAboutSite;
 using Domain.Models.Users;
@@ -134,6 +135,12 @@ namespace Data.Context
         public DbSet<DiscountCode> DiscountCodes { get; set; }
 
         public DbSet<DiscountCodeSelectedFromUser>  DiscountCodeSelectedUsers { get; set; }
+
+        #endregion
+
+        #region Size Helper
+
+        public DbSet<SizeHelper> SizeHelper { get; set; }
 
         #endregion
 
