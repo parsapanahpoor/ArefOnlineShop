@@ -31,16 +31,20 @@ namespace ParsaWorkShop.Controllers
         private readonly ISiteSettingService _siteSettingService;
         private readonly IUsersCommentAboutSiteService _usersCommentAboutSiteService;
         private readonly IAboutUsService _aboutUsService;
+        private readonly IFavoriteProductsService _favoriteProductsService;
 
-        public HomeController(ILogger<HomeController> logger , 
-                              ISiteSettingService siteSettingService, 
-                              IUsersCommentAboutSiteService usersCommentAboutSiteService , 
-                              IAboutUsService aboutUsService)
+
+
+        public HomeController(ILogger<HomeController> logger,
+                              ISiteSettingService siteSettingService,
+                              IUsersCommentAboutSiteService usersCommentAboutSiteService,
+                              IAboutUsService aboutUsService, IFavoriteProductsService favoriteProductsService)
         {
             _logger = logger;
             _siteSettingService = siteSettingService;
             _usersCommentAboutSiteService = usersCommentAboutSiteService;
             _aboutUsService = aboutUsService;
+            _favoriteProductsService = favoriteProductsService;
         }
 
         #endregion
@@ -93,7 +97,7 @@ namespace ParsaWorkShop.Controllers
             return View();
         }
 
-        [HttpPost , ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> ContactUs(ContactUsSiteSideViewModel model)
         {
             #region Model State Validation 
@@ -152,7 +156,7 @@ namespace ParsaWorkShop.Controllers
         #region Add To Favorite
 
         [Authorize, HttpGet]
-        public async Task<IActionResult> AddToFavorite(int productId ,string url)
+        public async Task<IActionResult> AddToFavorite(int productId, string url)
         {
             var res = await _favoriteProductsService.AddorRemoveProductFromFavorite(productId, User.GetUserId());
             if (res)
