@@ -795,6 +795,11 @@ namespace Data.Repository
                     childModel = await _context.ProductsSizes
                                                 .FirstOrDefaultAsync(p => !p.IsDelete && p.Id == sizeId);
 
+                    var test = _context.ProductsSizes.FirstOrDefault(p => p.Id == sizeId);
+
+                    if (childModel is null)
+                        continue;
+
                     returnModel.Add(childModel);
                 }
             }
@@ -841,7 +846,7 @@ namespace Data.Repository
                     {
                         var product = await _context.product
                                                     .AsNoTracking()
-                                                    .Include(p=> p.ProductGalleries)
+                                                    .Include(p => p.ProductGalleries)
                                                     .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == productId);
                         if (product != null) products.Add(product);
                     }
@@ -870,7 +875,7 @@ namespace Data.Repository
                 {
                     Product product = await _context.product
                                                    .AsNoTracking()
-                                                   .Include(p=>p.ProductGalleries)
+                                                   .Include(p => p.ProductGalleries)
                                                    .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == prodsId);
 
                     if (product != null) favoirteProducts.Add(product);
