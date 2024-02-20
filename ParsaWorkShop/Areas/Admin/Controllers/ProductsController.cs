@@ -451,5 +451,13 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         }
         #endregion
 
+        #region Product Size
+
+        public async Task<IActionResult> ProductSize()
+        {
+            return View();
+        }
+
+        #endregion
     }
 }
