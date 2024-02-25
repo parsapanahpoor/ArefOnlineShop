@@ -1,0 +1,278 @@
+﻿
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #eee;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #252525;
+    border-radius: 5px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+
+.headerBackgroundSize {
+    background-size: 120%
+}
+/*shopBox*/
+.singlePageProDesc {
+    width: 90px;
+}
+
+#describtion p {
+    color: #494949;
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.blogText p {
+    color: #565656;
+    font-size: 10px;
+    line-height: 24px;
+}
+
+.papularBlogSingle {
+    display: inline-block;
+    width: 186px;
+}
+
+.shopCardHover .product-image {
+    /*display:block;*/
+    visibility: visible;
+    opacity: 1;
+    /*transition: all .4s ease*/
+}
+
+.shopCardHover .product-image-hover {
+    /*display:none;*/
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease
+}
+
+.product-image {
+    object-fit: contain
+}
+
+.shopCardHover:hover .product-image {
+    /*display: none;*/
+    visibility: hidden;
+    opacity: 0;
+}
+
+.shopCardHover:hover .product-image-hover {
+    /*display: block;*/
+    visibility: visible;
+    opacity: 1;
+}
+
+.shopCardTitle {
+    width: auto;
+    display: block
+}
+
+.listShopCartTitle {
+    width: auto;
+    display: block
+}
+
+.productImgSinglePage {
+    min-height: 380px
+}
+
+.imgFavoriteSmPanel {
+    width: 132px;
+}
+
+.detFavoriteSmPanel {
+    margin-bottom: auto;
+}
+
+    .detFavoriteSmPanel .priceFavoriteSmPanel {
+        /* margin: 8px auto;*/
+        margin-bottom: 15px
+    }
+
+.deleteFavoriteSmPanel {
+    width: 30px;
+    height: 30px;
+}
+
+.seeProdctFavoriteSmPanel {
+    height: 30px;
+}
+
+.ProductTitleShopCart {
+    width: 165px
+}
+
+.ProductPriceShopCart {
+    width: auto
+}
+
+
+
+/*.headerSlider {
+            height: 730px
+        }
+        .headerSliderImg{
+
+        }*/
+/*.headerSlider {
+            height: 100%
+        }
+        .headerSliderImg {
+            height:500px
+        }*/
+/* .singlePageProDesc {
+            width: 40%;
+        }*/
+@media screen and (min-width: 415px) {
+    .product-image {
+        object-fit: cover
+    }
+
+    .headerBackgroundSize {
+        background-size: 100%
+    }
+
+    .ProductTitleShopCart {
+        width: 291px;
+    }
+
+    .ProductPriceShopCart {
+        width: 110px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    /* .headerSlider{
+                height: 730px
+            }
+
+            .headerSliderImg {
+                height: 100%
+            }*/
+    .headerBackgroundSize {
+        background-size: 90%
+    }
+
+    #describtion p {
+        font-size: 16px;
+        line-height: 36px;
+    }
+
+    .blogText p {
+        font-size: 14px;
+        line-height: 33.6px;
+    }
+
+    .papularBlogSingle {
+        width: 246px
+    }
+
+    /*.shopCardTitle {
+                width: 283px;
+                display: inline-block
+            }*/
+
+    .listShopCartTitle {
+        width: 195px;
+        display: inline-block
+    }
+
+    .productImgSinglePage {
+        height: 522px;
+    }
+
+    .imgFavoriteSmPanel {
+        width: 100%;
+    }
+
+    .detFavoriteSmPanel {
+        margin-bottom: 10px;
+    }
+
+        /*.singlePageProDesc {
+                width: 10%;
+            }*/
+
+        .detFavoriteSmPanel .priceFavoriteSmPanel {
+            /*margin: 0;*/
+            margin-bottom: 0
+        }
+
+    .deleteFavoriteSmPanel {
+        width: 89px;
+        height: 38px;
+    }
+
+    .seeProdctFavoriteSmPanel {
+        height: 38px;
+    }
+
+    .ProductTitleShopCart {
+        width: 291px;
+    }
+
+    .ProductPriceShopCart {
+        width: 110px;
+    }
+}
+
+@media screen and (min-width: 1537px) {
+    .headerBackgroundSize {
+        background-size: 80%
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .headerBackgroundSize {
+        background-size: 70%
+    }
+}
+
+@media screen and (min-width: 2200px) {
+    .headerBackgroundSize {
+        background-size: 60%
+    }
+}
+
+.blogCard:hover {
+    /* background-color:#252525;
+            opacity:0.8*/
+    background: linear-gradient(136deg,rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3));
+    -webkit-backdrop-filter: blur(21px);
+    backdrop-filter: blur(21px);
+}
+
+.shoppingBag .shopBox {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(70px);
+    z-index: 99999999999
+}
+
+.shoppingBag:hover .shopBox {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(5px)
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+.hand-cursor{
+    cursor:pointer
+}

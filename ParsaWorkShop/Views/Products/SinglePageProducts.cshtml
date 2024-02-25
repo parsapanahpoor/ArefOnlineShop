@@ -15,13 +15,13 @@
 <link rel="stylesheet" href="/ArefSet/src/assets/styles/productSinglePage.css" />
 <style>
     /*.activeColors {
-                                                    background-image: url(../images/landing/download.svg);
-                                                    background-size: 10px;
-                                                    content: "";
-                                                    background-repeat: no-repeat;
-                                                    background-size: 14px;
-                                                    background-position: 50%;
-                                                }*/
+                                                                                background-image: url(../images/landing/download.svg);
+                                                                                background-size: 10px;
+                                                                                content: "";
+                                                                                background-repeat: no-repeat;
+                                                                                background-size: 14px;
+                                                                                background-position: 50%;
+                                                                            }*/
 
     .color > input:checked ~ .content {
         border: 2px solid #000;
@@ -595,6 +595,14 @@
                             </a>
                         }
                     </div>
+                    <div class="flex items-center justify-center gap-2 lg:px-8 px-11 pl-0 " onclick="toggleModal()">
+                        <img class="w-[20px]"
+                             src="~/ArefSet/src/assets/images/landing/book.png"
+                             alt="size-helper" />
+                        <p class="text-[12px] lg:text-[16px] text-[#7E8285]">
+                            راهنمای سایز
+                        </p>
+                    </div>
 
                 </div>
             </form>
@@ -622,7 +630,7 @@
                     <path d="M14.1667 8.54175H5.83337C5.49171 8.54175 5.20837 8.25841 5.20837 7.91675C5.20837 7.57508 5.49171 7.29175 5.83337 7.29175H14.1667C14.5084 7.29175 14.7917 7.57508 14.7917 7.91675C14.7917 8.25841 14.5084 8.54175 14.1667 8.54175Z" fill="#252525" />
                     <path d="M11.6667 12.7083H5.83337C5.49171 12.7083 5.20837 12.4249 5.20837 12.0833C5.20837 11.7416 5.49171 11.4583 5.83337 11.4583H11.6667C12.0084 11.4583 12.2917 11.7416 12.2917 12.0833C12.2917 12.4249 12.0084 12.7083 11.6667 12.7083Z" fill="#252525" />
                 </svg>
-                مشخصات
+                توضیحات
             </label>
                 @*}*@
 
@@ -642,167 +650,167 @@
             <div class="tab-panels">
 
 
-                    <section id="details" class="tab-panel border-2 text-right  !p-4 !px-6">
-        <p class="text-[16px] lg:text-[22px] my-2">
-            <strong class="text-[18px] lg:text-[22px] leading-[34.1px]" style="font-family: yekanBakhtBlack"> مشخصات </strong>
-            @*<span class="text-[18px] lg:text-[22px] leading-[34.1px]">محصول</span>*@
-        </p>
-        @*<p class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] my-2"> @Model.ProductTitle</p>*@
-        <div class="flex items-start lg:flex lg:items-center w-full h-96 ">
-            <div class="w-full w-auto-lg grow-1">
-                @*@if (Model.ProductFeatures != null && Model.ProductFeatures.Any())
-                {*@
-                    @foreach (var item in Model.ProductFeatures)
-                    {
-
-                        <div class="w-full flex last ">
-
-                            <div style="width:100px;" class="w-[50px]">
-
-                                <p class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] ml-4 text-body-1 color-500 py-2 py-3-lg p-2-lg shrink-0 ">@item.FeatureTitle</p>
-                            </div>
-                            <div class="py-2 py-3-lg grow-1">
-                                <p class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px] flex ai-center w-full text-body-1 color-900 break-words">
-                                    @item.FeatureValue
-                                    ‌
-                                </p>
-                            </div>
-                        </div>
-
-                    }
-                @*}*@
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section id="idea" class="tab-panel border-2 text-right  !p-4 !px-6">
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            <div id="commentArticle" class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
-                <div class="flex flex-col justify-start items-start">
-                    <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
-                        ارسال یک دیدگاه
+                <section id="details" class="tab-panel border-2 text-right  !p-4 !px-6">
+                    <p class="text-[16px] lg:text-[22px] my-2">
+                                @*<strong class="text-[18px] lg:text-[22px] leading-[34.1px]" style="font-family: yekanBakhtBlack"> مشخصات </strong>*@
+                                @*<span class="text-[18px] lg:text-[22px] leading-[34.1px]">محصول</span>*@
                     </p>
-                </div>
+                            @*<p class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] my-2"> @Model.ProductTitle</p>*@
+                    <div class="flex items-start lg:flex lg:items-center w-full h-96 ">
+                        <div class="w-full w-auto-lg grow-1">
+                                    @*@if (Model.ProductFeatures != null && Model.ProductFeatures.Any())
+                                        {*@
+                                    @foreach (var item in Model.ProductFeatures)
+                                    {
 
-                <div class="w-full mt-5 lg:mt-10">
-                    <form asp-action="AddCommentForProducts" asp-controller="Products" asp-area="" method="post" class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
+                                <div class="w-full flex last ">
 
-                        <input name="ParentId" id="ParentId" type="hidden" value="" />
-                        <input name="BlogId" type="hidden" value="@Model.ProdcutId" />
+                                    <div style="width:100px;" class="w-[50px]">
 
-                        <div class="col-span-1 md:col-span-2 lg:col-span-2 h-[54px]">
-                            <input type="text" readonly value="@User.Identity.Name" class="w-full h-full focus:outline-none px-3 bg-white rounded text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="نام و نام خانوادگی">
-                        </div>
-                        <div class="col-span-1 md:col-span-2 lg:col-span-2">
-                            <textarea name="CommentBody" class="w-full focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="دیدگاه خود را بنویسید" id="TextArea" rows="4"></textarea>
-                        </div>
-                        <div class="w-full lg:mt-7 col-span-1 md:col-span-2 lg:col-span-2 flex flex-col justify-center items-start lg:flex lg:flex-row lg:justify-between lg:items-center">
-
-                            <button class="bg-[#252525] mt-3 lg:mt-0 text-white text-[14px] w-[119px] h-[40px] lg:h-[50px]" type="submit">
-                                ارسال دیدگاه
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
-                <div class="flex flex-col justify-start items-start">
-
-                    <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
-                        برای درج نظر باید وارد وب سایت گردید
-                    </p>
-
-                </div>
-            </div>
-        }
-
-        @if (Model.Comments != null && Model.Comments.Any())
-        {
-            <div class="w-full my-6">
-                @foreach (var comment in Model.Comments.Where(p => !p.ParentId.HasValue))
-                {
-                    <div class="w-full pb-2  border-b-[1px] mb-7">
-
-                        <!--comment card -->
-                <div class="w-full p-2 mb-3">
-                            <div class="flex items-start justify-between">
-                                <div class="flex items-center justify-center gap-2">
-                                    <div class="w-[30px] h-[30px] lg:w-[51px] lg:h-[51px] rounded-full">
-                                        <img class="w-full h-full object-cover" src="/Images/UserAvatar/@comment.Users.UserAvatar" alt="">
+                                        <p class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] ml-4 text-body-1 color-500 py-2 py-3-lg p-2-lg shrink-0 ">@item.FeatureTitle</p>
                                     </div>
-                                    <div class="">
-                                        <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
-                                            @comment.Users.UserName
-                                        </p>
-                                        <p class="text-[#565656] text-[10px] leading-[18.74px] lg:text-[12px] lg:leading-[22.49px]" style="font-family: yekanBakhtLight">
-                                            @comment.CreateDate.ToShamsi()
+                                    <div class="py-2 py-3-lg grow-1">
+                                        <p class="text-[#252525] text-[12px] lg:text-[16px] leading-[24.8px] flex ai-center w-full text-body-1 color-900 break-words">
+                                                    @item.FeatureValue
+                                            ‌
                                         </p>
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-center gap-1">
-                                    <img class="w-[10px] h-[10px] lg:w-[12px] lg:h-[12px] object-cover" src="/ArefSet/src/assets/images/landing/Group 1.png" alt="">
-                                    <p onclick="ReplyComment(@comment.CommentId)" class="text-[#89939F] text-[10px] leading-[18.74px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
-                                        پاسخ
-                                    </p>
-                                </div>
-                            </div>
+                                    }
+                                    @*}*@
 
-                            <div class="lg:mr-[51px] my-2">
-                                <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
-                                    @comment.CommentBody
-                                </p>
-                            </div>
                         </div>
 
-                        @if (Model.Comments.Any(s => s.ParentId == comment.CommentId))
-                        {
-                            foreach (var answer in Model.Comments.Where(s => s.ParentId == comment.CommentId))
+                    </div>
+
+                </section>
+
+
+                <section id="idea" class="tab-panel border-2 text-right  !p-4 !px-6">
+
+                            @if (User.Identity.IsAuthenticated)
                             {
-                                <!--answer card -->
-                                <div class="lg:w-[94.5%] bg-[#EDEDED] p-2 mr-[30px] lg:mr-[51px] rounded mb-3">
-                                    <div class="flex items-start justify-between">
-                                        <div class="flex items-center justify-center gap-2">
-                                            <div class="w-[30px] h-[30px] lg:w-[51px] lg:h-[51px] rounded-full">
-                                                <img class="w-full h-full object-cover" src="/Images/UserAvatar/@answer.Users.UserAvatar" alt="">
+                        <div id="commentArticle" class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
+                            <div class="flex flex-col justify-start items-start">
+                                <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
+                                    ارسال یک دیدگاه
+                                </p>
+                            </div>
+
+                            <div class="w-full mt-5 lg:mt-10">
+                                <form asp-action="AddCommentForProducts" asp-controller="Products" asp-area="" method="post" class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
+
+                                    <input name="ParentId" id="ParentId" type="hidden" value="" />
+                                    <input name="BlogId" type="hidden" value="@Model.ProdcutId" />
+
+                                    <div class="col-span-1 md:col-span-2 lg:col-span-2 h-[54px]">
+                                        <input type="text" readonly value="@User.Identity.Name" class="w-full h-full focus:outline-none px-3 bg-white rounded text-[12px] leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="نام و نام خانوادگی">
+                                    </div>
+                                    <div class="col-span-1 md:col-span-2 lg:col-span-2">
+                                        <textarea name="CommentBody" class="w-full focus:outline-none px-3 text-[12px] p-3 leading-[21.7px] lg:text-[13px] lg:leading-[24.8px]" placeholder="دیدگاه خود را بنویسید" id="TextArea" rows="4"></textarea>
+                                    </div>
+                                    <div class="w-full lg:mt-7 col-span-1 md:col-span-2 lg:col-span-2 flex flex-col justify-center items-start lg:flex lg:flex-row lg:justify-between lg:items-center">
+
+                                        <button class="bg-[#252525] mt-3 lg:mt-0 text-white text-[14px] w-[119px] h-[40px] lg:h-[50px]" type="submit">
+                                            ارسال دیدگاه
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                            }
+                            else
+                            {
+                        <div class="w-full h-auto p-3 lg:p-7 mt-1 bg-[#EDEDED] rounded flex flex-col items-start">
+                            <div class="flex flex-col justify-start items-start">
+
+                                <p class="text-[#252525] text-[14px] leading-[21.7px] lg:text-[16px] lg:leading-[24.8px]" style="font-family: yekanBakhtRegular">
+                                    برای درج نظر باید وارد وب سایت گردید
+                                </p>
+
+                            </div>
+                        </div>
+                            }
+
+                            @if (Model.Comments != null && Model.Comments.Any())
+                            {
+                        <div class="w-full my-6">
+                                    @foreach (var comment in Model.Comments.Where(p => !p.ParentId.HasValue))
+                                    {
+                                <div class="w-full pb-2  border-b-[1px] mb-7">
+
+                                    <!--comment card -->
+                            <div class="w-full p-2 mb-3">
+                                        <div class="flex items-start justify-between">
+                                            <div class="flex items-center justify-center gap-2">
+                                                <div class="w-[30px] h-[30px] lg:w-[51px] lg:h-[51px] rounded-full">
+                                                    <img class="w-full h-full object-cover" src="/Images/UserAvatar/@comment.Users.UserAvatar" alt="">
+                                                </div>
+                                                <div class="">
+                                                    <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                                                @comment.Users.UserName
+                                                    </p>
+                                                    <p class="text-[#565656] text-[10px] leading-[18.74px] lg:text-[12px] lg:leading-[22.49px]" style="font-family: yekanBakhtLight">
+                                                                @comment.CreateDate.ToShamsi()
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="">
-                                                <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
-                                                    @answer.Users.UserName
-                                                </p>
-                                                <p class="text-[#565656] text-[10px] leading-[18.74px] lg:text-[12px] lg:leading-[22.49px]" style="font-family: yekanBakhtLight">
-                                                    @answer.CreateDate.ToShamsi()
+
+                                            <div class="flex items-center justify-center gap-1">
+                                                <img class="w-[10px] h-[10px] lg:w-[12px] lg:h-[12px] object-cover" src="/ArefSet/src/assets/images/landing/Group 1.png" alt="">
+                                                <p onclick="ReplyComment(@comment.CommentId)" class="text-[#89939F] text-[10px] leading-[18.74px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                                    پاسخ
                                                 </p>
                                             </div>
                                         </div>
 
+                                        <div class="lg:mr-[51px] my-2">
+                                            <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                                        @comment.CommentBody
+                                            </p>
+                                        </div>
                                     </div>
 
-                                    <div class="lg:mr-[51px] my-2">
-                                        <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
-                                            @answer.CommentBody
-                                        </p>
-                                    </div>
+                                            @if (Model.Comments.Any(s => s.ParentId == comment.CommentId))
+                                            {
+                                                foreach (var answer in Model.Comments.Where(s => s.ParentId == comment.CommentId))
+                                                {
+                                            <!--answer card -->
+                                            <div class="lg:w-[94.5%] bg-[#EDEDED] p-2 mr-[30px] lg:mr-[51px] rounded mb-3">
+                                                <div class="flex items-start justify-between">
+                                                    <div class="flex items-center justify-center gap-2">
+                                                        <div class="w-[30px] h-[30px] lg:w-[51px] lg:h-[51px] rounded-full">
+                                                            <img class="w-full h-full object-cover" src="/Images/UserAvatar/@answer.Users.UserAvatar" alt="">
+                                                        </div>
+                                                        <div class="">
+                                                            <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                                                        @answer.Users.UserName
+                                                            </p>
+                                                            <p class="text-[#565656] text-[10px] leading-[18.74px] lg:text-[12px] lg:leading-[22.49px]" style="font-family: yekanBakhtLight">
+                                                                        @answer.CreateDate.ToShamsi()
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="lg:mr-[51px] my-2">
+                                                    <p class="text-[#565656] text-[12px] leading-[22.49px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                                                                @answer.CommentBody
+                                                    </p>
+                                                </div>
+                                            </div>
+                                                }
+                                            }
+
+
                                 </div>
+
+                                    }
+                        </div>
                             }
-                        }
-
-
-                    </div>
-
-                }
-            </div>
-        }
-    </section>
+                </section>
 
 
                         @*                <section id="describtion" class="tab-panel border-2 text-right text-[14px] lg:text-[16px] !text-[#494949] !leading-[26px] lg:!leading-[36px] !p-4 !px-6">
@@ -967,5 +975,45 @@
 
 
     </section>
+
 }
 
+@section modal{
+    <div
+      class="fixed z-10 overflow-y-auto top-0 w-full left-0 hidden"
+      id="modal"
+    >
+      <div
+        class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+      >
+        <div class="fixed inset-0 transition-opacity">
+          <div class="absolute inset-0 bg-gray-900 opacity-75" />
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+          >&#8203;</span
+        >
+        <div
+          class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-headline"
+          onclick="toggleModal()"
+        >
+        <div class="bg-gray-200 px-4 py-3 text-center cursor-pointer"  onclick="toggleModal()">
+            برای بستن اینجا را انتخاب کنید          
+        </div>
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <img src="http://127.0.0.1:5500/src/assets/images/landing/men.png" alt="size-clothes" class="w-full">
+          </div>
+         
+        </div>
+      </div>
+    </div>
+
+<script>
+    function toggleModal() {
+        document.getElementById('modal').classList.toggle('hidden')
+    }
+    </script>
+
+}
