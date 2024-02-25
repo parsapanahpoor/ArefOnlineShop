@@ -75,6 +75,10 @@ namespace Application.Services
             var checkSecondePic = _product.CheckThatHasProductaSecondePic(productGallery.ProductID); 
             if (checkSecondePic && productGallery.ShowForSecondeMainImage) { return false; }
 
+            //Check That Has Product a Size Helper
+            var checkSizeHelper = _product.CheckThatHasProductaSizeHelper(productGallery.ProductID);
+            if (checkSizeHelper && productGallery.SizeHelper) { return false; }
+
             productGallery.Title = (string.IsNullOrEmpty(productGallery.Title)) ? "-" : productGallery.Title;
 
             productGallery.ImageName = "no-photo.png";  //تصویر پیشفرض

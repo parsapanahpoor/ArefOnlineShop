@@ -22,6 +22,8 @@ namespace Domain.Models.Product
 
         public bool ShowForSecondeMainImage { get; set; }
 
+        public bool SizeHelper { get; set; }
+
         #region Relations
 
         public  Product Product { get; set; }

@@ -115,6 +115,18 @@
                             </div>
                         </div>
 
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"> تصویر راهنمای سایز </label>
+                                <select type="text" asp-for="SizeHelper" class="form-control" id="exampleInputEmail1">
+
+                                    <option selected="selected" value="@false"> خیر </option>
+                                    <option value="@true"> بله </option>
+
+                                </select>
+                            </div>
+                        </div>
+
                         <!-- /.card-body -->
 
                         <div class="card-footer">
@@ -155,6 +167,16 @@
                                             <div class="attachment-pushed">
 
                                                 <a href="#" class="btn btn-outline-success mt-2 mr-5">تصویر دوم محصول </a>
+
+                                                <!-- /.attachment-text -->
+                                            </div>
+                                        }
+
+                                        @if (item.SizeHelper)
+                                        {
+                                            <div class="attachment-pushed">
+
+                                                <a href="#" class="btn btn-outline-primary mt-2 mr-5">راهنمای سایز </a>
 
                                                 <!-- /.attachment-text -->
                                             </div>
