@@ -7,7 +7,7 @@ namespace Application.StaticTools
         #region Site
 
         public static string SiteFarsiName = "فروشگاه Aref";
-        public static string SiteAddress = "https://localhost:5001";
+        public static string SiteAddress = "https://arefset.com";
         public static string merchant = "804912ce-546d-4021-9f26-f36bced7f525";
 
         public static readonly string SiteLogo = "/content/images/site/logo/main/";
