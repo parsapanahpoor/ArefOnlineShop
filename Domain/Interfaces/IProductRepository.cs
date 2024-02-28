@@ -64,6 +64,9 @@ namespace Domain.Interfaces
         //Check That Has Product a Seconde Pic
         bool CheckThatHasProductaSecondePic(int productId);
 
+        //Check That Has Product a Size Helper
+        bool CheckThatHasProductaSizeHelper(int productId);
+
         #endregion
 
         #region Offer

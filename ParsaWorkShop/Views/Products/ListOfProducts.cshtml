@@ -626,6 +626,39 @@
 
                 @if (colors != null && colors.Any())
                 {
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                                        <span> رنگ</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                                <path d="M6 9l6 6 6-6"></path>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <div class="flex items-center justify-center gap-2"></div>
+                                    <div class="switcher flex items-center justify-start gap-2 flex-wrap">
+
+                                        @foreach (var color in colors)
+                                        {
+
+                                            if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
+                                            {
+                                                <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 active" value="@color.ColorId" style="background-color: @color.ColorTitle"
+                                                @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "checked='checked'" : " ")>
+
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3" value="@color.ColorId" style="background-color: @color.ColorTitle">
+                                            }
+
+                                        }
+                                    </div>
+                                </details>
+                            </div>
+
+
                     <div class="py-5">
                         <details class="group">
                             <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
@@ -639,22 +672,6 @@
                             <div class="flex items-center justify-center gap-2"></div>
                             <div class="switcher flex items-center justify-start gap-2 flex-wrap">
 
-                                @foreach (var color in colors)
-                                {
-
-                                    if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
-                                    {
-
-                                                <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 active" value="@color.ColorId" style="background-color: @color.ColorTitle"
-                                                @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "checked='checked'" : " ")>
-
-                                    }
-                                    else
-                                    {
-                                        <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 " value="@color.ColorId" style="background-color: @color.ColorTitle">
-                                    }
-
-                                }
 
                             </div>
                         </details>

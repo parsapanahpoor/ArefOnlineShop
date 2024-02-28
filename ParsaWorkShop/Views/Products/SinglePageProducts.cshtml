@@ -1002,9 +1002,12 @@
         <div class="bg-gray-200 px-4 py-3 text-center cursor-pointer"  onclick="toggleModal()">
             برای بستن اینجا را انتخاب کنید          
         </div>
-          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <img src="http://127.0.0.1:5500/src/assets/images/landing/men.png" alt="size-clothes" class="w-full">
+        @if (Model.ProductGallery.Any(p=> p.SizeHelper))
+            {
+                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <img src="@PathTools.ProductGalleryPath@Model.ProductGallery.Where(p=> p.SizeHelper).Select(p=> p.ImageName).FirstOrDefault()" alt="size-clothes" class="w-full">
           </div>
+            }
          
         </div>
       </div>

@@ -81,6 +81,16 @@ namespace Data.Repository
                                  .Any();
         }
 
+        //Check That Has Product a Size Helper
+        public bool CheckThatHasProductaSizeHelper(int productId)
+        {
+            return _context.ProductGallery
+                                 .AsNoTracking()
+                                 .Where(p => p.ProductID == productId && 
+                                        p.SizeHelper)
+                                 .Any();
+        }
+
         public void DeleteProductFeature(ProductFeature feature)
         {
             _context.ProductFeature.Remove(feature);
