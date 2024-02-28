@@ -188,7 +188,7 @@ namespace Application.Services
 
             List<OrderDetails> orderDetails = _orderService.GetAllOrderDetailsByOrderID(order.OrderId);
 
-            int Amount = 250000;
+            int Amount = 0;
 
             foreach (var item in orderDetails)
             {

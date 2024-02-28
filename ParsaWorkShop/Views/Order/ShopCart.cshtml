@@ -186,7 +186,7 @@
                             هزینه ی ارسال :
                         </p>
                         <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
-                            250,000 ریال
+                             پرداخت در محل 
                         </p>
                     </div>
                     <ul class="grid grid-cols-2 lg:grid-cols-1 gap-2 lg:p-auto ">
@@ -238,7 +238,7 @@
                         <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
                             @{
                                 var orderPrice = Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count);
-                                var total = orderPrice + 250000;
+                                var total = orderPrice + 0;
                             }
                             
                             @total.ToString("#,0") ریال
