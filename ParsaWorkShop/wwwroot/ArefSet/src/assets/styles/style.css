@@ -1,4 +1,11 @@
 @font-face {
+    font-family: 'Yekan Bakh FaNum';
+    src: url('../fonts/yekan/YekanBakhFaNum-Regular.woff2') format('woff2'), url('../fonts/yekan/YekanBakhFaNum-Regular.woff') format('woff'), url('../fonts/yekan/YekanBakhFaNum-Regular.ttf') format('truetype'), url('../fonts/yekan/YekanBakhFaNum-Regular.svg#YekanBakhFaNum-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
     font-family: iransans;
     src: url("../fonts/IRANSansWeb_Light.woff2") format("woff2");
     src: url("../fonts/IRANSansWeb_Light.woff") format("woff");
@@ -64,7 +71,7 @@
 body,
 html,
 * {
-    font-family: yekanBakhtRegular, yekanBakhtLight, yekanBakhtExtraBold, yekanBakhtSemiBold, yekanBakhtThin, "iransans", "dana";
+    font-family: 'Yekan Bakh FaNum',yekanBakhtRegular, yekanBakhtLight, yekanBakhtExtraBold, yekanBakhtSemiBold, yekanBakhtThin, "iransans", "dana";
     scroll-behavior: smooth;
     /* font-family: "yekanBakht"; */
 }
