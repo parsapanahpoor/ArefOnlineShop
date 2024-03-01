@@ -1,0 +1,180 @@
+﻿@using Application.Convertors
+@model Domain.ViewModels.SiteSide.Order.FinalInvoiceSiteSideDTO
+
+@{
+    ViewData["Title"] = "فاکتور نهایی";
+}
+
+@section Styles
+{
+    <link href="/ArefSet/dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
+}
+
+@section Scripts {
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+
+            $(document).on('click', '.btn_print', function (event) {
+                event.preventDefault();
+
+                console.log("hello");
+
+                //credit : https://ekoopmans.github.io/html2pdf.js
+
+                var element = document.getElementById('container_content');
+
+                //easy
+                html2pdf().from(element).save();
+
+            });
+        });
+    </script>
+
+}
+
+<div class="mx-auto">
+
+    <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="#" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                        </svg>
+                        خانه
+                    </a>
+                </li>
+
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">نتیجه ی درگاه پرداخت</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    </section>
+
+    <div role="alert" style="margin: 50px;">
+        <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
+            پرداخت با موفقیت انجام شد
+        </div>
+        <div class="border border-t-0 border-green-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+            <p>  کد پیگیری : @ViewBag.refId</p>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="bg-[#252525] btn_print text-[#fff] w-[157px] inline-flex items-center justify-center gap-2 py-2 lg:py-3 text-[10px]">
+            <span class="inline-block"> مشاهده و دانلود فاکتور </span>
+
+            <img class="w-[16px]" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
+        </div>
+    </div>
+
+    <div id="container_content">
+
+        <div role="alert" style="margin: 50px;">
+            <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
+                محصولات سفارشی
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">کدمحصول</th>
+                        <th scope="col">نام محصول</th>
+                        <th scope="col">قیمت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @(Model.OrderDetails != null && Model.OrderDetails.Any())
+                        {
+                        @foreach (var product in Model.OrderDetails)
+                        {
+
+                            <td>@product.ProductID</td>
+                            <td>@product.Product.ProductTitle</td>
+                            <td>@product.Price.ToString("#,000") ریال </td>
+
+                        }
+                        }
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div role="alert" style="margin: 50px;">
+            <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
+                اطلاعات مشتری
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">نام کاربری</th>
+                        <th scope="col">موبایل</th>
+                        <th scope="col">ایمیل</th>
+                        <th scope="col">آدرس</th>
+                        <th scope="col">کدپستی</th>
+                        <th scope="col">استان</th>
+                        <th scope="col">شهر</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>@Model.UserInfo.UserName</td>
+                        <td>@Model.UserInfo.PhoneNumber</td>
+                        <td>@Model.UserInfo.Email</td>
+                        <td>@Model.Locations.LocationAddress</td>
+                        <td>@Model.Locations.PostalCode</td>
+                        <td>@Model.Locations.StateName</td>
+                        <td>@Model.Locations.CityName</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div role="alert" style="margin: 50px;">
+            <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
+                اطلاعات خرید
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">قیمت کل</th>
+                        <th scope="col">تاریخ ثبت سفارش </th>
+                        <th scope="col">کدپیگیری </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>@Model.Order.Price.Value.ToString("#,000") ریال</td>
+                        <td>@Model.Order.CreateDate.ToShamsi()</td>
+                        <td>@ViewBag.refId </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

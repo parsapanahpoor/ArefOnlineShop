@@ -3,11 +3,13 @@ using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using Domain.ViewModels.UserPanel.Orders;
+using Microsoft.Extensions.Primitives;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Interfaces
@@ -16,7 +18,12 @@ namespace Application.Interfaces
     {
         #region Order
 
+        Task<FinalInvoiceSiteSideDTO?> ShowFinalInvoice(int orderId,
+                                                                    CancellationToken cancellationChange);
+
         Task SendSMSForSubmitedOrder(string? orderId);
+
+        Task SendSMSForUserAboutInvoice(int orderId, string refId, string mobile);
 
         bool IsExistOrderFromUserFromToday(int userid);
         Orders GetOrderForShopCart(int userid);

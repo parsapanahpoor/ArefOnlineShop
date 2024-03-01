@@ -440,6 +440,7 @@ namespace Application.Services
                 IsAdmin = false,
                 UserAvatar = "Defult.jpg",
                 RegisterDate = DateTime.Now,
+                BirthDate = register.BirthDay
             };
 
             await _context.Users.AddAsync(User);

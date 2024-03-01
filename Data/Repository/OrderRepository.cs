@@ -1,11 +1,13 @@
 ﻿using Data.Context;
 using Domain.Interfaces;
 using Domain.Models.Order;
+using Domain.Models.Product;
 using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using Domain.ViewModels.UserPanel.Orders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Data.Repository
@@ -79,6 +82,27 @@ namespace Data.Repository
                                                      .FirstOrDefault(s=> s.OrderId == orderId)
                                  })
                                  .ToListAsync();
+        }
+
+        public async Task<FinalInvoiceSiteSideDTO?> ShowFinalInvoice(Orders order,
+                                                                    CancellationToken cancellationChange)
+        {
+            return new FinalInvoiceSiteSideDTO()
+            {
+                Locations = await _context.Locations
+                                          .AsNoTracking()
+                                          .FirstOrDefaultAsync(p=> p.LocationID == order.LocationID),
+                Order = order,
+                OrderDetails = await _context.OrderDetails
+                                             .Include(p=> p.Product)
+                                             .ThenInclude(p=> p.ProductSelectedColors)
+                                             .AsNoTracking()
+                                             .Where(p=> p.OrderID == order.OrderId)
+                                             .ToListAsync(),
+                UserInfo = await _context.Users
+                                         .AsNoTracking()
+                                         .FirstOrDefaultAsync(p=> p.UserId == order.Userid)
+            };
         }
 
         public List<Orders> GetAllOrdersForShowInAdminPanel()

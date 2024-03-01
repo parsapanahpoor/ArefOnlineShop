@@ -3,10 +3,12 @@ using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using Domain.ViewModels.UserPanel.Orders;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Domain.Interfaces
@@ -46,6 +48,9 @@ namespace Domain.Interfaces
 
         //Fill List Of User Orders Details User Side View Model
         Task<List<ListOfUserOrdersDetailsUserSideViewModel>> FillListOfUserOrdersDetailsUserSideViewModel(int orderId);
+
+        Task<FinalInvoiceSiteSideDTO?> ShowFinalInvoice(Orders order,
+                                                                    CancellationToken cancellationChange);
 
         //Fill Invoice Site Side ViewModel
         Task<InvoiceSiteSideViewModel> FillInvoiceSiteSideViewModel(int userId);
