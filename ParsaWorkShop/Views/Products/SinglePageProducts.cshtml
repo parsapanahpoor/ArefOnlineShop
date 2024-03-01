@@ -15,13 +15,13 @@
 <link rel="stylesheet" href="/ArefSet/src/assets/styles/productSinglePage.css" />
 <style>
     /*.activeColors {
-                                                                                background-image: url(../images/landing/download.svg);
-                                                                                background-size: 10px;
-                                                                                content: "";
-                                                                                background-repeat: no-repeat;
-                                                                                background-size: 14px;
-                                                                                background-position: 50%;
-                                                                            }*/
+                                                                                    background-image: url(../images/landing/download.svg);
+                                                                                    background-size: 10px;
+                                                                                    content: "";
+                                                                                    background-repeat: no-repeat;
+                                                                                    background-size: 14px;
+                                                                                    background-position: 50%;
+                                                                                }*/
 
     .color > input:checked ~ .content {
         border: 2px solid #000;
@@ -325,7 +325,9 @@
             {
 
                 <div class=" hover:cursor-zoom-in  min-h-[380px] lg:w-[522px] lg:!h-[522px] relative overflow-hidden img-container productImgSinglePage">
-                    <img class="w-full block  transition-all" src="@PathTools.ProductPath@Model.ProductImageName" alt="@Model.ProductTitle" style="width: 100%; ">
+                    <span class="offer-card">25%</span>
+
+                    <img class="w-full block  transition-all" src="https://arefset.com/@PathTools.ProductPath@Model.ProductImageName" alt="@Model.ProductTitle" style="width: 100%; ">
                     @*<img class="w-full block  transition-all" src="/ArefSet/src/assets/images/landing/20.jpg" alt="" style="width: 100%; ">*@
 
 
@@ -345,7 +347,7 @@
                 @if (!string.IsNullOrEmpty(Model.ProductImageName))
                 {
                     <li class="w-[22%] h-full cursor-pointer overflow-hidden transition-all active">
-                        <img class="w-full" src="@PathTools.ProductPath@Model.ProductImageName" alt="">
+                        <img class="w-full" src="https://arefset.com/@PathTools.ProductPath@Model.ProductImageName" alt="">
 
                     </li>
                 }
@@ -979,44 +981,36 @@
 }
 
 @section modal{
-    <div
-      class="fixed z-10 overflow-y-auto top-0 w-full left-0 hidden"
-      id="modal"
-    >
-      <div
-        class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0"
-      >
+<div class="fixed z-10 overflow-y-auto top-0 w-full left-0 hidden"
+     id="modal">
+    <div class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
-          <div class="absolute inset-0 bg-gray-900 opacity-75" />
+            <div class="absolute inset-0 bg-gray-900 opacity-75" />
         </div>
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
-          >&#8203;</span
-        >
-        <div
-          class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-headline"
-          onclick="toggleModal()"
-        >
-        <div class="bg-gray-200 px-4 py-3 text-center cursor-pointer"  onclick="toggleModal()">
-            برای بستن اینجا را انتخاب کنید          
-        </div>
-        @if (Model.ProductGallery.Any(p=> p.SizeHelper))
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+        <div class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="modal-headline"
+             onclick="toggleModal()">
+            <div class="bg-gray-200 px-4 py-3 text-center cursor-pointer" onclick="toggleModal()">
+                برای بستن اینجا را انتخاب کنید
+            </div>
+            @if (Model.ProductGallery.Any(p=> p.SizeHelper))
             {
-                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <img src="@PathTools.ProductGalleryPath@Model.ProductGallery.Where(p=> p.SizeHelper).Select(p=> p.ImageName).FirstOrDefault()" alt="size-clothes" class="w-full">
-          </div>
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <img src="@PathTools.ProductGalleryPath@Model.ProductGallery.Where(p=> p.SizeHelper).Select(p=> p.ImageName).FirstOrDefault()" alt="size-clothes" class="w-full">
+            </div>
             }
-         
+
         </div>
-      </div>
     </div>
+</div>
 
 <script>
     function toggleModal() {
         document.getElementById('modal').classList.toggle('hidden')
     }
-    </script>
+</script>
 
 }

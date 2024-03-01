@@ -273,6 +273,19 @@
 .d-inline-block {
     display: inline-block;
 }
-.hand-cursor{
-    cursor:pointer
+
+.hand-cursor {
+    cursor: pointer
+}
+
+.offer-card {
+    position: absolute;
+    left: 1em;
+    margin-top: 1em;
+    padding: 4px 12px 4px 12px;
+    background: #D92626;
+    color: #fff;
+    border-radius: 45%;
+    color: #fff;
+    z-index: 2;
 }

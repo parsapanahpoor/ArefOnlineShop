@@ -5177,3 +5177,15 @@ select {
         position: fixed;
     }
 }
+.offer-card-more {
+    position: absolute;
+    left: 1em;
+    bottom: 1em;
+    margin-top: 1em;
+    padding: 4px 12px 4px 12px;
+    background: #D92626;
+    color: #fff;
+    border-radius: 45%;
+    color: #fff;
+    z-index: 2;
+}

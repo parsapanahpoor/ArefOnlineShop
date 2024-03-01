@@ -23,45 +23,65 @@
 @section Styles
 {
 
-    <!-- Main CSS File -->
-    <link href="/ArefSet/dist/output.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
-    <link rel="stylesheet" href="/ArefSet/src/assets/styles/productList.css" />
+<!-- Main CSS File -->
+<link href="/ArefSet/dist/output.css" rel="stylesheet" />
+<link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
+<link rel="stylesheet" href="/ArefSet/src/assets/styles/productList.css" />
 
-    <style>
-        .filter-price {
-            width: 300px;
+<style>
+    .filter-price {
+        width: 300px;
+        border: 0;
+        padding: 0;
+        margin: 15px auto 0 auto;
+    }
+
+    .price-title {
+        position: relative;
+        color: #252525;
+        font-size: 14px;
+        line-height: 1.2em;
+        font-weight: 400;
+    }
+
+    .price-field {
+        position: relative;
+        width: 100%;
+        height: 36px;
+        box-sizing: border-box;
+        background: rgba(248, 247, 244, 0.2);
+        padding-top: 15px;
+        padding-left: 16px;
+        border-radius: 3px;
+    }
+
+        .price-field input[type="range"] {
+            position: absolute;
+        }
+
+        /* Reset style for input range */
+
+        .price-field input[type="range"] {
+            width: 290px;
+            height: 2px;
             border: 0;
-            padding: 0;
-            margin: 15px auto 0 auto;
-        }
-
-        .price-title {
-            position: relative;
-            color: #252525;
-            font-size: 14px;
-            line-height: 1.2em;
-            font-weight: 400;
-        }
-
-        .price-field {
-            position: relative;
-            width: 100%;
-            height: 36px;
+            outline: 0;
             box-sizing: border-box;
-            background: rgba(248, 247, 244, 0.2);
-            padding-top: 15px;
-            padding-left: 16px;
-            border-radius: 3px;
+            border-radius: 5px;
+            pointer-events: none;
+            -webkit-appearance: none;
         }
 
-            .price-field input[type="range"] {
-                position: absolute;
+            .price-field input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
             }
 
-            /* Reset style for input range */
+            .price-field input[type="range"]:active,
+            .price-field input[type="range"]:focus {
+                outline: 0;
+            }
 
-            .price-field input[type="range"] {
+            .price-field input[type="range"]::-ms-track {
                 width: 290px;
                 height: 2px;
                 border: 0;
@@ -69,406 +89,386 @@
                 box-sizing: border-box;
                 border-radius: 5px;
                 pointer-events: none;
-                -webkit-appearance: none;
+                background: transparent;
+                border-color: transparent;
+                color: transparent;
+                border-radius: 5px;
             }
 
-                .price-field input[type="range"]::-webkit-slider-thumb {
-                    -webkit-appearance: none;
-                }
+            /* Style toddler input range */
 
-                .price-field input[type="range"]:active,
-                .price-field input[type="range"]:focus {
-                    outline: 0;
-                }
+            .price-field input[type="range"]::-webkit-slider-thumb {
+                /* WebKit/Blink */
+                position: relative;
+                -webkit-appearance: none;
+                margin: 0;
+                border: 0;
+                outline: 0;
+                border-radius: 50%;
+                height: 10px;
+                width: 10px;
+                margin-top: -4px;
+                background-color: #252525;
+                cursor: pointer;
+                cursor: pointer;
+                pointer-events: all;
+                z-index: 100;
+            }
 
-                .price-field input[type="range"]::-ms-track {
-                    width: 290px;
-                    height: 2px;
-                    border: 0;
-                    outline: 0;
-                    box-sizing: border-box;
-                    border-radius: 5px;
-                    pointer-events: none;
-                    background: transparent;
-                    border-color: transparent;
-                    color: transparent;
-                    border-radius: 5px;
-                }
+            .price-field input[type="range"]::-moz-range-thumb {
+                /* Firefox */
+                position: relative;
+                appearance: none;
+                margin: 0;
+                border: 0;
+                outline: 0;
+                border-radius: 50%;
+                height: 10px;
+                width: 10px;
+                margin-top: -5px;
+                background-color: #252525;
+                cursor: pointer;
+                cursor: pointer;
+                pointer-events: all;
+                z-index: 100;
+            }
 
-                /* Style toddler input range */
+            .price-field input[type="range"]::-ms-thumb {
+                /* IE */
+                position: relative;
+                appearance: none;
+                margin: 0;
+                border: 0;
+                outline: 0;
+                border-radius: 50%;
+                height: 10px;
+                width: 10px;
+                margin-top: -5px;
+                background-color: #252525;
+                cursor: pointer;
+                cursor: pointer;
+                pointer-events: all;
+                z-index: 100;
+            }
 
-                .price-field input[type="range"]::-webkit-slider-thumb {
-                    /* WebKit/Blink */
-                    position: relative;
-                    -webkit-appearance: none;
-                    margin: 0;
-                    border: 0;
-                    outline: 0;
-                    border-radius: 50%;
-                    height: 10px;
-                    width: 10px;
-                    margin-top: -4px;
-                    background-color: #252525;
-                    cursor: pointer;
-                    cursor: pointer;
-                    pointer-events: all;
-                    z-index: 100;
-                }
+            /* Style track input range */
 
-                .price-field input[type="range"]::-moz-range-thumb {
-                    /* Firefox */
-                    position: relative;
-                    appearance: none;
-                    margin: 0;
-                    border: 0;
-                    outline: 0;
-                    border-radius: 50%;
-                    height: 10px;
-                    width: 10px;
-                    margin-top: -5px;
-                    background-color: #252525;
-                    cursor: pointer;
-                    cursor: pointer;
-                    pointer-events: all;
-                    z-index: 100;
-                }
+            .price-field input[type="range"]::-webkit-slider-runnable-track {
+                /* WebKit/Blink */
+                width: 290px;
+                height: 2px;
+                cursor: pointer;
+                background: #252525;
+                border-radius: 5px;
+            }
 
-                .price-field input[type="range"]::-ms-thumb {
-                    /* IE */
-                    position: relative;
-                    appearance: none;
-                    margin: 0;
-                    border: 0;
-                    outline: 0;
-                    border-radius: 50%;
-                    height: 10px;
-                    width: 10px;
-                    margin-top: -5px;
-                    background-color: #252525;
-                    cursor: pointer;
-                    cursor: pointer;
-                    pointer-events: all;
-                    z-index: 100;
-                }
+            .price-field input[type="range"]::-moz-range-track {
+                /* Firefox */
+                width: 290px;
+                height: 2px;
+                cursor: pointer;
+                background: #252525;
+                border-radius: 5px;
+            }
 
-                /* Style track input range */
+            .price-field input[type="range"]::-ms-track {
+                /* IE */
+                width: 290px;
+                height: 2px;
+                cursor: pointer;
+                background: #252525;
+                border-radius: 5px;
+            }
 
-                .price-field input[type="range"]::-webkit-slider-runnable-track {
-                    /* WebKit/Blink */
-                    width: 290px;
-                    height: 2px;
-                    cursor: pointer;
-                    background: #252525;
-                    border-radius: 5px;
-                }
+    /* Style for input value block */
 
-                .price-field input[type="range"]::-moz-range-track {
-                    /* Firefox */
-                    width: 290px;
-                    height: 2px;
-                    cursor: pointer;
-                    background: #252525;
-                    border-radius: 5px;
-                }
+    .price-wrap {
+        display: flex;
+        justify-content: start;
+        color: #252525;
+        font-size: 14px;
+        line-height: 1.2em;
+        font-weight: 400;
+        margin: 15px 0 7px 0;
+    }
 
-                .price-field input[type="range"]::-ms-track {
-                    /* IE */
-                    width: 290px;
-                    height: 2px;
-                    cursor: pointer;
-                    background: #252525;
-                    border-radius: 5px;
-                }
+    .price-wrap-1,
+    .price-wrap-2 {
+        display: flex;
+    }
 
-        /* Style for input value block */
+    .price-title {
+        /* margin-right: 5px; */
+        backgrund: #d58e32;
+    }
 
-        .price-wrap {
-            display: flex;
-            justify-content: start;
-            color: #252525;
-            font-size: 14px;
-            line-height: 1.2em;
-            font-weight: 400;
-            margin: 15px 0 7px 0;
-        }
+    .price-wrap_line {
+        margin: 0 10px;
+    }
 
-        .price-wrap-1,
-        .price-wrap-2 {
-            display: flex;
-        }
+    .price-wrap #one,
+    .price-wrap #two {
+        width: 60px;
+        text-align: right;
+        margin: 0;
+        padding: 0;
+        margin-right: 2px;
+        background: 0;
+        border: 0;
+        outline: 0;
+        color: #252525;
+        font-family: "Karla", "Arial", sans-serif;
+        font-size: 14px;
+        line-height: 1.2em;
+        font-weight: 400;
+    }
 
-        .price-title {
-            /* margin-right: 5px; */
-            backgrund: #d58e32;
-        }
+    .price-wrap label {
+        text-align: right;
+    }
 
-        .price-wrap_line {
-            margin: 0 10px;
-        }
+    /* Style for active state input */
 
-        .price-wrap #one,
-        .price-wrap #two {
-            width: 60px;
-            text-align: right;
-            margin: 0;
-            padding: 0;
-            margin-right: 2px;
-            background: 0;
-            border: 0;
-            outline: 0;
-            color: #252525;
-            font-family: "Karla", "Arial", sans-serif;
-            font-size: 14px;
-            line-height: 1.2em;
-            font-weight: 400;
-        }
+    .price-field input[type="range"]:hover::-webkit-slider-thumb {
+        box-shadow: 0 0 0 0.5px #252525;
+        transition-duration: 0.3s;
+    }
 
-        .price-wrap label {
-            text-align: right;
-        }
-
-        /* Style for active state input */
-
-        .price-field input[type="range"]:hover::-webkit-slider-thumb {
-            box-shadow: 0 0 0 0.5px #252525;
-            transition-duration: 0.3s;
-        }
-
-        .price-field input[type="range"]:active::-webkit-slider-thumb {
-            box-shadow: 0 0 0 0.5px #252525;
-            transition-duration: 0.3s;
-        }
-    </style>
+    .price-field input[type="range"]:active::-webkit-slider-thumb {
+        box-shadow: 0 0 0 0.5px #252525;
+        transition-duration: 0.3s;
+    }
+</style>
 }
 
 @section Scripts
 {
 
-    <script src="/ArefSet/src/JS/landing.js"></script>
+<script src="/ArefSet/src/JS/landing.js"></script>
 
-    <script>
-        var colorButton = document.getElementsByClassName("theme-button");
-        var i;
-        for (i = 0; i < colorButton.length; i++) {
-            colorButton[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-            });
-        }
+<script>
+    var colorButton = document.getElementsByClassName("theme-button");
+    var i;
+    for (i = 0; i < colorButton.length; i++) {
+        colorButton[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+        });
+    }
 
-        //  price filter
+    //  price filter
 
-        var lowerSlider = document.querySelector("#lower");
-        var upperSlider = document.querySelector("#upper");
+    var lowerSlider = document.querySelector("#lower");
+    var upperSlider = document.querySelector("#upper");
 
-        document.querySelector("#two").value = upperSlider.value;
-        document.querySelector("#one").value = lowerSlider.value;
+    document.querySelector("#two").value = upperSlider.value;
+    document.querySelector("#one").value = lowerSlider.value;
 
-        var lowerVal = parseInt(lowerSlider.value);
-        var upperVal = parseInt(upperSlider.value);
+    var lowerVal = parseInt(lowerSlider.value);
+    var upperVal = parseInt(upperSlider.value);
 
-        upperSlider.oninput = function () {
-            lowerVal = parseInt(lowerSlider.value);
-            upperVal = parseInt(upperSlider.value);
+    upperSlider.oninput = function () {
+        lowerVal = parseInt(lowerSlider.value);
+        upperVal = parseInt(upperSlider.value);
 
-            if (upperVal < lowerVal + 4) {
-                lowerSlider.value = upperVal - 4;
-                if (lowerVal == lowerSlider.min) {
-                    upperSlider.value = 4;
-                }
+        if (upperVal < lowerVal + 4) {
+            lowerSlider.value = upperVal - 4;
+            if (lowerVal == lowerSlider.min) {
+                upperSlider.value = 4;
             }
-            document.querySelector("#two").value = this.value;
-        };
+        }
+        document.querySelector("#two").value = this.value;
+    };
 
-        lowerSlider.oninput = function () {
-            lowerVal = parseInt(lowerSlider.value);
-            upperVal = parseInt(upperSlider.value);
-            if (lowerVal > upperVal - 4) {
-                upperSlider.value = lowerVal + 4;
-                if (upperVal == upperSlider.max) {
-                    lowerSlider.value = parseInt(upperSlider.max) - 4;
-                }
+    lowerSlider.oninput = function () {
+        lowerVal = parseInt(lowerSlider.value);
+        upperVal = parseInt(upperSlider.value);
+        if (lowerVal > upperVal - 4) {
+            upperSlider.value = lowerVal + 4;
+            if (upperVal == upperSlider.max) {
+                lowerSlider.value = parseInt(upperSlider.max) - 4;
             }
-            document.querySelector("#one").value = this.value;
-        };
-    </script>
-    <script>
-        //const modal = document.querySelector(".modal");
-        //const showModal = document.querySelector(".showModal");
-        //const hideModal = document.querySelectorAll(".hideModal");
+        }
+        document.querySelector("#one").value = this.value;
+    };
+</script>
+<script>
+    //const modal = document.querySelector(".modal");
+    //const showModal = document.querySelector(".showModal");
+    //const hideModal = document.querySelectorAll(".hideModal");
 
-        //const menu = document.querySelector(".menu");
-        //const showMenu = document.querySelector(".showMenu");
-        //const hideMenu = document.querySelectorAll(".hideMenu");
+    //const menu = document.querySelector(".menu");
+    //const showMenu = document.querySelector(".showMenu");
+    //const hideMenu = document.querySelectorAll(".hideMenu");
 
-        const filterMenu = document.querySelector(".filterMenu");
-        const mainContent = document.querySelector(".mainContent");
-        const showFilterMenu = document.querySelector(".showFilterMenu");
-        const hideFilterMenu = document.querySelector(".hideFilterMenu");
-        const footer = document.querySelector(".footer");
-        const navbar = document.querySelector(".navbar");
-        const breadcrumb = document.querySelector(".breadcrumb");
+    const filterMenu = document.querySelector(".filterMenu");
+    const mainContent = document.querySelector(".mainContent");
+    const showFilterMenu = document.querySelector(".showFilterMenu");
+    const hideFilterMenu = document.querySelector(".hideFilterMenu");
+    const footer = document.querySelector(".footer");
+    const navbar = document.querySelector(".navbar");
+    const breadcrumb = document.querySelector(".breadcrumb");
 
-        //const body = document.querySelector("body");
+    //const body = document.querySelector("body");
 
-        // ------------------------ modal -------------------------------
+    // ------------------------ modal -------------------------------
 
-        //showModal.addEventListener("click", function () {
-        //    modal.classList.remove("hidden");
-        //    body.style.overflow = "hidden";
-        //});
+    //showModal.addEventListener("click", function () {
+    //    modal.classList.remove("hidden");
+    //    body.style.overflow = "hidden";
+    //});
 
-        //hideModal.forEach((close) => {
-        //    close.addEventListener("click", function () {
-        //        modal.classList.add("hidden");
-        //        body.style.overflow = "auto";
-        //    });
-        //});
+    //hideModal.forEach((close) => {
+    //    close.addEventListener("click", function () {
+    //        modal.classList.add("hidden");
+    //        body.style.overflow = "auto";
+    //    });
+    //});
 
-        // ------------------------Side Menu Responsive-------------------------------
+    // ------------------------Side Menu Responsive-------------------------------
 
-        //showMenu.addEventListener("click", function () {
-        //    // menu.classList.replace("-right-[70%]","right-0")
-        //    menu.classList.remove("opacity-0");
-        //    menu.classList.remove("invisible");
-        //    body.style.overflow = "hidden";
-        //});
-        //hideMenu.forEach((close) => {
-        //    close.addEventListener("click", function () {
-        //        // menu.classList.replace("right-0","-right-[70%]")
-        //        menu.classList.add("opacity-0");
-        //        menu.classList.add("invisible");
-        //        body.style.overflow = "auto";
-        //    });
-        //});
+    //showMenu.addEventListener("click", function () {
+    //    // menu.classList.replace("-right-[70%]","right-0")
+    //    menu.classList.remove("opacity-0");
+    //    menu.classList.remove("invisible");
+    //    body.style.overflow = "hidden";
+    //});
+    //hideMenu.forEach((close) => {
+    //    close.addEventListener("click", function () {
+    //        // menu.classList.replace("right-0","-right-[70%]")
+    //        menu.classList.add("opacity-0");
+    //        menu.classList.add("invisible");
+    //        body.style.overflow = "auto";
+    //    });
+    //});
 
-        //function openForm(evt, formName) {
-        //    var i, tabFormContent, tabFormLinks;
-        //    tabFormContent = document.getElementsByClassName("tabFormContent");
-        //    for (i = 0; i < tabFormContent.length; i++) {
-        //        tabFormContent[i].style.display = "none";
-        //    }
-        //    tabFormLinks = document.getElementsByClassName("tabFormLinks");
-        //    for (i = 0; i < tabFormLinks.length; i++) {
-        //        tabFormLinks[i].className = tabFormLinks[i].className.replace(
-        //            " activeFormItem",
-        //            ""
-        //        );
-        //    }
-        //    document.getElementById(formName).style.display = "block";
-        //    evt.currentTarget.className += " activeFormItem";
-        //}
+    //function openForm(evt, formName) {
+    //    var i, tabFormContent, tabFormLinks;
+    //    tabFormContent = document.getElementsByClassName("tabFormContent");
+    //    for (i = 0; i < tabFormContent.length; i++) {
+    //        tabFormContent[i].style.display = "none";
+    //    }
+    //    tabFormLinks = document.getElementsByClassName("tabFormLinks");
+    //    for (i = 0; i < tabFormLinks.length; i++) {
+    //        tabFormLinks[i].className = tabFormLinks[i].className.replace(
+    //            " activeFormItem",
+    //            ""
+    //        );
+    //    }
+    //    document.getElementById(formName).style.display = "block";
+    //    evt.currentTarget.className += " activeFormItem";
+    //}
 
-        //// Get the element with id="defaultOpen" and click on it
-        //document.getElementById("defaultFormOpen").click();
+    //// Get the element with id="defaultOpen" and click on it
+    //document.getElementById("defaultFormOpen").click();
 
-        // ------------------------Filter Side Menu Responsive-------------------------------
+    // ------------------------Filter Side Menu Responsive-------------------------------
 
-        showFilterMenu.addEventListener("click", function () {
-            // menu.classList.replace("-right-[70%]","right-0")
-            // menu.classList.remove("opacity-0");
-            // menu.classList.remove("invisible");
+    showFilterMenu.addEventListener("click", function () {
+        // menu.classList.replace("-right-[70%]","right-0")
+        // menu.classList.remove("opacity-0");
+        // menu.classList.remove("invisible");
 
-            mainContent.classList.add("hidden");
-            filterMenu.classList.remove("hidden");
-            footer.classList.add("hidden");
-            navbar.classList.add("hidden");
-            breadcrumb.classList.add("hidden");
+        mainContent.classList.add("hidden");
+        filterMenu.classList.remove("hidden");
+        footer.classList.add("hidden");
+        navbar.classList.add("hidden");
+        breadcrumb.classList.add("hidden");
 
-            // showFilterMenu
-            // hideFilterMenu
+        // showFilterMenu
+        // hideFilterMenu
 
-            // body.style.overflow = "hidden";
-            console.log("showFilterMenu")
+        // body.style.overflow = "hidden";
+        console.log("showFilterMenu")
+    });
+
+    // function hideFilterMenu() {
+    //   alert("hided")
+    // }
+
+    hideFilterMenu.addEventListener("click", function () {
+
+        console.log("hello");
+
+        filterMenu.classList.add("hidden");
+        // alert("hided")
+        mainContent.classList.remove("hidden");
+        footer.classList.remove("hidden");
+        navbar.classList.remove("hidden");
+        breadcrumb.classList.remove("hidden");
+        // menu.classList.replace("right-0","-right-[70%]")
+        // menu.classList.add("opacity-0");
+        // menu.classList.add("invisible");
+        // body.style.overflow = "auto";
+    });
+
+    // -----------------------------Like btn------------------------------
+
+    var likeBtn = document.getElementsByClassName("likeBtn");
+    var i;
+    for (i = 0; i < likeBtn.length; i++) {
+        likeBtn[i].addEventListener("click", function () {
+            this.classList.toggle("text-red-500");
         });
+    }
 
-        // function hideFilterMenu() {
-        //   alert("hided")
-        // }
+    //function myFunction(e) {
+    //    document.getElementById("Status").value = e.target.value;
+    //    $("#filtre").submit();
+    //}
 
-        hideFilterMenu.addEventListener("click", function () {
+    //$("#StatusOption").on('change', function () {
 
-            console.log("hello");
+    //    console.log(this.value);
 
-            filterMenu.classList.add("hidden");
-            // alert("hided")
-            mainContent.classList.remove("hidden");
-            footer.classList.remove("hidden");
-            navbar.classList.remove("hidden");
-            breadcrumb.classList.remove("hidden");
-            // menu.classList.replace("right-0","-right-[70%]")
-            // menu.classList.add("opacity-0");
-            // menu.classList.add("invisible");
-            // body.style.overflow = "auto";
+    //    document.getElementById("Status").value = this.value;
+    //    $("#filtre").submit();
+    //});
+
+
+
+</script>
+
+<script type="text/javascript">
+    function changeDropDown(dropdown) {
+        var location = dropdown.options[dropdown.selectedIndex].value;
+
+        document.getElementById("Status").value = location;
+        $("#filtre").submit();
+    }
+
+    function FillPageId(id) {
+        $("#Page").val(id);
+        $("#filtre").submit();
+    }
+
+    function DeleteCategory(id) {
+        $("#deletedCategory").val(id);
+        $("#filtre").submit();
+    }
+
+    function DeleteColor(id) {
+        $("#deletedColor").val(id);
+        $("#filtre").submit();
+    }
+
+    function DeleteSize(id) {
+        $("#deletedSize").val(id);
+        $("#filtre").submit();
+    }
+
+    $(document).ready(function () {
+        $('.category').on('change', function () {
+            $('#filtre').submit();
         });
-
-        // -----------------------------Like btn------------------------------
-
-        var likeBtn = document.getElementsByClassName("likeBtn");
-        var i;
-        for (i = 0; i < likeBtn.length; i++) {
-            likeBtn[i].addEventListener("click", function () {
-                this.classList.toggle("text-red-500");
-            });
-        }
-
-        //function myFunction(e) {
-        //    document.getElementById("Status").value = e.target.value;
-        //    $("#filtre").submit();
-        //}
-
-        //$("#StatusOption").on('change', function () {
-
-        //    console.log(this.value);
-
-        //    document.getElementById("Status").value = this.value;
-        //    $("#filtre").submit();
-        //});
-
-
-
-    </script>
-
-    <script type="text/javascript">
-        function changeDropDown(dropdown) {
-            var location = dropdown.options[dropdown.selectedIndex].value;
-
-            document.getElementById("Status").value = location;
-            $("#filtre").submit();
-        }
-
-        function FillPageId(id) {
-            $("#Page").val(id);
-            $("#filtre").submit();
-        }
-
-        function DeleteCategory(id) {
-            $("#deletedCategory").val(id);
-            $("#filtre").submit();
-        }
-
-        function DeleteColor(id) {
-            $("#deletedColor").val(id);
-            $("#filtre").submit();
-        }
-
-        function DeleteSize(id) {
-            $("#deletedSize").val(id);
-            $("#filtre").submit();
-        }
-
-        $(document).ready(function () {
-            $('.category').on('change', function () {
-                $('#filtre').submit();
-            });
-            $('.sizes').on('change', function () {
-                $('#filtre').submit();
-            });
-            $('.colors').on('change', function () {
-                $('#filtre').submit();
-            });
+        $('.sizes').on('change', function () {
+            $('#filtre').submit();
         });
+        $('.colors').on('change', function () {
+            $('#filtre').submit();
+        });
+    });
 
-    </script>
+</script>
 }
 
 
@@ -480,8 +480,8 @@
                 <li class="inline-flex items-center">
                     <a href="/" class="inline-flex items-center text-[13px] lg:text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
                         @*<svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-                        </svg>*@
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                            </svg>*@
                         <svg width="20" class="w-4 h-4 ml-2 text-[#A8A8A8] hover:text-[#252525]" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 15V12.5" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M8.39172 2.35004L2.61672 6.97504C1.96672 7.4917 1.55006 8.58337 1.69172 9.40004L2.80006 16.0334C3.00006 17.2167 4.13339 18.175 5.33339 18.175H14.6667C15.8584 18.175 17.0001 17.2084 17.2001 16.0334L18.3084 9.40004C18.4417 8.58337 18.0251 7.4917 17.3834 6.97504L11.6084 2.35837C10.7167 1.6417 9.27506 1.6417 8.39172 2.35004Z" stroke="#A8A8A8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -624,8 +624,8 @@
 
                         }
 
-                @if (colors != null && colors.Any())
-                {
+                        @if (colors != null && colors.Any())
+                        {
                             <div class="py-5">
                                 <details class="group">
                                     <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
@@ -645,7 +645,7 @@
                                             if (Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId))
                                             {
                                                 <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 active" value="@color.ColorId" style="background-color: @color.ColorTitle"
-                                                @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "checked='checked'" : " ")>
+                                           @((Model.ColorsId != null && Model.ColorsId.Any() && Model.ColorsId.Contains(color.ColorId)) ? "checked='checked'" : " ")>
 
                                             }
                                             else
@@ -659,54 +659,52 @@
                             </div>
 
 
-                    <div class="py-5">
-                        <details class="group">
-                            <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
-                                <span> رنگ</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                        <path d="M6 9l6 6 6-6"></path>
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="flex items-center justify-center gap-2"></div>
-                            <div class="switcher flex items-center justify-start gap-2 flex-wrap">
-
-
+                            <div class="py-5">
+                                <details class="group">
+                                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                                        <span> رنگ</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                                <path d="M6 9l6 6 6-6"></path>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <div class="flex items-center justify-center gap-2"></div>
+                                    <div class="switcher flex items-center justify-start gap-2 flex-wrap">
+                                    </div>
+                                </details>
                             </div>
-                        </details>
-                    </div>
 
-                }
+                        }
 
-                <div class="py-5  w-full">
-                    <details class="group  w-full">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
-                            <span> قیمت</span>
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                    <path d="M6 9l6 6 6-6"></path>
-                                </svg>
-                            </span>
-                        </summary>
-                        <!-- <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
-                          محدوده قیمت :
-                        </p> -->
-                        <div class="price-wrap">
-                            <span class="price-title">محدوده قیمت :</span>
-                            <div class="price-wrap-1">
-                                <input class="inline-block !w-[50px]" id="one">
-                                <label for="one">ریال</label>
-                            </div>
-                            <div class="price-wrap_line">-</div>
-                            <div class="price-wrap-2">
-                                <input class="inline-block !w-[50px]" id="two">
-                                <label for="two">ریال</label>
-                            </div>
-                        </div>
-                        <fieldset class="filter-price w-full mx-auto ">
-                            <div class="price-field w-full  mx-auto">
-                                @if (Model.MinPrice.HasValue && Model.MinPrice != 0)
+                        <div class="py-5  w-full">
+                            <details class="group  w-full">
+                                <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                                    <span> قیمت</span>
+                                    <span class="transition group-open:rotate-180">
+                                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                            <path d="M6 9l6 6 6-6"></path>
+                                        </svg>
+                                    </span>
+                                </summary>
+                                <!-- <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                                  محدوده قیمت :
+                                </p> -->
+                                <div class="price-wrap">
+                                    <span class="price-title">محدوده قیمت :</span>
+                                    <div class="price-wrap-1">
+                                        <input class="inline-block !w-[50px]" id="one">
+                                        <label for="one">ریال</label>
+                                    </div>
+                                    <div class="price-wrap_line">-</div>
+                                    <div class="price-wrap-2">
+                                        <input class="inline-block !w-[50px]" id="two">
+                                        <label for="two">ریال</label>
+                                    </div>
+                                </div>
+                                <fieldset class="filter-price w-full mx-auto ">
+                                    <div class="price-field w-full  mx-auto">
+                                        @if (Model.MinPrice.HasValue && Model.MinPrice != 0)
                                         {
                                             <input type="range" name="MinPrice" min="@minPrice" max="@maxPrice" value="@Model.MinPrice" id="lower">
                                         }
@@ -723,29 +721,29 @@
                                         {
                                             <input type="range" name="MaxPrice" min="@minPrice" max="@maxPrice" value="@maxPrice" id="upper">
                                         }
-                            </div>
-                        </fieldset>
+                                    </div>
+                                </fieldset>
 
-                    </details>
-                </div>
+                            </details>
+                        </div>
 
-        </div>
-        <div class="w-full sticky bottom-1">
-            <div class="w-full py-4 bg-white text-[#252525] text-[12px] px-5 lg:hidden"
-                 style="
+                    </div>
+                    <div class="w-full sticky bottom-1">
+                        <div class="w-full py-4 bg-white text-[#252525] text-[12px] px-5 lg:hidden"
+                             style="
                              box-shadow: 0 0 5px 1px #eee;
                                     font-family: yekanBakhtBold;
                                 ">
-                مشاهده ۹۹.۳۳۳۱ کالا در عارف
-            </div>
-            <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>
-        </div>
+                            مشاهده ۹۹.۳۳۳۱ کالا در عارف
+                        </div>
+                        <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>
+                    </div>
 
-        @* <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>*@
+                    @* <button class="w-full py-3 bg-[#252525] text-white my-3 sticky bottom-1">اعمال فیلتر</button>*@
 
-        </div>
+                </div>
 
-        </form>
+            </form>
 
         </div>
 
@@ -772,7 +770,7 @@
                         <div class=" border px-2">
 
                             <select onchange='changeDropDown(this)'
-                            @*class="py-3 px-4 pl-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"*@
+                                    @*class="py-3 px-4 pl-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"*@
                                     class="py-2  lg:px-5 block  bg-transparent  text-sm   dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400">
 
                                 @if (Model.Status == FilterStatus.All)
@@ -899,10 +897,13 @@
                             <div class="transition-all transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
                                 <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
                                     @* <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()">
-                            <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
-                            </a>*@
+                                        <img class="w-full h-full object-cover" src="@PathTools.ProductPathThumb@product.ProductImageName" alt="">
+                                        </a>*@
                                     <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@product.ProductID" asp-route-ProductTitle="@product.ProductTitle.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
-                                        <img class="product-image  w-full h-full object-cover " src="@PathTools.ProductPath@product.ProductImageName" title="@product.ProductTitle" alt="@product.ProductTitle" />
+
+                                        <span class="offer-card-more">25%</span>
+
+                                        <img class="product-image  w-full h-full object-cover " src="https://arefset.com/@PathTools.ProductPath@product.ProductImageName" title="@product.ProductTitle" alt="@product.ProductTitle" />
                                         @*<img class="product-image  w-full  " src="/ArefSet/src/assets/images/landing/20.jpg" alt="" />*@
                                         @{
 
@@ -914,7 +915,7 @@
                                         }
                                         @if (!string.IsNullOrEmpty(secondeImage))
                                         {
-                                            <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath/@secondeImage" title="@product.ProductTitle" alt="@product.ProductTitle" />
+                                            <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="https://arefset.com/@PathTools.ProductGalleryPath/@secondeImage" title="@product.ProductTitle" alt="@product.ProductTitle" />
 
                                         }
                                     </a>
@@ -962,39 +963,41 @@
                                         <p class="text-[#D92626] font-bold text-[15px] ">
                                             @product.Price.ToString("#,000") ریال
                                         </p>
+
+
                                     </div>
                                 </div>
                             </div>
 
                             @*<div class="transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
-                    <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
+                                <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
 
-                    <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
-                    <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@item.ProductImageName" title="@item.Title" alt="@item.Title" />
-                    <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
-                    </a>
+                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
+                                <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPathThumb@item.ProductImageName" title="@item.Title" alt="@item.Title" />
+                                <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="/ArefSet/src/assets/images/landing/Rectangle 5.png" title="@item.Title" alt="@item.Title" />
+                                </a>
 
-                    </div>
-                    <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
-                    <div class="text-right inline-block lg:w-[283px]">
-                    <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
-                    @category.ProdudctCategoryTitle
-                    </p>
-                    <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px] lg:text-[18px] shopCardTitle">
-                    @item.Title
-                    </a>
-                    </div>
-                    <div class="text-left">
-                    <p class="line-through text-[#B7B7B7] font-light text-[10px] lg:text-[14px] inline-block h-4">
-                    @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
+                                </div>
+                                <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
+                                <div class="text-right inline-block lg:w-[283px]">
+                                <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
+                                @category.ProdudctCategoryTitle
+                                </p>
+                                <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="font-bold text-[12px] lg:text-[18px] shopCardTitle">
+                                @item.Title
+                                </a>
+                                </div>
+                                <div class="text-left">
+                                <p class="line-through text-[#B7B7B7] font-light text-[10px] lg:text-[14px] inline-block h-4">
+                                @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
 
-                    </p>
-                    <p class="text-[#D92626] font-bold text-[15px] lg:text-[17px]">
-                    @item.Price.ToString("#,000") ریال
-                    </p>
-                    </div>
-                    </div>
-                    </div>*@
+                                </p>
+                                <p class="text-[#D92626] font-bold text-[15px] lg:text-[17px]">
+                                @item.Price.ToString("#,000") ریال
+                                </p>
+                                </div>
+                                </div>
+                                </div>*@
                         }
 
                     </div>
