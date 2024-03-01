@@ -378,6 +378,7 @@ namespace Data.Repository
                             Price = q.Price,
                             ProductImageName = q.ProductImageName,
                             ProductTitle = q.ProductTitle,
+                            OfferPercent = q.OfferPercent,
                         };
             }
 
@@ -405,6 +406,7 @@ namespace Data.Repository
                             Price = q.Price,
                             ProductImageName = q.ProductImageName,
                             ProductTitle = q.ProductTitle,
+                            OfferPercent= q.OfferPercent,
                         };
             }
 
@@ -432,6 +434,7 @@ namespace Data.Repository
                             Price = q.Price,
                             ProductImageName = q.ProductImageName,
                             ProductTitle = q.ProductTitle,
+                            OfferPercent = q.OfferPercent,
                         };
             }
 

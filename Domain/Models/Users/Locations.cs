@@ -19,7 +19,7 @@ namespace Domain.Models.Users
         [Required]
         public string LocationAddress { get; set; }
 
-        public int PostalCode { get; set; }
+        public ulong PostalCode { get; set; }
 
         [Required]
         public string Username { get; set; }

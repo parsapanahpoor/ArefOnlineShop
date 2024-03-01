@@ -47,7 +47,7 @@ namespace ParsaWorkShop.Areas.User.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddNewLocation(int PostalCode, string LocationAddress , string Username , string Mobile , string Email , string CityName , string StateName)
+        public IActionResult AddNewLocation(ulong PostalCode, string LocationAddress , string Username , string Mobile , string Email , string CityName , string StateName)
         {
             if (ModelState.IsValid)
             {

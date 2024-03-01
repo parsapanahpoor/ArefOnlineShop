@@ -325,7 +325,10 @@
             {
 
                 <div class=" hover:cursor-zoom-in  min-h-[380px] lg:w-[522px] lg:!h-[522px] relative overflow-hidden img-container productImgSinglePage">
-                    <span class="offer-card">25%</span>
+                    @if (Model.OfferPercent.HasValue)
+                    {
+                        <span class="offer-card">@Model.OfferPercent.Value %</span>
+                    }
 
                     <img class="w-full block  transition-all" src="https://arefset.com/@PathTools.ProductPath@Model.ProductImageName" alt="@Model.ProductTitle" style="width: 100%; ">
                     @*<img class="w-full block  transition-all" src="/ArefSet/src/assets/images/landing/20.jpg" alt="" style="width: 100%; ">*@

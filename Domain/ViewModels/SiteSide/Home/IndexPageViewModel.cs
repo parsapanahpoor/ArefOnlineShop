@@ -65,6 +65,8 @@ namespace Domain.ViewModels.SiteSide.Home
 
         public decimal? OldPrice { get; set; }
 
+        public int? OfferPercentage { get; set; }
+
         #endregion
     }
 

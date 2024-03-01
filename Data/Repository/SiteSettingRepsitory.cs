@@ -212,6 +212,7 @@ namespace Data.Repository
                                                             IsInOffer = p.IsInOffer,
                                                             OldPrice = p.OldPrice,
                                                             Price = p.Price,
+                                                            OfferPercentage = p.OfferPercent,
                                                             ProductId = p.ProductID,
                                                             ProductImageName = p.ProductImageName,
                                                             Title = p.ProductTitle,
@@ -261,6 +262,7 @@ namespace Data.Repository
                                                              {
                                                                  IsInOffer = p.IsInOffer,
                                                                  OldPrice = p.OldPrice,
+                                                                 OfferPercentage = p.OfferPercent,
                                                                  Price = p.Price,
                                                                  ProductId = p.ProductID,
                                                                  ProductImageName = p.ProductImageName,

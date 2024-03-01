@@ -344,7 +344,8 @@ namespace ParsaWorkShop.Controllers
             if (ModelState.IsValid)
             {
                 int userid = _user.GetUserIdByUserName(User.Identity.Name);
-                int postalCode = int.Parse(PostalCode);
+
+                ulong postalCode = ulong.Parse(PostalCode);
 
                 var locationId = _location.AddLocation(userid, LocationAddress, postalCode, Username, Mobile, Email, CityName, StateName);
 
