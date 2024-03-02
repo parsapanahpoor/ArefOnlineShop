@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace ParsaWorkShop.Areas.Admin.Controllers
 {
     [PermissionChecker(11)]
-
     public class OrderTrackingController : AdminBaseController
     {
         #region Ctor

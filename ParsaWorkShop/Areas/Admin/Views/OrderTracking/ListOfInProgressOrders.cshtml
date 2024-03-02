@@ -9,7 +9,7 @@
 
 
 @section Styls
-    {
+{
 
     <!-- DataTables -->
     <link rel="stylesheet" href="/Admin_Panel/plugins/datatables/dataTables.bootstrap4.css">
@@ -76,7 +76,14 @@
                                                 </td>
                                                 <td>@item.User.UserName</td>
                                                 <td>@item.User.PhoneNumber</td>
-                                                <td>@item.OrderDetails.Count()</td>
+
+                                                @if (item.OrderDetails != null && item.OrderDetails.Any())
+                                                {
+                                                    <td>@item.OrderDetails.Count()</td>
+                                                }else
+                                                {
+                                                    <td>خالی</td>
+                                                }
 
                                                 <td>@item.CreateDate.ToShamsi()</td>
 
@@ -87,10 +94,6 @@
                                                         برسی اطلاعات کاربر
                                                     </a>
                                                     <a class="btn btn-outline-warning btn-sm waves-effect" asp-action="CheckOrderDetails" asp-area="Admin" asp-controller="OrderTracking" asp-route-id="@item.OrderId">
-                                                        <i class="glyphicon glyphicon-edit"></i>
-                                                        برسی  سبد خرید
-                                                    </a>
-                                                    <a class="btn btn-outline-success btn-sm waves-effect" asp-action="CheckForSendOrderToTheCustomer" asp-area="Admin" asp-controller="OrderTracking" asp-route-id="@item.OrderId">
                                                         <i class="glyphicon glyphicon-edit"></i>
                                                         برسی  سبد خرید
                                                     </a>
@@ -116,7 +119,7 @@
 
 
 
-@section scripts{
+@section scripts {
     <!-- ./wrapper -->
 
     <script src="/Admin_Panel/plugins/datatables/jquery.dataTables.js"></script>

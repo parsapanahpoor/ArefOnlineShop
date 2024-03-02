@@ -352,6 +352,7 @@ namespace Data.Repository
         public async Task<List<Orders>> GetListOfInProgressOrders()
         {
             return await _context.Orders
+                                 .Include(p=> p.OrderDetails)
                                  .Where(p=> p.IsFinally && p.OrderState == OrderState.InProccess)
                                  .ToListAsync(); 
         }
