@@ -72,7 +72,10 @@
                                         {
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">
-                                                    <img class="direct-chat-img" style="width:50px;height:50px;" src="/Images/UserAvatar/@item.User.UserAvatar" alt="message user image">
+                                                    @if (!string.IsNullOrEmpty(item.User.UserAvatar))
+                                                    {
+                                                                                                            <img class="direct-chat-img" style="width:50px;height:50px;" src="/Images/UserAvatar/@item.User.UserAvatar" alt="message user image">
+                                                    }
                                                 </td>
                                                 <td>@item.User.UserName</td>
                                                 <td>@item.User.PhoneNumber</td>

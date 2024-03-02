@@ -353,6 +353,7 @@ namespace Data.Repository
         {
             return await _context.Orders
                                  .Include(p=> p.OrderDetails)
+                                 .Include(p=> p.User)
                                  .Where(p=> p.IsFinally && p.OrderState == OrderState.InProccess)
                                  .ToListAsync(); 
         }
