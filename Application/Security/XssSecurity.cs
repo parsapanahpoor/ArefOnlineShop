@@ -1,4 +1,5 @@
-﻿using Ganss.Xss;
+﻿
+using Ganss.XSS;
 
 namespace Application.Security
 {
