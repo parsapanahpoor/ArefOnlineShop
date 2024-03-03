@@ -65,7 +65,7 @@ namespace Application.Services
 
         public async Task SendSMSForUserAboutInvoice(int orderId, string refId, string mobile)
         {
-            var link = $"https://arefset.com/Order/ShowInvoice/{orderId}?refId={refId}";
+            var link = $"https://arefset.com/Order/ShowInvoice/{orderId}";
 
             #region Send Verification Code SMS
 
@@ -165,7 +165,7 @@ namespace Application.Services
             //List Of Orders
             model.Orders = GetAllOrdersForShowInAdminPanel();
 
-            model.CountOfFinishedOrders = model.Orders.Count(p => p.OrderState == OrderState.Finally);
+            model.CountOfFinishedOrders = model.Orders.Count(p => p.OrderState == OrderState.SentToTheCustomer);
             model.CountOfCancelationRequests = model.Orders.Count(p => p.OrderState == OrderState.CancelationRequest);
             model.CountOfInProcessOrders = model.Orders.Count(p => p.OrderState == OrderState.InProccess);
 

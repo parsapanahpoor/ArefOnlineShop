@@ -575,12 +575,12 @@ namespace ParsaWorkShop.Controllers
 
                             #endregion
 
-                            await _order.SendSMSForSubmitedOrder(refid);
+                            await _order.SendSMSForSubmitedOrder(id.ToString());
 
                             await _order.SendSMSForUserAboutInvoice(id , refid, user.PhoneNumber );
 
                             return RedirectToAction(nameof(ShowInvoice),
-                                                    new { id = id, refId = refid });
+                                                    new { id = id });
                         }
                     }
                     else if (errors != "[]")
@@ -605,15 +605,12 @@ namespace ParsaWorkShop.Controllers
         #region Show Invoice 
 
         public async Task<IActionResult> ShowInvoice(int id ,
-                                                     string? refId,
                                                      CancellationToken cancellationToken = default)
         {
             #region Initial Invoice
 
             var model = await _order.ShowFinalInvoice(id , cancellationToken);
             if (model == null) return NotFound();
-
-            ViewBag.refId = refId;
 
             #endregion
 

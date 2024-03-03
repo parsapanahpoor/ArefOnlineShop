@@ -63,13 +63,13 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
             if (res)
             {
                 TempData[SuccessMessage] = "عملیات باموفقیت انجام شده است.";
-                return View(RedirectToAction(nameof(ListOfInProgressOrders)));
+                return RedirectToAction(nameof(Index));
             }
 
             #endregion
 
             TempData[ErrorMessage] = "عملیات باشکست مواجه شده است.";
-            return View(RedirectToAction(nameof(ListOfInProgressOrders)));
+            return RedirectToAction(nameof(Index));
         }
 
         #endregion

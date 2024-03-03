@@ -3,19 +3,15 @@
 
 @{
     ViewData["Title"] = "فاکتور نهایی";
+
+    Layout = null;
 }
 
-@section Styles
-{
-    <link href="/ArefSet/dist/output.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
-}
+
 
 @section Scripts {
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function ($) {
@@ -38,143 +34,449 @@
 
 }
 
-<div class="mx-auto">
 
-    <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
-        <nav class="flex" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                <li class="inline-flex items-center">
-                    <a href="#" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
-                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-                        </svg>
-                        خانه
-                    </a>
-                </li>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>فاکتور خرید</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-                <li aria-current="page">
-                    <div class="flex items-center">
-                        <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">نتیجه ی درگاه پرداخت</span>
+        @@font-face {
+            font-family: "Yekan Bakh FaNum";
+            src: url("/ArefSet/src/assets/fonts/yekan/YekanBakhFaNum-Regular.woff2") format("woff2"), url("assets/fonts/yekan/YekanBakhFaNum-Regular.woff") format("woff"), url("assets/fonts/yekan/YekanBakhFaNum-Regular.ttf") format("truetype"), url("assets/fonts/yekan/YekanBakhFaNum-Regular.svg#YekanBakhFaNum-Regular") format("svg");
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        body {
+            margin: 5px;
+            font-family: "Yekan Bakh FaNum";
+        }
+
+        .p-4 {
+            padding: 2em;
+        }
+
+        .col-md-2 {
+            width: 16.66%;
+        }
+
+        .col-md-3 {
+            width: calc(100% / 4);
+        }
+
+        .col-md-4 {
+            width: calc(16.66% * 2);
+        }
+
+        .col-md-9 {
+            width: 75%;
+        }
+
+        .col-md-10 {
+            width: 83.34%;
+        }
+
+        .justify-content-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .font-yekan {
+            font-family: "yekan";
+        }
+
+        .row {
+            padding: 0 15px;
+            display: flex;
+        }
+
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .flex-end {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        h2 {
+            font-size: 2.5em;
+        }
+
+        .mt-2 {
+            margin-top: 2em;
+        }
+
+        .p-1 {
+            padding: 1em;
+        }
+
+        .border-bottom-red {
+            border-bottom: 3px solid #ff0000;
+        }
+
+        .border-bottom-table-red {
+            border-bottom: 1px solid #ff0000;
+            padding: 1em 0;
+        }
+
+        .offset-1 {
+            margin-right: calc(100% / 12);
+        }
+
+        .offset-1-5 {
+            margin-right: calc(100% / 7);
+        }
+
+        .col-md-11 {
+            width: calc(8.33% * 11);
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .bg-dark {
+            background-color: #000;
+        }
+
+        .bg-gary {
+            background-color: rgb(237, 237, 237);
+        }
+
+        .bg-red {
+            background: #ff0000;
+        }
+
+        .text-white {
+            color: #fff;
+        }
+
+        .rtl {
+            direction: rtl;
+        }
+
+        .h-full {
+            height: 500px;
+        }
+
+        .text-bold {
+            font-weight: bolder;
+        }
+
+        th {
+            padding: 0.5em 0;
+        }
+
+        .right-side {
+            position: fixed;
+            right: 0;
+            z-index: 0;
+            bottom: 0;
+            height: 100%;
+        }
+
+        .z-index-1 {
+            z-index: 1;
+        }
+
+        .z-index-2 {
+            z-index: 2;
+        }
+
+        .z-index-0 {
+            z-index: 0;
+        }
+
+        .column-table-input {
+            border-radius: 15px;
+            border: 0;
+            background: #dddddd;
+            width: 100%;
+            height: 45px;
+        }
+
+        .table-sum-section {
+            direction: rtl;
+            width: 60%;
+            margin: 0.5em;
+        }
+
+        .title-column {
+            width: 30%;
+        }
+
+        .title-column-label {
+            color: #ff0000;
+            font-size: 1.5em;
+        }
+
+        .text-red {
+            color: #ff0000;
+            font-weight: bolder;
+        }
+
+        input[type="text"] {
+            padding: 0 1em;
+            font-size: 1em;
+            font-family: "Yekan Bakh FaNum";
+        }
+
+        .mt-mins-3 {
+            margin-top: -3em;
+        }
+
+        .border-radius-50 {
+            border-radius: 50%;
+        }
+
+        .icon-item {
+            width: 2em;
+            height: 2em;
+            display: flex;
+        }
+
+            .icon-item svg {
+                margin: auto;
+            }
+
+        .item-icon-footer {
+            display: flex;
+            align-content: center;
+            align-items: center;
+        }
+
+        .label-item-icon {
+            font-size: 2em;
+            font-weight: bolder;
+            margin: 0 0.5em;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .small-font-item-icon {
+            font-size: 0.9em;
+        }
+
+        .small-logo {
+            width: 30px;
+        }
+
+        @@media screen and (max-width: 1024px) {
+            .row {
+                flex-direction: column;
+                margin-right: 2em;
+            }
+
+            .table-sum-section {
+                width: 90%;
+            }
+
+            .title-column-label {
+                width: 90%;
+            }
+        }
+
+        @@media screen and (max-width: 768px) {
+            .border-bottom-table-red.text-white {
+                color: #000;
+            }
+
+            .col-md-9 {
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container_content">
+        <div class="row">
+            <div class="col-md-10 text-center mt-2 border-bottom-red">
+                <h2>بــرازنـــده اســـتـایـل شمـــا</h2>
+            </div>
+            <div class="col-md-2 text-center p-4 z-index-2">
+                <img src="/ArefSet/src/assets/images/factor/white-logo.svg"
+                     alt=""
+                     style="width: 80%" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-1-5 col-md-11 h-full z-index-2">
+                <div class="row rtl">
+                    <div class="col-md-3 text-center p-1 text-bold">نام مشتری: @Model.UserInfo.UserName</div>
+                    <div class="col-md-3 text-center p-1 text-bold">تلفن: @Model.UserInfo.PhoneNumber</div>
+                    <div class="col-md-3 text-center p-1 text-bold">آدرس:@Model.Locations.LocationAddress</div>
+                    <div class="col-md-3 text-center p-1 flex-wrap flex-end">
+                        <div class="w-full">شماره: @Model.Order.OrderId</div>
+                        <div class="w-full">تاریخ:@Model.Order.CreateDate.ToShamsi()</div>
                     </div>
-                </li>
-            </ol>
-        </nav>
-    </section>
+                </div>
+                <div class="row rtl">
+                    <table class="w-full" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr class="text-white bg-red">
+                                <th style="width: 5.3em">ردیف</th>
+                                <th>نام محصول</th>
+                                <th>تعداد</th>
+                                <th>مبلغ واحد به ریال</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-    <div role="alert" style="margin: 50px;">
-        <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
-            پرداخت با موفقیت انجام شد
-        </div>
-        <div class="border border-t-0 border-green-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-            <p>  کد پیگیری : @ViewBag.refId</p>
+                            @(Model.OrderDetails != null && Model.OrderDetails.Any())
+                            {
+                            @foreach (var product in Model.OrderDetails)
+                            {
+                                <tr class="text-center">
+                                    <td class="border-bottom-table-red text-white">@product.Product.ProductID</td>
+                                    <td class="border-bottom-table-red">@product.Product.ProductTitle</td>
+                                    <td class="border-bottom-table-red">@product.Count</td>
+                                    <td class="border-bottom-table-red">@product.Product.Price.ToString("#,000")</td>
+                                </tr>
+                            }
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row justify-content-center">
+                    <table cellspacing="7" cellpadding="0" class="table-sum-section">
+                        <tr>
+                            <td class="title-column">
+                                <span class="title-column-label">
+                                    مبلغ کل به حروف (ریال)
+                                </span>
+                            </td>
+                            <td><input type="text" value="@Model.Order.Price.Value.ToString("#,000")" readonly class="column-table-input" /></td>
+                        </tr>
+                        <tr>
+                            <td class="title-column">
+                                <span class="title-column-label">
+                                    مبلغ کل به عدد (ریال)
+                                </span>
+                            </td>
+                            <td><input type="text" value="@Model.Order.Price.Value.ToString("#,000")" readonly class="column-table-input" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="row rtl flex-wrap">
+                    <div class="col-md-10 text-center">
+                        <h3 class="text-red mt-2">مهر و امضاء</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="/ArefSet/src/assets/images/factor/qr-code.png" alt="QR Code" />
+                    </div>
+                    <div class="col-md-9 mt-mins-3 offset-1 flex">
+                        <div class="col-md-4 item-icon-footer">
+                            <div class="bg-red border-radius-50 icon-item">
+                                <svg width="24px"
+                                     height="24px"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.78216 3H16.2169C19.165 3 21 5.08119 21 8.02638V15.9736C21 18.9188 19.165 21 16.2159 21H7.78216C4.83405 21 3 18.9188 3 15.9736V8.02638C3 5.08119 4.84281 3 7.78216 3Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                    <path d="M11.8445 8.82812C9.91023 8.82812 8.3418 10.3966 8.3418 12.3308C8.3418 14.2651 9.91023 15.8335 11.8445 15.8335C13.7788 15.8335 15.3472 14.2651 15.3472 12.3308C15.3472 10.3966 13.7788 8.82812 11.8445 8.82812Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                    <path d="M16.8661 7.36374V7.43274V7.36374ZM17.1481 7.37875C17.1481 7.53575 17.0211 7.66275 16.8641 7.66275C16.7071 7.66275 16.5791 7.53575 16.5791 7.37875C16.5791 7.22175 16.7071 7.09375 16.8641 7.09375C17.0211 7.09375 17.1481 7.22175 17.1481 7.37875Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <label class="label-item-icon">aref.set</label>
+                        </div>
+                        <div class="col-md-4 item-icon-footer">
+                            <div class="bg-red border-radius-50 icon-item">
+                                <svg width="24px"
+                                     height="24px"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M12 3C16.9709 3 21 7.02908 21 12C21 16.9709 16.9709 21 12 21C7.02908 21 3 16.9709 3 12C3 7.02908 7.02908 3 12 3Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                    <path fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M11.9994 3C13.85 3 15.3493 7.02908 15.3493 12C15.3493 16.9709 13.85 21 11.9994 21C10.1488 21 8.64941 16.9709 8.64941 12C8.64941 7.02908 10.1488 3 11.9994 3Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                    <path fill-rule="evenodd"
+                                          clip-rule="evenodd"
+                                          d="M21 11.9984C21 13.849 16.9709 15.3483 12 15.3483C7.02908 15.3483 3 13.849 3 11.9984C3 10.1478 7.02908 8.64844 12 8.64844C16.9709 8.64844 21 10.1478 21 11.9984Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <label class="label-item-icon">www.arefset.com</label>
+                        </div>
+                        <div class="col-md-4 item-icon-footer">
+                            <div class="bg-red border-radius-50 icon-item">
+                                <svg width="24px"
+                                     height="24px"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7.78216 3H16.2169C19.165 3 21 5.08119 21 8.02638V15.9736C21 18.9188 19.165 21 16.2159 21H7.78216C4.83405 21 3 18.9188 3 15.9736V8.02638C3 5.08119 4.84281 3 7.78216 3Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                    <path d="M11.8445 8.82812C9.91023 8.82812 8.3418 10.3966 8.3418 12.3308C8.3418 14.2651 9.91023 15.8335 11.8445 15.8335C13.7788 15.8335 15.3472 14.2651 15.3472 12.3308C15.3472 10.3966 13.7788 8.82812 11.8445 8.82812Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                    <path d="M16.8661 7.36374V7.43274V7.36374ZM17.1481 7.37875C17.1481 7.53575 17.0211 7.66275 16.8641 7.66275C16.7071 7.66275 16.5791 7.53575 16.5791 7.37875C16.5791 7.22175 16.7071 7.09375 16.8641 7.09375C17.0211 7.09375 17.1481 7.22175 17.1481 7.37875Z"
+                                          stroke="#ffffff"
+                                          stroke-width="1.5"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <label class="label-item-icon small-font-item-icon">
+                                <i class="text-red">*</i> برند
+                                <img src="/ArefSet/src/assets/images/landing/Arefset 1.png"
+                                     alt="AREF"
+                                     class="small-logo" />
+                                از اعتماد و انتخاب شما سپاسگذار است
+                                <i class="text-red">*</i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 bg-dark text-center p-4 right-side"></div>
         </div>
     </div>
+</body>
+</html>
 
-    <div class="">
-        <div class="bg-[#252525] btn_print text-[#fff] w-[157px] inline-flex items-center justify-center gap-2 py-2 lg:py-3 text-[10px]">
-            <span class="inline-block"> مشاهده و دانلود فاکتور </span>
-
-            <img class="w-[16px]" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
-        </div>
-    </div>
-
-    <div id="container_content">
-
-        <div role="alert" style="margin: 50px;">
-            <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
-                محصولات سفارشی
-            </div>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">کدمحصول</th>
-                        <th scope="col">نام محصول</th>
-                        <th scope="col">قیمت</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        @(Model.OrderDetails != null && Model.OrderDetails.Any())
-                        {
-                        @foreach (var product in Model.OrderDetails)
-                        {
-
-                            <td>@product.ProductID</td>
-                            <td>@product.Product.ProductTitle</td>
-                            <td>@product.Price.ToString("#,000") ریال </td>
-
-                        }
-                        }
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-
-        <div role="alert" style="margin: 50px;">
-            <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
-                اطلاعات مشتری
-            </div>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">نام کاربری</th>
-                        <th scope="col">موبایل</th>
-                        <th scope="col">ایمیل</th>
-                        <th scope="col">آدرس</th>
-                        <th scope="col">کدپستی</th>
-                        <th scope="col">استان</th>
-                        <th scope="col">شهر</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td>@Model.UserInfo.UserName</td>
-                        <td>@Model.UserInfo.PhoneNumber</td>
-                        <td>@Model.UserInfo.Email</td>
-                        <td>@Model.Locations.LocationAddress</td>
-                        <td>@Model.Locations.PostalCode</td>
-                        <td>@Model.Locations.StateName</td>
-                        <td>@Model.Locations.CityName</td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-        </div>
-
-        <div role="alert" style="margin: 50px;">
-            <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
-                اطلاعات خرید
-            </div>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">قیمت کل</th>
-                        <th scope="col">تاریخ ثبت سفارش </th>
-                        <th scope="col">کدپیگیری </th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td>@Model.Order.Price.Value.ToString("#,000") ریال</td>
-                        <td>@Model.Order.CreateDate.ToShamsi()</td>
-                        <td>@ViewBag.refId </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-        </div>
-
-    </div>
-
-</div>

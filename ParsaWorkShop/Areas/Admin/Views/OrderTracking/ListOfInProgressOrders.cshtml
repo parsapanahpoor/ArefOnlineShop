@@ -100,6 +100,10 @@
                                                         <i class="glyphicon glyphicon-edit"></i>
                                                         برسی  سبد خرید
                                                     </a>
+                                                    <a class="btn btn-outline-success btn-sm waves-effect" asp-action="CheckForSendOrderToTheCustomer" asp-area="Admin" asp-controller="OrderTracking" asp-route-orderId="@item.OrderId">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                        تغییر وضعیت سفارش به ارسال شده
+                                                    </a>
                                                 </td>
                                             </tr>
                                         }

@@ -11,7 +11,7 @@
 
 
 
-    <script type="text/javascript">
+@*     <script type="text/javascript">
         $(document).ready(function ($) {
 
             $(document).on('click', '.btn_print', function (event) {
@@ -28,7 +28,7 @@
 
             });
         });
-    </script>
+    </script> *@
 
 }
 
@@ -60,13 +60,16 @@
                                 </a>
                             </div>
 
-                            <div class="">
+                            <a asp-action="ShowInvoice"
+                               asp-area=""
+                            asp-controller="Order"
+                               asp-route-id="@ViewBag.OrderId">
                                 <div class="bg-[#252525] btn_print text-[#fff] w-[157px] inline-flex items-center justify-center gap-2 py-2 lg:py-3 text-[10px]">
                                     <span class="inline-block"> مشاهده و دانلود فاکتور </span>
 
                                     <img class="w-[16px]" src="/ArefSet/src/assets/images/landing/arrow-left-panel.png" alt="">
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <div class="w-full flex container_content flex-col items-center py-5 my-5 justify-start" id="container_content">
@@ -248,7 +251,7 @@
 
             <p class="text-[12px] lg:text-[14px] text-[#7E8285]"
                style="font-family: yekanBakhtRegular">
-                191480206801702490778111
+                @ViewBag.OrderId
             </p>
             <img class="hover:cursor-pointer"
                  src="../assets/images/landing/3square.png"
@@ -256,13 +259,4 @@
         </div>
     </div>
 
-    <div class="flex items-center justify-between lg:flex lg:items-center lg:justify-center lg:gap-5 gap-8">
-        <a href="#"
-           class="text-[10px] lg:text-[14px] text-white bg-[#D92626] px-5 py-2 lg:px-0 lg:py-0 lg:w-[224px] lg:h-[45px] inline-flex items-center justify-center gap-2 ">
-            ورود به سامانه رهگیری
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-arrow-left transform " viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
-            </svg>
-        </a>
-    </div>
 </section>

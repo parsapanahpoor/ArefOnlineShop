@@ -53,7 +53,10 @@ namespace ParsaWorkShop.Areas.User.Controllers
             {
                 return View();
             }
+            
             var result = await _order.FillListOfUserOrdersDetailsUserSideViewModel(id.Value);
+            ViewBag.OrderId = id;
+
             return View(result);
         }
 
