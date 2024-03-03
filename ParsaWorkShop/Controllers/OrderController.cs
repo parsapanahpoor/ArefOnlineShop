@@ -26,6 +26,10 @@ using Domain.ViewModels.SiteSide.Order;
 using Microsoft.CodeAnalysis;
 using Domain.Models.Users;
 using OfficeOpenXml.Style;
+using System.Security.Cryptography;
+using System.Transactions;
+using Microsoft.Extensions.Primitives;
+using System.Threading;
 
 #endregion
 
@@ -60,14 +64,14 @@ namespace ParsaWorkShop.Controllers
 
         #region Add To Shop Cart
 
-        [HttpPost, ValidateAntiForgeryToken , AllowAnonymous]
+        [HttpPost, ValidateAntiForgeryToken, AllowAnonymous]
         public async Task<IActionResult> AddToShopCart(IncomingProductInBasketSiteSideViewModel model)
         {
             #region Model State Validation
 
-            if (!User.Identity.IsAuthenticated) 
+            if (!User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Login" , "Account");
+                return RedirectToAction("Login", "Account");
             }
 
             if (!model.selectColor.HasValue || !model.selectSize.HasValue)
@@ -121,9 +125,9 @@ namespace ParsaWorkShop.Controllers
 
                 #region Check User Last Part Of Shop Cart
 
-                if (await _order.IsOrderInLastStepOfShoping(order.OrderId , User.GetUserId()))
+                if (await _order.IsOrderInLastStepOfShoping(order.OrderId, User.GetUserId()))
                 {
-                    return RedirectToAction(nameof(AcceptFactor) , new { oredrid = order.OrderId , Locationid = order.LocationID });
+                    return RedirectToAction(nameof(AcceptFactor), new { oredrid = order.OrderId, Locationid = order.LocationID });
                 }
 
                 #endregion
@@ -178,7 +182,7 @@ namespace ParsaWorkShop.Controllers
             {
                 TempData[ErrorMessage] = "There Is not Any Product in your Shop Cart. ";
                 return RedirectToAction("Index", "Home");
-            } 
+            }
 
             if (order != null)
             {
@@ -261,7 +265,7 @@ namespace ParsaWorkShop.Controllers
             if (id == null)
             {
                 return View();
-            
+
             }
 
             #region Get Order By Order Detail Id 
@@ -385,11 +389,11 @@ namespace ParsaWorkShop.Controllers
         {
             #region Delete User Shop Cart 
 
-            var res = await _order.DeleteUserOrder(orderId , User.GetUserId());
+            var res = await _order.DeleteUserOrder(orderId, User.GetUserId());
             if (res)
             {
                 TempData[SuccessMessage] = "Operation Has Been Successfully";
-                return RedirectToAction("Index" , "Home");
+                return RedirectToAction("Index", "Home");
             }
 
             #endregion
@@ -571,7 +575,12 @@ namespace ParsaWorkShop.Controllers
 
                             #endregion
 
-                            return RedirectToAction("PaymentResult", "Payment", new { IsSuccess = true, refId = refid });
+                            await _order.SendSMSForSubmitedOrder(refid);
+
+                            await _order.SendSMSForUserAboutInvoice(id , refid, user.PhoneNumber );
+
+                            return RedirectToAction(nameof(ShowInvoice),
+                                                    new { id = id, refId = refid });
                         }
                     }
                     else if (errors != "[]")
@@ -589,6 +598,26 @@ namespace ParsaWorkShop.Controllers
             }
 
             return NotFound();
+        }
+
+        #endregion
+
+        #region Show Invoice 
+
+        public async Task<IActionResult> ShowInvoice(int id ,
+                                                     string? refId,
+                                                     CancellationToken cancellationToken = default)
+        {
+            #region Initial Invoice
+
+            var model = await _order.ShowFinalInvoice(id , cancellationToken);
+            if (model == null) return NotFound();
+
+            ViewBag.refId = refId;
+
+            #endregion
+
+            return View(model);
         }
 
         #endregion

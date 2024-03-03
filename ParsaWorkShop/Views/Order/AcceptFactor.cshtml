@@ -346,8 +346,36 @@
         <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
             ۵,۸۱۴,۴۶۰ تومان
         </p>
+
+        @if (discountPrice.HasValue)
+        {
+            <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                @discountPrice.Value.ToString("#,0")
+            </p>
+        }
+        else
+        {
+            if (Model.Order.Price.HasValue)
+            {
+                <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                    @Model.Order.Price.Value.ToString("#,0")
+                    ریال
+                </p>
+            }
+            else
+            {
+                <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
+                    @{
+                        var orderPrice = Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count);
+                        var total = orderPrice + 0;
+                    }
+
+                    @total.ToString("#,0") ریال
+                </p>
+            }
+        }
     </div>
-    <a href="#" class="bg-[#252525] text-[#fff] inline-flex items-center justify-center gap-2 py-3 px-4 text-[11px]">
+    <a href="/order/Payment/@Model.Order.OrderId" class="bg-[#252525] text-[#fff] inline-flex items-center justify-center gap-2 py-3 px-4 text-[11px]">
         رفتن به صفحه پرداخت
         <img src="../assets/images/landing/arrow-left.png" alt="">
     </a>

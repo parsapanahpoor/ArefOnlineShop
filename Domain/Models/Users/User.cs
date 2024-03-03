@@ -76,6 +76,8 @@ namespace Domain.Models.Users
         [Display(Name = "تاریخ انقضای تایم اس ام اس فعال سازی ")]
         public DateTime? ExpireMobileSMSDateTime { get; set; }
 
+        public string? BirthDate { get; set; }
+
         #endregion
 
         #region Relations

@@ -6,12 +6,14 @@ using Domain.Models.Users;
 using Domain.ViewModels.Admin.Order;
 using Domain.ViewModels.SiteSide.Order;
 using Domain.ViewModels.UserPanel.Orders;
+using Microsoft.Extensions.Primitives;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Numeric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Services
@@ -24,7 +26,7 @@ namespace Application.Services
         private readonly ISiteSettingRepsitory _siteSettingRepsitory;
         private static readonly HttpClient client = new HttpClient();
 
-        public OrderService(IOrderRepository order , 
+        public OrderService(IOrderRepository order,
                             ISiteSettingRepsitory siteSettingRepsitory)
         {
             _order = order;
@@ -35,6 +37,16 @@ namespace Application.Services
 
         #region Side Side 
 
+        public async Task<FinalInvoiceSiteSideDTO?> ShowFinalInvoice(int orderId,
+                                                                    CancellationToken cancellationChange)
+        {
+            //Get OrderBy Id 
+            var order = GetOrderByOrderID(orderId);
+            if (order == null) return null;
+
+            return await _order.ShowFinalInvoice(order, cancellationChange);
+        }
+
         public async Task SendSMSForSubmitedOrder(string? orderId)
         {
             var dateTime = DateTime.Now.ToShamsi();
@@ -42,13 +54,25 @@ namespace Application.Services
             var AdminMobilePhone = await _siteSettingRepsitory.GetAdminMobilePhone();
             if (!string.IsNullOrEmpty(AdminMobilePhone))
             {
-               #region Send Verification Code SMS
+                #region Send Verification Code SMS
 
-                     var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={AdminMobilePhone}&token={orderId}&token2={dateTime}&template=BuyAlert";
-                     var results = client.GetStringAsync(result);
+                var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={AdminMobilePhone}&token={orderId}&token2={dateTime}&template=BuyAlert";
+                var results = client.GetStringAsync(result);
 
-              #endregion
+                #endregion
             }
+        }
+
+        public async Task SendSMSForUserAboutInvoice(int orderId, string refId, string mobile)
+        {
+            var link = $"https://arefset.com/Order/ShowInvoice/{orderId}?refId={refId}";
+
+            #region Send Verification Code SMS
+
+            var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={mobile}&token={link}&template=TanksForBuy";
+            var results = client.GetStringAsync(result);
+
+            #endregion
         }
 
         public void AddOneMoreProductToTheShopCart(int orderid, int productid, int colorId, int sizeId, int count)
@@ -141,9 +165,9 @@ namespace Application.Services
             //List Of Orders
             model.Orders = GetAllOrdersForShowInAdminPanel();
 
-            model.CountOfFinishedOrders = model.Orders.Count(p=> p.OrderState == OrderState.Finally);
-            model.CountOfCancelationRequests = model.Orders.Count(p=> p.OrderState == OrderState.CancelationRequest);
-            model.CountOfInProcessOrders = model.Orders.Count(p=> p.OrderState == OrderState.InProccess);
+            model.CountOfFinishedOrders = model.Orders.Count(p => p.OrderState == OrderState.Finally);
+            model.CountOfCancelationRequests = model.Orders.Count(p => p.OrderState == OrderState.CancelationRequest);
+            model.CountOfInProcessOrders = model.Orders.Count(p => p.OrderState == OrderState.InProccess);
 
             #endregion
 
@@ -277,7 +301,7 @@ namespace Application.Services
         //Check That Is Exist Any Current Order Detail By This Product Id And User Id
         public async Task<bool> CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(int userId, int productId)
         {
-            return await _order.CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId( userId,  productId);
+            return await _order.CheckThatIsExistAnyCurrentOrderDetailByThisProductIdAndUserId(userId, productId);
         }
 
         //Fill List Of Order Details Admin Side View Model
