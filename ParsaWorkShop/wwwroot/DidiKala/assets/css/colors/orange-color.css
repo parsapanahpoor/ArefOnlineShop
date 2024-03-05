@@ -1,0 +1,187 @@
+.btn-primary-cm {
+    background-color: #ff9800;
+}
+header.main-header .search-area form.search button {
+    background: #ff9800;
+}
+header.main-header .nav-link span.count {
+    background-color: #ff9800;
+}
+header.main-header .dropdown-menu .dropdown-item:hover,
+header.main-header .dropdown-menu .dropdown-item:focus,
+header.main-header .dropdown-menu .dropdown-item:active {
+    color: #ff9800;
+}
+header.main-header .main-menu .list>.list-item>a::before {
+    background-color: #ff9800;
+}
+header.main-header .main-menu .list>.list-item:hover>a {
+    color: #ff9800;
+}
+header.main-header .main-menu .list .list-item-has-children .sub-menu a:hover {
+    color: #ff9800;
+}
+header.main-header .main-menu .list .list-item.mega-menu>.sub-menu>li>a:hover {
+    color: #ff9800;
+}
+header.main-header .main-menu .list .list-item.mega-menu .sub-menu .sub-menu li a:hover {
+    color: #ff9800;
+}
+.title-wide a {
+    color: #ff9800;
+}
+.product-carousel .owl-dot.active span,
+.product-carousel .owl-dot:hover span {
+    background: #ff9800;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    border-color: #ff9800;
+    background-color: #ff9800;
+}
+.discount span {
+    background: #ff9800;
+}
+.product-card .product-title>a {
+    color: #ff9800;
+}
+.promotion-badge {
+    color: #ff9800;
+    border-bottom: 1px solid #ff9800;
+}
+.widget-suggestion .slide-progress {
+    border-color: #ff9800;
+}
+.widget-suggestion .owl-dot.active span,
+.widget-suggestion .owl-dot:hover span {
+    background: #ff9800;
+}
+.widget-search button.btn-search-widget {
+    background-color: #ff9800;
+}
+.filter-product .card .card-header button i {
+    color: #ff9800;
+}
+.parent-switcher input[type=checkbox]:checked+.ui-statusswitcher-slider {
+    background-color: #ff9800;
+    border-color: #ff9800;
+}
+.noUi-horizontal .noUi-handle.noUi-handle-lower {
+    background-color: #ff9800
+}
+.noUi-horizontal .noUi-handle.noUi-handle-upper {
+    background-color: #ff9800
+}
+.noUi-connect {
+    background: #ff9800 !important;
+}
+.header-cover {
+    background-color: #ff9800;
+}
+.search-amazing-tab .ah-tab>.ah-tab-item[data-ah-tab-active="true"]{
+    background-color: #ff9800;
+}
+.pagination a.active-page {
+    background-color: #ff9800;
+    border-color: #ff9800;
+}
+.product-gallery .badge {
+    background-color: #ff9800;
+}
+.product-gallery .product-thumbnails>li.active>a {
+    border-color: #ff9800;
+}
+.product-gallery .product-thumbnails>li>a>i {
+    color: #ff9800;
+}
+input[type=radio]:checked+.ui-variant--check {
+    border-color: #ff9800;
+}
+.accordion-product h5 button::before {
+    background-color: #ff9800;
+}
+.rating--general .rating-rate {
+    background-color: #ff9800;
+}
+.form-ui .form-footer a {
+    color: #ff9800;
+    border-bottom: 1px dashed #ff9800;
+}
+#countdown-verify-end a.btn-link-border {
+    color: #ff9800;
+}
+#countdown-verify-end a.btn-link-border:after {
+    border-color: #ff9800;
+}
+.profile-section .list-favorites li button {
+    color: #ff9800;
+    outline: none;
+}
+a.border-bottom-dt {
+    color: #ff9800;
+    border-bottom: 1px dashed #ff9800;
+}
+.comparison-table .remove-item {
+    color: #ff9800;
+}
+.tab-cart-page a.active {
+    border-bottom-color: #ff9800 !important;
+}
+.tab-cart-page a span.count-cart {
+    background-color: #ff9800;
+}
+.checkout-header--express {
+    color: #ff9800;
+    border-bottom-color: #ff9800;
+}
+.checkout-summary-price-value {
+    color: #ff9800;
+}
+.shopping-page header.header-shopping .checkout-steps li.active::before {
+    background-color: #ff9800;
+}
+.shopping-page header.header-shopping .checkout-steps li a.active {
+    color: #ff9800;
+}
+.shopping-page header.header-shopping .checkout-steps li a.active::after {
+    background-color: #ff9800;
+}
+.shopping-page .checkout-contact-content:before {
+    background-color: #ff9800;
+}
+.shopping-page .checkout-contact-btn-edit {
+    color: #ff9800 !important;
+    border-bottom: 1px dashed #ff9800;
+}
+.shopping-page .checkout-contact-badge {
+    border: 1px solid #ff9800;
+    color: #ff9800;
+}
+.checkout-address-box.is-selected .checkout-address-btn-submit {
+    background-color: #ff9800;
+}
+.shopping-page .checkout-additional-options-checkbox-image {
+    color: #ff9800;
+}
+footer.main-footer .back-to-top .icon {
+    color: #ff9800;
+}
+footer.main-footer .newsletter form .btn {
+    background-color: #ff9800;
+}
+footer.main-footer .newsletter form .btn:focus,
+footer.main-footer .newsletter form .btn:active {
+    background-color: #ff9800;
+}
+footer.main-footer .newsletter form .btn:hover {
+    background-color: #ff9800 !important;
+}
+footer.main-footer .socials .footer-social ul li a:hover {
+    background-color: #ff9800;
+}
+.shopping-page .checkout-contact-content:before {
+    background-color: #ff9800;
+}
+.shopping-page .checkout-contact-badge {
+    border: 1px solid #ff9800;
+    color: #ff9800;
+}

@@ -2,470 +2,320 @@
 @model Domain.ViewModels.SiteSide.Order.FinalInvoiceSiteSideDTO
 
 @{
-    ViewData["Title"] = "فاکتور نهایی";
-
     Layout = null;
-}
-
-
-
-@section Scripts {
-
-
-
 }
 
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>فاکتور خرید</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#f7858d">
+    <meta name="msapplication-navbutton-color" content="#f7858d">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#f7858d">
+    <title>فاکتور نهایی</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/materialdesignicons.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/bootstrap.min.css">
+    <!-- Plugins -->
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/owl.carousel.min.css">
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/jquery.horizontalmenu.css">
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/jquery-stack-menu.min.css">
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/fancybox.min.css">
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/nice-select.css">
+    <link rel="stylesheet" href="/DidiKala/assets/css/vendor/nouislider.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/DidiKala/assets/css/main.css">
+    <link rel="stylesheet" href="/DidiKala/assets/css/colors/default.css" id="colorswitch">
 
-        @@font-face {
-            font-family: "Yekan Bakh FaNum";
-            src: url("/ArefSet/src/assets/fonts/yekan/YekanBakhFaNum-Regular.woff2") format("woff2"), url("assets/fonts/yekan/YekanBakhFaNum-Regular.woff") format("woff"), url("assets/fonts/yekan/YekanBakhFaNum-Regular.ttf") format("truetype"), url("assets/fonts/yekan/YekanBakhFaNum-Regular.svg#YekanBakhFaNum-Regular") format("svg");
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
 
-        body {
-            margin: 5px;
-            font-family: "Yekan Bakh FaNum";
-        }
 
-        .p-4 {
-            padding: 2em;
-        }
-
-        .col-md-2 {
-            width: 16.66%;
-        }
-
-        .col-md-3 {
-            width: calc(100% / 4);
-        }
-
-        .col-md-4 {
-            width: calc(16.66% * 2);
-        }
-
-        .col-md-9 {
-            width: 75%;
-        }
-
-        .col-md-10 {
-            width: 83.34%;
-        }
-
-        .justify-content-center {
-            display: flex;
-            justify-content: center;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .font-yekan {
-            font-family: "yekan";
-        }
-
-        .row {
-            padding: 0 15px;
-            display: flex;
-        }
-
-        .flex-wrap {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .flex-end {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        h2 {
-            font-size: 2.5em;
-        }
-
-        .mt-2 {
-            margin-top: 2em;
-        }
-
-        .p-1 {
-            padding: 1em;
-        }
-
-        .border-bottom-red {
-            border-bottom: 3px solid #ff0000;
-        }
-
-        .border-bottom-table-red {
-            border-bottom: 1px solid #ff0000;
-            padding: 1em 0;
-        }
-
-        .offset-1 {
-            margin-right: calc(100% / 12);
-        }
-
-        .offset-1-5 {
-            margin-right: calc(100% / 7);
-        }
-
-        .col-md-11 {
-            width: calc(8.33% * 11);
-        }
-
-        .w-full {
-            width: 100%;
-        }
-
-        .bg-dark {
-            background-color: #000;
-        }
-
-        .bg-gary {
-            background-color: rgb(237, 237, 237);
-        }
-
-        .bg-red {
-            background: #ff0000;
-        }
-
-        .text-white {
-            color: #fff;
-        }
-
-        .rtl {
-            direction: rtl;
-        }
-
-        .h-full {
-            height: 500px;
-        }
-
-        .text-bold {
-            font-weight: bolder;
-        }
-
-        th {
-            padding: 0.5em 0;
-        }
-
-        .right-side {
-            position: fixed;
-            right: 0;
-            z-index: 0;
-            bottom: 0;
-            height: 100%;
-        }
-
-        .z-index-1 {
-            z-index: 1;
-        }
-
-        .z-index-2 {
-            z-index: 2;
-        }
-
-        .z-index-0 {
-            z-index: 0;
-        }
-
-        .column-table-input {
-            border-radius: 15px;
-            border: 0;
-            background: #dddddd;
-            width: 100%;
-            height: 45px;
-        }
-
-        .table-sum-section {
-            direction: rtl;
-            width: 60%;
-            margin: 0.5em;
-        }
-
-        .title-column {
-            width: 30%;
-        }
-
-        .title-column-label {
-            color: #ff0000;
-            font-size: 1.5em;
-        }
-
-        .text-red {
-            color: #ff0000;
-            font-weight: bolder;
-        }
-
-        input[type="text"] {
-            padding: 0 1em;
-            font-size: 1em;
-            font-family: "Yekan Bakh FaNum";
-        }
-
-        .mt-mins-3 {
-            margin-top: -3em;
-        }
-
-        .border-radius-50 {
-            border-radius: 50%;
-        }
-
-        .icon-item {
-            width: 2em;
-            height: 2em;
-            display: flex;
-        }
-
-            .icon-item svg {
-                margin: auto;
-            }
-
-        .item-icon-footer {
-            display: flex;
-            align-content: center;
-            align-items: center;
-        }
-
-        .label-item-icon {
-            font-size: 2em;
-            font-weight: bolder;
-            margin: 0 0.5em;
-        }
-
-        .flex {
-            display: flex;
-        }
-
-        .small-font-item-icon {
-            font-size: 0.9em;
-        }
-
-        .small-logo {
-            width: 30px;
-        }
-
-        @@media screen and (max-width: 1024px) {
-            .row {
-                flex-direction: column;
-                margin-right: 2em;
-            }
-
-            .table-sum-section {
-                width: 90%;
-            }
-
-            .title-column-label {
-                width: 90%;
-            }
-        }
-
-        @@media screen and (max-width: 768px) {
-            .border-bottom-table-red.text-white {
-                color: #000;
-            }
-
-            .col-md-9 {
-            }
-        }
-    </style>
 </head>
+
 <body id="container_content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 text-center mt-2 border-bottom-red">
-                <h2>بــرازنـــده اســـتـایـل شمـــا</h2>
-            </div>
-            <div class="col-md-2 text-center p-4 z-index-2">
-                <img src="/ArefSet/src/assets/images/factor/white-logo.svg"
-                     alt=""
-                     style="width: 80%" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="offset-1-5 col-md-11 h-full z-index-2">
-                <div class="row rtl">
-                    <div class="col-md-3 text-center p-1 text-bold">نام مشتری: @Model.UserInfo.UserName</div>
-                    <div class="col-md-3 text-center p-1 text-bold">تلفن: @Model.UserInfo.PhoneNumber</div>
-                    <div class="col-md-3 text-center p-1 text-bold">آدرس:@Model.Locations.LocationAddress</div>
-                    <div class="col-md-3 text-center p-1 flex-wrap flex-end">
-                        <div class="w-full">شماره: @Model.Order.OrderId</div>
-                        <div class="w-full">تاریخ:@Model.Order.CreateDate.ToShamsi()</div>
-                    </div>
-                </div>
-                <div class="row rtl">
-                    <table class="w-full" cellspacing="0" cellpadding="0">
-                        <thead>
-                            <tr class="text-white bg-red">
-                                <th style="width: 5.3em">ردیف</th>
-                                <th>نام محصول</th>
-                                <th>رنگ</th>
-                                <th>سایز</th>
-                                <th>تعداد</th>
-                                <th>مبلغ واحد به ریال</th>
-                            </tr>
-                        </thead>
-                        @(Model.OrderDetails != null && Model.OrderDetails.Any())
-                        {
-                        <tbody>
-
-
-                            @foreach (var product in Model.OrderDetails)
-                            {
-                                <tr class="text-center">
-                                    <td class="border-bottom-table-red text-white">@product.Product.ProductID</td>
-                                    <td class="border-bottom-table-red">@product.Product.ProductTitle</td>
-                                    <td class="border-bottom-table-red">@product.ColorName</td>
-                                    <td class="border-bottom-table-red">@product.SizeName</td>
-                                    <td class="border-bottom-table-red">@product.Count</td>
-                                    <td class="border-bottom-table-red">@product.Product.Price.ToString("#,000")</td>
-                                </tr>
-                            }
-
-
-                        </tbody>
-                        }
-                    </table>
-                </div>
-                <div class="row justify-content-center">
-                    <table cellspacing="7" cellpadding="0" class="table-sum-section">
-                        <tr>
-                            <td class="title-column">
-                                <span class="title-column-label">
-                                    مبلغ کل به حروف (ریال)
-                                </span>
-                            </td>
-                            <td><input type="text" value="@Model.Order.Price.Value.ToString("#,000")" readonly class="column-table-input" /></td>
-                        </tr>
-                        <tr>
-                            <td class="title-column">
-                                <span class="title-column-label">
-                                    مبلغ کل به عدد (ریال)
-                                </span>
-                            </td>
-                            <td><input type="text" value="@Model.Order.Price.Value.ToString("#,000")" readonly class="column-table-input" /></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="row rtl flex-wrap">
-                    <div class="col-md-10 text-center">
-                        <h3 class="text-red mt-2">مهر و امضاء</h3>
-                    </div>
-                    <div class="col-md-2">
-                        <img src="/ArefSet/src/assets/images/factor/qr-code.png" alt="QR Code" />
-                    </div>
-                    <div class="col-md-9 mt-mins-3 offset-1 flex">
-                        <div class="col-md-4 item-icon-footer">
-                            <div class="bg-red border-radius-50 icon-item">
-                                <svg width="24px"
-                                     height="24px"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.78216 3H16.2169C19.165 3 21 5.08119 21 8.02638V15.9736C21 18.9188 19.165 21 16.2159 21H7.78216C4.83405 21 3 18.9188 3 15.9736V8.02638C3 5.08119 4.84281 3 7.78216 3Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                    <path d="M11.8445 8.82812C9.91023 8.82812 8.3418 10.3966 8.3418 12.3308C8.3418 14.2651 9.91023 15.8335 11.8445 15.8335C13.7788 15.8335 15.3472 14.2651 15.3472 12.3308C15.3472 10.3966 13.7788 8.82812 11.8445 8.82812Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                    <path d="M16.8661 7.36374V7.43274V7.36374ZM17.1481 7.37875C17.1481 7.53575 17.0211 7.66275 16.8641 7.66275C16.7071 7.66275 16.5791 7.53575 16.5791 7.37875C16.5791 7.22175 16.7071 7.09375 16.8641 7.09375C17.0211 7.09375 17.1481 7.22175 17.1481 7.37875Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <label class="label-item-icon">aref.set</label>
-                        </div>
-                        <div class="col-md-4 item-icon-footer">
-                            <div class="bg-red border-radius-50 icon-item">
-                                <svg width="24px"
-                                     height="24px"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                          clip-rule="evenodd"
-                                          d="M12 3C16.9709 3 21 7.02908 21 12C21 16.9709 16.9709 21 12 21C7.02908 21 3 16.9709 3 12C3 7.02908 7.02908 3 12 3Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                    <path fill-rule="evenodd"
-                                          clip-rule="evenodd"
-                                          d="M11.9994 3C13.85 3 15.3493 7.02908 15.3493 12C15.3493 16.9709 13.85 21 11.9994 21C10.1488 21 8.64941 16.9709 8.64941 12C8.64941 7.02908 10.1488 3 11.9994 3Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                    <path fill-rule="evenodd"
-                                          clip-rule="evenodd"
-                                          d="M21 11.9984C21 13.849 16.9709 15.3483 12 15.3483C7.02908 15.3483 3 13.849 3 11.9984C3 10.1478 7.02908 8.64844 12 8.64844C16.9709 8.64844 21 10.1478 21 11.9984Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <label class="label-item-icon">www.arefset.com</label>
-                        </div>
-                        <div class="col-md-4 item-icon-footer">
-                            <div class="bg-red border-radius-50 icon-item">
-                                <svg width="24px"
-                                     height="24px"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.78216 3H16.2169C19.165 3 21 5.08119 21 8.02638V15.9736C21 18.9188 19.165 21 16.2159 21H7.78216C4.83405 21 3 18.9188 3 15.9736V8.02638C3 5.08119 4.84281 3 7.78216 3Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                    <path d="M11.8445 8.82812C9.91023 8.82812 8.3418 10.3966 8.3418 12.3308C8.3418 14.2651 9.91023 15.8335 11.8445 15.8335C13.7788 15.8335 15.3472 14.2651 15.3472 12.3308C15.3472 10.3966 13.7788 8.82812 11.8445 8.82812Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                    <path d="M16.8661 7.36374V7.43274V7.36374ZM17.1481 7.37875C17.1481 7.53575 17.0211 7.66275 16.8641 7.66275C16.7071 7.66275 16.5791 7.53575 16.5791 7.37875C16.5791 7.22175 16.7071 7.09375 16.8641 7.09375C17.0211 7.09375 17.1481 7.22175 17.1481 7.37875Z"
-                                          stroke="#ffffff"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <label class="label-item-icon small-font-item-icon">
-                                <i class="text-red">*</i> برند
-                                <img src="/ArefSet/src/assets/images/landing/Arefset 1.png"
-                                     alt="AREF"
-                                     class="small-logo" />
-                                از اعتماد و انتخاب شما سپاسگذار است
-                                <i class="text-red">*</i>
-                            </label>
-
-                            <p class="btn_print btn btn-danger">پرینت</p>
+    <div class="wrapper shopping-page">
+        <!-- Start header-shopping -->
+        <header class="header-shopping dt-sl">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center pt-2">
+                        <div class="header-shopping-logo dt-sl mt-4">
+                            <a href="#">
+                                <img src="/favicon.ico" alt="">
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 bg-dark text-center p-4 right-side"></div>
-        </div>
+        </header>
+        <!-- End header-shopping -->
+        <main class="main-content dt-sl mt-4 mb-3">
+            <div class="container main-container">
+
+                <div class="row">
+                    <div class="cart-page-content col-12 px-0">
+                        <div class="checkout-alert dt-sn dt-sn--box mb-4">
+                            <div class="circle-box-icon successful">
+                                <i class="mdi mdi-check-bold"></i>
+                            </div>
+                            <div class="checkout-alert-title">
+                                <h4>
+                                    سفارش <span class="checkout-alert-highlighted checkout-alert-highlighted-success">@Model.Order.OrderId</span>
+                                    با موفقیت در سیستم ثبت شد.
+                                </h4>
+                            </div>
+                            <div class="checkout-alert-content">
+                                <p class="checkout-alert-content-success">
+                                    سفارش بزودی آماده ارسال خواهد شد.
+                                </p>
+                            </div>
+                        </div>
+                        <section class="checkout-details dt-sl dt-sn dt-sn--box mt-4 pt-4 pb-3 pr-3 pl-3 mb-5 px-res-1">
+                            <div class="checkout-details-title">
+                                <h4>
+                                    شماره پیگیری سفارش:
+                                    <span>
+                                        @Model.Order.OrderId
+                                    </span>
+                                </h4>
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-8 col-sm-12">
+                                        <div class="checkout-details-title">
+                                            <p>
+                                                سفارش شما با موفقیت در سیستم ثبت شد و هم اکنون
+                                                <span class="text-highlight text-highlight-success">درحال آماده سازی</span>
+                                                است.
+                                                جزئیات این سفارش را می‌توانید درپایین مشاهده کنید.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <p class="btn-primary-cm bg-secondary btn-with-icon d-block text-center pr-0 btn_print">
+                                            <i class="mdi mdi-shopping"></i>
+                                            PDF دریافت
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12 px-res-0">
+                                        <div class="checkout-table">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        نام تحویل گیرنده:
+                                                        <span>
+                                                            @Model.UserInfo.UserName
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        شماره تماس :
+                                                        <span>
+                                                            @Model.UserInfo.PhoneNumber
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        تعداد مرسوله :
+                                                        <span>
+                                                            @Model.OrderDetails.Sum(p => p.Count)
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        مبلغ کل:
+                                                        <span>
+                                                            @Model.Order.Price.Value.ToString("#,000") ریال
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        روش پرداخت:
+                                                        <span>
+                                                            پرداخت اینترنتی
+                                                            <span class="green">
+                                                                (موفق)
+                                                            </span>
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        وضعیت سفارش:
+                                                        <span>
+                                                            پرداخت شد
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        کدپستی:
+                                                        <span>
+                                                            @Model.Locations.PostalCode
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        تاریخ ثبت سفارش:
+                                                        <span>
+                                                            @Model.Order.CreateDate.ToShamsi()
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p>
+                                                        آدرس :@Model.Locations.LocationAddress
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 dt-sl px-res-1">
+                            <h2>جزئیات سفارش</h2>
+                        </div>
+
+                        <section class="checkout-details dt-sl dt-sn dt-sn--box mb-4 pt-2 pb-3 pl-3 pr-3 ">
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table class="checkout-orders-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="numrow">
+                                                        <p class="text-secondary text-footer">
+                                                            کدمحصول
+                                                        </p>
+                                                    </td>
+                                                    <td class="gateway">
+                                                        <p class="text-secondary text-footer">
+                                                            نام محصول
+                                                        </p>
+                                                    </td>
+                                                    <td class="id">
+                                                        <p class="text-secondary text-footer">
+                                                            سایز محصول
+                                                        </p>
+                                                    </td>
+                                                    <td class="date">
+                                                        <p class="text-secondary text-footer">
+                                                            رنگ محصول
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                @if (Model.OrderDetails != null && Model.OrderDetails.Any())
+                                                {
+                                                    foreach (var orderDetail in Model.OrderDetails)
+                                                    {
+                                                        <tr>
+                                                            <td class="numrow">
+                                                                <p class="text-secondary text-footer">
+                                                                    @orderDetail.Product.ProductID
+                                                                </p>
+                                                            </td>
+                                                            <td class="gateway">
+                                                                <p class="text-secondary text-footer">
+                                                                    @orderDetail.Product.ProductTitle
+                                                                </p>
+                                                            </td>
+                                                            <td class="id">
+                                                                <p class="text-secondary text-footer">
+                                                                    @orderDetail.SizeName
+                                                                </p>
+                                                            </td>
+                                                            <td class=" date">
+                                                                <p class="text-secondary text-footer">
+                                                                    @orderDetail.ColorName
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+        <!-- Start mini-footer -->
+        <footer class="mini-footer dt-sl">
+            <div class="container main-container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 text-left">
+                        <i class="mdi mdi-phone-outline"></i>
+                        شماره تماس : <a href="#">
+                            01133215295
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <i class="mdi mdi-email-outline"></i>
+                        آدرس ایمیل : <a href="#">info@arefset.ir</a>
+                    </div>
+                    <div class="col-12 text-center mt-2">
+                        <p class="text-secondary text-footer">
+                            ساری، میدان خزر
+                        </p>
+                    </div>
+                    <div class="col-12 text-center">
+                        <div class="copy-right-mini-footer">
+                            Copyright © 2023 ArefSet
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End mini-footer -->
     </div>
+    <!-- Core JS Files -->
+    <script src="/DidiKala/assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/popper.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/bootstrap.min.js"></script>
+    <!-- Plugins -->
+    <script src="/DidiKala/assets/js/vendor/bootstrap-slider.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/owl.carousel.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/owl.carousel2.thumbs.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/jquery.nicescroll.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/nouislider.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/jquery.horizontalmenu.js"></script>
+    <script src="/DidiKala/assets/js/vendor/jquery-stack-menu.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/jquery.fancybox.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/countdown.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/wNumb.js"></script>
+    <script src="/DidiKala/assets/js/vendor/ResizeSensor.min.js"></script>
+    <script src="/DidiKala/assets/js/vendor/theia-sticky-sidebar.min.js"></script>
+    <!-- Main JS File -->
+    <script src="/DidiKala/assets/js/main.js"></script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
@@ -493,9 +343,6 @@
         });
 
     </script>
-
-
 </body>
 
 </html>
-
