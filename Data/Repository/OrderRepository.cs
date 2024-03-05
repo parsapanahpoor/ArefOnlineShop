@@ -98,6 +98,28 @@ namespace Data.Repository
                                              .ThenInclude(p=> p.ProductSelectedColors)
                                              .AsNoTracking()
                                              .Where(p=> p.OrderID == order.OrderId)
+                                             .Select(p=> new OrderDetailDTO()
+                                             {
+                                                 Count = p.Count,
+                                                 IsReturend = p.IsReturend,
+                                                 OrderID = p.OrderID,
+                                                 Price = p.Price,
+                                                 ProductID = p.ProductID,
+                                                 SizeName = _context.ProductsSizes
+                                                                    .AsNoTracking()
+                                                                    .Where(s=> !s.IsDelete && 
+                                                                           s.Id == p.SizeId)
+                                                                    .Select(s=> s.SizeTitle)
+                                                                    .FirstOrDefault(),
+                                                 ColorName = _context.ProductColors
+                                                                    .AsNoTracking()
+                                                                    .Where(s => !s.IsDelete &&
+                                                                           s.Id == p.ColorId)
+                                                                    .Select(s => s.ColorFarsiTitle)
+                                                                    .FirstOrDefault(),
+                                                 Product = p.Product,
+                                                 OrderDetailID = p.OrderDetailID
+                                             })
                                              .ToListAsync(),
                 UserInfo = await _context.Users
                                          .AsNoTracking()

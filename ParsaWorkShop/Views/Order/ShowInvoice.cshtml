@@ -11,26 +11,7 @@
 
 @section Scripts {
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function ($) {
-
-            $(document).on('click', '.btn_print', function (event) {
-                event.preventDefault();
-
-                console.log("hello");
-
-                //credit : https://ekoopmans.github.io/html2pdf.js
-
-                var element = document.getElementById('container_content');
-
-                //easy
-                html2pdf().from(element).save();
-
-            });
-        });
-    </script>
 
 }
 
@@ -300,8 +281,8 @@
         }
     </style>
 </head>
-<body>
-    <div class="container" id="container_content">
+<body id="container_content">
+    <div class="container">
         <div class="row">
             <div class="col-md-10 text-center mt-2 border-bottom-red">
                 <h2>بــرازنـــده اســـتـایـل شمـــا</h2>
@@ -329,26 +310,32 @@
                             <tr class="text-white bg-red">
                                 <th style="width: 5.3em">ردیف</th>
                                 <th>نام محصول</th>
+                                <th>رنگ</th>
+                                <th>سایز</th>
                                 <th>تعداد</th>
                                 <th>مبلغ واحد به ریال</th>
                             </tr>
                         </thead>
+                        @(Model.OrderDetails != null && Model.OrderDetails.Any())
+                        {
                         <tbody>
 
-                            @(Model.OrderDetails != null && Model.OrderDetails.Any())
-                            {
+
                             @foreach (var product in Model.OrderDetails)
                             {
                                 <tr class="text-center">
                                     <td class="border-bottom-table-red text-white">@product.Product.ProductID</td>
                                     <td class="border-bottom-table-red">@product.Product.ProductTitle</td>
+                                    <td class="border-bottom-table-red">@product.ColorName</td>
+                                    <td class="border-bottom-table-red">@product.SizeName</td>
                                     <td class="border-bottom-table-red">@product.Count</td>
                                     <td class="border-bottom-table-red">@product.Product.Price.ToString("#,000")</td>
                                 </tr>
                             }
-                            }
-                            
+
+
                         </tbody>
+                        }
                     </table>
                 </div>
                 <div class="row justify-content-center">
@@ -470,6 +457,8 @@
                                 از اعتماد و انتخاب شما سپاسگذار است
                                 <i class="text-red">*</i>
                             </label>
+
+                            <p class="btn_print btn btn-danger">پرینت</p>
                         </div>
                     </div>
                 </div>
@@ -477,6 +466,36 @@
             <div class="col-md-2 bg-dark text-center p-4 right-side"></div>
         </div>
     </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function ($) {
+
+            console.log("hello");
+
+            $(document).on('click', '.btn_print', function (event) {
+                event.preventDefault();
+
+                console.log("hello");
+
+                //credit : https://ekoopmans.github.io/html2pdf.js
+
+                var element = document.getElementById('container_content');
+
+                //easy
+                html2pdf().from(element).save();
+
+            });
+        });
+
+    </script>
+
+
 </body>
+
 </html>
 
