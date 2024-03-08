@@ -1,17 +1,16 @@
 ﻿@{
     ViewData["Title"] = "نتیجه ی  پرداخت ";
 }
- 
+
 @section Styles
     {
-    <link href="/ArefSet/dist/output.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
+<link href="/ArefSet/dist/output.css" rel="stylesheet" />
+<link rel="stylesheet" href="/ArefSet/src/assets/styles/style.css" />
 }
 
 
 
 <div class="mx-auto">
-
     <section class="mx-auto lg:mt-5 mt-5 px-5 lg:px-0 max-w-[99%] lg:max-w-[86.5em]">
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -36,7 +35,23 @@
         </nav>
     </section>
 
-
+    <div class="mx-auto">
+        <div role="alert" style="margin: 50px;">
+            <div class="bg-blue-500 text-white font-bold rounded-t px-4 py-2">
+                <h2>روش ارسال</h2>
+                <div before="" class="before:content-[attr(before)] text-justify">
+                    تیپاکس: سریع ترین روش برای ارسال محصول به سراسر ایران
+                    طی مدت ۳ الی ۴ روز کاری در هر موقعیت جغرافیایی ایران حضور دارید محصول به دست شما میرسد
+                    توجه داشته باشید روش پرداخت هزینه تیپاکس به صورت پس کرایه است
+                    هزینه پس از دریافت محصول درب منزل قابل پرداخت است
+                    هزینه ارسال محصول بستگی به مسافت و وزن بسته دارد
+                    کاملا ارسالی ها پیگیری می شود هرگونه مشکل به وجود بیاید از طریق لینک واتسپ انتقادات و پیشنهادات خود را اعلام و در اسرع وقت بررسی میگردد
+                    روش ارسال محصول در شهر ساری
+                    طی مدت ۲۴ ساعت محصول به دست شما خواهد رسید
+                </div>
+            </div>
+        </div>
+    </div>
 
     @if (ViewBag.IsSuccess == true)
     {
