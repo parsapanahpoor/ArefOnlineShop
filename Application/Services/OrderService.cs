@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -51,12 +52,14 @@ namespace Application.Services
         {
             var dateTime = DateTime.Now.ToShamsi();
 
+            var link = $"https://arefset.com/Order/ShowInvoice/{orderId}";
+
             var AdminMobilePhone = await _siteSettingRepsitory.GetAdminMobilePhone();
             if (!string.IsNullOrEmpty(AdminMobilePhone))
             {
                 #region Send Verification Code SMS
 
-                var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={AdminMobilePhone}&token={orderId}&token2={dateTime}&template=BuyAlert";
+                var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={AdminMobilePhone}&token={link}&template=TanksForBuy";
                 var results = client.GetStringAsync(result);
 
                 #endregion
