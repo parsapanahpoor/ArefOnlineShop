@@ -432,7 +432,7 @@ namespace Application.Services
             {
                 Email = new Random().Next(10000, 999999).ToString()+"@yahoo.com",
                 Password = password,
-                UserName = mobile,
+                UserName = register.UserName,
                 PhoneNumber = register.Mobile.SanitizeText(),
                 EmailActivationCode = CodeGenerator.GenerateUniqCode(),
                 MobileActivationCode = new Random().Next(10000, 999999).ToString(),

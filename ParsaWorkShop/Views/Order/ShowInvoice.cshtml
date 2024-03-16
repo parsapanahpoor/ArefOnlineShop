@@ -181,6 +181,24 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        استان:
+                                                        <span>
+                                                            @Model.Locations.StateName
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                        شهر:
+                                                        <span>
+                                                            @Model.Locations.CityName
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-12">
                                                     <p>
                                                         آدرس :@Model.Locations.LocationAddress
@@ -219,6 +237,11 @@
                                                             سایز محصول
                                                         </p>
                                                     </td>
+                                                    <td class="id">
+                                                        <p class="text-secondary text-footer">
+                                                            تعداد خریداری شده
+                                                        </p>
+                                                    </td>
                                                     <td class="date">
                                                         <p class="text-secondary text-footer">
                                                             رنگ محصول
@@ -243,6 +266,11 @@
                                                             <td class="id">
                                                                 <p class="text-secondary text-footer">
                                                                     @orderDetail.SizeName
+                                                                </p>
+                                                            </td>
+                                                            <td class="id">
+                                                                <p class="text-secondary text-footer">
+                                                                    @orderDetail.Count
                                                                 </p>
                                                             </td>
                                                             <td class=" date">
