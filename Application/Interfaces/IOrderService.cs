@@ -23,7 +23,7 @@ namespace Application.Interfaces
 
         Task SendSMSForSubmitedOrder(string? orderId);
 
-        Task SendSMSForUserAboutInvoice(int orderId, string refId, string mobile);
+        Task SendSMSForUserAboutInvoice(int orderId, string refId, string mobile , string customerUserName);
 
         bool IsExistOrderFromUserFromToday(int userid);
         Orders GetOrderForShopCart(int userid);

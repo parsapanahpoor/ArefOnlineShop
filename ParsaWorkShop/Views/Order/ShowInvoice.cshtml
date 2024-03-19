@@ -253,9 +253,13 @@
                                                     foreach (var orderDetail in Model.OrderDetails)
                                                     {
                                                         <tr>
+                                                            @{
+                                                                string id = $"10{orderDetail.ProductID}";
+                                                            }
+
                                                             <td class="numrow">
                                                                 <p class="text-secondary text-footer">
-                                                                    @orderDetail.Product.ProductID
+                                                                    @id
                                                                 </p>
                                                             </td>
                                                             <td class="gateway">

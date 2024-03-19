@@ -159,7 +159,9 @@
                                         {
                                             <tr role="row" class="odd">
 
-                                                <td>@item.ProductID</td>
+                                                @{string id = $"10{item.ProductID}";}
+
+                                                <td>@id</td>
 
                                                 <td class="sorting_1">
                                                     <img src="/Images/Product/thumb/@item.ProductImageName" style="width:200px" class="thumbnail" />

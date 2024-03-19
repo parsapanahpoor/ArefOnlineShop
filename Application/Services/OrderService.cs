@@ -66,13 +66,13 @@ namespace Application.Services
             }
         }
 
-        public async Task SendSMSForUserAboutInvoice(int orderId, string refId, string mobile)
+        public async Task SendSMSForUserAboutInvoice(int orderId, string refId, string mobile, string customerUserName)
         {
             var link = $"https://arefset.com/Order/ShowInvoice/{orderId}";
 
             #region Send Verification Code SMS
 
-            var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={mobile}&token={link}&template=TanksForBuy";
+            var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={mobile}&token={customerUserName}&token2={link}&template=BuyAlert";
             var results = client.GetStringAsync(result);
 
             #endregion

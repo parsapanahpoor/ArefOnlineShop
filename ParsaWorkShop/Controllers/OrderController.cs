@@ -577,7 +577,7 @@ namespace ParsaWorkShop.Controllers
 
                             await _order.SendSMSForSubmitedOrder(id.ToString());
 
-                            await _order.SendSMSForUserAboutInvoice(id , refid, user.PhoneNumber );
+                            await _order.SendSMSForUserAboutInvoice(id , refid, user.PhoneNumber , user.UserName);
 
                             return RedirectToAction(nameof(ShowInvoice),
                                                     new { id = id });
