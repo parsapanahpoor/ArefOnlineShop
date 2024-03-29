@@ -37,6 +37,8 @@ namespace Domain.ViewModels.SiteSide.Order
 
         public string ColorName { get; set; }
 
+        public int ColorId { get; set; }
+
         public string SizeName { get; set; }
 
         public Domain.Models.Product.Product Product { get; set; }

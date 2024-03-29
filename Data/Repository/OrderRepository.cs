@@ -118,7 +118,8 @@ namespace Data.Repository
                                                                     .Select(s => s.ColorFarsiTitle)
                                                                     .FirstOrDefault(),
                                                  Product = p.Product,
-                                                 OrderDetailID = p.OrderDetailID
+                                                 OrderDetailID = p.OrderDetailID,
+                                                 ColorId = p.ColorId
                                              })
                                              .ToListAsync(),
                 UserInfo = await _context.Users

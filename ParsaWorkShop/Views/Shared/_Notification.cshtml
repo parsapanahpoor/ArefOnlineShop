@@ -1,4 +1,5 @@
-﻿@if (TempData["SuccessMessage"] != null)
+﻿@using Microsoft.AspNetCore.Html
+@if (TempData["SuccessMessage"] != null)
 {
     <script>
         ShowMessage("اعلان", "@TempData["SuccessMessage"]", "success");
@@ -8,7 +9,7 @@
 @if (TempData["ErrorMessage"] != null)
 {
     <script>
-        ShowMessage("خطا", "@TempData["ErrorMessage"]", "error");
+        ShowMessage("خطا", "@(new HtmlString(TempData["ErrorMessage"] as string))", "error");
     </script>
 }
 

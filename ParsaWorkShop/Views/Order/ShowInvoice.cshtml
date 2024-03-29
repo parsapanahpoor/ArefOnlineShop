@@ -247,6 +247,11 @@
                                                             رنگ محصول
                                                         </p>
                                                     </td>
+                                                    <td class="date">
+                                                        <p class="text-secondary text-footer">
+                                                            کد رنگ
+                                                        </p>
+                                                    </td>
                                                 </tr>
                                                 @if (Model.OrderDetails != null && Model.OrderDetails.Any())
                                                 {
@@ -280,6 +285,11 @@
                                                             <td class=" date">
                                                                 <p class="text-secondary text-footer">
                                                                     @orderDetail.ColorName
+                                                                </p>
+                                                            </td>
+                                                            <td class=" date">
+                                                                <p class="text-secondary text-footer">
+                                                                    @($"20{orderDetail.ColorId}")
                                                                 </p>
                                                             </td>
                                                         </tr>
