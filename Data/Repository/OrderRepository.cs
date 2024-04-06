@@ -119,7 +119,8 @@ namespace Data.Repository
                                                                     .FirstOrDefault(),
                                                  Product = p.Product,
                                                  OrderDetailID = p.OrderDetailID,
-                                                 ColorId = p.ColorId
+                                                 ColorId = p.ColorId,
+                                                 SizeId = p.SizeId
                                              })
                                              .ToListAsync(),
                 UserInfo = await _context.Users
