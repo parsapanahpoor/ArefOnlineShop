@@ -579,6 +579,7 @@ namespace Data.Repository
                                  .Include(p=> p.ProductGalleries)
                                  .AsNoTracking()
                                  .Where(p => !p.IsDelete)
+                                 .OrderByDescending(p=> p.CreateDate)
                                  .Select(p => new LastestProducts()
                                  {
                                      IsInOffer = p.IsInOffer,

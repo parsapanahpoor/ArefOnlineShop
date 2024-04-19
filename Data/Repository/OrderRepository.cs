@@ -117,7 +117,10 @@ namespace Data.Repository
                                                                            s.Id == p.ColorId)
                                                                     .Select(s => s.ColorFarsiTitle)
                                                                     .FirstOrDefault(),
-                                                 Product = p.Product,
+                                                 Product = _context.product
+                                                                   .IgnoreQueryFilters()
+                                                                   .Where(o=> o.ProductID == p.ProductID)
+                                                                   .FirstOrDefault(),
                                                  OrderDetailID = p.OrderDetailID,
                                                  ColorId = p.ColorId,
                                                  SizeId = p.SizeId

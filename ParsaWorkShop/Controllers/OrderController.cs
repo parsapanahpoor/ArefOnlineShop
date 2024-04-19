@@ -558,6 +558,8 @@ namespace ParsaWorkShop.Controllers
 
                         if (wallet != null)
                         {
+                            await _order.SendSMSForUserAboutInvoice(id.ToString(), refid, user.PhoneNumber, user.UserName);
+
                             //Charge User Wallet
                             await _walletService.UpdateWalletAndCalculateUserBalanceAfterBankingPayment(wallet);
 
@@ -576,8 +578,6 @@ namespace ParsaWorkShop.Controllers
                             #endregion
 
                             await _order.SendSMSForSubmitedOrder(id.ToString());
-
-                            await _order.SendSMSForUserAboutInvoice(id , refid, user.PhoneNumber , user.UserName);
 
                             return RedirectToAction(nameof(ShowInvoice),
                                                     new { id = id });
