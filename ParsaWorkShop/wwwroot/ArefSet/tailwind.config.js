@@ -2,23 +2,22 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    
-      backgroundSize: {
-        'auto': 'auto',
-        'cover': 'cover',
-        'contain': 'contain',
-        '35%': '35%',
-        '50%': '50%',
-        '80%': '80%',
-        '90%': '90%',
-        '100%': '100%',
-        '120%': '120%',
-        '130%': '130%'
-      },
-      letterSpacing: {
-        spaceTwo: '-.02%', 
-      },
-      
+    backgroundSize: {
+      auto: "auto",
+      cover: "cover",
+      contain: "contain",
+      "35%": "35%",
+      "50%": "50%",
+      "80%": "80%",
+      "90%": "90%",
+      "100%": "100%",
+      "120%": "120%",
+      "130%": "130%",
+    },
+    letterSpacing: {
+      spaceTwo: "-.02%",
+    },
+
     extend: {
       // mailColors:{
       //   'mainRed':'#D92626',
@@ -26,13 +25,11 @@ module.exports = {
       //   'mainBlack':'#252525',
       // },
       lineHeight: {
-        '16': '62px',
-        
-      }
+        16: "62px",
+      },
     },
   },
   darkMode: "class",
- 
-  plugins: [],
-}
 
+  plugins: [require("@tailwindcss/forms")],
+};
