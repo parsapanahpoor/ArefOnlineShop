@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -29,15 +30,21 @@ namespace ParsaWorkShop.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ISiteSettingService _siteSettingService;
         private readonly IUsersCommentAboutSiteService _usersCommentAboutSiteService;
+        private readonly IAboutUsService _aboutUsService;
         private readonly IFavoriteProductsService _favoriteProductsService;
 
-        public HomeController(ILogger<HomeController> logger , ISiteSettingService siteSettingService,
-                              IUsersCommentAboutSiteService usersCommentAboutSiteService, IFavoriteProductsService favoriteProductsService)
+
+
+        public HomeController(ILogger<HomeController> logger,
+                              ISiteSettingService siteSettingService,
+                              IUsersCommentAboutSiteService usersCommentAboutSiteService,
+                              IAboutUsService aboutUsService, IFavoriteProductsService favoriteProductsService)
         {
             _logger = logger;
             _siteSettingService = siteSettingService;
             _usersCommentAboutSiteService = usersCommentAboutSiteService;
-            _favoriteProductsService = favoriteProductsService; 
+            _aboutUsService = aboutUsService;
+            _favoriteProductsService = favoriteProductsService;
         }
 
         #endregion
@@ -90,7 +97,7 @@ namespace ParsaWorkShop.Controllers
             return View();
         }
 
-        [HttpPost , ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> ContactUs(ContactUsSiteSideViewModel model)
         {
             #region Model State Validation 
@@ -122,11 +129,13 @@ namespace ParsaWorkShop.Controllers
 
         #region About Us
 
-        public async Task<IActionResult> AboutUs()
+        public async Task<IActionResult> AboutUs(CancellationToken cancellation = default)
         {
             #region Fill Model
 
             var model = await _siteSettingService.FillIndexPageViewModel(User.Identity.IsAuthenticated ? User.GetUserId() : null);
+
+            ViewData["AboutUs"] = await _aboutUsService.GetAboutUs(cancellation);
 
             #endregion
 
@@ -147,7 +156,7 @@ namespace ParsaWorkShop.Controllers
         #region Add To Favorite
 
         [Authorize, HttpGet]
-        public async Task<IActionResult> AddToFavorite(int productId ,string url)
+        public async Task<IActionResult> AddToFavorite(int productId, string url)
         {
             var res = await _favoriteProductsService.AddorRemoveProductFromFavorite(productId, User.GetUserId());
             if (res)

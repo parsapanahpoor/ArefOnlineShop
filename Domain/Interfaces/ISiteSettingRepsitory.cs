@@ -1,6 +1,7 @@
 ﻿#region Using
 
 using Domain.Models.Product;
+using Domain.Models.SiteSetting;
 using Domain.ViewModels.Admin.SiteSetting;
 using Domain.ViewModels.SiteSide.Home;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -49,6 +51,20 @@ namespace Domain.Interfaces
 
         //Update Size 
         Task UpdateSize(ProductsSize size);
+
+        #endregion
+
+        #region Site Setting
+
+        Task<string> GetAdminMobilePhone();
+
+        Task<SiteSetting?> GetSiteSetting(CancellationToken cancellationToken);
+
+        Task AddSiteSetting(SiteSetting siteSetting, CancellationToken cancellationToken);
+
+        void UpdateSiteSetting(SiteSetting siteSetting);
+
+        Task SaveChangesAsync(CancellationToken cancellation);
 
         #endregion
 

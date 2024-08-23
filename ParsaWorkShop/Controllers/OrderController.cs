@@ -570,7 +570,9 @@ namespace ParsaWorkShop.Controllers
                     }
                     else if (errors != "[]")
                     {
-                        return View();
+                        string errorscode = jo["errors"]["code"].ToString();
+
+                        return RedirectToAction("PaymentResult", "Payment", new { IsSuccess = false, refId = 123 });
                     }
                 }
             }

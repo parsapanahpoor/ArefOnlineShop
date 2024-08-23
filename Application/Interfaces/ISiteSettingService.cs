@@ -2,6 +2,7 @@
 
 using Application.Extensions;
 using Application.StaticTools;
+using Domain.Models.SiteSetting;
 using Domain.ViewModels.Admin.SiteSetting;
 using Domain.ViewModels.SiteSide.Home;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -55,6 +57,14 @@ namespace Application.Interfaces
 
         //Delete Size 
         Task<bool> DeleteSize(int id);
+
+        #endregion
+
+        #region Site Setting
+
+        Task<SiteSetting?> GetSiteSetting(CancellationToken cancellationToken);
+
+        Task<bool> AddOrEditSiteSetting(SiteSetting newSiteSetting, CancellationToken cancellationToken);
 
         #endregion
 

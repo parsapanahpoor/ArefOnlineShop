@@ -72,8 +72,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">توضیح کامل </label>
-                                        <textarea type="email" asp-for="LongDescription" class="form-control" id="LongDescription" placeholder="توضیح کامل را وارد کنید"></textarea>
+                                        <label for="editor1">توضیح کامل </label>
+                                        <textarea type="email" asp-for="LongDescription" class="form-control" id="editor1" placeholder="توضیح کامل را وارد کنید"></textarea>
                                         <span asp-validation-for="LongDescription" class="text-danger"></span>
 
                                     </div>
@@ -273,13 +273,19 @@
         });
     </script>
 
-    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+
+        <script src="~/ckeditor/ckeditor.js"></script>
+     <script>
+         CKEDITOR.replace('editor1');
+     </script>
+
+   @* <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
     <script>
 
-        CKEDITOR.replace('LongDescription', {
-            customConfig: '/js/Config.js'
+        ckeditor.replace('longdescription', {
+            customconfig: '/js/config.js'
         });
 
     </script>
-
+*@
 }

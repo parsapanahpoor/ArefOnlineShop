@@ -1,10 +1,11 @@
 ﻿@model Domain.ViewModels.SiteSide.Home.IndexPageViewModel
-
+@using Domain.Models.AboutUs;
 
 @{
     ViewData["Title"] = "درباره ی ما ";
-}
 
+    var aboutUs = ViewData["AboutUs"] as AboutUs;
+}
 
 
 <main class="mx-auto">
@@ -64,27 +65,14 @@
                 </h3>
                 <img class="lg:w-[98px] md:w-[80px] w-[73px] z-50" src="/ArefSet/src/assets/images/landing/Arefset 1.png" alt="">
             </div>
+            @if (aboutUs != null && !string.IsNullOrEmpty(aboutUs.Message1))
+            {
             <p class="text-[16px] text-[#7E8285] leading-[28px] lg:pl-8 md:leading-[39px]  lg:leading-[39px] text-[#7E8285] " style="font-family: yekanBakhtSemiBold; text-align:justify">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی
-                نامفهوم. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم
-                متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                سادگی نامفهوم.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم
-                ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
-                تولید سادگی نامفهوم.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم،
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی
-                با تولید سادگی نامفهوم.لورم ایپسوم متن ساختگی با تولید سادگی
-                نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم
-                متن ساختگی با تولید سادگی نامفهوم.لورم ایپسوم متن ساختگی با تولید
-                سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                ایپسوم متن ساختگی با تولید سادگی نامفهوم.لورم ایپسوم متن ساختگی با
-                تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.لورم ایپسوم متن ساختگی
-                با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
-                نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.لورم ایپسوم
-                متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید
-                سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.
-            </p>
+               
+                    @aboutUs.Message1
+
+            </p>   
+                }
         </div>
     </section>
 
@@ -100,17 +88,13 @@
                           چیست
                     </h3>
                 </div>
+
+                @if (aboutUs != null && !string.IsNullOrEmpty(aboutUs.Message2))
+                {                 
                 <p class="text-[16px] text-[#7E8285] leading-[28px] lg:pl-8 md:leading-[39px]  lg:leading-[39px] " style="font-family: yekanBakhtSemiBold; text-align:justify">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم. لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
-                    تولید سادگی نامفهوم.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم،
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم.لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم.لورم ایپسوم متن
-                </p>
+                        @aboutUs.Message2
+                    </p>   
+                }
             </div>
             <div class="col-span-2 md:col-span-2 lg:col-span-1 flex justify-center items-center min-h-[330px] lg:h-auto">
                 <div class="relative w-[287.21px] md:w-[400px] lg:w-[537px] h-[217.68px] md:h-[330px] lg:h-[407px] before:content-[''] before:absolute before:-top-[27px] before:-left-[27px] before:-z-[1000px] lg:before:-left-[37px] lg:before:-top-[37px] before:border-[1px] before:border-[#B7B7B7] before:w-[160.45px] before:h-[231.59px] lg:before:w-[300px] lg:before:h-[433px] before:bg-transparent after:content-[''] after:absolute after:-bottom-[27px] after:-right-[27px] after:-z-[1000px] lg:after:-right-[37px] lg:after:-bottom-[37px] after:border-[1px] after:border-[#B7B7B7] after:w-[160.45px] after:h-[160.99px] lg:after:w-[300px] lg:after:h-[301px] after:bg-transparent">

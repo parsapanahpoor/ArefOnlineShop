@@ -1,5 +1,6 @@
 ﻿#region Usings
 
+using Domain.Models.AboutUs;
 using Domain.Models.Blog;
 using Domain.Models.Comment;
 using Domain.Models.ContactUs;
@@ -8,6 +9,7 @@ using Domain.Models.FavoriteProducts;
 using Domain.Models.Order;
 using Domain.Models.Permissions;
 using Domain.Models.Product;
+using Domain.Models.SiteSetting;
 using Domain.Models.Slider;
 using Domain.Models.UserCommentAboutSite;
 using Domain.Models.Users;
@@ -112,6 +114,18 @@ namespace Data.Context
         public DbSet<ReturnedProductType> ReturnedProductTypes { get; set; }
         public DbSet<FinancialTransactionType> FinancialTransactionType { get; set; }
         public DbSet<OrderCancelationRequestDetail> OrderCancelationRequestDetail { get; set; }
+
+        #endregion
+
+        #region Site Setting
+
+        public DbSet<SiteSetting> SiteSetting { get; set; }
+
+        #endregion
+
+        #region About Us
+
+        public DbSet<AboutUs> AboutUs { get; set; }
 
         #endregion
 
