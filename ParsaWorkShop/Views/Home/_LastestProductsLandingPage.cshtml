@@ -4,12 +4,12 @@
 
 <section class="w-full">
     <div class="flex items-center justify-center mb-5">
-        <div class="mt-32 relative w-[212.34px] h-[72.24px] md:w-[300px] md:h-[90px] lg:w-[388px] lg:h-[132px] bg-no-repeat before:content-[''] before:absolute before:-left-[60px] lg:before:-left-[100px] before:top-[41%] before:w-[52px] lg:before:w-[91px] before:h-[2px] before:bg-[#D92626] after:content-[''] after:absolute after:-right-[60px] lg:after:-right-[100px] after:top-[41%] after:w-[52px] lg:after:w-[91px] after:h-[2px] after:bg-[#D92626]"
+        <div class="mt-20 relative w-[212.34px] h-[72.24px] md:w-[300px] md:h-[90px] lg:w-[388px] lg:h-[132px] bg-no-repeat before:content-[''] before:absolute before:-left-[60px] lg:before:-left-[100px] before:top-[41%] before:w-[52px] lg:before:w-[91px] before:h-[2px] before:bg-[#D92626] after:content-[''] after:absolute after:-right-[60px] lg:after:-right-[100px] after:top-[41%] after:w-[52px] lg:after:w-[91px] after:h-[2px] after:bg-[#D92626]"
              style="
               background-image: url(/ArefSet/src/assets/images/landing/Arefset\ 2.png);
               background-position: center;
               background-size: cover;
-            ">
+            "> 
             <p class="text-[#252525] sm:text-[24px] md:text-[2.5rem] lg:text-[40px] mt-5 text-center"
                style="font-family: yekanBakhtExtraBold">
                 جدیدترین های ما
@@ -46,17 +46,19 @@
                 @if (Model.Any(p => p.ProdudctCategoryId == null))
                 {
                     <section id="allProduct" class="tab-panel">
-                        <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
                             @foreach (var item in Model.Where(p => p.ProdudctCategoryId == null).Select(p => p.LastestProducts).FirstOrDefault())
                             {
-                                <div class="transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
-                                    <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
+                                <div class="w-full transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
+                                    <div class="h-auto w-full  relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
 
                                         <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all">
                                             @* <img class="product-image  w-full h-full object-cover" src="@PathTools.ProductPath@item.ProductImageName" alt="@item.Title" />*@
+                                            
+                                            
                                             <img class="product-image w-full " src="@PathTools.ProductPath@item.ProductImageName" alt="@item.Title" />
-                                            @*<img class="product-image  w-full " src="/ArefSet/src/assets/images/landing/20.jpg" alt="@item.Title" />*@
+                                            @*<img class="product-image  w-full h-full object-cover " src="/ArefSet/src/assets/images/landing/20.jpg" alt="@item.Title" />*@
                                             @if (!string.IsNullOrEmpty(item.SecondeProductImageName))
                                             {
                                                 <img class="product-image-hover w-full h-full object-cover  absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductGalleryPath@item.SecondeProductImageName" title="@item.Title" alt="@item.Title" />
@@ -92,20 +94,20 @@
                                         </div>
                                     </div>
                                     <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
-                                        <div class="text-right inline-block lg:w-[283px]">
+                                        <div class="w-full text-right inline-block lg:w-[283px]">
                                             <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
                                                 همه ی محصولات 
                                             </p>
-                                            <a style="font-family:yekanBakhtBold" asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="text-[#252525] text-[12px] lg:text-[18px] shopCardTitle">
+                                            <a style="font-family:yekanBakhtBold" asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="text-[#252525] text-[12px] lg:text-[17px] shopCardTitle">
                                                 @item.Title
                                             </a>
                                         </div>
-                                        <div class="text-left">
+                                        <div class="w-full text-left">
                                             <p class="line-through text-[#B7B7B7] font-light text-[10px] lg:text-[14px] inline-block h-4">
                                                 @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
 
                                             </p>
-                                            <p class="text-[#D92626] font-bold text-[15px] lg:text-[17px]">
+                                            <p class="text-[#D92626] font-bold text-[13px] lg:text-[16px]">
                                                 @item.Price.ToString("#,000") ریال
                                             </p>
                                         </div>
@@ -123,15 +125,14 @@
                     foreach (var category in Model.Where(p => p.ProdudctCategoryId.HasValue))
                     {
                         <section id="@category.ProdudctCategoryTitle" class="tab-panel">
-                            <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="w-full m-auto grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
                                 @if (category.LastestProducts != null && category.LastestProducts.Any())
                                 {
                                     foreach (var item in category.LastestProducts)
                                     {
-                                        <div class="transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
-                                            <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
-
+                                        <div class="w-full transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
+                                            <div class="h-auto w-full  relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
                                                 <a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="transition-all block w-full h-full overflow-hidden relative">
                                                    @* <img class="product-image  w-full h-full object-cover absolute top-0 right-0 left-0 bottom-0" src="@PathTools.ProductPath@item.ProductImageName" title="@item.Title" alt="@item.Title" />*@
                                                     @*<img class="product-image  w-full  " src="/ArefSet/src/assets/images/landing/20.jpg" alt="@item.Title" />*@
@@ -174,48 +175,22 @@
                                                     <p  class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
                                                         @category.ProdudctCategoryTitle
                                                     </p>
-                                                    <a style="font-family:yekanBakhtBold" asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="text-[#252525] text-[12px] lg:text-[18px] shopCardTitle">
+                                                    <a style="font-family:yekanBakhtBold" asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()" class="text-[#252525] text-[12px] lg:text-[17px] shopCardTitle">
                                                         @item.Title
                                                     </a>
                                                 </div>
-                                                <div class="text-left">
+                                                <div class="w-full text-left">
                                                     <p class="line-through text-[#B7B7B7] font-light text-[10px] lg:text-[14px] inline-block h-4">
                                                         @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
 
                                                     </p>
-                                                    <p class="text-[#D92626] font-bold text-[15px] lg:text-[17px]">
+                                                    <p class="text-[#D92626] font-bold text-[13px] lg:text-[16px]">
                                                         @item.Price.ToString("#,000") ریال
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        @*<a asp-action="SinglePageProducts" asp-area="" asp-controller="Products" asp-route-id="@item.ProductId" asp-route-ProductTitle="@item.Title.FixTextForUrl()">
-                                            <div class="transition-all transform hover:shadow-lg flex flex-col justify-start items-center shopCardHover">
-                                                <div class="h-[157px] w-full lg:h-[413px] relative overflow-hidden productCardImg">
-                                                    <img class="product-image transition-all w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
-                                                    <img class="product-image-hover transition-all w-full h-full object-cover" src="@PathTools.ProductPathThumb@item.ProductImageName" alt="" />
-                                                </div>
-                                                <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-center">
-                                                    <div class="text-right">
-                                                        <p class="text-[#7E8285] text-[10px] lg:text-[12px] font-normal leading-[15.5px] lg:leading-[18.6px]">
-                                                            @category.ProdudctCategoryTitle
-                                                        </p>
-                                                        <p class="font-bold text-[14px] lg:text-[20px] shopCardTitle">
-                                                            @item.Title
-                                                        </p>
-                                                    </div>
-                                                    <div class="text-left">
-                                                        <p class="line-through text-[#B7B7B7] font-light text-[11px] lg:text-[14px] inline-block h-4">
-                                                            @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
-                                                        </p>
-                                                        <p class="text-[#D92626] font-bold text-[16px] lg:text-[20px]">
-                                                            @item.Price.ToString("#,000") ریال
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>*@
-
+                                        
                                     }
                                 }
 

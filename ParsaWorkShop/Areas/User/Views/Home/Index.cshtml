@@ -6,7 +6,7 @@
 @{
     ViewData["Title"] = "پروفایل";
 }
-
+ 
 
 <main class="mx-auto mt-7 " style="margin-bottom: 100px;">
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
@@ -19,7 +19,6 @@
             <!-- ----- Activities ----- -->
             <section id="Activities" class="tabcontent w-full flex flex-col items-center justify-start">
 
-
                 <div class="border-2 border-[#252525] w-full p-5 flex flex-col items-start justify-start gap-5">
                     <div class="w-full flex justify-between items-center  mb-7">
                         <div>
@@ -31,7 +30,7 @@
                         <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">  @(Model.LastOrder != null && Model.LastOrder.Any() ? Model.LastOrder.Count() : 0) سفارش</a>
                     </div>
                     @if (Model.LastOrder != null && Model.LastOrder.Any())
-                    {
+                    { 
                         <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <!-- card -->
                             @foreach (var product in Model.LastOrder)
@@ -160,7 +159,7 @@
 
                                             }
                                         </a>
-                                        
+                                         
                                     </div>
                                     <div class="p-2 lg:p-3 w-full lg:flex lg:justify-between lg:items-end">
                                         <div class="text-right inline-block lg:w-[283px]">

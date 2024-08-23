@@ -190,7 +190,7 @@ namespace Data.Repository
                                                                                 : 
                                                                                 _context.FavoriteProducts.Any(s=> !s.IsDelete && s.UserId == userId.Value && s.ProductId == p.ProductID) 
                                                         })
-                                                        .Take(6)
+                                                        .Take(8)
                                                         .ToListAsync();
 
             lastProcuctsChild.Add(AllProducts);
@@ -212,7 +212,7 @@ namespace Data.Repository
                                                    .Where(p => p.ProductCategoryId == categoryId.ProductCategoryId )
                                                    .OrderByDescending(p => p.CreateDate)
                                                    .Select(p => p.ProductID)
-                                                   .Take(6)
+                                                   .Take(8)
                                                    .ToListAsync();
 
                     if (productsId != null && productsId.Any())

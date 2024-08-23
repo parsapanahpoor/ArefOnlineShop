@@ -11,7 +11,7 @@
 
     @await RenderSectionAsync("Styles", false)
 
-    <style>
+    <style> 
 
         /* width */
         ::-webkit-scrollbar {
@@ -75,6 +75,9 @@
             transition: all .4s ease
         }
 
+        .product-image{
+            object-fit:contain
+        }
         .shopCardHover:hover .product-image {
             /*display: none;*/
             visibility: hidden;
@@ -150,7 +153,7 @@
                 }*/
         @@media screen and (min-width: 400px) {
             .headerBackgroundSize {
-                background-size: 80%
+                background-size: 100%
             }
 
             .ProductTitleShopCart {
@@ -188,10 +191,10 @@
                 width: 246px
             }
 
-            .shopCardTitle {
+            /*.shopCardTitle {
                 width: 283px;
                 display: inline-block
-            }
+            }*/
 
             .listShopCartTitle {
                 width: 195px;
