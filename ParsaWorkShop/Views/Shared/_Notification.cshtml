@@ -2,7 +2,7 @@
 @if (TempData["SuccessMessage"] != null)
 {
     <script>
-        ShowMessage("اعلان", "@TempData["SuccessMessage"]", "success");
+        ShowMessage("اعلان", "@(new HtmlString(TempData["SuccessMessage"] as string))", "success");
     </script>
 }
 
@@ -16,13 +16,13 @@
 @if (TempData["InfoMessage"] != null)
 {
     <script>
-        ShowMessage("اعلان", "@TempData["InfoMessage"]", "info");
+        ShowMessage("اعلان", "@(new HtmlString(TempData["InfoMessage"] as string))", "info");
     </script>
 }
 
 @if (TempData["WarningMessage"] != null)
 {
     <script>
-        ShowMessage("هشدار", "@TempData["WarningMessage"]", "warning");
+        ShowMessage("هشدار", "@(new HtmlString(TempData["WarningMessage"] as string))", "warning");
     </script>
 }
