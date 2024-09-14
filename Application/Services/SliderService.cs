@@ -59,6 +59,8 @@ namespace Application.Services
                 ThirdText = slider.ThirdText,
                 Priority = slider.Priority,
                 LinkTitle = slider.LinkTitle,
+                IsPicture = slider.IsPicture,
+                IsVideo = slider.IsVideo,
             };
 
             #endregion
@@ -68,7 +70,9 @@ namespace Application.Services
             if (sliderImage != null)
             {
                 var imageName = Guid.NewGuid() + Path.GetExtension(sliderImage.FileName);
-                sliderImage.AddImageToServer(imageName, PathTools.SliderPathServer, 400, 300, PathTools.SliderPathThumbServer);
+                await sliderImage.AddFilesToServer(
+                    imageName,
+                    PathTools.SliderPathServer);
 
                 sliderEntity.SliderImageName = imageName;
             }
@@ -112,12 +116,10 @@ namespace Application.Services
             if (imgBlogUp != null)
             {
                 var imageName = Guid.NewGuid() + Path.GetExtension(imgBlogUp.FileName);
-                imgBlogUp.AddImageToServer(imageName, PathTools.SliderPathServer, 400, 300, PathTools.SliderPathThumbServer);
-
-                if (!string.IsNullOrEmpty(slider.SliderImageName))
-                {
-                    slider.SliderImageName.DeleteImage(PathTools.SliderPathServer, PathTools.SliderPathThumbServer);
-                }
+                await imgBlogUp.AddFilesToServer(
+                    imageName,
+                    PathTools.SliderPathServer ,
+                    slider.SliderImageName);
 
                 slider.SliderImageName = imageName;
             }
@@ -152,7 +154,7 @@ namespace Application.Services
 
             if (!string.IsNullOrEmpty(slider.SliderImageName))
             {
-                slider.SliderImageName.DeleteImage(PathTools.SliderPathServer, PathTools.SliderPathThumbServer);
+                slider.SliderImageName.DeleteImage(PathTools.SliderPathServer, null);
             }
 
             #endregion

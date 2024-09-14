@@ -3,6 +3,7 @@ using Application.Security;
 using Application.Convertors;
 using Microsoft.AspNetCore.Http;
 using Application.Convertors;
+using System.Threading.Tasks;
 
 namespace Application.Extensions
 {
@@ -77,5 +78,36 @@ namespace Application.Extensions
             }
         }
 
+        public static async Task AddFilesToServer(
+            this IFormFile file, 
+            string fileName, 
+            string orginalPath, 
+            string deletefileName = null, 
+            bool checkFileExtension = true)
+        {
+            if (file != null)
+            {
+                if (!Directory.Exists(orginalPath))
+                    Directory.CreateDirectory(orginalPath);
+
+                if (!string.IsNullOrEmpty(deletefileName))
+                {
+                    if (File.Exists(orginalPath + deletefileName))
+                    {
+                        File.Delete(orginalPath + deletefileName);
+                    }
+                }
+
+                if (!Directory.Exists(orginalPath))
+                    Directory.CreateDirectory(orginalPath);
+
+                string finalPath = orginalPath + fileName;
+
+                using (var stream = new FileStream(finalPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+        }
     }
 }
