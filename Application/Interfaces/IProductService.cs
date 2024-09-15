@@ -45,7 +45,7 @@ namespace Application.Interfaces
         Tuple<List<Product>, int> GetProductsForShowInHomePage(int? Categroyid, int pageId = 1, string filter = "", int take = 0, string orderByType = "date");
         Product GetProductForShowInSingleProducPage(int id);
         bool IsExistPRoduct(int productid);
-        void MinusProductCountAfterSale(int productid, int count);
+        Task MinusProductCountAfterSale(int productid, int count);
         List<Product> GetLastestProductsIndexPage();
         List<Product> GetLastestProductsIndexPagefor4Product();
 
