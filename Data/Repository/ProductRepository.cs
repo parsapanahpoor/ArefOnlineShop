@@ -75,7 +75,7 @@ namespace Data.Repository
         //Check That Has Product a Seconde Pic
         public bool CheckThatHasProductaSecondePic(int productId)
         {
-            return  _context.ProductGallery
+            return _context.ProductGallery
                                  .AsNoTracking()
                                  .Where(p => p.ProductID == productId && p.ShowForSecondeMainImage)
                                  .Any();
@@ -293,6 +293,7 @@ namespace Data.Repository
                                      ProductGallery = _context.ProductGallery
                                                               .AsNoTracking()
                                                               .Where(s => s.ProductID == p.ProductID)
+                                                              .Take(4)
                                                               .ToList(),
                                  })
                                  .FirstOrDefaultAsync();
@@ -573,10 +574,10 @@ namespace Data.Repository
         }
 
         //Fill Newest 3 Products 
-        public async Task<List<LastestProducts>> FillNewest3Products()
+        public async Task<List<LastestProducts>> FillNewest3Products(int? userId)
         {
             return await _context.product
-                                 .Include(p=> p.ProductGalleries)
+                                 .Include(p => p.ProductGalleries)
                                  .AsNoTracking()
                                  .Where(p => !p.IsDelete)
                                  .OrderByDescending(p=> p.CreateDate)
@@ -590,9 +591,14 @@ namespace Data.Repository
                                      Title = p.ProductTitle,
                                      SecondeProductImageName = _context.ProductGallery
                                                                        .AsNoTracking()
-                                                                       .Where(s=> s.ProductID == p.ProductID)
+                                                                       .Where(s => s.ProductID == p.ProductID)
                                                                        .Select(s => s.ImageName)
-                                                                       .FirstOrDefault()
+                                                                       .FirstOrDefault(),
+                                     IsInFavorite = !userId.HasValue ?
+                                                         false
+                                                         :
+                                                         _context.FavoriteProducts.Any(s => !s.IsDelete && s.UserId == userId.Value && s.ProductId == p.ProductID)
+
                                  })
                                  .Take(3)
                                  .ToListAsync();
@@ -803,6 +809,11 @@ namespace Data.Repository
                     childModel = await _context.ProductsSizes
                                                 .FirstOrDefaultAsync(p => !p.IsDelete && p.Id == sizeId);
 
+                    var test = _context.ProductsSizes.FirstOrDefault(p => p.Id == sizeId);
+
+                    if (childModel is null)
+                        continue;
+
                     returnModel.Add(childModel);
                 }
             }
@@ -849,6 +860,7 @@ namespace Data.Repository
                     {
                         var product = await _context.product
                                                     .AsNoTracking()
+                                                    .Include(p => p.ProductGalleries)
                                                     .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == productId);
                         if (product != null) products.Add(product);
                     }
@@ -877,6 +889,7 @@ namespace Data.Repository
                 {
                     Product product = await _context.product
                                                    .AsNoTracking()
+                                                   .Include(p => p.ProductGalleries)
                                                    .FirstOrDefaultAsync(p => !p.IsDelete && p.ProductID == prodsId);
 
                     if (product != null) favoirteProducts.Add(product);

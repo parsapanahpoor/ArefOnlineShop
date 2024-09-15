@@ -12,7 +12,7 @@
     <section class="mx-auto max-w-full grid grid-cols-1 lg:max-w-[86.5em] relative lg:flex lg:items-start gap-5">
 
         <!-- Side Bar -->
-        @await Component.InvokeAsync("UserPanelSideBarViewComponents")
+        @await Component.InvokeAsync("UserPanelSideBarViewComponents" , "Index")
 
         <!-- ---------------------- main content ----------------------------------------- -->
         <div class="w-full lg:flex min-h-[765px]">
@@ -27,7 +27,7 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">  4 سفارش</a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="Index" asp-area="User" asp-controller="Order">  @(Model.LastOrder != null && Model.LastOrder.Any() ? Model.LastOrder.Count() : 0) سفارش</a>
                     </div>
                     @if (Model.LastOrder != null && Model.LastOrder.Any())
                     { 
@@ -35,8 +35,6 @@
                             <!-- card -->
                             @foreach (var product in Model.LastOrder)
                             {
-
-
                                 <div class="h-[385px] transition-all duration-300 transform ease-linear transform hover:shadow-lg flex flex-col justify-between items-center shopCardHover">
                                     <div class="w-full  h-[277px] relative overflow-hidden productCardImg  transition-all duration-300 transform ease-linear">
 
@@ -58,11 +56,11 @@
                                         </div>
                                         <div class="text-left">
                                             <p class="leading-[20.15px] line-through inline-block text-[#B7B7B7] font-light text-[10px] lg:text-[14px]  h-4">
-                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال" : " ")
+                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "تومان" : " ")
 
                                             </p>
                                             <p class="text-[#D92626] font-bold text-[15px] " style="font-family: yekanBakhtBold">
-                                                @product.Price.ToString("#,000")ریال
+                                                @product.Price.ToString("#,000")تومان
                                             </p>
                                         </div>
                                     </div>
@@ -95,10 +93,10 @@
                                         </div>
                                         <div>
                                             <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال": " " )
+                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "تومان": " " )
                                             </p>
                                             <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                                @product.Price.ToString("#,000")ریال
+                                                @product.Price.ToString("#,000")تومان
                                             </p>
                                         </div>
                                     </div>
@@ -127,7 +125,7 @@
                             </p>
                             <p class="text-[12px] text-[#828282]">My orders</p>
                         </div>
-                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">  4 کالا  </a>
+                        <a class="text-[12px] lg:text-[14px] text-[#828282]" asp-action="ListOFFavoriteProducts" asp-area="User" asp-controller="FavoriteProduct">  @(Model.LastFavoriteProduct != null && Model.LastFavoriteProduct.Any() ? Model.LastFavoriteProduct.Count() : 0) کالا  </a>
                     </div>
 
                     @if (Model.LastFavoriteProduct != null && Model.LastFavoriteProduct.Any())
@@ -161,11 +159,11 @@
                                         <div class="text-left">
                                             <p class="leading-[20.15px] line-through inline-block text-[#B7B7B7] font-light text-[10px] lg:text-[14px]  h-4">
 
-                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال" : " ")
+                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "تومان" : " ")
 
                                             </p>
                                             <p class="text-[#D92626] font-bold text-[15px] " style="font-family: yekanBakhtBold">
-                                                @product.Price.ToString("#,000")ریال
+                                                @product.Price.ToString("#,000")تومان
                                             </p>
                                         </div>
                                     </div>
@@ -193,10 +191,10 @@
                                         </div>
                                         <div>
                                             <p class="text-[#7E8285] line-through text-[13px] leading-[20.15px]">
-                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "ریال": " ")
+                                                @((product.IsInOffer.HasValue) ? product.OldPrice.Value.ToString("#,000") + "تومان": " ")
                                             </p>
                                             <p class="text-[#D92626] text-[17px] leading-[26.35px]" style="font-family: yekanBakhtBold">
-                                                @product.Price.ToString("#,000")ریال
+                                                @product.Price.ToString("#,000")تومان
                                             </p>
                                         </div>
                                     </div>

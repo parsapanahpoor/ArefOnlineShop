@@ -6,9 +6,11 @@ using Domain.ViewModels.SiteSide.Blog;
 using Domain.ViewModels.SiteSide.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using ParsaWorkShop.Web.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -53,8 +55,36 @@ namespace ParsaWorkShop.Controllers
         #region List Of Products
 
         [HttpGet]
-        public async Task<IActionResult> ListOfProducts(ListOfProductsViewModel model)
+        public async Task<IActionResult> ListOfProducts(ListOfProductsViewModel model, int? deletedCategory, int? deletedColor, int? deletedSize)
         {
+            #region Model Binding
+
+            if (deletedCategory.HasValue)
+            {
+                if (model.CategoriesId.Contains(deletedCategory.Value))
+                {
+                    model.CategoriesId.Remove(deletedCategory.Value);
+                }
+            }
+
+            if (deletedColor.HasValue)
+            {
+                if (model.ColorsId.Contains(deletedColor.Value))
+                {
+                    model.ColorsId.Remove(deletedColor.Value);
+                }
+            }
+
+            if (deletedSize.HasValue)
+            {
+                if (model.SizesId.Contains(deletedSize.Value))
+                {
+                    model.SizesId.Remove(deletedSize.Value);
+                }
+            }
+
+            #endregion
+
             #region Model Datas
 
             ViewData["Categories"] = await _product.ListOfCategoriesForShowInListOfProducts();

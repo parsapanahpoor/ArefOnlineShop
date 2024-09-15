@@ -1,31 +1,72 @@
 ﻿@using Application.StaticTools;
 @model List<Domain.Models.Slider.Slider>
 
+@section Styles {
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+}
 
 @if (Model != null && Model.Any())
 {
 
     <div style="max-width:2536px" class=" max-w-[1536px]  mx-auto bg-[#eee] !h-[50vh] lg:!h-screen relative">
-        <div style="margin: 0 auto;" class="swiper mySwiper w-full !h-full lg:!h-full swiper-fade swiper-initialized swiper-horizontal swiper-rtl swiper-watch-progress swiper-backface-hidden" dir="rtl">
-            <div class="swiper-wrapper w-full !h-full lg:!h-full " id="swiper-wrapper-0ee14e4b1628f10bd" aria-live="off" style="transition-duration: 0ms;">
+        <div style="margin: 0 auto;" class=" w-full !h-full lg:!h-full " dir="rtl">
+            @* <div class="swiper-wrapper w-full !h-full lg:!h-full " id="swiper-wrapper-0ee14e4b1628f10bd" aria-live="off" style="transition-duration: 0ms;"> *@
+            @* <div class="swiper-wrapper w-full !h-full lg:!h-full " aria-live="off" style="transition-duration: 0ms;"> *@
 
-                @foreach (var slider in Model)
+                @* @foreach (var slider in Model)
                 {
-                    <div class="swiper-slide !h-full lg:!h-full  bg-white bg-no-repeat flex flex-col justify-start items-center lg:justify-center lg:items-start " style="background-image: url(&quot;/ArefSet/src/assets/images/landing/Rectangle 9224.png&quot;); background-size: cover; width: 1690px; opacity: 1; transform: translate3d(1690px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="2 / 5" data-swiper-slide-index="1">
-                        <a href="@slider.Link">
-                            <img class="!h-full lg:!h-full"
-                                 src="@PathTools.SliderPath@slider.SliderImageName"
-                                 alt="" />
+                    var path = string.IsNullOrEmpty(PathTools.SliderPath + slider.SliderImageName)
+                    ? PathTools.SliderPath + slider.SliderImageName
+                    : Url.Content("~/Images/01.jpg"); *@
+
+
+                    @* <div class="swiper-slide !h-full lg:!h-full  bg-white bg-no-repeat flex flex-col justify-start items-center lg:justify-center lg:items-start " style="background-image: url(&quot;/ArefSet/src/assets/images/landing/Rectangle 9224.png&quot;); background-size: cover; width: 1690px; opacity: 1; transform: translate3d(1690px, 0px, 0px); transition-duration: 0ms;" role="group" aria-label="2 / 5" data-swiper-slide-index="1"> *@
+                        <a href="#" class="w-full">
+                        @* <a href="@slider.Link" class="w-full"> *@
+                           @*  <img class="!h-full lg:!h-full"
+                                 src="@path"
+                                 alt="" /> *@
+                            <div class="video-background">
+                                <video autoplay loop muted class="w-full">
+                        <source src="@PathTools.SliderPath/@Model.Where(p=> p.IsVideo).Select(p=> p.SliderImageName).FirstOrDefault()" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
                         </a>
-                    </div>
+                    @* </div> *@
 
-                }
+                @* } *@
 
-            </div>
+            @* </div> *@
             <!-- <div class="swiper-button-next"></div>
                   <div class="swiper-button-prev"></div> -->
-            <div class="swiper-pagination !left-[50%] !-bottom-[1%] !-translate-y-[50%] !-translate-x-[50%] lg:!left-[3%] lg:!inline-block !transform lg:!-rotate-90 lg:!bottom-[10%] ml-4 swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 5" aria-current="true"></span></div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+           @*  <div class="swiper-pagination !left-[50%] !-bottom-[1%] !-translate-y-[50%] !-translate-x-[50%] lg:!left-[3%] lg:!inline-block !transform lg:!-rotate-90 lg:!bottom-[10%] ml-4 swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 5" aria-current="true"></span></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span> *@
         </div>
     </div>
 

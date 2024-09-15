@@ -18,14 +18,22 @@
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
+            crossorigin="">
+    </script>
+
     <script>
 
-        $("#SearchBlogIcon").click(function () {
+        function SearchBlogFilter() {
+            $('#SearchBlogfiltre').submit();
+        }
 
-            $("#SearchBlogfiltre").submit();
+        function ReplyComment(e) {
+            $("#ParentId").val(e), $("html, body").animate({ scrollTop: $("#commentArticle").offset().top }, 2e3), $("#TextArea").focus();
+        }
 
-        });
+    </script>
+
+    <script>
 
         const modal = document.querySelector(".modal");
         const showModal = document.querySelector(".showModal");
@@ -87,9 +95,7 @@
         document.getElementById("defaultFormOpen").click();
 
 
-        function ReplyComment(e) {
-            $("#ParentId").val(e), $("html, body").animate({ scrollTop: $("#commentArticle").offset().top }, 2e3), $("#TextArea").focus();
-        }
+       
 
     </script>
 }
@@ -100,10 +106,10 @@
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
                     @*<a href="#" class="inline-flex items-center text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
-                        <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-                        </svg>
-                        خانه
+                    <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                    </svg>
+                    خانه
                     </a>*@
                     <a href="/" class="inline-flex items-center text-[13px] lg:text-sm font-medium text-[#A8A8A8] hover:text-[#252525] dark:text-gray-400 dark:hover:text-white">
                         @*<svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +128,7 @@
                         <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transform rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">فروشگاه لیست عارف</span>
+                        <span class="mr-1 text-sm font-medium text-text-[#252525] md:mr-2 dark:text-gray-400">مقالات فروشگاه عارف</span>
                     </div>
                 </li>
             </ol>
@@ -243,7 +249,7 @@
             @if (Model.Comments != null && Model.Comments.Any())
             {
                 <div class="w-full my-6">
-                    @foreach (var comment in Model.Comments.Where(p=> !p.ParentId.HasValue))
+                    @foreach (var comment in Model.Comments.Where(p => !p.ParentId.HasValue))
                     {
                         <div class="w-full pb-2  border-b-[1px] mb-7">
 
@@ -265,11 +271,11 @@
                                     </div>
 
                                     <div class="flex items-center justify-center gap-1">
-                                        <img class="w-[10px] h-[10px] lg:w-[12px] lg:h-[12px] object-cover" src="/ArefSet/src/assets/images/landing/Group 1.png" alt="">
-                                        <p onclick="ReplyComment(@comment.CommentId)" class="text-[#89939F] text-[10px] leading-[18.74px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
-                                            پاسخ
-                                        </p>
-                                    </div>
+                            <img class="w-[10px] h-[10px] lg:w-[12px] lg:h-[12px] object-cover" src="/ArefSet/src/assets/images/landing/Group 1.png" alt="">
+                            <p onclick="ReplyComment(@comment.CommentId)" class="text-[#89939F] text-[10px] leading-[18.74px] lg:text-[14px] lg:leading-[26.24px]" style="font-family: yekanBakhtRegular">
+                            پاسخ
+                            </p>
+                            </div>
                                 </div>
 
                                 <div class="lg:mr-[51px] my-2">
@@ -323,11 +329,13 @@
         <div class="filterMenu lg:inline-block w-full lg:w-[414px] flex flex-col justify-start items-center gap-5">
             <form id="SearchBlogfiltre" asp-action="ListOfBlogs" asp-controller="blog" asp-area="" method="get">
                 <div class="w-full h-[163px] border-2 lg:flex lg:flex-col lg:items-start lg:justify-center text-right px-5 lg:px-10 gap-4 mb-5 hidden">
-                    <button class="text-[#252525] text-[16px] leading-[18px]" style="font-family: yekanBakhtBold">
+                    <p class="text-[#252525] text-[16px] leading-[18px]" style="font-family: yekanBakhtBold">
                         جستجو کنید
-                    </button>
+                    </p>
                     <div class="w-[347px] h-[44px] border-[1px] flex items-center justify-start gap-2 pr-3">
-                        <img id="SearchBlogIcon" src="/ArefSet/src/assets/images/landing/search-norma.png" alt="">
+                        <div onclick="SearchBlogFilter()">
+                            <img src="/ArefSet/src/assets/images/landing/search-norma.png" alt="">
+                        </div>
                         <input type="search" placeholder="جستجو خبر مورد نظر خود" class="h-full w-full focus:outline-none" name="BlogTitle" id="">
                     </div>
                 </div>
@@ -396,7 +404,7 @@
                 </div>
             }
 
-         
+
 
             <div class="w-full h-[461px] border-2 mb-5 relative lg:block hidden">
                 <img class="w-full h-full object-cover" src="/ArefSet/src/assets/images/landing/Rectangle 9214.png" alt="">

@@ -1,10 +1,14 @@
 ﻿#region Usings
 
+using Application.Extensions;
 using Application.Interfaces;
+using Application.Services;
 using Domain.Models.Permissions;
 using Domain.ViewModels.SiteSide.ContactUs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.FlowAnalysis;
 using Microsoft.Extensions.Logging;
 using ParsaWorkShop.Models;
 using ParsaWorkShop.Web.Controllers;
@@ -27,16 +31,20 @@ namespace ParsaWorkShop.Controllers
         private readonly ISiteSettingService _siteSettingService;
         private readonly IUsersCommentAboutSiteService _usersCommentAboutSiteService;
         private readonly IAboutUsService _aboutUsService;
+        private readonly IFavoriteProductsService _favoriteProductsService;
 
-        public HomeController(ILogger<HomeController> logger , 
-                              ISiteSettingService siteSettingService, 
-                              IUsersCommentAboutSiteService usersCommentAboutSiteService , 
-                              IAboutUsService aboutUsService)
+
+
+        public HomeController(ILogger<HomeController> logger,
+                              ISiteSettingService siteSettingService,
+                              IUsersCommentAboutSiteService usersCommentAboutSiteService,
+                              IAboutUsService aboutUsService, IFavoriteProductsService favoriteProductsService)
         {
             _logger = logger;
             _siteSettingService = siteSettingService;
             _usersCommentAboutSiteService = usersCommentAboutSiteService;
             _aboutUsService = aboutUsService;
+            _favoriteProductsService = favoriteProductsService;
         }
 
         #endregion
@@ -53,7 +61,7 @@ namespace ParsaWorkShop.Controllers
 
             #region Fill Model
 
-            var model = await _siteSettingService.FillIndexPageViewModel();
+            var model = await _siteSettingService.FillIndexPageViewModel(User.Identity.IsAuthenticated ? User.GetUserId() : null);
 
             #endregion
 
@@ -89,7 +97,7 @@ namespace ParsaWorkShop.Controllers
             return View();
         }
 
-        [HttpPost , ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> ContactUs(ContactUsSiteSideViewModel model)
         {
             #region Model State Validation 
@@ -125,7 +133,7 @@ namespace ParsaWorkShop.Controllers
         {
             #region Fill Model
 
-            var model = await _siteSettingService.FillIndexPageViewModel();
+            var model = await _siteSettingService.FillIndexPageViewModel(User.Identity.IsAuthenticated ? User.GetUserId() : null);
 
             ViewData["AboutUs"] = await _aboutUsService.GetAboutUs(cancellation);
 
@@ -141,6 +149,24 @@ namespace ParsaWorkShop.Controllers
         public async Task<IActionResult> Test()
         {
             return View();
+        }
+
+        #endregion
+
+        #region Add To Favorite
+
+        [Authorize, HttpGet]
+        public async Task<IActionResult> AddToFavorite(int productId, string url)
+        {
+            var res = await _favoriteProductsService.AddorRemoveProductFromFavorite(productId, User.GetUserId());
+            if (res)
+            {
+                TempData[SuccessMessage] = "Success";
+                return Redirect(url);
+            }
+
+            TempData[ErrorMessage] = "Faild";
+            return Redirect(url);
         }
 
         #endregion

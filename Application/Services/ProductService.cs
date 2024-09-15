@@ -37,13 +37,12 @@ namespace Application.Services
         #region Ctor
 
         private IProductRepository _product;
-        private readonly ISizeHelperRepository _sizeHelperRepository;
+        private readonly IOrderRepository _orderRepository;
 
-        public ProductService(IProductRepository product ,
-                              ISizeHelperRepository sizeHelperRepository)
+        public ProductService(IProductRepository product, IOrderRepository orderRepository)
         {
             _product = product;
-            _sizeHelperRepository = sizeHelperRepository;
+            _orderRepository = orderRepository;
         }
 
         #endregion
@@ -72,7 +71,7 @@ namespace Application.Services
         public bool AddImageToGalleryProduct(ProductGallery productGallery, IFormFile imgUp)
         {
             //Check That Has Product a Seconde Pic
-            var checkSecondePic = _product.CheckThatHasProductaSecondePic(productGallery.ProductID); 
+            var checkSecondePic = _product.CheckThatHasProductaSecondePic(productGallery.ProductID);
             if (checkSecondePic && productGallery.ShowForSecondeMainImage) { return false; }
 
             //Check That Has Product a Size Helper
@@ -540,13 +539,22 @@ namespace Application.Services
         }
 
         //Get List Of Product Categries For Show In Site Bar
-        public async Task<SiteSideBarViewModel> FillSiteSideBar()
+        public async Task<SiteSideBarViewModel> FillSiteSideBar(int? userId)
         {
             SiteSideBarViewModel model = new SiteSideBarViewModel();
 
             #region List Of Product Category
 
             model.ListOfProductCategoriesForShowInSiteSideBar = await _product.ListOfProductCategoriesForShowSiteSideBar();
+
+            #endregion
+
+            #region List Of Invoice Details 
+
+            if (userId.HasValue)
+            {
+                model.Invoices = await _orderRepository.FillInvoiceSiteSideViewModel(userId.Value);
+            }
 
             #endregion
 
@@ -578,9 +586,9 @@ namespace Application.Services
         }
 
         //Fill Newest 3 Products 
-        public async Task<List<LastestProducts>> FillNewest3Products()
+        public async Task<List<LastestProducts>> FillNewest3Products(int? userId)
         {
-            return await _product.FillNewest3Products();
+            return await _product.FillNewest3Products(userId);
         }
 
         //Get Maximum Prices Of Products
@@ -686,7 +694,7 @@ namespace Application.Services
 
             #region Add New Records
 
-            await AddColorAndSizeForThisProduct(productId , colorsId , sizesId);
+            await AddColorAndSizeForThisProduct(productId, colorsId, sizesId);
 
             #endregion
 

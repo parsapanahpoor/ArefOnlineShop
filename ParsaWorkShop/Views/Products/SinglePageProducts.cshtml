@@ -477,19 +477,19 @@
                         @Model.Price.ToString("#,000")
                     </strong>
 
-                    ریال
+                    تومان
                 </p>
 
                 @if (Model.OldPrice.HasValue)
                 {
                     <p class="line-through text-[#7E8285] text-[16px]">
-                        @Model.OldPrice.Value.ToString("#,000") ریال
+                        @Model.OldPrice.Value.ToString("#,000") تومان
                     </p>
                 }
 
             </div>
 
-            <form asp-action="AddToShopCart" asp-controller="Order" asp-area="" method="post" enctype="multipart/form-data">
+            <form asp-action="AddToShopCart" asp-controller="Order" asp-area="" method="get" >
                 <input type="hidden" name="id" value="@Model.ProdcutId" />
                 <input type="hidden" name="Count" id="resultHidden" />
 
@@ -687,18 +687,19 @@
             <div class="tab-panels">
 
 
-                <section id="details" class="tab-panel border-2 text-right  !p-4 !px-6">
-                    <p class="text-[16px] lg:text-[22px] my-2">
-                        @*<strong class="text-[18px] lg:text-[22px] leading-[34.1px]" style="font-family: yekanBakhtBlack"> مشخصات </strong>*@
-                        @*<span class="text-[18px] lg:text-[22px] leading-[34.1px]">محصول</span>*@
-                    </p>
-                    @*<p class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] my-2"> @Model.ProductTitle</p>*@
-                    <div class="flex items-start lg:flex lg:items-center w-full h-96 ">
-                        <div class="w-full w-auto-lg grow-1">
-                            @*@if (Model.ProductFeatures != null && Model.ProductFeatures.Any())
-                            {*@
-                            @foreach (var item in Model.ProductFeatures)
-                            {
+
+                @if (Model.ProductFeatures != null && Model.ProductFeatures.Any())
+                {
+                    <section id="details" class="tab-panel border-2 text-right  !p-4 !px-6">
+                        <p class="text-[16px] lg:text-[22px] my-2">
+                            <strong class="text-[18px] lg:text-[22px] leading-[34.1px]" style="font-family: yekanBakhtBlack"> مشخصات </strong><span class="text-[18px] lg:text-[22px] leading-[34.1px]">محصول</span>
+                        </p>
+                        <p class="text-[#7E8285] text-[12px] lg:text-[14px] leading-[21.7px] my-2"> @Model.ProductTitle</p>
+                        <div class="flex items-start lg:flex lg:items-center w-full h-96 ">
+                            <div class="w-full w-auto-lg grow-1">
+
+                                @foreach (var item in Model.ProductFeatures)
+                                {
 
                                 <div class="w-full flex last ">
 
@@ -950,7 +951,7 @@
                 @if (Model.OldPrice.HasValue)
                 {
                     <p class="line-through text-[#7E8285] text-[14px] lg:text-[16px]">
-                        ریال @Model.OldPrice.Value.ToString("#,000")
+                        تومان @Model.OldPrice.Value.ToString("#,000")
 
                     </p>
                 }
@@ -958,7 +959,7 @@
                     <strong class="text-[#D92626] text-[22px] lg:text-[24px]" style="font-family: yekanBakhtBold">
                         @Model.Price.ToString("#,000")
                     </strong>
-                    ریال
+                    تومان
                 </p>
             </div>
 

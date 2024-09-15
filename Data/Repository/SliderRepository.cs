@@ -68,7 +68,9 @@ namespace Data.Repository
                                      ThirdText = p.ThirdText,
                                      ImageName = p.SliderImageName,
                                      Priority = p.Priority,
-                                     LinkTitle = p.LinkTitle
+                                     LinkTitle = p.LinkTitle,
+                                     IsPicture = p.IsPicture,   
+                                     IsVideo = p.IsVideo,
                                  })
                                  .FirstOrDefaultAsync();
         }

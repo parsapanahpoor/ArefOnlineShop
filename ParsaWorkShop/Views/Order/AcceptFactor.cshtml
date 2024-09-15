@@ -168,7 +168,7 @@
                                 <div class=" hidden lg:inline-block">
 
                                     <p class="ProductPriceShopCart text-[#252525] text-[16px] leading-[18.6px]" style="font-family: yekanBakhtSemiBold">
-                                        @item.Product.Price.ToString("#,0") ریال
+                                        @item.Product.Price.ToString("#,0") تومان
                                     </p>
                                 </div>
 
@@ -191,7 +191,7 @@
                                         @{
                                             decimal price = item.Product.Price * item.Count;
                                         }
-                                        @price.ToString("#,0") ریال
+                                        @price.ToString("#,0") تومان
                                     </p>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                             جمع کل سبد خرید :
                         </p>
                         <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
-                            @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") ریال
+                            @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") تومان
                         </p>
                     </div>
                     <div class="lg:border-[#E7E7E7] lg:border-b-[1px] lg:px-auto px-5 mb-4 mt-2 py-3 flex justify-between items-center">
@@ -285,7 +285,7 @@
                             {
                                 <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
                                     @Model.Order.Price.Value.ToString("#,0")
-                                    ریال
+                                    تومان
                                 </p>
                             }
                             else
@@ -296,7 +296,7 @@
                                         var total = orderPrice + 0;
                                     }
 
-                                    @total.ToString("#,0") ریال
+                                    @total.ToString("#,0") تومان
                                 </p>
                             }
                         }

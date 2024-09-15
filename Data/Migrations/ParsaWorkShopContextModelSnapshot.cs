@@ -1056,6 +1056,12 @@ namespace Data.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsPicture")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVideo")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");
 

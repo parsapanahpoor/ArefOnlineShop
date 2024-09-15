@@ -253,7 +253,7 @@ if (numericInputs.length > 0) {
                 var id = $(value).attr('NumericInput');
                 new AutoNumeric(document.querySelector('[NumericInput="' + id + '"]'),
                     {
-                        currencySymbol: '  ریال  ',
+                        currencySymbol: '  تومان  ',
                         outputFormat: "number",
                         allowDecimalPadding: false,
                         currencySymbolPlacement: "s",

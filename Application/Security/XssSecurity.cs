@@ -1,7 +1,4 @@
-﻿
-
-
-
+﻿ 
 using Ganss.Xss;
 
 namespace Application.Security

@@ -1,5 +1,6 @@
 ﻿#region Usings
 
+using Application.Extensions;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace ParsaWorkShop.ViewComponents
         {
             #region Categories
 
-            var model = await _productService.FillNewest3Products();
+            var model = await _productService.FillNewest3Products(User.Identity.IsAuthenticated ? User.GetUserId() : null);
 
             #endregion
 
