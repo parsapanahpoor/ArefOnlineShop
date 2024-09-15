@@ -104,7 +104,7 @@
                                                     </div>
                                                 </div>
                                                 <p class="text-[#252525] text-[12px] mt-2 lg:text-[14px] leading-[50x]" style="font-family: yekanBakhtBold">
-                                                    @order.Product.Price.ToString("#,000") ریال
+                                                    @order.Product.Price.ToString("#,000") تومان
                                                 </p>
                                             </div>
                                         </div>
@@ -199,7 +199,7 @@
                                         <span class="text-[10px] lg:text-[12px] text-[#252525]">
                                             @((Model.FirstOrDefault().Order.Price.HasValue) ? Model.FirstOrDefault().Order.Price.Value.ToString("#,000") : " " )
                                         </span>
-                                        ریال
+                                        تومان
                                     </div>
                                     <div class="flex items-center gap-2 text-[10px] lg:text-[12px]">
                                         <p class="text-[13px] lg:text-[16px] text-[#252525] my-2" style="font-family: yekanBakhtBold">
@@ -209,7 +209,7 @@
                                         <p class="text-[13px] lg:text-[16px] text-[#D92626] my-2" style="font-family: yekanBakhtBold">
                                             @((Model.FirstOrDefault().Order.Price.HasValue) ? Model.FirstOrDefault().Order.Price.Value.ToString("#,000") : " ")
                                         </p>
-                                        ریال
+                                        تومان
                                     </div>
                                     <div class="flex items-center justify-start gap-2">
                                         <p class="text-[12px] lg:text-[14px] text-[#7E8285]" style="font-family: yekanBakhtRegular">

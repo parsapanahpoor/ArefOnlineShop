@@ -683,12 +683,12 @@
                                     <span class="price-title">محدوده قیمت :</span>
                                     <div class="price-wrap-1">
                                         <input class="inline-block !w-[50px]" id="one">
-                                        <label for="one">ریال</label>
+                                        <label for="one">تومان</label>
                                     </div>
                                     <div class="price-wrap_line">-</div>
                                     <div class="price-wrap-2">
                                         <input class="inline-block !w-[50px]" id="two">
-                                        <label for="two">ریال</label>
+                                        <label for="two">تومان</label>
                                     </div>
                                 </div>
                                 <fieldset class="filter-price w-full mx-auto ">
@@ -929,10 +929,10 @@
                                     </div>
                                     <div class="text-left">
                                         <p class="line-through inline-block text-[#B7B7B7] font-light text-[10px] lg:text-[14px]  h-4">
-                                            @((product.OldPrice.HasValue) ? $"{product.OldPrice.Value.ToString("#,000")} ریال" : " ")
+                                            @((product.OldPrice.HasValue) ? $"{product.OldPrice.Value.ToString("#,000")} تومان" : " ")
                                         </p>
                                         <p class="text-[#D92626] font-bold text-[15px] ">
-                                            @product.Price.ToString("#,000") ریال
+                                            @product.Price.ToString("#,000") تومان
                                         </p>
                                     </div>
                                 </div>
@@ -958,11 +958,11 @@
                     </div>
                     <div class="text-left">
                     <p class="line-through text-[#B7B7B7] font-light text-[10px] lg:text-[14px] inline-block h-4">
-                    @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} ریال" : " ")
+                    @((item.OldPrice.HasValue) ? $"{item.OldPrice.Value.ToString("#,000")} تومان" : " ")
 
                     </p>
                     <p class="text-[#D92626] font-bold text-[15px] lg:text-[17px]">
-                    @item.Price.ToString("#,000") ریال
+                    @item.Price.ToString("#,000") تومان
                     </p>
                     </div>
                     </div>
