@@ -743,16 +743,6 @@ namespace Application.Services
             return await _product.CheckThatIsExistProductWithThisSize(productId, sizeId);
         }
 
-        public Task<SiteSideBarViewModel> FillSiteSideBar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<LastestProducts>> FillNewest3Products()
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
     }
 }
