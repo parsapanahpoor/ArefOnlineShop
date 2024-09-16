@@ -111,6 +111,22 @@
 
                                         </div>
 
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1"> آیا اسلایدر تصویر است ؟ </label>
+                                            <input type="checkbox" asp-for="IsPicture">
+                                            <span asp-validation-for="LinkTitle" class="text-danger"></span>
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label for="exampleInputEmail1"> آیا اسلایدر ویدیو است ؟ </label>
+                                            <input type="checkbox" asp-for="IsVideo">
+                                            <span asp-validation-for="LinkTitle" class="text-danger"></span>
+
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -135,13 +151,11 @@
                             <!-- /.card-header -->
                             <!-- form start -->
                             <div class="form-horizontal">
-                                <div class="card-body row">
-                                    <img style="margin:auto; width:342px" id="imgAvatar" class="img-responsive rounded" src="~/Images/Product/image/no-photo.png" alt="upload_img">
-                                </div>
+                             
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="imgBlogUp" id="imgBlogUp">
+                                            <input type="file" class="custom-file-input" name="imgBlogUp">
                                             <label class="custom-file-label" for="exampleInputFile">انتخاب فایل</label>
                                         </div>
 
