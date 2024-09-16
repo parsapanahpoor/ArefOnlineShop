@@ -108,31 +108,31 @@
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-12">
                                                     <p>
-                                                         نام تحویل گیرنده = @Model.UserInfo.UserName
+                                                         نام تحویل گیرنده : @Model.UserInfo.UserName
                                                     </p>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
                                                     <p>
-                                                        شماره تماس = @Model.UserInfo.PhoneNumber
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-12">
-                                                    <p>
-                                                        تعداد مرسوله = @Model.OrderDetails.Sum(p => p.Count)
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12">
-                                                    <p>
-                                                            مبلغ کل = @Model.Order.Price.Value.ToString("#,000") تومان
+                                                        شماره تماس : @Model.UserInfo.PhoneNumber
                                                     </p>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-12">
                                                     <p>
-                                                            روش پرداخت = اینترنتی
+                                                        تعداد مرسوله : @Model.OrderDetails.Sum(p => p.Count)
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                            مبلغ کل : @Model.Order.Price.Value.ToString("#,000") تومان
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <p>
+                                                            روش پرداخت : اینترنتی
                                                             <span class="green">
                                                                 (موفق)
                                                             </span>
@@ -140,19 +140,19 @@
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
                                                     <p>
-                                                       وضعیت سفارش = پرداخت شده
+                                                       وضعیت سفارش : پرداخت شده
                                                     </p>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-12">
                                                     <p>
-                                                        کدپستی = @Model.Locations.PostalCode
+                                                        کدپستی : @Model.Locations.PostalCode
                                                     </p>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
                                                     <p>
-                                                        تاریخ ثبت سفارش = @Model.Order.CreateDate.ToShamsi()
+                                                        تاریخ ثبت سفارش : @Model.Order.CreateDate.ToShamsi()
                                                     </p>
                                                 </div>
                                             </div>
@@ -243,7 +243,7 @@
                                                                 </p>
 
                                                                 <p class="text-secondary text-footer">
-                                                                    کد =  @($"30{orderDetail.SizeId}")
+                                                                    کد :  @($"30{orderDetail.SizeId}")
                                                                 </p>
                                                             </td>
                                                             <td class="id">
@@ -256,7 +256,7 @@
                                                                     @orderDetail.ColorName
                                                                 </p>
                                                                 <p class="text-secondary text-footer">
-                                                                    کد = @($"20{orderDetail.ColorId}")
+                                                                    کد : @($"20{orderDetail.ColorId}")
                                                                 </p>
                                                             </td>
                                                         </tr>

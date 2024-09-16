@@ -189,8 +189,26 @@
 
     <script>
 
-        function ChangeColor(e) {
-            document.getElementById("selectColor").value = e;
+        function ChangeColor(element) {
+            var selectColorInput = document.getElementById("selectColor");
+            var currentValues = selectColorInput.value ? selectColorInput.value.split(',') : [];
+
+            var colorId = element.value;
+
+            if (element.checked) {
+                // Add the colorId if it's checked and not already in the list
+                if (!currentValues.includes(colorId)) {
+                    currentValues.push(colorId);
+                }
+            } else {
+                // Remove the colorId if it's unchecked
+                currentValues = currentValues.filter(function (id) {
+                    return id !== colorId;
+                });
+            }
+
+            // Update the hidden input value with the updated array (comma-separated)
+            selectColorInput.value = currentValues.join(',');
         }
 
         function ReplyComment(e) {
@@ -509,6 +527,8 @@
                     </p>
 
                     <div class="flex justify-start items-center flex-wrap gap-5 mt-3">
+                      
+
                         @if (Model.ProductColors != null && Model.ProductColors.Any())
                         {
                             if (Model.ProductColors.Count() == 1)
@@ -517,17 +537,17 @@
                                     <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 " checked="" value="@Model.ProductColors.FirstOrDefault().Id" style="background-color: @Model.ProductColors.FirstOrDefault().ColorCode">
                                     <span class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px] ms-3">@Model.ProductColors.FirstOrDefault().ColorFarsiTitle</span>
                                 </div>
-                            }else
-                            {
-                                  @foreach (var color in Model.ProductColors)
-                            {
-                                <div onclick="ChangeColor(@color.Id)" class="color flex items-center">
-                                    <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 " value="@color.Id" style="background-color: @color.ColorCode">
-                                    <span class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px] ms-3">@color.ColorFarsiTitle</span>
-                                </div>
                             }
+                            else
+                            {
+                                foreach (var color in Model.ProductColors)
+                                {
+                                    <div onclick="ChangeColor(@color.Id)" class="color flex items-center">
+                                        <input type="checkbox" name="ColorsId" class="rounded-full text-green-700 focus:ring-0 p-3 " value="@color.Id" style="background-color: @color.ColorCode" onchange="ChangeColor(this)">
+                                        <span class="mr-1 text-[#7E8285] text-[12px] lg:text-[14px] ms-3">@color.ColorFarsiTitle</span>
+                                    </div>
+                                }
                             }
-                          
                         }
 
 

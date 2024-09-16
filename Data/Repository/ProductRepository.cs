@@ -17,9 +17,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -324,6 +326,68 @@ namespace Data.Repository
                                      CategoryTitle = p.CategoryTitle
                                  })
                                  .ToListAsync();
+        }
+
+        public async Task<List<AggregateProductsDto>> AggregateProductsAdminSide(CancellationToken cancellationToken)
+        {
+            List<AggregateProductsDto> returnModel = new List<AggregateProductsDto>();  
+
+            var products = await _context.product
+                        .AsNoTracking()
+                        .Where(p => !p.IsDelete)
+                        .ToListAsync();
+
+            foreach (var product in products)
+            {
+                var selectedColorIds = await _context.ProductSelectedColors
+                    .AsNoTracking()
+                    .Where(p => !p.IsDelete && p.ProductId == product.ProductID)
+                    .Select(p => p.ColorId)
+                    .ToListAsync();
+
+                if (selectedColorIds != null && selectedColorIds.Any())
+                {
+                    foreach (var colorId in selectedColorIds)
+                    {
+                        var color = await _context.ProductColors
+                            .AsNoTracking()
+                            .Where(p => p.Id == colorId)
+                            .FirstOrDefaultAsync();
+
+                        var selectedSizeIds = await _context.ProductSelectedSizes
+                            .AsNoTracking()
+                            .Where(p => !p.IsDelete && p.ProductId == product.ProductID)
+                            .Select(p => p.SizeId)
+                            .ToListAsync();
+
+                        if (selectedSizeIds != null && selectedSizeIds.Any())
+                        {
+                            foreach (var sizeId in selectedSizeIds)
+                            {
+                                var size = await _context.ProductsSizes
+                                    .AsNoTracking()
+                                    .Where (p => p.Id == sizeId)
+                                    .FirstOrDefaultAsync();
+
+                                returnModel.Add(new AggregateProductsDto()
+                                {
+                                    IsActive = product.IsActive,
+                                    Price = product.Price,
+                                    ProductId = product.ProductID,
+                                    ProductImageName = product.ProductImageName,
+                                    ProductTitle = product.ProductTitle,
+                                    ColorTitle = color.ColorFarsiTitle,
+                                    SizeTitle = size.SizeTitle,
+                                    ColorId = $"20{color.Id}",
+                                    SizeId = $"30{size.Id}"
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return returnModel;
         }
 
         //List Of Products

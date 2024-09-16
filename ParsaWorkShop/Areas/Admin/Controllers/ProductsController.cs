@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ParsaWorkShop.Areas.Admin.Controllers
@@ -456,6 +457,16 @@ namespace ParsaWorkShop.Areas.Admin.Controllers
         public async Task<IActionResult> ProductSize()
         {
             return View();
+        }
+
+        #endregion
+
+        #region Aggregate Products
+
+        [HttpGet]
+        public async Task<IActionResult> AggregateProducts(CancellationToken cancellationToken)
+        {
+            return View(await _product.AggregateProductsAdminSide(cancellationToken));
         }
 
         #endregion

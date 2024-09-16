@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 #endregion
@@ -32,6 +33,7 @@ namespace Application.Interfaces
 
         #region Product
 
+        Task<List<AggregateProductsDto>> AggregateProductsAdminSide(CancellationToken cancellationToken);
         List<Product> GetAllProducts();
         int AddProduct(Product product, IFormFile imgProductUp, User user);
         void AddCategoryToProduct(List<int> Categories, int ProductID);

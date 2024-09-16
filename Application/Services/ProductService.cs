@@ -29,6 +29,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -60,6 +61,11 @@ namespace Application.Services
         #endregion
 
         #region OLd Methods
+
+        public async Task<List<AggregateProductsDto>> AggregateProductsAdminSide(CancellationToken cancellationToken)
+        {
+            return await _product.AggregateProductsAdminSide(cancellationToken);
+        }
 
         public void AddCategoryToProduct(List<int> Categories, int ProductID)
         {

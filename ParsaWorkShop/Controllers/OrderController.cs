@@ -67,6 +67,15 @@ namespace ParsaWorkShop.Controllers
         [HttpPost, ValidateAntiForgeryToken, AllowAnonymous]
         public async Task<IActionResult> AddToShopCart(IncomingProductInBasketSiteSideViewModel model)
         {
+            List<int> colorIds = new List<int>();
+
+            if (!string.IsNullOrEmpty(model.selectColor))
+            {
+                colorIds = model.selectColor.Split(',')
+                                            .Select(int.Parse)
+                                            .ToList();
+            }
+
             #region Model State Validation
 
             if (!User.Identity.IsAuthenticated)
@@ -74,7 +83,7 @@ namespace ParsaWorkShop.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            if (!model.selectColor.HasValue || !model.selectSize.HasValue)
+            if (colorIds is null || !colorIds.Any() || !model.selectSize.HasValue)
             {
                 TempData[ErrorMessage] = "You Must Choose Size And Color";
                 return RedirectToAction("SinglePageProducts", "Products", new { id = model.id, ProductTitle = await _product.GetProductTitleWithProductId(model.id.Value) });
@@ -90,10 +99,13 @@ namespace ParsaWorkShop.Controllers
                 return NotFound();
             }
 
-            if (!await _product.CheckThatIsExistProductWithThisColor(model.id.Value, model.selectColor.Value))
+            foreach (var colorId in colorIds)
             {
-                TempData[ErrorMessage] = "There is a problem with datas";
-                return RedirectToAction("SinglePageProducts", "Products", new { id = model.id, ProductTitle = await _product.GetProductTitleWithProductId(model.id.Value) });
+                if (!await _product.CheckThatIsExistProductWithThisColor(model.id.Value, colorId))
+                {
+                    TempData[ErrorMessage] = "There is a problem with datas";
+                    return RedirectToAction("SinglePageProducts", "Products", new { id = model.id, ProductTitle = await _product.GetProductTitleWithProductId(model.id.Value) });
+                }
             }
 
             if (!await _product.CheckThatIsExistProductWithThisSize(model.id.Value, model.selectSize.Value))
@@ -132,13 +144,16 @@ namespace ParsaWorkShop.Controllers
 
                 #endregion
 
-                if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id, model.selectColor.Value, model.selectSize.Value))
+                foreach (var colorId in colorIds)
                 {
-                    _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id, model.selectColor.Value, model.selectSize.Value, model.Count);
-                }
-                else
-                {
-                    _order.AddProductToOrderDetail(order.OrderId, product.ProductID, product.Price, model.selectColor.Value, model.selectSize.Value, model.Count);
+                    if (_order.IsExistOrderDetailFromUserFromToday(order.OrderId, (int)model.id, colorId, model.selectSize.Value))
+                    {
+                        _order.AddOneMoreProductToTheShopCart(order.OrderId, (int)model.id, colorId, model.selectSize.Value, model.Count);
+                    }
+                    else
+                    {
+                        _order.AddProductToOrderDetail(order.OrderId, product.ProductID, product.Price, colorId, model.selectSize.Value, model.Count);
+                    }
                 }
             }
             else
@@ -146,8 +161,11 @@ namespace ParsaWorkShop.Controllers
                 //Order To The Data Base
                 int orderid = _order.AddOrderToTheShopCart(userid);
 
-                //Add Order Detail To The Data Base 
-                _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price, model.selectColor.Value, model.selectSize.Value, model.Count);
+                foreach (var colorId in colorIds)
+                {
+                    //Add Order Detail To The Data Base 
+                    _order.AddProductToOrderDetail(orderid, product.ProductID, product.Price, colorId, model.selectSize.Value, model.Count);
+                }
             }
 
             #endregion
@@ -572,7 +590,7 @@ namespace ParsaWorkShop.Controllers
 
                             foreach (var item in orderDetails)
                             {
-                              await _product.MinusProductCountAfterSale(item.ProductID, item.Count);
+                                await _product.MinusProductCountAfterSale(item.ProductID, item.Count);
                             }
 
                             #endregion
@@ -604,12 +622,12 @@ namespace ParsaWorkShop.Controllers
 
         #region Show Invoice 
 
-        public async Task<IActionResult> ShowInvoice(int id ,
+        public async Task<IActionResult> ShowInvoice(int id,
                                                      CancellationToken cancellationToken = default)
         {
             #region Initial Invoice
 
-            var model = await _order.ShowFinalInvoice(id , cancellationToken);
+            var model = await _order.ShowFinalInvoice(id, cancellationToken);
             if (model == null) return NotFound();
 
             #endregion

@@ -12,7 +12,7 @@ namespace Domain.ViewModels.SiteSide.Order
 
         public int? id { get; set; }
         
-        public int? selectColor { get; set; }
+        public string selectColor { get; set; }
 
         public int? selectSize { get; set; }
 
