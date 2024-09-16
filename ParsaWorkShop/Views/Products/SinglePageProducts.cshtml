@@ -477,13 +477,13 @@
                         @Model.Price.ToString("#,000")
                     </strong>
 
-                    ریال
+                    تومان
                 </p>
 
                 @if (Model.OldPrice.HasValue)
                 {
                     <p class="line-through text-[#7E8285] text-[16px]">
-                        @Model.OldPrice.Value.ToString("#,000") ریال
+                        @Model.OldPrice.Value.ToString("#,000") تومان
                     </p>
                 }
 
@@ -950,7 +950,7 @@
                 @if (Model.OldPrice.HasValue)
                 {
                     <p class="line-through text-[#7E8285] text-[14px] lg:text-[16px]">
-                        ریال @Model.OldPrice.Value.ToString("#,000")
+                        تومان @Model.OldPrice.Value.ToString("#,000")
 
                     </p>
                 }
@@ -958,7 +958,7 @@
                     <strong class="text-[#D92626] text-[22px] lg:text-[24px]" style="font-family: yekanBakhtBold">
                         @Model.Price.ToString("#,000")
                     </strong>
-                    ریال
+                    تومان
                 </p>
             </div>
 
