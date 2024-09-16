@@ -6,7 +6,9 @@ using Application.Genarator;
 using Application.Interfaces;
 using Application.Security;
 using Application.StaticTools;
+using Data.Repository;
 using Domain.Interfaces;
+using Domain.Models.Order;
 using Domain.Models.Product;
 using Domain.Models.Slider;
 using Domain.Models.Users;
@@ -20,10 +22,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Numeric;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,13 +41,20 @@ namespace Application.Services
         #region Ctor
 
         private IProductRepository _product;
+        private readonly IOrderRepository _orderRepository;
         private readonly ISizeHelperRepository _sizeHelperRepository;
+        private readonly ISiteSettingRepsitory _siteSettingRepsitory;
+        private static readonly HttpClient client = new HttpClient();
 
-        public ProductService(IProductRepository product ,
-                              ISizeHelperRepository sizeHelperRepository)
+        public ProductService(IProductRepository product,
+            IOrderRepository orderRepository,
+            ISizeHelperRepository sizeHelperRepository,
+            ISiteSettingRepsitory siteSettingRepsitory)
         {
             _product = product;
+            _orderRepository = orderRepository;
             _sizeHelperRepository = sizeHelperRepository;
+            _siteSettingRepsitory = siteSettingRepsitory;
         }
 
         #endregion
@@ -72,7 +83,7 @@ namespace Application.Services
         public bool AddImageToGalleryProduct(ProductGallery productGallery, IFormFile imgUp)
         {
             //Check That Has Product a Seconde Pic
-            var checkSecondePic = _product.CheckThatHasProductaSecondePic(productGallery.ProductID); 
+            var checkSecondePic = _product.CheckThatHasProductaSecondePic(productGallery.ProductID);
             if (checkSecondePic && productGallery.ShowForSecondeMainImage) { return false; }
 
             //Check That Has Product a Size Helper
@@ -394,12 +405,30 @@ namespace Application.Services
             return _product.IsExistPRoduct(productid);
         }
 
-        public void MinusProductCountAfterSale(int productid, int count)
+        public async Task MinusProductCountAfterSale(int productid, int count)
         {
             var product = GetProductByID(productid);
             product.ProductCount = product.ProductCount - count;
 
             _product.UpdateProduct(product);
+
+            if (product.ProductCount < 3)
+            {
+                var dateTime = DateTime.Now.ToShamsi();
+
+                var link = $"موجودی محصول {product.ProductTitle} با کدکالای {product.ProductID} کمتر از 3 عدد می باشد .";
+
+                var AdminMobilePhone = await _siteSettingRepsitory.GetAdminMobilePhone();
+                if (!string.IsNullOrEmpty(AdminMobilePhone))
+                {
+                    #region Send Verification Code SMS
+
+                    var result = $"https://api.kavenegar.com/v1/58556757466E4D63554A6339306F5775716946572F6B414577596137334A722B4570575842725845786D453D/verify/lookup.json?receptor={AdminMobilePhone}&token={link}&template=BuyAlert";
+                    var results = client.GetStringAsync(result);
+
+                    #endregion
+                }
+            }
         }
 
         public int UpdateProduct(Product product, IFormFile imgProductUp)
@@ -540,13 +569,22 @@ namespace Application.Services
         }
 
         //Get List Of Product Categries For Show In Site Bar
-        public async Task<SiteSideBarViewModel> FillSiteSideBar()
+        public async Task<SiteSideBarViewModel> FillSiteSideBar(int? userId)
         {
             SiteSideBarViewModel model = new SiteSideBarViewModel();
 
             #region List Of Product Category
 
             model.ListOfProductCategoriesForShowInSiteSideBar = await _product.ListOfProductCategoriesForShowSiteSideBar();
+
+            #endregion
+
+            #region List Of Invoice Details 
+
+            if (userId.HasValue)
+            {
+                model.Invoices = await _orderRepository.FillInvoiceSiteSideViewModel(userId.Value);
+            }
 
             #endregion
 
@@ -578,9 +616,9 @@ namespace Application.Services
         }
 
         //Fill Newest 3 Products 
-        public async Task<List<LastestProducts>> FillNewest3Products()
+        public async Task<List<LastestProducts>> FillNewest3Products(int? userId)
         {
-            return await _product.FillNewest3Products();
+            return await _product.FillNewest3Products(userId);
         }
 
         //Get Maximum Prices Of Products
@@ -686,7 +724,7 @@ namespace Application.Services
 
             #region Add New Records
 
-            await AddColorAndSizeForThisProduct(productId , colorsId , sizesId);
+            await AddColorAndSizeForThisProduct(productId, colorsId, sizesId);
 
             #endregion
 
