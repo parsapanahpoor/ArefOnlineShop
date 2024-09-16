@@ -35,8 +35,8 @@ namespace Data.Repository
         {
             return await _context.Slider
                                  .AsNoTracking()
-                                 .Where(p=> !p.IsDelete)
-                                 .Select(p=> new ListOfSliersAdminSideViewModel()
+                                 .Where(p => !p.IsDelete)
+                                 .Select(p => new ListOfSliersAdminSideViewModel()
                                  {
                                      SliderId = p.SliderId,
                                      SliderImage = p.SliderImageName,
@@ -68,7 +68,9 @@ namespace Data.Repository
                                      ThirdText = p.ThirdText,
                                      ImageName = p.SliderImageName,
                                      Priority = p.Priority,
-                                     LinkTitle = p.LinkTitle
+                                     LinkTitle = p.LinkTitle,
+                                     IsPicture = p.IsPicture,
+                                     IsVideo = p.IsVideo,
                                  })
                                  .FirstOrDefaultAsync();
         }
