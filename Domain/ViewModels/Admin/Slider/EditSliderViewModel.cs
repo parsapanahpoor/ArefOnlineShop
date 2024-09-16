@@ -38,6 +38,10 @@ namespace Domain.ViewModels.Admin.Slider
 
         public string LinkTitle { get; set; }
 
+        public bool IsPicture { get; set; }
+
+        public bool IsVideo { get; set; }
+
         #endregion
     }
 }
