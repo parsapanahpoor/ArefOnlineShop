@@ -112,9 +112,6 @@ namespace Domain.Interfaces
         //Fill Newest 3 Products 
         Task<List<LastestProducts>> FillNewest3Products(int? userId);
 
-        //Fill Newest 3 Products 
-        Task<List<LastestProducts>> FillNewest3Products();
-
         //Get Maximum Prices Of Products
         Task<int> GetMaximumPricesOfProducts();
 
