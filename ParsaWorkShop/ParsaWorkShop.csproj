@@ -33,6 +33,8 @@
     <Folder Include="wwwroot\Images\Product\image\" />
     <Folder Include="wwwroot\Images\Product\ProducGallery\" />
     <Folder Include="wwwroot\Images\Product\thumb\" />
+    <Folder Include="wwwroot\Images\Slider\main\" />
+    <Folder Include="wwwroot\Images\Slider\thumb\" />
     <Folder Include="wwwroot\Images\UserAvatar\thumb\" />
   </ItemGroup>
 

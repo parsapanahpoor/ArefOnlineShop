@@ -16,7 +16,7 @@ namespace Application.Extensions
     {
         public static int GetUserId(this ClaimsPrincipal claimsPrincipal)
         {
-            var data = claimsPrincipal.Claims.SingleOrDefault(s => s.Type == ClaimTypes.NameIdentifier);
+            var data = claimsPrincipal.Claims.FirstOrDefault(s => s.Type == ClaimTypes.NameIdentifier);
 
             return Int32.Parse(data.Value);
         }
