@@ -67,6 +67,8 @@ namespace Domain.ViewModels.SiteSide.Home
 
         public int? OfferPercentage { get; set; }
 
+        public bool IsInFavorite { get; set; }
+
         #endregion
     }
 

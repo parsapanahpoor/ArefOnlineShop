@@ -572,7 +572,7 @@ namespace ParsaWorkShop.Controllers
 
                             foreach (var item in orderDetails)
                             {
-                                _product.MinusProductCountAfterSale(item.ProductID, item.Count);
+                              await _product.MinusProductCountAfterSale(item.ProductID, item.Count);
                             }
 
                             #endregion
