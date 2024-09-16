@@ -4,14 +4,16 @@ using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(ParsaWorkShopContext))]
-    partial class ParsaWorkShopContextModelSnapshot : ModelSnapshot
+    [Migration("20240914073759_Add-IsVideo-Field")]
+    partial class AddIsVideoField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -845,9 +847,6 @@ namespace Data.Migrations
                     b.Property<bool>("ShowForSecondeMainImage")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("SizeHelper")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Title")
                         .HasMaxLength(800)
                         .HasColumnType("nvarchar(800)");
@@ -994,42 +993,6 @@ namespace Data.Migrations
                     b.ToTable("SiteSetting");
                 });
 
-            modelBuilder.Entity("Domain.Models.SizeHelper.SizeHelper", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GhadeAstin")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GhadeLebas")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SarShane")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SizeDorSine")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SizeTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SizeHelper");
-                });
-
             modelBuilder.Entity("Domain.Models.Slider.Slider", b =>
                 {
                     b.Property<int>("SliderId")
@@ -1142,8 +1105,8 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("PostalCode")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<int>("PostalCode")
+                        .HasColumnType("int");
 
                     b.Property<string>("StateName")
                         .IsRequired()
@@ -1195,9 +1158,6 @@ namespace Data.Migrations
 
                     b.Property<bool>("BanForTicket")
                         .HasColumnType("bit");
-
-                    b.Property<string>("BirthDate")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
