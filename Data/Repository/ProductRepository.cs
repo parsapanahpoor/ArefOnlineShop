@@ -573,13 +573,13 @@ namespace Data.Repository
         }
 
         //Fill Newest 3 Products 
-        public async Task<List<LastestProducts>> FillNewest3Products()
+        public async Task<List<LastestProducts>> FillNewest3Products(int? userId)
         {
             return await _context.product
-                                 .Include(p=> p.ProductGalleries)
+                                 .Include(p => p.ProductGalleries)
                                  .AsNoTracking()
                                  .Where(p => !p.IsDelete)
-                                 .OrderByDescending(p=> p.CreateDate)
+                                 .OrderByDescending(p => p.CreateDate)
                                  .Select(p => new LastestProducts()
                                  {
                                      IsInOffer = p.IsInOffer,
@@ -590,9 +590,14 @@ namespace Data.Repository
                                      Title = p.ProductTitle,
                                      SecondeProductImageName = _context.ProductGallery
                                                                        .AsNoTracking()
-                                                                       .Where(s=> s.ProductID == p.ProductID)
+                                                                       .Where(s => s.ProductID == p.ProductID)
                                                                        .Select(s => s.ImageName)
-                                                                       .FirstOrDefault()
+                                                                       .FirstOrDefault(),
+                                     IsInFavorite = !userId.HasValue ?
+                                                         false
+                                                         :
+                                                         _context.FavoriteProducts.Any(s => !s.IsDelete && s.UserId == userId.Value && s.ProductId == p.ProductID)
+
                                  })
                                  .Take(3)
                                  .ToListAsync();
