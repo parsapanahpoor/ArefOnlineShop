@@ -1,7 +1,9 @@
-﻿using Application.Interfaces;
+﻿using Application.Extensions;
+using Application.Interfaces;
 using Domain.Models.Users;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+
 
 namespace ParsaWorkShop.ViewComponents
 {
@@ -24,12 +26,14 @@ namespace ParsaWorkShop.ViewComponents
         {
             #region Categories
 
-            var model = await _productService.FillSiteSideBar();
+            int? userId = User.Identity.IsAuthenticated ? User.GetUserId() : null;
+
+            var model = await _productService.FillSiteSideBar(userId);
 
             #endregion
 
 
-            return View("SiteSideBar" , model);
+            return View("SiteSideBar", model);
         }
     }
 }
