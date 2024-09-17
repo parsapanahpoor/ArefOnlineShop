@@ -129,7 +129,7 @@
                                 <div class=" hidden lg:inline-block">
 
                                     <p class="ProductPriceShopCart text-[#252525] text-[16px] leading-[18.6px]" style="font-family: yekanBakhtSemiBold">
-                                        @item.Product.Price.ToString("#,0") تومان
+                                        @item.Product.Price.ToString("#,0") ریال
                                     </p>
                                 </div>
 
@@ -152,7 +152,7 @@
                                         @{
                                             decimal price = item.Product.Price * item.Count;
                                         }
-                                        @price.ToString("#,0") تومان
+                                        @price.ToString("#,0") ریال
                                     </p>
                                 </div>
                             </div>
@@ -177,7 +177,7 @@
                             جمع کل سبد خرید :
                         </p>
                         <p class="text-[12px] text-[#7E8285]" style="font-family: yekanBakhtSemiBold">
-                            @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") تومان
+                            @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") ریال
                         </p>
                     </div>
 
@@ -241,7 +241,7 @@
                                 var total = orderPrice + 0;
                             }
                             
-                            @total.ToString("#,0") تومان
+                            @total.ToString("#,0") ریال
                         </p>
                     </div>
                     <a href="/order/GetTheUserLocations/@Model.Order.OrderId" class="w-full bg-[#252525] text-[#fff] hidden lg:flex lg:items-center lg:justify-center gap-2 py-3 text-[11px]">
@@ -261,10 +261,10 @@
     <div>
         <p class="text-[12px] text-[#7E8285] mb-2">مبلغ قابل پرداخت :</p>
        @* <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-            ۵,۸۱۴,۴۶۰ تومان
+            ۵,۸۱۴,۴۶۰ ریال
         </p>*@
         <p class="text-[16px] text-[#252525]" style="font-family: yekanBakhtSemiBold">
-            @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") تومان
+            @Model.InvoiceOrderDetails.Sum(p => p.Product.Price * p.Count).ToString("#,0") ریال
         </p>
     </div>
     <a href="/order/GetTheUserLocations/@Model.Order.OrderId" class="bg-[#252525] text-[#fff] flex items-center justify-center gap-2 py-3 px-5 text-[11px]">

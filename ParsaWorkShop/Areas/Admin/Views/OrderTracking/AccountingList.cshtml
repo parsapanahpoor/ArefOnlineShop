@@ -44,7 +44,7 @@
                     <span class="info-box-icon bg-success elevation-1">
                         <i class="fa fa-dollar"></i>
                     </span><div class="info-box-content">
-                        <span class="info-box-text"> واریزی به صندوق </span> <span class="info-box-number"> @ReciveMoney.ToString("#,0") تومان</span>
+                        <span class="info-box-text"> واریزی به صندوق </span> <span class="info-box-number"> @ReciveMoney.ToString("#,0") ریال</span>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <span class="info-box-icon bg-danger elevation-1">
                         <i class="fa fa-dollar"></i>
                     </span><div class="info-box-content">
-                        <span class="info-box-text"> برداشتی از صندوق </span> <span class="info-box-number"> @ExportMoney.ToString("#,0") تومان </span>
+                        <span class="info-box-text"> برداشتی از صندوق </span> <span class="info-box-number"> @ExportMoney.ToString("#,0") ریال </span>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                                                 <td>@item.Order.User.PhoneNumber</td>
 
                                                 <td>@item.CreateDate.ToShamsi()</td>
-                                                <td>@item.Price.ToString("#,0") تومان </td>
+                                                <td>@item.Price.ToString("#,0") ریال </td>
                                                 <td>
                                                     <div class="badge badge-success">شناسه ی پرداخت </div>
                                                 </td>

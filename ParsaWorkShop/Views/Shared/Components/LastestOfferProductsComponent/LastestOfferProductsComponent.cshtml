@@ -34,11 +34,11 @@
                 <h6 class="text-muted small fst-italic mb-0 mt-1">@item.ShortDescription  </h6>
             </div>
             <div class="d-flex justify-content-between mt-1">
-                <h6 class="text-muted small fst-italic mb-0 mt-1">@item.Price.ToString("#,0") تومان  </h6>
+                <h6 class="text-muted small fst-italic mb-0 mt-1">@item.Price.ToString("#,0") ریال  </h6>
 
                 @if (item.IsInOffer == true)
                 {
-<h6 class="text-muted small fst-italic mb-0 mt-1"> <del style="color:red;">@item.OldPrice.Value.ToString("#,0") تومان</del>  </h6>}
+<h6 class="text-muted small fst-italic mb-0 mt-1"> <del style="color:red;">@item.OldPrice.Value.ToString("#,0") ریال</del>  </h6>}
             </div>
         </div>
     </div>

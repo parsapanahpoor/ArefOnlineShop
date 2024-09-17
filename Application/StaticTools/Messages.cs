@@ -116,7 +116,7 @@ namespace DoctorFAM.Application.StaticTools
     public static string SendSMSForAcceptHomeVisitRequestFromUser(int price)
     {
         return
-            $"سلام . {Environment.NewLine} اعلام آمادگی شما توسط کاربر تایید و مبلغ - تومان به کیف پول شما در سایت واریز شد. {Environment.NewLine} لطفا در زمان اعلام شده در محل درخواست کاربر حاضر شوید. {Environment.NewLine} {PathTools.SiteFarsiName}";
+            $"سلام . {Environment.NewLine} اعلام آمادگی شما توسط کاربر تایید و مبلغ - ریال به کیف پول شما در سایت واریز شد. {Environment.NewLine} لطفا در زمان اعلام شده در محل درخواست کاربر حاضر شوید. {Environment.NewLine} {PathTools.SiteFarsiName}";
     }
 
     //Send SMS For Decline Home Visit Request From User   

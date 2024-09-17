@@ -107,7 +107,7 @@ namespace DoctorFAM.Web.Controllers
 
         #region Payment Result 
 
-        [HttpGet("PaymentResult/{IsSuccess}/{refId}", Name = "PaymentResult")]
+        [HttpGet("PaymentResult/{IsSuccess}/{refId}", Name = "PaymentResult") , AllowAnonymous]
         public async Task<IActionResult> PaymentResult(bool IsSuccess , string? refId)
         {
             ViewBag.IsSuccess = IsSuccess;

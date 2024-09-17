@@ -58,7 +58,7 @@ namespace Application.Extensions
         {
             if (price > 0)
             {
-                return $"{price.ToString("0,0")} تومان";
+                return $"{price.ToString("0,0")} ریال";
             }
 
             return "رایگان";
